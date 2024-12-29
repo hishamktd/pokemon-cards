@@ -1,0 +1,147 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./sql-light/index.db"
+}
+
+model User {
+    id        Int       @id @default(autoincrement())
+    email     String    @unique
+    password  String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    session   Session[]
+}
+
+model Session {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    token     String   @unique
+    expiresAt DateTime
+    user      User     @relation(fields: [userId], references: [id])
+}
+
+model Card {
+    id            Int          @id @default(autoincrement())
+    name          String
+    stageId       Int          @default(1)
+    stage         Stage?       @relation(fields: [stageId], references: [id])
+    typeId        Int
+    type          Type         @relation(fields: [typeId], references: [id])
+    hp            Int
+    image         String
+    imageDesc     String?
+    cardAttacks   CardAttack[]
+    attackDesc    String?
+    weaknessId    Int
+    weakness      Weakness     @relation(fields: [weaknessId], references: [id])
+    illustratorId Int
+    illustrator   Illustrator  @relation(fields: [illustratorId], references: [id])
+    rarityId      Int
+    rarity        Rarity       @relation(fields: [rarityId], references: [id])
+    facts         String?
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @updatedAt
+}
+
+model Stage {
+    id        Int      @id @default(autoincrement())
+    name      String
+    cards     Card[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Type {
+    id          Int           @id @default(autoincrement())
+    name        String
+    cards       Card[]
+    attackType  AttackType[]
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+    weakness    Weakness[]
+    RetreatType RetreatType[]
+}
+
+model Attack {
+    id          Int          @id @default(autoincrement())
+    name        String
+    damage      Int
+    damageExtra Boolean      @default(false)
+    cardAttacks CardAttack[]
+    attackType  AttackType[]
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+}
+
+model AttackType {
+    id        Int      @id @default(autoincrement())
+    attackId  Int
+    attack    Attack   @relation(fields: [attackId], references: [id])
+    typeId    Int
+    type      Type     @relation(fields: [typeId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([attackId, typeId])
+}
+
+model CardAttack {
+    id        Int      @id @default(autoincrement())
+    cardId    Int
+    card      Card     @relation(fields: [cardId], references: [id])
+    attackId  Int
+    attack    Attack   @relation(fields: [attackId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([cardId, attackId])
+}
+
+model Weakness {
+    id        Int      @id @default(autoincrement())
+    typeId    Int
+    type      Type     @relation(fields: [typeId], references: [id])
+    card      Card[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Retreat {
+    id            Int           @id @default(autoincrement())
+    retreatTypeId Int
+    retreatType   RetreatType[]
+    createdAt     DateTime      @default(now())
+    updatedAt     DateTime      @updatedAt
+}
+
+model RetreatType {
+    id        Int      @id @default(autoincrement())
+    retreatId Int
+    retreat   Retreat  @relation(fields: [retreatId], references: [id])
+    typeId    Int
+    type      Type     @relation(fields: [typeId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([retreatId, typeId])
+}
+
+model Illustrator {
+    id        Int      @id @default(autoincrement())
+    name      String
+    Card      Card[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Rarity {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    Card      Card[]
+}
