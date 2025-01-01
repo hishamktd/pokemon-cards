@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import {
   Drawer,
   List,
@@ -14,17 +14,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarProps } from "./types";
 import Icon from "@/@core/components/icon";
+import { useSettings } from "@core/hooks/use-settings";
 
 const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const {
+    settings: { navbarOpen: isOpen },
+    toggleNavbar,
+  } = useSettings();
   const pathname = usePathname();
-
-  const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
     <Box sx={{ display: "flex" }}>
       <Box>
-        <IconButton onClick={toggleSidebar}>
+        <IconButton onClick={toggleNavbar}>
           <Icon icon="mdi:menu" />
         </IconButton>
       </Box>
@@ -38,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
           }}
           width={180}
         >
-          <IconButton onClick={toggleSidebar}>
+          <IconButton onClick={toggleNavbar}>
             <Icon icon="mdi:close" />
           </IconButton>
         </Box>

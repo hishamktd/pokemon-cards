@@ -1,33 +1,26 @@
 "use client";
 
+import { useSettings } from "@core/hooks/use-settings";
 import {
   createTheme,
   CssBaseline,
   ThemeProvider as MuiThemeProvider,
   ThemeOptions,
 } from "@mui/material";
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const {
+    settings: { theme: mode },
+  } = useSettings();
 
-  // Define light and dark theme options
-  const themeOptions: ThemeOptions = {
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  };
+  const themeOptions: ThemeOptions = { palette: { mode } };
 
-  // Create a theme instance
   const theme = createTheme(themeOptions);
-
-  const handleThemeSwitch = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
     <MuiThemeProvider theme={theme}>
