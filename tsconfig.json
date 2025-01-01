@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@core/*": ["./src/@core/*"]
     }
   },
   "include": [
@@ -28,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "prisma/seed/**/*.ts"
-    ],
+  ],
   "exclude": ["node_modules"]
 }

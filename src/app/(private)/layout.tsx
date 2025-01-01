@@ -1,5 +1,7 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Sidebar from "@/@core/layout/side-bar";
+import navigation from "@/constants/navigation";
 
 export default async function Layout({
   children,
@@ -12,5 +14,9 @@ export default async function Layout({
     redirect("/");
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Sidebar navItems={navigation}>{children}</Sidebar>
+    </>
+  );
 }
