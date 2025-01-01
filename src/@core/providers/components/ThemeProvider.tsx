@@ -1,6 +1,5 @@
 "use client";
 
-import AppBar from "@core/layout/app-bar";
 import {
   createTheme,
   CssBaseline,
@@ -33,7 +32,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar />
       {children}
     </MuiThemeProvider>
   );

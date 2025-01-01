@@ -1,5 +1,3 @@
-import ThemeProvider from "@core/provider/components/ThemeProvider";
-
 export const metadata = {
   title: "Pokemon cards",
   description: "Pokemon cards",
@@ -12,9 +10,7 @@ export default async function RootLayout({
 }) {
   return (
     <html>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
