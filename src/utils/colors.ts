@@ -1,15 +1,15 @@
 const colors = {
   primary: {
-    light: '#FFDE70', // Lighter yellow
-    main: '#FFCB05', // Pokémon yellow
-    dark: '#C79A04', // Darker yellow
-    contrastText: '#3B4CCA', // Pokémon blue for text
+    light: '#FFDE70',
+    main: '#FFCB05',
+    dark: '#C79A04',
+    contrastText: '#3B4CCA',
   },
   secondary: {
-    light: '#546EDB', // Lighter blue
-    main: '#3B4CCA', // Pokémon blue
-    dark: '#2A3A8F', // Darker blue
-    contrastText: '#FFFFFF', // White text
+    light: '#546EDB',
+    main: '#3B4CCA',
+    dark: '#2A3A8F',
+    contrastText: '#FFFFFF',
   },
   background: {
     default: '#F7F9FC',
@@ -21,27 +21,27 @@ const colors = {
     disabled: '#C0C0C0',
   },
   error: {
-    light: '#E57373', // Lighter red
-    main: '#D32F2F', // Standard red
-    dark: '#C62828', // Darker red
-    contrastText: '#FFFFFF', // White text
+    light: '#E57373',
+    main: '#D32F2F',
+    dark: '#C62828',
+    contrastText: '#FFFFFF',
   },
   warning: {
-    light: '#FFB74D', // Lighter orange
-    main: '#FF9800', // Standard orange
-    dark: '#F57C00', // Darker orange
-    contrastText: '#000000', // Black text
+    light: '#FFB74D',
+    main: '#FF9800',
+    dark: '#F57C00',
+    contrastText: '#000000',
   },
   info: {
-    light: '#64B5F6', // Lighter blue
-    main: '#2196F3', // Standard blue
-    dark: '#1976D2', // Darker blue
+    light: '#64B5F6',
+    main: '#2196F3',
+    dark: '#1976D2',
     contrastText: '#FFFFFF',
   },
   success: {
-    light: '#81C784', // Lighter green
-    main: '#4CAF50', // Standard green
-    dark: '#388E3C', // Darker green
+    light: '#81C784',
+    main: '#4CAF50',
+    dark: '#388E3C',
     contrastText: '#FFFFFF',
   },
   common: {

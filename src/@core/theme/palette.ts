@@ -27,7 +27,7 @@ const paletteAction: Palette['action'] = {
   activatedOpacity: 0.24,
 };
 
-const palette = (theme: Theme, settings: Settings): Palette => ({
+const lightPalette = (theme: Theme, settings: Settings): Palette => ({
   ...theme.palette,
   mode: settings.theme,
   contrastThreshold: 3,
@@ -45,5 +45,32 @@ const palette = (theme: Theme, settings: Settings): Palette => ({
   action: paletteAction,
   grey,
 });
+
+const darkPalette = (theme: Theme, settings: Settings): Palette => ({
+  ...theme.palette,
+  mode: settings.theme,
+  contrastThreshold: 3,
+  tonalOffset: 0.2,
+  primary,
+  secondary,
+  error,
+  info,
+  success,
+  warning,
+  text,
+  background,
+  common: { black: common.white, white: common.black },
+  divider,
+  action: paletteAction,
+  grey,
+});
+
+const palette = (theme: Theme, settings: Settings): Palette => {
+  if (settings.theme === 'dark') {
+    return { ...darkPalette(theme, settings) };
+  }
+
+  return { ...lightPalette(theme, settings) };
+};
 
 export default palette;
