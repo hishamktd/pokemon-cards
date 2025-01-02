@@ -17,8 +17,8 @@ export default async function Layout({
   }
 
   return (
-    <Sidebar navItems={navigation}>
-      <PrivateProvider>{children}</PrivateProvider>
-    </Sidebar>
+    <PrivateProvider>
+      <Sidebar navItems={navigation}>{children}</Sidebar>
+    </PrivateProvider>
   );
 }
