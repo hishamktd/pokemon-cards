@@ -9,7 +9,7 @@ type Props = {
 const PrivateProvider: FC<Props> = ({ children }) => {
   return (
     <ThemeProvider>
-      <AppBar />
+      <AppBar isLogged />
       {children}
     </ThemeProvider>
   );

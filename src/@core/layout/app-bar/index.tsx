@@ -1,7 +1,11 @@
 import React, { memo } from "react";
 import { AppBar as MuiAppBar, Toolbar, Typography } from "@mui/material";
 
-const AppBar = () => {
+type Props = {
+  isLogged?: boolean;
+};
+
+const AppBar: React.FC<Props> = () => {
   return (
     <MuiAppBar position="static">
       <Toolbar>
