@@ -1,9 +1,10 @@
 import { Toolbar, AppBar as MuiAppBar, Box } from '@mui/material';
 import React, { memo } from 'react';
 
-import AppLogo from '../app-logo';
-import MenuButton from '../components/MenuButton';
-import { AppBarWrapper } from '../components/styled-components';
+import AppLogo from '@core/layout/app-logo';
+import MenuButton from '@core/layout/components/MenuButton';
+import { AppBarWrapper } from '@core/layout/components/styled-components';
+import ThemeToggler from '@core/layout/components/ThemeToggler';
 
 type Props = {
   isLogged?: boolean;
@@ -18,6 +19,7 @@ const AppBar: React.FC<Props> = () => {
             <MenuButton />
             <AppLogo />
           </Box>
+          <ThemeToggler />
         </Toolbar>
       </MuiAppBar>
     </AppBarWrapper>

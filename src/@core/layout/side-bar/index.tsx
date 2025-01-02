@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  Drawer,
-  List,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-  Box,
-} from '@mui/material';
+import { Drawer, List, ListItemIcon, ListItemText, Box } from '@mui/material';
 import React, { memo } from 'react';
 
 import Link from 'next/link';
@@ -15,11 +8,15 @@ import { usePathname } from 'next/navigation';
 
 import Icon from '@/@core/components/icon';
 import { ICONS } from '@/constants/icons';
+import IconButton from '@core/components/icon-button';
 import { useSettings } from '@core/hooks/use-settings';
+import AppLogo from '@core/layout/app-logo';
+import {
+  NavItem,
+  SideBarLogoWrapper,
+} from '@core/layout/components/styled-components';
 
 import { SidebarProps } from './types';
-import AppLogo from '../app-logo';
-import { NavItem, SideBarLogoWrapper } from '../components/styled-components';
 
 const { CLOSE_ANIMATED, DEFAULT_MENU } = ICONS;
 
@@ -35,9 +32,12 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
       <Drawer variant="persistent" open={isOpen}>
         <SideBarLogoWrapper>
           <AppLogo />
-          <IconButton onClick={toggleNavbar} color="primary">
-            <Icon icon={CLOSE_ANIMATED} hidden={!isOpen} />
-          </IconButton>
+          <IconButton
+            onClick={toggleNavbar}
+            icon={CLOSE_ANIMATED}
+            iconProps={{ hidden: !isOpen }}
+            color="primary"
+          />
         </SideBarLogoWrapper>
         <List>
           {navItems.map((item) => (

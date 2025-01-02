@@ -18,6 +18,9 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
     top: 0,
 
     ['& .toolbar']: {
+      display: 'flex',
+      justifyContent: 'space-between',
+
       ['& .logo-container']: {
         display: 'flex',
         alignItems: 'center',
