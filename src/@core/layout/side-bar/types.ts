@@ -1,7 +1,7 @@
 export type NavItem = {
   path: string;
   label: string;
-  icon: React.ReactNode;
+  icon: string;
 };
 
 export type SidebarProps = {

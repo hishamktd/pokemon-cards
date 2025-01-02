@@ -19,8 +19,10 @@ import { ICONS } from '@/constants/icons';
 import { useSettings } from '@core/hooks/use-settings';
 
 import { SidebarProps } from './types';
+import AppLogo from '../app-logo';
+import { SideBarLogoWrapper } from '../components/styled-components';
 
-const { CLOSE } = ICONS;
+const { CLOSE_ANIMATED, DEFAULT_MENU } = ICONS;
 
 const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
   const {
@@ -32,19 +34,12 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer variant="persistent" open={isOpen}>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: isOpen ? 'flex-end' : 'center',
-            alignItems: 'center',
-            padding: 1,
-          }}
-          width={180}
-        >
-          <IconButton onClick={toggleNavbar}>
-            <Icon icon={CLOSE} />
+        <SideBarLogoWrapper>
+          <AppLogo />
+          <IconButton onClick={toggleNavbar} color="primary">
+            {isOpen && <Icon icon={CLOSE_ANIMATED} />}
           </IconButton>
-        </Box>
+        </SideBarLogoWrapper>
         <List>
           {navItems.map((item) => (
             <Link key={item.path} href={item.path} passHref prefetch>
@@ -58,7 +53,9 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
                   },
                 }}
               >
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon>
+                  <Icon icon={item.icon || DEFAULT_MENU} color="primary" />
+                </ListItemIcon>
                 {isOpen && <ListItemText primary={item.label} />}
               </ListItemButton>
             </Link>

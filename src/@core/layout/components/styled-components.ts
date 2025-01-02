@@ -16,5 +16,23 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
     backdropFilter: 'blur(5px)',
     borderRadius: theme.shape.borderRadius,
     top: 0,
+
+    ['& .toolbar']: {
+      ['& .logo-container']: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: theme.spacing(1),
+      },
+    },
   },
+}));
+
+export const SideBarLogoWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: theme.spacing(1),
+  width: 200,
+  minHeight: 60,
+  marginLeft: theme.spacing(2),
 }));
