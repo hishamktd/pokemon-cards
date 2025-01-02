@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { logoutAction } from "@/actions/auth";
-import AddDataForm from "@/components/AddFormData";
+import { logoutAction } from '@/actions/auth';
+import AddDataForm from '@/components/AddFormData';
 
 export default function DashboardPage() {
   const onClick = async () => {

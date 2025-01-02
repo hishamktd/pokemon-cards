@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { ICONS } from "@/constants/icons";
-import IconButton from "@core/components/icon-button";
-import { useSettings } from "@core/hooks/use-settings";
-import React, { memo } from "react";
+import React, { memo } from 'react';
+
+import { ICONS } from '@/constants/icons';
+import IconButton from '@core/components/icon-button';
+import { useSettings } from '@core/hooks/use-settings';
 
 const { MENU } = ICONS;
 

@@ -1,4 +1,4 @@
 export const ICONS = {
-  MENU: "line-md:menu",
-  CLOSE: "mdi:close",
+  MENU: 'line-md:menu',
+  CLOSE: 'mdi:close',
 };

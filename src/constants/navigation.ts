@@ -1,20 +1,20 @@
-import { NavItem } from "@/@core/layout/side-bar/types";
+import { NavItem } from '@/@core/layout/side-bar/types';
 
 const navigation: NavItem[] = [
   {
-    path: "/dashboard",
-    label: "Dashboard",
-    icon: "",
+    path: '/dashboard',
+    label: 'Dashboard',
+    icon: '',
   },
   {
-    path: "/stages",
-    label: "Stages",
-    icon: "",
+    path: '/stages',
+    label: 'Stages',
+    icon: '',
   },
   {
-    path: "/attacks",
-    label: "Attacks",
-    icon: "",
+    path: '/attacks',
+    label: 'Attacks',
+    icon: '',
   },
 ];
 

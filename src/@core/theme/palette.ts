@@ -1,6 +1,7 @@
-import colors from "@/utils/colors";
-import { Settings } from "@core/providers/SettingsProvider";
-import { Palette, Theme } from "@mui/material";
+import { Palette, Theme } from '@mui/material';
+
+import colors from '@/utils/colors';
+import { Settings } from '@core/providers/SettingsProvider';
 
 const {
   background,
@@ -17,7 +18,7 @@ const {
   grey,
 } = colors;
 
-const paletteAction: Palette["action"] = {
+const paletteAction: Palette['action'] = {
   ...action,
   hoverOpacity: 0.08,
   selectedOpacity: 0.16,

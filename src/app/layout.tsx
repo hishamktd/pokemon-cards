@@ -1,8 +1,8 @@
-import { SettingsProvider } from "@core/providers/SettingsProvider";
+import { SettingsProvider } from '@core/providers/SettingsProvider';
 
 export const metadata = {
-  title: "Pokemon cards",
-  description: "Pokemon cards",
+  title: 'Pokemon cards',
+  description: 'Pokemon cards',
 };
 
 export default async function RootLayout({

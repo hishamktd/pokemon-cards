@@ -1,4 +1,4 @@
-import PublicProvider from "@core/providers/PublicProvider";
+import PublicProvider from '@core/providers/PublicProvider';
 
 export default async function Layout({
   children,

@@ -1,5 +1,6 @@
-import LoginForm from "@/components/LoginForm";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box } from '@mui/material';
+
+import LoginForm from '@/components/LoginForm';
 
 export default function Login() {
   return (
@@ -7,9 +8,9 @@ export default function Login() {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography component="h1" variant="h5">

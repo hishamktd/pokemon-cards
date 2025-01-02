@@ -1,5 +1,6 @@
-import RegisterForm from "@/components/RegisterForm";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box } from '@mui/material';
+
+import RegisterForm from '@/components/RegisterForm';
 
 export default function Register() {
   return (
@@ -7,9 +8,9 @@ export default function Register() {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography component="h1" variant="h5">

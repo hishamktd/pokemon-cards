@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 type ContextProps = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type ContextProps = {
 
 export type Settings = {
   navbarOpen: boolean;
-  theme: "light" | "dark";
+  theme: 'light' | 'dark';
 };
 
 type SettingsContext = {
@@ -18,7 +18,7 @@ type SettingsContext = {
 
 const defaultSettings: Settings = {
   navbarOpen: true,
-  theme: "light",
+  theme: 'light',
 };
 
 const defaultSettingsContext: SettingsContext = {

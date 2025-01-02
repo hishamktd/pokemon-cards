@@ -1,29 +1,31 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { TextField, Button, Box, Alert } from "@mui/material";
-import { login } from "@/actions/auth";
+import { TextField, Button, Box, Alert } from '@mui/material';
+import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+
+import { login } from '@/actions/auth';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
       const result = await login(email, password);
       if (result.success) {
-        router.push("/dashboard");
+        router.push('/dashboard');
       } else {
-        setError(result.error || "Invalid email or password");
+        setError(result.error || 'Invalid email or password');
       }
     } catch (error) {
-      setError("An error occurred. Please try again." + error);
+      setError('An error occurred. Please try again.' + error);
     }
   };
 

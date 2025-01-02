@@ -1,27 +1,29 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Any } from "@/types";
+import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+
+import { Any } from '@/types';
 
 export default function AddDataForm() {
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   async function handleSubmit(e: Any) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const response = await fetch("/api/posts", {
-      method: "POST",
+    const response = await fetch('/api/posts', {
+      method: 'POST',
       body: JSON.stringify({
-        title: formData.get("title"),
-        content: formData.get("content"),
+        title: formData.get('title'),
+        content: formData.get('content'),
       }),
     });
 
     if (!response.ok) {
-      setError("Failed to add post");
+      setError('Failed to add post');
     } else {
       e.target.reset();
       router.refresh();

@@ -1,6 +1,7 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { FlatCompat } from '@eslint/eslintrc';
+import eslintPluginImport from 'eslint-plugin-import';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,41 +11,51 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    plugins: ["import"],
+    plugins: {
+      import: eslintPluginImport,
+    },
     rules: {
-      "import/order": [
-        "error",
+      'import/order': [
+        'error',
         {
           groups: [
-            ["builtin", "external"],
-            "internal",
-            ["parent", "sibling", "index"],
+            ['builtin', 'external'],
+            'internal',
+            ['parent', 'sibling', 'index'],
           ],
           pathGroups: [
             {
-              pattern: "react",
-              group: "builtin",
-              position: "before",
+              pattern: 'react',
+              group: 'builtin',
+              position: 'before',
             },
             {
-              pattern: "@mui/**",
-              group: "external",
-              position: "before",
+              pattern: '@mui/**',
+              group: 'external',
+              position: 'before',
             },
             {
-              pattern: "@/**",
-              group: "internal",
+              pattern: '@/**',
+              group: 'internal',
             },
           ],
-          pathGroupsExcludedImportTypes: ["builtin"],
+          pathGroupsExcludedImportTypes: ['builtin'],
           alphabetize: {
-            order: "asc",
+            order: 'asc',
             caseInsensitive: true,
           },
-          newlinesBetween: "always",
+          'newlines-between': 'always',
+          distinctGroup: true,
+          named: false,
+          warnOnUnassignedImports: false,
         },
+      ],
+      quotes: [
+        'error',
+        'single',
+        { avoidEscape: true, allowTemplateLiterals: true },
       ],
     },
   },

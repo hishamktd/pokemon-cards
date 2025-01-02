@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import { useSettings } from "@core/hooks/use-settings";
-import themeOptions from "@core/theme";
 import {
   createTheme,
   CssBaseline,
   ThemeProvider as MuiThemeProvider,
   useTheme,
-} from "@mui/material";
-import React, { memo } from "react";
+} from '@mui/material';
+import React, { memo } from 'react';
+
+import { useSettings } from '@core/hooks/use-settings';
+import themeOptions from '@core/theme';
 
 type ThemeProviderProps = {
   children: React.ReactNode;

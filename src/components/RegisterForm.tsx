@@ -1,29 +1,31 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { TextField, Button, Box, Alert } from "@mui/material";
-import { register } from "@/actions/auth";
+import { TextField, Button, Box, Alert } from '@mui/material';
+import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+
+import { register } from '@/actions/auth';
 
 export default function RegisterForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
       const result = await register(email, password);
       if (result.success) {
-        router.push("/dashboard");
+        router.push('/dashboard');
       } else {
-        setError(result.error || "Registration failed");
+        setError(result.error || 'Registration failed');
       }
     } catch (error) {
-      setError("An error occurred. Please try again." + error);
+      setError('An error occurred. Please try again.' + error);
     }
   };
 

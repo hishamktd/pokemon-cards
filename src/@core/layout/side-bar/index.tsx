@@ -1,6 +1,5 @@
-"use client";
+'use client';
 
-import React, { memo } from "react";
 import {
   Drawer,
   List,
@@ -9,13 +8,17 @@ import {
   ListItemText,
   IconButton,
   Box,
-} from "@mui/material";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { SidebarProps } from "./types";
-import Icon from "@/@core/components/icon";
-import { useSettings } from "@core/hooks/use-settings";
-import { ICONS } from "@/constants/icons";
+} from '@mui/material';
+import React, { memo } from 'react';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import Icon from '@/@core/components/icon';
+import { ICONS } from '@/constants/icons';
+import { useSettings } from '@core/hooks/use-settings';
+
+import { SidebarProps } from './types';
 
 const { CLOSE } = ICONS;
 
@@ -27,13 +30,13 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
   const pathname = usePathname();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <Drawer variant="persistent" open={isOpen}>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: isOpen ? "flex-end" : "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: isOpen ? 'flex-end' : 'center',
+            alignItems: 'center',
             padding: 1,
           }}
           width={180}
@@ -48,10 +51,10 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
               <ListItemButton
                 selected={pathname === item.path}
                 sx={{
-                  "&.Mui-selected": {
-                    backgroundColor: "primary.main",
-                    color: "white",
-                    "& .MuiListItemIcon-root": { color: "white" },
+                  '&.Mui-selected': {
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    '& .MuiListItemIcon-root': { color: 'white' },
                   },
                 }}
               >
@@ -67,7 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
         sx={{
           flexGrow: 1,
           marginLeft: isOpen ? 22.5 : 0,
-          transition: "margin-left 0.3s",
+          transition: 'margin-left 0.3s',
         }}
       >
         {children}

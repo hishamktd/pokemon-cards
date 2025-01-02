@@ -1,14 +1,15 @@
-import { SignJWT } from "jose";
-import { cookies } from "next/headers";
-import { prisma } from "./db";
+import { SignJWT } from 'jose';
+import { cookies } from 'next/headers';
 
-const SECRET_KEY = process.env.JWT_SECRET_KEY || "your-secret-key";
+import { prisma } from './db';
+
+const SECRET_KEY = process.env.JWT_SECRET_KEY || 'your-secret-key';
 const key = new TextEncoder().encode(SECRET_KEY);
 
 export async function createSession(userId: number) {
   const token = await new SignJWT({ userId })
-    .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("24h")
+    .setProtectedHeader({ alg: 'HS256' })
+    .setExpirationTime('24h')
     .sign(key);
 
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
@@ -21,16 +22,16 @@ export async function createSession(userId: number) {
     },
   });
 
-  (await cookies()).set("session_token", token, {
+  (await cookies()).set('session_token', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
     expires: expiresAt,
   });
 }
 
 export async function getSession() {
-  const token = (await cookies()).get("session_token")?.value;
+  const token = (await cookies()).get('session_token')?.value;
 
   if (!token) return null;
 
@@ -42,7 +43,7 @@ export async function getSession() {
 
     if (!session || new Date() > session.expiresAt) {
       await prisma.session.delete({ where: { token } });
-      (await cookies()).delete("session_token");
+      (await cookies()).delete('session_token');
       return null;
     }
 
@@ -53,10 +54,10 @@ export async function getSession() {
 }
 
 export async function logout() {
-  const token = (await cookies()).get("session_token")?.value;
+  const token = (await cookies()).get('session_token')?.value;
 
   if (token) {
     await prisma.session.delete({ where: { token } });
-    (await cookies()).delete("session_token");
+    (await cookies()).delete('session_token');
   }
 }

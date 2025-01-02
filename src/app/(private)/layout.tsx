@@ -1,8 +1,9 @@
-import { getSession } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Sidebar from "@core/layout/side-bar";
-import navigation from "@/constants/navigation";
-import PrivateProvider from "@core/providers/PrivateProvider";
+import { redirect } from 'next/navigation';
+
+import navigation from '@/constants/navigation';
+import { getSession } from '@/lib/auth';
+import Sidebar from '@core/layout/side-bar';
+import PrivateProvider from '@core/providers/PrivateProvider';
 
 export default async function Layout({
   children,
@@ -12,7 +13,7 @@ export default async function Layout({
   const session = await getSession();
 
   if (!session) {
-    redirect("/");
+    redirect('/');
   }
 
   return (

@@ -1,6 +1,7 @@
-import { IconButtonProps, IconButton as MuiIconButton } from "@mui/material";
-import { memo } from "react";
-import Icon, { IconProps } from "../icon";
+import { IconButtonProps, IconButton as MuiIconButton } from '@mui/material';
+import { memo } from 'react';
+
+import Icon, { IconProps } from '../icon';
 
 type Props = IconButtonProps & {
   icon: string;

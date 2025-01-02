@@ -1,6 +1,7 @@
-import React, { memo } from "react";
-import { AppBar as MuiAppBar, Toolbar, Typography } from "@mui/material";
-import MenuButton from "./components/MenuButton";
+import { AppBar as MuiAppBar, Toolbar, Typography } from '@mui/material';
+import React, { memo } from 'react';
+
+import MenuButton from './components/MenuButton';
 
 type Props = {
   isLogged?: boolean;
