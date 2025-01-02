@@ -15,6 +15,9 @@ import { usePathname } from "next/navigation";
 import { SidebarProps } from "./types";
 import Icon from "@/@core/components/icon";
 import { useSettings } from "@core/hooks/use-settings";
+import { ICONS } from "@/constants/icons";
+
+const { CLOSE } = ICONS;
 
 const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
   const {
@@ -36,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
           width={180}
         >
           <IconButton onClick={toggleNavbar}>
-            <Icon icon="mdi:close" />
+            <Icon icon={CLOSE} />
           </IconButton>
         </Box>
         <List>
