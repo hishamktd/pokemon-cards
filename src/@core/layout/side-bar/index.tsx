@@ -1,9 +1,8 @@
 'use client';
 
-import { Drawer, List, ListItemIcon, ListItemText, Box } from '@mui/material';
+import { Drawer, List, Box, ListItemButton, Typography } from '@mui/material';
 import React, { memo } from 'react';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import Icon from '@/@core/components/icon';
@@ -11,10 +10,7 @@ import { ICONS } from '@/constants/icons';
 import IconButton from '@core/components/icon-button';
 import { useSettings } from '@core/hooks/use-settings';
 import AppLogo from '@core/layout/app-logo';
-import {
-  NavItem,
-  SideBarLogoWrapper,
-} from '@core/layout/components/styled-components';
+import { NavLink, SideBar } from '@core/layout/components/styled-components';
 
 import { SidebarProps } from './types';
 
@@ -28,9 +24,14 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
   const pathname = usePathname();
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Drawer variant="persistent" open={isOpen}>
-        <SideBarLogoWrapper>
+    <SideBar>
+      <Drawer
+        className="drawer"
+        variant="persistent"
+        open={isOpen}
+        elevation={2}
+      >
+        <Box className="logo-container">
           <AppLogo />
           <IconButton
             onClick={toggleNavbar}
@@ -38,35 +39,29 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
             iconProps={{ hidden: !isOpen }}
             color="primary"
           />
-        </SideBarLogoWrapper>
+        </Box>
         <List>
           {navItems.map((item) => (
-            <Link key={item.path} href={item.path} passHref prefetch>
-              <NavItem selected={pathname === item.path}>
-                <ListItemIcon>
-                  <Icon
-                    icon={item.icon || DEFAULT_MENU}
-                    color="primary"
-                    hidden={!isOpen}
-                  />
-                </ListItemIcon>
-                <ListItemText primary={item.label} />
-              </NavItem>
-            </Link>
+            <NavLink key={item.path} href={item.path} prefetch>
+              <ListItemButton
+                className="item"
+                selected={pathname === item.path}
+              >
+                <Icon
+                  icon={item.icon || DEFAULT_MENU}
+                  color="inherit"
+                  hidden={!isOpen}
+                />
+                <Typography className="text">{item.label}</Typography>
+              </ListItemButton>
+            </NavLink>
           ))}
         </List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          marginLeft: isOpen ? 22.5 : 0,
-          transition: 'margin-left 0.3s',
-        }}
-      >
+      <Box component="main" className="main-content" ml={isOpen ? 24.5 : 0}>
         {children}
       </Box>
-    </Box>
+    </SideBar>
   );
 };
 

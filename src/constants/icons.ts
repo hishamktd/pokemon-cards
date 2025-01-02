@@ -5,4 +5,7 @@ export const ICONS = {
   DEFAULT_MENU: 'line-md:pause-to-play-filled-transition',
   LIGHT_MODE: 'line-md:sunny-loop',
   DARK_MODE: 'line-md:sunny-outline-to-moon-alt-loop-transition',
+  DASHBOARD: 'ic:outline-dashboard',
+  STAGE: 'pajamas:stage-all',
+  ATTACK: 'ic:outline-security',
 };

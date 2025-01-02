@@ -1,6 +1,8 @@
 'use client';
 
-import { Box, ListItemButton, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
+
+import Link from 'next/link';
 
 import styles from '@/constants/styles';
 
@@ -32,21 +34,61 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const SideBarLogoWrapper = styled(Box)(({ theme }) => ({
+export const SideBar = styled(Box)(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: theme.spacing(1),
-  width: 200,
-  minHeight: 60,
-  marginLeft: theme.spacing(2),
+  transition: styles.transition.modeTransition,
+
+  ['& .drawer .MuiPaper-elevation0']: {
+    transition: styles.transition.modeTransition,
+    backgroundColor: theme.palette.background.default,
+    borderRight: 'none',
+    boxShadow: theme.shadows[5],
+  },
+
+  ['& .logo-container']: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    width: 180,
+    minHeight: 60,
+    marginLeft: theme.spacing(2),
+  },
+
+  ['& .main-content']: { flexGrow: 1, transition: 'margin-left 0.3s' },
 }));
 
-export const NavItem = styled(ListItemButton)(({ theme }) => ({
-  ['&.Mui-selected']: {
-    backgroundColor: theme.palette.primary.main,
-    color: 'white',
+export const NavLink = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
 
-    ['& .MuiListItemIcon-root']: { color: 'white' },
+  ['& .item']: {
+    display: 'flex',
+    alignItems: 'center',
+    color: theme.palette.primary.main,
+    gap: theme.spacing(1.5),
+    transition: styles.transition.modeTransition,
+
+    ['&.Mui-selected']: {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+
+      ['& .text']: {
+        transition: styles.transition.modeTransition,
+        color: theme.palette.common.white,
+      },
+
+      [':hover']: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.secondary.main,
+      },
+    },
+
+    ['& .text']: {
+      color: theme.palette.primary.main,
+    },
+
+    [':hover']: {
+      color: theme.palette.secondary.main,
+    },
   },
 }));
