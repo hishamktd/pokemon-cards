@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 
 import navigation from '@/constants/navigation';
 import { getSession } from '@/lib/auth';
+import PageWrapper from '@core/layout/page-wrapper';
 import Sidebar from '@core/layout/side-bar';
 import PrivateProvider from '@core/providers/PrivateProvider';
 
@@ -18,7 +19,9 @@ export default async function Layout({
 
   return (
     <PrivateProvider>
-      <Sidebar navItems={navigation}>{children}</Sidebar>
+      <Sidebar navItems={navigation}>
+        <PageWrapper>{children}</PageWrapper>
+      </Sidebar>
     </PrivateProvider>
   );
 }
