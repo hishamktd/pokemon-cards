@@ -14,12 +14,13 @@ const MenuButton = () => {
     toggleNavbar,
   } = useSettings();
 
-  if (navbarOpen) {
-    return null;
-  }
-
   return (
-    <IconButton icon={MENU_ANIMATED} color="primary" onClick={toggleNavbar} />
+    <IconButton
+      icon={MENU_ANIMATED}
+      color="primary"
+      onClick={toggleNavbar}
+      iconProps={{ hidden: navbarOpen }}
+    />
   );
 };
 

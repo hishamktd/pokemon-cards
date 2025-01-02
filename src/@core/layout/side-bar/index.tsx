@@ -3,7 +3,6 @@
 import {
   Drawer,
   List,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   IconButton,
@@ -20,7 +19,7 @@ import { useSettings } from '@core/hooks/use-settings';
 
 import { SidebarProps } from './types';
 import AppLogo from '../app-logo';
-import { SideBarLogoWrapper } from '../components/styled-components';
+import { NavItem, SideBarLogoWrapper } from '../components/styled-components';
 
 const { CLOSE_ANIMATED, DEFAULT_MENU } = ICONS;
 
@@ -37,27 +36,22 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
         <SideBarLogoWrapper>
           <AppLogo />
           <IconButton onClick={toggleNavbar} color="primary">
-            {isOpen && <Icon icon={CLOSE_ANIMATED} />}
+            <Icon icon={CLOSE_ANIMATED} hidden={!isOpen} />
           </IconButton>
         </SideBarLogoWrapper>
         <List>
           {navItems.map((item) => (
             <Link key={item.path} href={item.path} passHref prefetch>
-              <ListItemButton
-                selected={pathname === item.path}
-                sx={{
-                  '&.Mui-selected': {
-                    backgroundColor: 'primary.main',
-                    color: 'white',
-                    '& .MuiListItemIcon-root': { color: 'white' },
-                  },
-                }}
-              >
+              <NavItem selected={pathname === item.path}>
                 <ListItemIcon>
-                  <Icon icon={item.icon || DEFAULT_MENU} color="primary" />
+                  <Icon
+                    icon={item.icon || DEFAULT_MENU}
+                    color="primary"
+                    hidden={!isOpen}
+                  />
                 </ListItemIcon>
-                {isOpen && <ListItemText primary={item.label} />}
-              </ListItemButton>
+                <ListItemText primary={item.label} />
+              </NavItem>
             </Link>
           ))}
         </List>

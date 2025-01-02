@@ -5,7 +5,7 @@ import Icon, { IconProps } from '../icon';
 
 type Props = IconButtonProps & {
   icon: string;
-  iconProps?: IconProps;
+  iconProps?: Omit<IconProps, 'icon'>;
 };
 
 const IconButton: React.FC<Props> = ({ icon, iconProps, ...rest }) => {

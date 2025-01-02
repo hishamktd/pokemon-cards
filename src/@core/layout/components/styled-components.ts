@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, styled } from '@mui/material';
+import { Box, ListItemButton, styled } from '@mui/material';
 
 import { hexToRGB } from '@/utils/hexToRGB';
 
@@ -13,7 +13,7 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
   ['& .app-bar']: {
     zIndex: theme.zIndex.drawer + 1,
     background: hexToRGB(theme.palette.background.paper, 0.9),
-    backdropFilter: 'blur(5px)',
+    backdropFilter: 'blur(10px)',
     borderRadius: theme.shape.borderRadius,
     top: 0,
 
@@ -35,4 +35,13 @@ export const SideBarLogoWrapper = styled(Box)(({ theme }) => ({
   width: 200,
   minHeight: 60,
   marginLeft: theme.spacing(2),
+}));
+
+export const NavItem = styled(ListItemButton)(({ theme }) => ({
+  ['&.Mui-selected']: {
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+
+    ['& .MuiListItemIcon-root']: { color: 'white' },
+  },
 }));
