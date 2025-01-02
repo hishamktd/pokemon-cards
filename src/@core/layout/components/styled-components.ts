@@ -55,7 +55,12 @@ export const SideBar = styled(Box)(({ theme }) => ({
     marginLeft: theme.spacing(2),
   },
 
-  ['& .main-content']: { flexGrow: 1, transition: 'margin-left 0.3s' },
+  ['& .main-content']: {
+    flexGrow: 1,
+    transition: `margin-left 0.3s, ${styles.transition.modeTransition}`,
+    backgroundColor: theme.palette.background.default,
+    height: `calc(100vh - 24px)`,
+  },
 }));
 
 export const NavLink = styled(Link)(({ theme }) => ({

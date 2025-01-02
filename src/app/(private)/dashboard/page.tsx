@@ -1,7 +1,6 @@
 'use client';
 
 import { logoutAction } from '@/actions/auth';
-import AddDataForm from '@/components/AddFormData';
 
 export default function DashboardPage() {
   const onClick = async () => {
@@ -10,57 +9,7 @@ export default function DashboardPage() {
 
   return (
     <main>
-      <h1>Dashboard</h1>
-      <AddDataForm />
-      <div>
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h1>Dashboard</h1>
-        <AddDataForm />
-        <div>
-          <h2>Your Posts</h2>
-        </div>{' '}
-        <h2>Your Posts</h2>
-      </div>
-      <h1>Dashboard</h1>
-      <AddDataForm />
-      <div>
-        <h2>Your Posts</h2>
-      </div>
-      <h1>Dashboard</h1>
-      <AddDataForm />
-      <div>
-        <h2>Your Posts</h2>
-      </div>
-      <h1>Dashboard</h1>
-      <AddDataForm />
-      <div>
-        <h2>Your Posts</h2>
-      </div>
-
+      Dashboard
       <button onClick={onClick}>Logout</button>
     </main>
   );
