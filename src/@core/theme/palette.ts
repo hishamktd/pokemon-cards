@@ -16,7 +16,7 @@ const {
   divider,
   action,
   grey,
-  darkBackground,
+  dark,
 } = colors;
 
 const paletteAction: Palette['action'] = {
@@ -49,21 +49,9 @@ const lightPalette = (theme: Theme, settings: Settings): Palette => ({
 
 const darkPalette = (theme: Theme, settings: Settings): Palette => ({
   ...theme.palette,
-  mode: settings.theme,
-  contrastThreshold: 3,
-  tonalOffset: 0.2,
-  primary,
-  secondary,
-  error,
-  info,
-  success,
-  warning,
-  text,
-  background: darkBackground,
+  ...lightPalette(theme, settings),
   common: { black: common.white, white: common.black },
-  divider,
-  action: paletteAction,
-  grey,
+  ...dark,
 });
 
 const palette = (theme: Theme, settings: Settings): Palette => {

@@ -73,9 +73,11 @@ const colors = {
     A400: '#303030',
     A700: '#616161',
   },
-  darkBackground: {
-    default: '#1E1E1E',
-    paper: '#333333',
+  dark: {
+    background: {
+      default: '#1E1E1E',
+      paper: '#333333',
+    },
   },
 };
 

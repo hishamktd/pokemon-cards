@@ -2,6 +2,8 @@
 
 import { Box, ListItemButton, styled } from '@mui/material';
 
+import styles from '@/constants/styles';
+
 export const AppBarWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1.5),
   position: 'sticky',
@@ -11,7 +13,7 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
 
   ['& .app-bar']: {
     backgroundColor: theme.palette.common.white,
-    transition: 'all 0.3s ease-in-out',
+    transition: styles.transition.modeTransition,
     zIndex: theme.zIndex.drawer + 1,
     backdropFilter: 'blur(10px)',
     borderRadius: theme.shape.borderRadius,
