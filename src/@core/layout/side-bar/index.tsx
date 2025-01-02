@@ -25,11 +25,6 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Box>
-        <IconButton onClick={toggleNavbar}>
-          <Icon icon="mdi:menu" />
-        </IconButton>
-      </Box>
       <Drawer variant="persistent" open={isOpen}>
         <Box
           sx={{
@@ -68,8 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          padding: 2,
-          marginLeft: isOpen ? 20 : 0,
+          marginLeft: isOpen ? 22.5 : 0,
           transition: "margin-left 0.3s",
         }}
       >

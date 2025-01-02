@@ -1,11 +1,12 @@
 "use client";
 
 import { useSettings } from "@core/hooks/use-settings";
+import themeOptions from "@core/theme";
 import {
   createTheme,
   CssBaseline,
   ThemeProvider as MuiThemeProvider,
-  ThemeOptions,
+  useTheme,
 } from "@mui/material";
 import React, { memo } from "react";
 
@@ -14,13 +15,12 @@ type ThemeProviderProps = {
 };
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const {
-    settings: { theme: mode },
-  } = useSettings();
+  const muiTheme = useTheme();
+  const { settings } = useSettings();
 
-  const themeOptions: ThemeOptions = { palette: { mode } };
+  // const themeOptions: ThemeOptions = { palette: { mode } };
 
-  const theme = createTheme(themeOptions);
+  const theme = createTheme(themeOptions(muiTheme, settings));
 
   return (
     <MuiThemeProvider theme={theme}>
