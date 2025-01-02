@@ -2,13 +2,10 @@
 
 import { createContext, useState } from 'react';
 
+import { Settings, settings as settingsConfig } from '@/config/settings';
+
 type ContextProps = {
   children: React.ReactNode;
-};
-
-export type Settings = {
-  navbarOpen: boolean;
-  theme: 'light' | 'dark';
 };
 
 type SettingsContext = {
@@ -16,22 +13,17 @@ type SettingsContext = {
   updateSettings: (settings: Settings) => void;
 };
 
-const defaultSettings: Settings = {
-  navbarOpen: true,
-  theme: 'light',
-};
-
 const defaultSettingsContext: SettingsContext = {
-  settings: defaultSettings,
+  settings: settingsConfig,
   updateSettings: () => {},
 };
 
 export const SettingsContext = createContext<SettingsContext>(
-  defaultSettingsContext
+  defaultSettingsContext,
 );
 
 export const SettingsProvider: React.FC<ContextProps> = ({ children }) => {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [settings, setSettings] = useState<Settings>(settingsConfig);
 
   const updateSettings = (newSettings: Settings) => {
     setSettings(newSettings);

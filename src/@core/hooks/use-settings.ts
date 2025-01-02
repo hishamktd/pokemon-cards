@@ -1,28 +1,34 @@
 import { useContext } from 'react';
 
+import { Settings } from '@/config/settings';
 import { SettingsContext } from '@core/providers/SettingsProvider';
 
 export const useSettings = () => {
-  const { settings, updateSettings } = useContext(SettingsContext);
+  const { settings, updateSettings: setSettings } = useContext(SettingsContext);
 
-  if (settings === undefined || updateSettings === undefined) {
+  if (settings === undefined || setSettings === undefined) {
     throw new Error('useSettings must be used within a SettingsProvider');
   }
 
   const toggleNavbar = () => {
-    updateSettings({ ...settings, navbarOpen: !settings.navbarOpen });
+    setSettings({ ...settings, navbarOpen: !settings.navbarOpen });
   };
 
   const toggleTheme = () => {
-    updateSettings({
+    setSettings({
       ...settings,
       theme: settings.theme === 'light' ? 'dark' : 'light',
     });
+  };
+
+  const updateSettings = (values: Partial<Settings>) => {
+    setSettings({ ...settings, ...values });
   };
 
   return {
     settings,
     toggleNavbar,
     toggleTheme,
+    updateSettings,
   };
 };

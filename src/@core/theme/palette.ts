@@ -1,7 +1,7 @@
 import { Palette, Theme } from '@mui/material';
 
+import { Settings } from '@/config/settings';
 import colors from '@/utils/colors';
-import { Settings } from '@core/providers/SettingsProvider';
 
 const {
   background,

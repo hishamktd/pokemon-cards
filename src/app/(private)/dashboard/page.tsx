@@ -13,6 +13,51 @@ export default function DashboardPage() {
       <h1>Dashboard</h1>
       <AddDataForm />
       <div>
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h1>Dashboard</h1>
+        <AddDataForm />
+        <div>
+          <h2>Your Posts</h2>
+        </div>{' '}
+        <h2>Your Posts</h2>
+      </div>
+      <h1>Dashboard</h1>
+      <AddDataForm />
+      <div>
+        <h2>Your Posts</h2>
+      </div>
+      <h1>Dashboard</h1>
+      <AddDataForm />
+      <div>
+        <h2>Your Posts</h2>
+      </div>
+      <h1>Dashboard</h1>
+      <AddDataForm />
+      <div>
         <h2>Your Posts</h2>
       </div>
 

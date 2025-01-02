@@ -1,3 +1,5 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+
 import { SettingsProvider } from '@core/providers/SettingsProvider';
 
 export const metadata = {
@@ -13,7 +15,9 @@ export default async function RootLayout({
   return (
     <html>
       <body>
-        <SettingsProvider>{children}</SettingsProvider>
+        <AppRouterCacheProvider>
+          <SettingsProvider>{children}</SettingsProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

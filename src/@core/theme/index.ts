@@ -1,6 +1,6 @@
 import { Theme, ThemeOptions } from '@mui/material';
 
-import { Settings } from '@core/providers/SettingsProvider';
+import { Settings } from '@/config/settings';
 
 import palette from './palette';
 import typography from './typography';

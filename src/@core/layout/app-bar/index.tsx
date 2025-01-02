@@ -1,7 +1,8 @@
-import { AppBar as MuiAppBar, Toolbar, Typography } from '@mui/material';
+import { Toolbar, Typography, AppBar as MuiAppBar } from '@mui/material';
 import React, { memo } from 'react';
 
 import MenuButton from './components/MenuButton';
+import { AppBarWrapper } from './components/styled-components';
 
 type Props = {
   isLogged?: boolean;
@@ -9,17 +10,16 @@ type Props = {
 
 const AppBar: React.FC<Props> = () => {
   return (
-    <MuiAppBar position="static">
-      <Toolbar>
-        <MenuButton />
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Simple App Bar
-        </Typography>
-        {/* <IconButton color="inherit" onClick={handleThemeSwitch}>
-          {darkMode ? <Brightness7 /> : <Brightness4 />}
-        </IconButton> */}
-      </Toolbar>
-    </MuiAppBar>
+    <AppBarWrapper>
+      <MuiAppBar className="app-bar">
+        <Toolbar className="toolbar">
+          <MenuButton />
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Simple App Bar
+          </Typography>
+        </Toolbar>
+      </MuiAppBar>
+    </AppBarWrapper>
   );
 };
 
