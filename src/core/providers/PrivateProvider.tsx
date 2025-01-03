@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 
-import AppBar from '@core/layout/app-bar';
+import AppBar from '@core/yout/app-bar';
 
 import ThemeProvider from './components/ThemeProvider';
 

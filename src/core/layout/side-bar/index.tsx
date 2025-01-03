@@ -5,10 +5,10 @@ import React, { memo } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import Icon from '@/@core/components/icon';
+import Icon from '@core/components/icon';
 import { ICONS } from '@/constants/icons';
 import IconButton from '@core/components/icon-button';
-import { useSettings } from '@core/hooks/use-settings';
+import { useSettings } from '@core/ooks/use-settings';
 import AppLogo from '@core/layout/app-logo';
 import { NavLink, SideBar } from '@core/layout/components/styled-components';
 

@@ -9,4 +9,5 @@ export const ICONS = {
   STAGE: 'pajamas:stage-all',
   ATTACK: 'ic:outline-security',
   LOADING: 'svg-spinners:3-dots-move',
+  COMPONENTS: 'mynaui:components',
 };

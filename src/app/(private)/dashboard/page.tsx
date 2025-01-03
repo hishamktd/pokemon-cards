@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 
-import { logoutAction } from '@/actions/auth';
-import { KeyActionEnum } from '@/enum/key-actions';
 import { ButtonGroup } from '@core/components/app-button';
 import AppButton from '@core/components/app-button/Button';
 import { Title } from '@core/components/app-title';
+
+import { logoutAction } from '@/actions/auth';
+import { KeyActionEnum } from '@/enum/key-actions';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(false);

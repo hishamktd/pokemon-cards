@@ -1,9 +1,10 @@
 import { Box, Button } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 
+import useKeyActions from '@core/hooks/use-key-action';
+
 import { ICONS } from '@/constants/icons';
 import { keyActions } from '@/constants/key-actions';
-import useKeyActions from '@core/hooks/use-key-action';
 
 import { AppButtonProps } from './types';
 import Icon from '../icon';
