@@ -78,6 +78,11 @@ const colors = {
       default: '#1E1E1E',
       paper: '#333333',
     },
+    text: {
+      primary: '#333333',
+      secondary: '#757575',
+      disabled: '#969799',
+    },
   },
 };
 
