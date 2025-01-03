@@ -8,4 +8,5 @@ export const ICONS = {
   DASHBOARD: 'ic:outline-dashboard',
   STAGE: 'pajamas:stage-all',
   ATTACK: 'ic:outline-security',
+  LOADING: 'svg-spinners:3-dots-move',
 };
