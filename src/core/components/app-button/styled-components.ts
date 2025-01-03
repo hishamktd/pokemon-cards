@@ -1,4 +1,6 @@
-import { Button, styled } from '@mui/material';
+'use client';
+
+import { Box, Button, styled } from '@mui/material';
 
 export const LoadingButton = styled(Button)({
   position: 'relative',
@@ -13,3 +15,10 @@ export const LoadingButton = styled(Button)({
     transform: 'translateY(-50%)',
   },
 });
+
+export const ButtonGroupContainer = styled(Box)(({ theme }) => ({
+  userSelect: 'none',
+  display: 'flex',
+  gap: theme.spacing(0.5),
+  flexDirection: 'row-reverse',
+}));

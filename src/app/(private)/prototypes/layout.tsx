@@ -11,9 +11,5 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <AppTab tabs={tabs}>{children}</AppTab>
-    </>
-  );
+  return <AppTab tabs={tabs}>{children}</AppTab>;
 }

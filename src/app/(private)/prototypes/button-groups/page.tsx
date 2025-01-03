@@ -21,16 +21,16 @@ const ButtonGroups = () => {
           loading: true,
           color: 'info',
         }}
-        errorButton={{
-          label: 'Error',
-          variant: 'outlined',
-          color: 'error',
-        }}
         outlinedButtonProps={{ isHidden: false }}
         secondaryButton={{
           label: 'Secondary',
           variant: 'outlined',
           color: 'secondary',
+        }}
+        errorButton={{
+          label: 'Error',
+          variant: 'outlined',
+          color: 'error',
         }}
       />
     </div>

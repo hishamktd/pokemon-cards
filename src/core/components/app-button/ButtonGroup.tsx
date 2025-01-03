@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 
 import { ButtonGroupProps, GroupButtonItem, Button } from '.';
+import { ButtonGroupContainer } from './styled-components';
 
 const ButtonGroup: FC<ButtonGroupProps> = ({
   containedButtonProps,
@@ -10,14 +10,6 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
 }) => {
   const buttons = useMemo<{ [key: string]: GroupButtonItem }>(
     () => ({
-      ...rest,
-      outlinedButtonProps: {
-        isHidden: true,
-        label: 'Cancel',
-        variant: 'outlined',
-        minWidth: 100,
-        ...outlinedButtonProps,
-      },
       containedButtonProps: {
         isHidden: false,
         label: 'Save',
@@ -25,24 +17,31 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
         minWidth: 100,
         ...containedButtonProps,
       },
+      outlinedButtonProps: {
+        isHidden: true,
+        label: 'Cancel',
+        variant: 'outlined',
+        minWidth: 100,
+        ...outlinedButtonProps,
+      },
+      ...rest,
     }),
     [containedButtonProps, outlinedButtonProps, rest],
   );
 
   return (
-    <Box sx={{ userSelect: 'none' }}>
-      {Object.values(buttons).map((item, i) => {
+    <ButtonGroupContainer>
+      {Object.values(buttons).map((item) => {
         const { isHidden, label, ...rest } = item;
         if (isHidden) return null;
 
         return (
           <React.Fragment key={label}>
-            {i !== 0 && <>&nbsp;</>}
             <Button {...rest}>{label}</Button>
           </React.Fragment>
         );
       })}
-    </Box>
+    </ButtonGroupContainer>
   );
 };
 
