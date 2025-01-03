@@ -19,6 +19,7 @@ const AppButton: FC<AppButtonProps> = ({
   size = 'medium',
   keyFor,
   disabled,
+  minWidth,
   ...rest
 }) => {
   const keyAction = useMemo(
@@ -46,6 +47,7 @@ const AppButton: FC<AppButtonProps> = ({
         disableTouchRipple
         size={size}
         disabled={disabled}
+        sx={{ minWidth, ...rest.sx }}
         {...rest}
       >
         <Box className="content">
@@ -62,6 +64,7 @@ const AppButton: FC<AppButtonProps> = ({
       disabled={disabled}
       size={size}
       onClick={onClick}
+      sx={{ minWidth, ...rest.sx }}
       {...rest}
     >
       {children}&nbsp;{keys}

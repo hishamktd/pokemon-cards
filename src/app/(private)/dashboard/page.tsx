@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { logoutAction } from '@/actions/auth';
 import { KeyActionEnum } from '@/enum/key-actions';
+import { ButtonGroup } from '@core/components/app-button';
 import AppButton from '@core/components/app-button/Button';
 import { Title } from '@core/components/app-title';
 
@@ -200,6 +201,19 @@ export default function DashboardPage() {
         <Title title="Dashboard" weight="bold" />
         <Title title="Dashboard" weight="medium" />
         <Title title="Dashboard" weight="light" />
+      </div>
+
+      {/* Button group */}
+      <div>
+        <ButtonGroup
+          outlinedButtonProps={{ isHidden: false }}
+          cancelButton={{
+            label: 'Undo',
+            variant: 'outlined',
+            loading: true,
+            color: 'error',
+          }}
+        />
       </div>
     </main>
   );
