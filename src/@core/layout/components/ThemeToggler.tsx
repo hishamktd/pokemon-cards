@@ -27,7 +27,7 @@ const ThemeToggler = () => {
       color="primary"
       size="large"
       iconProps={{
-        fontSize: 'large',
+        fontSize: 'medium',
         style: {
           transition: 'transform 0.3s ease, opacity 0.3s ease',
           transform: isRotated ? 'rotate(0deg)' : 'rotate(180deg)',
