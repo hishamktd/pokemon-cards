@@ -1,2 +1,2 @@
-export { default as AppTextField } from './AppTextField-temp';
+export { default as AppTextField } from './AppTextfield';
 export type { AppTextFieldProps } from './types';
