@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { logoutAction } from '@/actions/auth';
+import { KeyActionEnum } from '@/enum/key-actions';
 import AppButton from '@core/components/app-button/Button';
 
 export default function DashboardPage() {
@@ -27,8 +28,9 @@ export default function DashboardPage() {
           variant="contained"
           onClick={() => setLoading((prev) => !prev)}
           loading={loading}
+          keyFor={KeyActionEnum.CREATE}
         >
-          Log out
+          Log outs
         </AppButton>
         <AppButton variant="outlined">Log out</AppButton>
         <AppButton variant="text">Log out</AppButton>
