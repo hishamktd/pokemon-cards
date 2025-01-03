@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { logoutAction } from '@/actions/auth';
 import { KeyActionEnum } from '@/enum/key-actions';
 import AppButton from '@core/components/app-button/Button';
+import { Title } from '@core/components/app-title';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(false);
@@ -14,15 +15,16 @@ export default function DashboardPage() {
 
   return (
     <main>
+      {/* buttons */}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <AppButton variant="contained" disabled onClick={onClick}>
-          Log out
+          contained disabled
         </AppButton>
         <AppButton variant="outlined" disabled>
-          Log out
+          outlined disabled
         </AppButton>
         <AppButton variant="text" disabled>
-          Log out
+          text disabled
         </AppButton>
         <AppButton
           variant="contained"
@@ -30,18 +32,18 @@ export default function DashboardPage() {
           loading={loading}
           keyFor={KeyActionEnum.CREATE}
         >
-          Log outs
+          contained loading
         </AppButton>
-        <AppButton variant="outlined">Log out</AppButton>
-        <AppButton variant="text">Log out</AppButton>
+        <AppButton variant="outlined">outlined</AppButton>
+        <AppButton variant="text">text</AppButton>
         <AppButton variant="contained" color="secondary">
-          Log out
+          contained secondary
         </AppButton>
         <AppButton variant="outlined" color="secondary">
-          Log out
+          outlined secondary
         </AppButton>
         <AppButton variant="text" color="secondary">
-          Log out
+          text secondary
         </AppButton>
         <AppButton
           variant="contained"
@@ -49,49 +51,53 @@ export default function DashboardPage() {
           onClick={() => setLoading((prev) => !prev)}
           loading
         >
-          Log out
+          contained error loading
         </AppButton>
         <AppButton variant="outlined" color="error">
-          Log out
+          outlined error
         </AppButton>
         <AppButton variant="text" color="error">
-          Log out
+          text error
         </AppButton>
         <AppButton variant="contained" color="info">
-          Log out
+          contained info
         </AppButton>
         <AppButton variant="outlined" color="info">
-          Log out
+          outlined info
         </AppButton>
         <AppButton variant="text" color="info">
-          Log out
+          text info
         </AppButton>
         <AppButton variant="contained" color="success">
-          Log out
+          contained success
         </AppButton>
         <AppButton variant="outlined" color="success">
-          Log out
+          outlined success
         </AppButton>
         <AppButton variant="text" color="success">
-          Log out
+          text success
         </AppButton>
         <AppButton variant="contained" color="warning">
-          Log out
+          contained warning
         </AppButton>
         <AppButton variant="outlined" color="warning">
-          Log out
+          outlined warning
         </AppButton>
         <AppButton variant="text" color="warning">
-          Log out
+          text warning
         </AppButton>
-        <AppButton variant="contained" color="inherit">
-          Log out
+        <AppButton
+          variant="contained"
+          color="inherit"
+          onClick={() => setLoading(false)}
+        >
+          contained inherit
         </AppButton>
         <AppButton variant="outlined" color="inherit">
-          Log out
+          outlined inherit
         </AppButton>
         <AppButton variant="text" color="inherit">
-          Log out
+          text inherit
         </AppButton>
         {/* // ** This is a loading button */}
         <AppButton
@@ -100,15 +106,15 @@ export default function DashboardPage() {
           onClick={() => setLoading((prev) => !prev)}
           loading={loading}
         >
-          Log out
+          contained loading disabled
         </AppButton>
         <AppButton
           variant="outlined"
-          disabled
-          onClick={() => setLoading((prev) => !prev)}
+          onClick={() => setLoading(false)}
           loading={loading}
+          disabled
         >
-          Log out
+          outlined loading disabled
         </AppButton>
         <AppButton
           variant="text"
@@ -116,41 +122,41 @@ export default function DashboardPage() {
           onClick={() => setLoading((prev) => !prev)}
           loading
         >
-          Log out
+          text loading disabled
         </AppButton>
         <AppButton
           variant="contained"
           onClick={() => setLoading((prev) => !prev)}
           loading
         >
-          Log out
+          contained loading
         </AppButton>
         <AppButton variant="outlined" loading>
-          Log out
+          outlined loading
         </AppButton>
         <AppButton variant="text" loading>
-          Log out
+          text loading
         </AppButton>
         <AppButton variant="contained" color="secondary" loading>
-          Log out
+          contained secondary loading
         </AppButton>
         <AppButton variant="outlined" color="secondary" loading>
-          Log out
+          outlined secondary loading
         </AppButton>
         <AppButton variant="text" color="secondary" loading>
-          Log out
+          text secondary loading
         </AppButton>
         <AppButton variant="contained" color="error" loading>
-          Log out
+          contained error loading
         </AppButton>
         <AppButton variant="outlined" color="error" loading>
-          Log out
+          outlined error loading
         </AppButton>
         <AppButton variant="text" color="error" loading>
-          Log out
+          text error loading
         </AppButton>
         <AppButton variant="contained" color="info" loading>
-          Log out
+          contained info loading
         </AppButton>
         <AppButton variant="outlined" color="info" loading>
           Log out
@@ -185,6 +191,15 @@ export default function DashboardPage() {
         <AppButton variant="text" color="inherit" size="large" loading>
           Log out
         </AppButton>
+      </div>
+      {/* page title */}
+      <div>
+        <Title title="Dashboard" variant="large" />
+        <Title title="Dashboard" variant="medium" />
+        <Title title="Dashboard" variant="small" />
+        <Title title="Dashboard" weight="bold" />
+        <Title title="Dashboard" weight="medium" />
+        <Title title="Dashboard" weight="light" />
       </div>
     </main>
   );
