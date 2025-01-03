@@ -5,9 +5,13 @@ import { ActionTitleContainer } from './styled-components';
 import { ActionTitleProps } from './types';
 import { ButtonGroup } from '../app-button';
 
-const ActionTitle: FC<ActionTitleProps> = ({ buttonGroupProps, ...props }) => {
+const ActionTitle: FC<ActionTitleProps> = ({
+  buttonGroupProps,
+  containerProps,
+  ...props
+}) => {
   return (
-    <ActionTitleContainer>
+    <ActionTitleContainer {...containerProps}>
       <Title {...props} />
       <ButtonGroup {...buttonGroupProps} />
     </ActionTitleContainer>

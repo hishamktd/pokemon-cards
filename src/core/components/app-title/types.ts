@@ -16,4 +16,5 @@ export type TitleProps = {
 
 export type ActionTitleProps = TitleProps & {
   buttonGroupProps?: ButtonGroupProps;
+  containerProps?: BoxProps;
 };
