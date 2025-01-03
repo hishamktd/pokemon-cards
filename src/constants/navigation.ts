@@ -1,14 +1,18 @@
-import { NavItem } from '@core/layout/side-bar/types';
-
-import { ICONS } from './icons';
-
-const { DASHBOARD, STAGE, ATTACK, COMPONENTS } = ICONS;
-
-const navigation: NavItem[] = [
-  { path: '/dashboard', label: 'Dashboard', icon: DASHBOARD },
-  { path: '/stages', label: 'Stages', icon: STAGE },
-  { path: '/attacks', label: 'Attacks', icon: ATTACK },
-  { path: '/prototypes', label: 'Prototypes', icon: COMPONENTS },
-];
+const navigation = {
+  dashboard: { root: '/dashboard', path: '/dashboard', label: 'Dashboard' },
+  stages: { root: '/stages', path: '/stages', label: 'Stages' },
+  attacks: { root: '/attacks', path: '/attacks', label: 'Attacks' },
+  prototypes: {
+    root: '/prototypes',
+    path: '/prototypes/buttons',
+    label: 'Prototypes',
+    children: [
+      { path: '/prototypes/buttons', label: 'Buttons' },
+      { path: '/prototypes/inputs', label: 'Inputs' },
+      { path: '/prototypes/tables', label: 'Tables' },
+      { path: '/prototypes/titles', label: 'Layout' },
+    ],
+  },
+};
 
 export default navigation;

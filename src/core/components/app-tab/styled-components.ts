@@ -1,8 +1,9 @@
 'use client';
 
+import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
-import hexToRGBA from '@/utils/hex-to-rgba';
+
+import { hexToRGBA } from '@/utils/hexToRGBA';
 
 export const HorizontalWrapper = styled(Box)(({ theme }) => ({
   '& .MuiTab-root': {
@@ -52,16 +53,9 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
 
   '&.horizontal': {
     '& .MuiTabs-root': {
-      boxShadow: theme.shadows[6],
+      boxShadow: theme.shadows[1],
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.common.white,
-    },
-  },
-
-  '&.horizontal.outlined': {
-    '& .MuiTabs-root': {
-      border: `1px solid ${theme.palette.divider}`,
-      boxShadow: 'none',
     },
   },
 

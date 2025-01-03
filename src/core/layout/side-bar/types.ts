@@ -1,7 +1,8 @@
 export type NavItem = {
   path: string;
   label: string;
-  icon: string;
+  icon?: string;
+  root: string;
 };
 
 export type SidebarProps = {

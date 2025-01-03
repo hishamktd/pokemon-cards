@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children }) => {
             <NavLink key={item.path} href={item.path} prefetch>
               <ListItemButton
                 className="item"
-                selected={pathname === item.path}
+                selected={pathname.includes(item.root)}
               >
                 <Icon
                   icon={item.icon || DEFAULT_MENU}

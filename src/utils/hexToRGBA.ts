@@ -1,4 +1,4 @@
-export const hexToRGB = (hex: string, alpha = 1): string => {
+export const hexToRGBA = (hex: string, alpha = 1): string => {
   const [r, g, b] = hex
     .replace(/^#/, '')
     .match(/.{2}/g)!

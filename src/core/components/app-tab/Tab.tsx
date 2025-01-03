@@ -1,21 +1,15 @@
 'use client';
 
 import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import * as React from 'react';
 
-import { HorizontalWrapper } from './styled-components';
-import TabPanel from './TabPanel';
-import { AppTabProps } from './types';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-function a11yProps(index: number) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
+import { HorizontalWrapper } from './styled-components';
+import { AppTabProps } from './types';
 
 export default function AppTab({
   tabs,
@@ -26,15 +20,9 @@ export default function AppTab({
   variant = 'standard',
   children,
 }: AppTabProps) {
+  const pathname = usePathname();
+
   const { className = '', ...rest } = wrapperProps;
-
-  const theme = useTheme();
-
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
   return (
     <HorizontalWrapper
@@ -48,30 +36,28 @@ export default function AppTab({
         aria-label="full width tabs"
         orientation={orientation}
         className={`${orientation}-tabs`}
-        value={value}
-        onChange={handleChange}
+        value={tabs?.findIndex((tab) => tab?.path === pathname) || 0}
       >
         {tabs?.map((tab, index) => (
           <Tab
             key={index}
             label={tab?.label}
             disabled={disabled || tab?.disabled}
-            {...a11yProps(index)}
             href={tab?.path}
+            component={Link}
           />
         ))}
       </Tabs>
-      <Box {...panelContainerProps} className={`${orientation}-panels`}>
-        {tabs?.map((tab, index) => (
-          <TabPanel
-            key={index}
-            value={value}
-            index={index}
-            dir={theme?.direction}
-          >
-            {children}
-          </TabPanel>
-        ))}
+      <Box
+        {...panelContainerProps}
+        className={`${orientation}-panels`}
+        sx={(t) => ({
+          boxShadow: t.shadows[1],
+          p: t.spacing(2),
+          height: '70vh',
+        })}
+      >
+        {children}
       </Box>
     </HorizontalWrapper>
   );
