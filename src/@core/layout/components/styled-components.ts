@@ -12,6 +12,7 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
   top: 0,
   left: 'auto',
   backgroundColor: theme.palette.common.white,
+  zIndex: 1200,
 
   ['& .app-bar']: {
     backgroundColor: theme.palette.common.white,
@@ -60,6 +61,7 @@ export const SideBar = styled(Box)(({ theme }) => ({
     transition: `margin-left 0.3s, ${styles.transition.modeTransition}`,
     backgroundColor: theme.palette.background.default,
     height: `calc(100vh - 24px)`,
+    overflow: 'auto',
   },
 }));
 

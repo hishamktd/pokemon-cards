@@ -9,7 +9,11 @@ type Props = {
 
 const PageWrapper: React.FC<Props> = ({ children }) => {
   return (
-    <Stack px={2} py={7} sx={{ transition: styles.transition.modeTransition }}>
+    <Stack
+      px={2}
+      py={7}
+      sx={{ transition: styles.transition.modeTransition, overflow: 'auto' }}
+    >
       {children}
     </Stack>
   );

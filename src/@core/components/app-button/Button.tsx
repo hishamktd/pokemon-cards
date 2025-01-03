@@ -56,8 +56,6 @@ const AppButton: FC<AppButtonProps> = ({
     );
   }
 
-  console.log('AppButton', keys, keyAction);
-
   return (
     <Button
       variant={variant}

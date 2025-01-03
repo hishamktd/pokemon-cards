@@ -13,7 +13,7 @@ type Props = {
 const AppBar: React.FC<Props> = () => {
   return (
     <AppBarWrapper>
-      <MuiAppBar className="app-bar">
+      <MuiAppBar className="app-bar" elevation={2}>
         <Toolbar className="toolbar">
           <Box className="logo-container">
             <MenuButton />
