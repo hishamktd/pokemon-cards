@@ -48,15 +48,7 @@ export default function AppTab({
           />
         ))}
       </Tabs>
-      <Box
-        {...panelContainerProps}
-        className={`${orientation}-panels`}
-        sx={(t) => ({
-          boxShadow: t.shadows[1],
-          p: t.spacing(2),
-          height: '70vh',
-        })}
-      >
+      <Box {...panelContainerProps} className={`${orientation}-panels`}>
         {children}
       </Box>
     </HorizontalWrapper>

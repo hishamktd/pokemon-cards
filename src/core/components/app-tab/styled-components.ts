@@ -3,6 +3,7 @@
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 
+import styles from '@/constants/styles';
 import { hexToRGBA } from '@/utils/hexToRGBA';
 
 export const HorizontalWrapper = styled(Box)(({ theme }) => ({
@@ -11,6 +12,7 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
     letterSpacing: 0.4,
     color: theme.palette.common.black,
     textAlign: 'start',
+    transition: styles.transition.modeTransition,
   },
 
   '& .MuiTabs-indicator': {
@@ -28,10 +30,11 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
     '& .MuiTabs-root': {
       minWidth: 180,
       borderTopLeftRadius: theme.shape.borderRadius,
-      borderBottomLeftRadius: theme.shape.borderRadius,
+      transition: styles.transition.modeTransition,
     },
 
     '& .MuiTab-root': {
+      borderBottomLeftRadius: theme.shape.borderRadius,
       alignItems: 'flex-start',
       transition: 'background-color 200ms',
 
@@ -53,6 +56,7 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
 
   '&.horizontal': {
     '& .MuiTabs-root': {
+      transition: styles.transition.modeTransition,
       boxShadow: theme.shadows[1],
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.common.white,
@@ -60,8 +64,12 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
   },
 
   '& .horizontal-panels': {
+    transition: styles.transition.modeTransition,
     marginTop: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.common.white,
+    boxShadow: theme.shadows[1],
+    padding: theme.spacing(2),
+    height: '70vh',
   },
 }));
