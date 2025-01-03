@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 

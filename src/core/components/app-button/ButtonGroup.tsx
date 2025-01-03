@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 
 import { ButtonGroupProps, GroupButtonItem, Button } from '.';
@@ -29,7 +30,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
   );
 
   return (
-    <>
+    <Box sx={{ userSelect: 'none' }}>
       {Object.values(buttons).map((item, i) => {
         const { isHidden, label, ...rest } = item;
         if (isHidden) return null;
@@ -41,7 +42,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
           </React.Fragment>
         );
       })}
-    </>
+    </Box>
   );
 };
 

@@ -8,9 +8,10 @@ const navigation = {
     label: 'Prototypes',
     children: [
       { path: '/prototypes/buttons', label: 'Buttons' },
+      { path: '/prototypes/titles', label: 'Titles' },
+      { path: '/prototypes/button-groups', label: 'Button Groups' },
       { path: '/prototypes/inputs', label: 'Inputs' },
       { path: '/prototypes/tables', label: 'Tables' },
-      { path: '/prototypes/titles', label: 'Layout' },
     ],
   },
 };

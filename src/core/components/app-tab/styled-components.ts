@@ -70,6 +70,6 @@ export const HorizontalWrapper = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.common.white,
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2),
-    height: '70vh',
+    minHeight: '70vh',
   },
 }));

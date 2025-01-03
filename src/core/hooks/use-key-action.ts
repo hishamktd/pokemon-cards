@@ -1,3 +1,5 @@
+'use client';
+
 import { MouseEventHandler, useCallback, useEffect } from 'react';
 
 import { keyActions } from '@/constants/key-actions';
