@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Title } from '@core/components/app-title';
+import { ActionTitle, Title } from '@core/components/app-title';
 
 const Titles = () => {
   return (
@@ -11,6 +11,10 @@ const Titles = () => {
       <Title title="Dashboard" weight="bold" />
       <Title title="Dashboard" weight="medium" />
       <Title title="Dashboard" weight="light" />
+      <ActionTitle
+        title="Dashboard"
+        buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
+      />
     </div>
   );
 };
