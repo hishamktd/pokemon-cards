@@ -10,4 +10,6 @@ export const ICONS = {
   ATTACK: 'ic:outline-security',
   LOADING: 'svg-spinners:3-dots-move',
   COMPONENTS: 'mynaui:components',
+  UP_FILL_ROUNDED: 'eva:arrow-up-fill',
+  DOWN_FILL_ROUNDED: 'eva:arrow-down-fill',
 };
