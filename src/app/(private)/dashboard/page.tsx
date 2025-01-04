@@ -1,8 +1,7 @@
 'use client';
 
-import AppButton from '@core/components/app-button/Button';
-
 import { logoutAction } from '@/actions/auth';
+import AppButton from '@core/components/app-button/Button';
 
 export default function DashboardPage() {
   const onClick = async () => {

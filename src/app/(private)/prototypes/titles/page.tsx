@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { ICONS } from '@/constants/icons';
 import { ActionTitle, Title } from '@core/components/app-title';
 
-import { ICONS } from '@/constants/icons';
 
 const { ATTACK } = ICONS;
 
