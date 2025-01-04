@@ -1,6 +1,5 @@
-import AppTab from '@core/components/app-tab/Tab';
-
 import navigation from '@/constants/navigation';
+import AppTab from '@core/components/app-tab/Tab';
 
 const { prototypes } = navigation;
 
