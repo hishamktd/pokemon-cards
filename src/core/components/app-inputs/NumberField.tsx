@@ -1,9 +1,10 @@
 'use client';
 
 import { InputAdornment, Stack } from '@mui/material';
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 
 import { ICONS } from '@/constants/icons';
+import { Any } from '@/types';
 
 import { AppNumberFieldProps } from '.';
 import { NumberInput } from './styled-component';
@@ -15,18 +16,40 @@ const NumberField: FC<AppNumberFieldProps> = ({
   color = 'primary',
   size = 'medium',
   value = null,
-  onChange = () => {},
+  disabled = false,
+  error = false,
+  onMouseEnter,
+  onMouseLeave,
+  onIncrement,
+  onDecrement,
+  onChange,
   ...rest
 }) => {
-  const handleIncrement = useCallback(() => {
-    const newValue = (value || 0) + 1;
-    if (onChange) onChange(newValue);
-  }, [onChange, value]);
+  const [showAdornment, setShowAdornment] = useState(false);
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+
+      if (value && onChange) {
+        onChange(null);
+      }
+      const numericValue = value.replace(/[^0-9]/g, '');
+
+      if (onChange && numericValue !== '') {
+        onChange(parseInt(numericValue, 10));
+      }
+    },
+    [onChange],
+  );
 
   const handleDecrement = useCallback(() => {
-    const newValue = (value || 0) - 1;
-    if (onChange) onChange(newValue);
-  }, [onChange, value]);
+    if (onDecrement) onDecrement();
+  }, [onDecrement]);
+
+  const handleIncrement = useCallback(() => {
+    if (onIncrement) onIncrement();
+  }, [onIncrement]);
 
   const renderAdornment = useCallback(
     () => (
@@ -34,27 +57,52 @@ const NumberField: FC<AppNumberFieldProps> = ({
         <IconButton
           icon={UP_FILL_ROUNDED}
           size={size}
-          color={color}
-          sx={{ pb: 0 }}
-          iconProps={{ fontSize: size }}
+          color={error ? 'error' : color}
+          sx={{ pb: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          iconProps={{ fontSize: 'small' }}
           onClick={handleIncrement}
+          disabled={disabled}
         />
         <IconButton
           icon={DOWN_FILL_ROUNDED}
           size={size}
-          color={color}
-          sx={{ pt: 0 }}
-          iconProps={{ fontSize: size }}
+          color={error ? 'error' : color}
+          sx={{ pt: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          iconProps={{ fontSize: 'small' }}
           onClick={handleDecrement}
+          disabled={disabled}
         />
       </Stack>
     ),
-    [color, handleDecrement, handleIncrement, size],
+    [
+      color,
+      disabled,
+      error,
+      handleDecrement,
+      handleIncrement,
+      showAdornment,
+      size,
+    ],
+  );
+
+  const handleMouseEnter = useCallback(
+    (e: Any) => {
+      setShowAdornment(true);
+      if (onMouseEnter) onMouseEnter(e);
+    },
+    [onMouseEnter],
+  );
+
+  const handleMouseLeave = useCallback(
+    (e: Any) => {
+      setShowAdornment(false);
+      if (onMouseLeave) onMouseLeave(e);
+    },
+    [onMouseLeave],
   );
 
   return (
     <NumberInput
-      value={value}
       slotProps={{
         input: {
           endAdornment: (
@@ -62,11 +110,14 @@ const NumberField: FC<AppNumberFieldProps> = ({
           ),
         },
       }}
+      onChange={handleInputChange}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      value={value}
       size={size}
-      onChange={(e) => {
-        const newValue = parseInt(e.target.value, 10);
-        if (onChange) onChange(newValue);
-      }}
+      color={color}
+      disabled={disabled}
+      error={error}
       {...rest}
       type="number"
     />
