@@ -11,6 +11,8 @@ export const CustomTextField = styled(TextField)(
           },
 
           ['& .MuiOutlinedInput-root']: {
+            paddingRight: 0,
+
             ['& .MuiInputBase-input']: {
               color: theme.palette.text.disabled,
             },
@@ -48,3 +50,16 @@ export const CustomTextField = styled(TextField)(
     },
   }),
 );
+
+export const NumberInput = styled(CustomTextField)({
+  ['& input[type=number]']: {
+    '-moz-appearance': 'textfield',
+    '-webkit-appearance': 'none',
+    margin: 0,
+  },
+  ['& input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button']:
+    {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+});

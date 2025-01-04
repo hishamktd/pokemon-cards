@@ -1,7 +1,7 @@
-import { NavItem } from '@core/layout/side-bar/types';
 
 import { ICONS } from '@/constants/icons';
 import navigation from '@/constants/navigation';
+import { NavItem } from '@core/layout/side-bar/types';
 
 const { DASHBOARD, STAGE, ATTACK, COMPONENTS } = ICONS;
 const { dashboard, attacks, prototypes, stages } = navigation;

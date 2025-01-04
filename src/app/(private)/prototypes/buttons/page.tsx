@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 
+import { KeyActionEnum } from '@/enum/key-actions';
 import { Button } from '@core/components/app-button';
 
-import { KeyActionEnum } from '@/enum/key-actions';
 
 const Buttons = () => {
   const [loading, setLoading] = useState(false);
