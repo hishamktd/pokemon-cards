@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppTextField } from '@core/components/app-inputes';
+import { AppTextField } from '@core/components/app-inputs';
 
 const Inputs = () => {
   return (
