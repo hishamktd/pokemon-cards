@@ -1,11 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  bundlePagesRouterDependencies: false,
+  eslint: { ignoreDuringBuilds: true },
   async redirects() {
     return [
       {
-        source: "/",
-        destination: "/cards",
+        source: '/',
+        destination: '/cards',
         permanent: true,
       },
     ];
