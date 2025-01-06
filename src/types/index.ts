@@ -8,3 +8,5 @@ export type Maybe<T> = T | undefined;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type NumStr = number | string;
+
+export type BaseOption = { id?: string | number; name?: string } | null;

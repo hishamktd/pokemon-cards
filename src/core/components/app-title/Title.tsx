@@ -24,6 +24,7 @@ const Title: React.FC<TitleProps> = ({
   icon,
   iconProps,
   containerProps,
+  sx,
   ...props
 }) => {
   return (
@@ -33,6 +34,7 @@ const Title: React.FC<TitleProps> = ({
         sx={{
           fontSize: fontSizeMap[variant],
           fontWeight: fontWeightMap[weight],
+          ...sx,
         }}
         {...props}
       >

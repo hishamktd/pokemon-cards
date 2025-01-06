@@ -4,7 +4,7 @@ import { Box, styled } from '@mui/material';
 
 import Link from 'next/link';
 
-import styles from '@/constants/styles';
+import styles from '@/styles/common';
 
 export const AppBarWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1.5),

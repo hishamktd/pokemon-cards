@@ -15,7 +15,7 @@ const { UP_FILL_ROUNDED, DOWN_FILL_ROUNDED } = ICONS;
 const NumberField: FC<AppNumberFieldProps> = ({
   color = 'primary',
   size = 'medium',
-  value = null,
+  value = '',
   disabled = false,
   error = false,
   onMouseEnter,

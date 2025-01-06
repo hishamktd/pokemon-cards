@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material';
 import React, { memo } from 'react';
 
-import styles from '@/constants/styles';
+import styles from '@/styles/common';
 
 type Props = {
   children: React.ReactNode;

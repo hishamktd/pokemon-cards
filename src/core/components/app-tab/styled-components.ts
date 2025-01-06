@@ -3,7 +3,7 @@
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import styles from '@/constants/styles';
+import styles from '@/styles/common';
 import { hexToRGBA } from '@/utils/hexToRGBA';
 
 export const HorizontalWrapper = styled(Box)(({ theme }) => ({

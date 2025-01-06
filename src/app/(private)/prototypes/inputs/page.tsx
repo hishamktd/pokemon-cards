@@ -2,7 +2,11 @@
 
 import React from 'react';
 
-import { AppNumberField, AppTextField } from '@core/components/app-inputs';
+import {
+  AppNumberField,
+  AppSelectField,
+  AppTextField,
+} from '@core/components/app-inputs';
 import { Title } from '@core/components/app-title';
 
 const Inputs = () => {
@@ -42,6 +46,9 @@ const Inputs = () => {
         />
         <AppNumberField label="Label" error helperText="234" />
       </div>
+      <Title title="Select field" sx={{ mt: 4 }} />
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}></div>
+      <AppSelectField />
     </>
   );
 };
