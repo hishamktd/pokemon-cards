@@ -52,15 +52,27 @@ const Inputs = () => {
       </div>
       <Title title="Select field" sx={{ mt: 4 }} />
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}></div>
-      <AppSelectField options={options} label="Age" />
+      <AppSelectField
+        options={options}
+        label="Age"
+        value={value}
+        onChange={(value) => setValue(value.toString())}
+      />
       <AppSelectField options={options} label="Age" color="secondary" />
-      <AppSelectField options={options} label="Age" color="warning" />
+      <AppSelectField
+        options={options}
+        label="Age"
+        color="warning"
+        value={value}
+        onChange={(value) => setValue(value.toString())}
+      />
       <AppSelectField
         options={options}
         label="Age"
         color="info"
         value={value}
         onChange={(value) => setValue(value.toString())}
+        isClearable={false}
       />
       <AppSelectField options={options} label="Age" error helperText="sdfg" />
     </>

@@ -5,11 +5,15 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 
+import { ICONS } from '@/constants/icons';
 import { Any } from '@/types';
 
 import { AppSelectProps } from '.';
+import IconButton from '../icon-button';
+
+const { CLOSE } = ICONS;
 
 const SelectField = (props: AppSelectProps) => {
   const {
@@ -24,8 +28,22 @@ const SelectField = (props: AppSelectProps) => {
     selectProps = {},
     size = 'small',
     helperText,
+    error,
+    isClearable = true,
     ...rest
   } = props;
+
+  const renderIconComponent = useCallback(() => {
+    if (!isClearable) return;
+    return (
+      <IconButton
+        icon={CLOSE}
+        disabled={!value}
+        onClick={() => onChange && onChange('' as Any)}
+        color={error ? 'error' : color}
+      />
+    );
+  }, [color, error, isClearable, onChange, value]);
 
   return (
     <FormControl
@@ -33,6 +51,7 @@ const SelectField = (props: AppSelectProps) => {
       sx={{ m: 1, minWidth: 300 }}
       size={size}
       color={color}
+      error={error}
       {...rest}
     >
       <InputLabel id="select-label" size="small" {...inputLabelProps}>
@@ -50,11 +69,14 @@ const SelectField = (props: AppSelectProps) => {
         MenuProps={{
           color,
         }}
+        IconComponent={renderIconComponent}
         {...selectProps}
       >
-        <MenuItem value="" color={color}>
-          <em>{placeHolder}</em>
-        </MenuItem>
+        {isClearable && (
+          <MenuItem value="" color={color}>
+            <em>{placeHolder}</em>
+          </MenuItem>
+        )}
         {options.map((option) => (
           <MenuItem key={option} value={option} color={color}>
             {option}

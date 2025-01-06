@@ -26,4 +26,5 @@ export type AppSelectProps = FormControlProps & {
   inputLabelProps?: InputLabelProps;
   selectProps?: SelectProps;
   helperText?: string | null;
+  isClearable?: boolean;
 };
