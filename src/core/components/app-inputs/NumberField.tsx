@@ -14,7 +14,7 @@ const { UP_FILL_ROUNDED, DOWN_FILL_ROUNDED } = ICONS;
 
 const NumberField: FC<AppNumberFieldProps> = ({
   color = 'primary',
-  size = 'medium',
+  size = 'small',
   value = '',
   disabled = false,
   error = false,
@@ -51,6 +51,22 @@ const NumberField: FC<AppNumberFieldProps> = ({
     if (onIncrement) onIncrement();
   }, [onIncrement]);
 
+  const handleMouseEnter = useCallback(
+    (e: Any) => {
+      setShowAdornment(true);
+      if (onMouseEnter) onMouseEnter(e);
+    },
+    [onMouseEnter],
+  );
+
+  const handleMouseLeave = useCallback(
+    (e: Any) => {
+      setShowAdornment(false);
+      if (onMouseLeave) onMouseLeave(e);
+    },
+    [onMouseLeave],
+  );
+
   const renderAdornment = useCallback(
     () => (
       <Stack direction="column">
@@ -58,7 +74,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
           icon={UP_FILL_ROUNDED}
           size={size}
           color={error ? 'error' : color}
-          sx={{ pb: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          sx={{ p: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
           iconProps={{ fontSize: 'small' }}
           onClick={handleIncrement}
           disabled={disabled}
@@ -67,7 +83,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
           icon={DOWN_FILL_ROUNDED}
           size={size}
           color={error ? 'error' : color}
-          sx={{ pt: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          sx={{ p: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
           iconProps={{ fontSize: 'small' }}
           onClick={handleDecrement}
           disabled={disabled}
@@ -83,22 +99,6 @@ const NumberField: FC<AppNumberFieldProps> = ({
       showAdornment,
       size,
     ],
-  );
-
-  const handleMouseEnter = useCallback(
-    (e: Any) => {
-      setShowAdornment(true);
-      if (onMouseEnter) onMouseEnter(e);
-    },
-    [onMouseEnter],
-  );
-
-  const handleMouseLeave = useCallback(
-    (e: Any) => {
-      setShowAdornment(false);
-      if (onMouseLeave) onMouseLeave(e);
-    },
-    [onMouseLeave],
   );
 
   return (

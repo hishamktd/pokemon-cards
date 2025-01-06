@@ -9,8 +9,12 @@ import {
 } from '@core/components/app-inputs';
 import { Title } from '@core/components/app-title';
 
+const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+
 const Inputs = () => {
   const [number, setNumber] = React.useState<null | number>(null);
+  const [value, setValue] = React.useState<string | null>(null);
+
   return (
     <>
       <Title title="textfield" />
@@ -48,7 +52,17 @@ const Inputs = () => {
       </div>
       <Title title="Select field" sx={{ mt: 4 }} />
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}></div>
-      <AppSelectField />
+      <AppSelectField options={options} label="Age" />
+      <AppSelectField options={options} label="Age" color="secondary" />
+      <AppSelectField options={options} label="Age" color="warning" />
+      <AppSelectField
+        options={options}
+        label="Age"
+        color="info"
+        value={value}
+        onChange={(value) => setValue(value.toString())}
+      />
+      <AppSelectField options={options} label="Age" error helperText="sdfg" />
     </>
   );
 };

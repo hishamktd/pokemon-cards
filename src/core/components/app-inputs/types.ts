@@ -1,4 +1,9 @@
-import { FormControlProps, SelectProps, TextFieldProps } from '@mui/material';
+import {
+  FormControlProps,
+  InputLabelProps,
+  SelectProps,
+  TextFieldProps,
+} from '@mui/material';
 
 export type AppTextFieldProps = TextFieldProps;
 
@@ -13,5 +18,12 @@ export type AppNumberFieldProps = Omit<
 };
 
 export type AppSelectProps = FormControlProps & {
-  color?: SelectProps['color'];
+  options: string[];
+  label?: string;
+  value?: string | null;
+  onChange?: SelectProps['onChange'];
+  placeHolder?: string;
+  inputLabelProps?: InputLabelProps;
+  selectProps?: SelectProps;
+  helperText?: string | null;
 };
