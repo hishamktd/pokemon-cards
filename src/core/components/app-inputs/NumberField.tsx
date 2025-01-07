@@ -32,7 +32,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
       const value = e.target.value;
 
       if (value && onChange) {
-        onChange(null);
+        onChange('');
       }
       const numericValue = value.replace(/[^0-9]/g, '');
 

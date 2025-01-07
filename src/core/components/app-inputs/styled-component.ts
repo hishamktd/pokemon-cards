@@ -1,5 +1,3 @@
-'use client';
-
 import { styled, TextField } from '@mui/material';
 
 export const CustomTextField = styled(TextField)(
@@ -53,13 +51,13 @@ export const CustomTextField = styled(TextField)(
 
 export const NumberInput = styled(CustomTextField)({
   ['& input[type=number]']: {
-    '-moz-appearance': 'textfield',
-    '-webkit-appearance': 'none',
+    mozAppearance: 'textfield',
+    webkitAppearance: 'none',
     margin: 0,
   },
   ['& input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button']:
     {
-      '-webkit-appearance': 'none',
+      webkitAppearance: 'none',
       margin: 0,
     },
 });

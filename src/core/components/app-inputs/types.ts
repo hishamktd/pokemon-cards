@@ -5,14 +5,16 @@ import {
   TextFieldProps,
 } from '@mui/material';
 
+import { NumStr } from '@/types';
+
 export type AppTextFieldProps = TextFieldProps;
 
 export type AppNumberFieldProps = Omit<
   AppTextFieldProps,
   'type' | 'onChange'
 > & {
-  value?: null | number;
-  onChange?: (value: number | null) => void;
+  value?: NumStr;
+  onChange?: (value: NumStr) => void;
   onIncrement?: () => void;
   onDecrement?: () => void;
 };

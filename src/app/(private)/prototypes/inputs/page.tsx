@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { NumStr } from '@/types';
 import {
   AppNumberField,
   AppSelectField,
@@ -12,8 +13,8 @@ import { Title } from '@core/components/app-title';
 const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
 
 const Inputs = () => {
-  const [number, setNumber] = React.useState<null | number>(null);
-  const [value, setValue] = React.useState<string | null>(null);
+  const [number, setNumber] = React.useState<NumStr>('');
+  const [value, setValue] = React.useState<string>('');
 
   return (
     <>
@@ -51,30 +52,31 @@ const Inputs = () => {
         <AppNumberField label="Label" error helperText="234" />
       </div>
       <Title title="Select field" sx={{ mt: 4 }} />
-      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}></div>
-      <AppSelectField
-        options={options}
-        label="Age"
-        value={value}
-        onChange={(value) => setValue(value.toString())}
-      />
-      <AppSelectField options={options} label="Age" color="secondary" />
-      <AppSelectField
-        options={options}
-        label="Age"
-        color="warning"
-        value={value}
-        onChange={(value) => setValue(value.toString())}
-      />
-      <AppSelectField
-        options={options}
-        label="Age"
-        color="info"
-        value={value}
-        onChange={(value) => setValue(value.toString())}
-        isClearable={false}
-      />
-      <AppSelectField options={options} label="Age" error helperText="sdfg" />
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <AppSelectField
+          options={options}
+          label="Age"
+          value={value}
+          onChange={(value) => setValue(value.toString())}
+        />
+        <AppSelectField options={options} label="Age" color="secondary" />
+        <AppSelectField
+          options={options}
+          label="Age"
+          color="warning"
+          value={value}
+          onChange={(value) => setValue(value.toString())}
+        />
+        <AppSelectField
+          options={options}
+          label="Age"
+          color="info"
+          value={value}
+          onChange={(value) => setValue(value.toString())}
+          isClearable={false}
+        />
+        <AppSelectField options={options} label="Age" error helperText="sdfg" />
+      </div>
     </>
   );
 };
