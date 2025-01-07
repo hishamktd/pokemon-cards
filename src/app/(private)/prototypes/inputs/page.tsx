@@ -46,8 +46,8 @@ const Inputs = () => {
           color="error"
           value={number}
           onChange={(value) => setNumber(value)}
-          onIncrement={() => setNumber((prev) => (prev || 0) + 1)}
-          onDecrement={() => setNumber((prev) => (prev || 0) - 1)}
+          onIncrement={() => setNumber((prev) => (Number(prev) || 0) + 1)}
+          onDecrement={() => setNumber((prev) => (Number(prev) || 0) - 1)}
         />
         <AppNumberField label="Label" error helperText="234" />
       </div>

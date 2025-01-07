@@ -50,14 +50,14 @@ export const CustomTextField = styled(TextField)(
 );
 
 export const NumberInput = styled(CustomTextField)({
-  ['& input[type=number]']: {
+  '& input[type=number]': {
     mozAppearance: 'textfield',
-    webkitAppearance: 'none',
+    WebkitAppearance: 'none',
     margin: 0,
   },
-  ['& input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button']:
+  '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button':
     {
-      webkitAppearance: 'none',
+      WebkitAppearance: 'none',
       margin: 0,
     },
 });

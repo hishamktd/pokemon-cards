@@ -67,14 +67,16 @@ const NumberField: FC<AppNumberFieldProps> = ({
     [onMouseLeave],
   );
 
-  const renderAdornment = useCallback(
-    () => (
+  const renderAdornment = useCallback(() => {
+    if (disabled || !showAdornment) return null;
+
+    return (
       <Stack direction="column">
         <IconButton
           icon={UP_FILL_ROUNDED}
           size={size}
           color={error ? 'error' : color}
-          sx={{ p: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          sx={{ p: 0 }}
           iconProps={{ fontSize: 'small' }}
           onClick={handleIncrement}
           disabled={disabled}
@@ -83,30 +85,30 @@ const NumberField: FC<AppNumberFieldProps> = ({
           icon={DOWN_FILL_ROUNDED}
           size={size}
           color={error ? 'error' : color}
-          sx={{ p: 0, visibility: showAdornment ? 'visible' : 'hidden' }}
+          sx={{ p: 0 }}
           iconProps={{ fontSize: 'small' }}
           onClick={handleDecrement}
-          disabled={disabled}
         />
       </Stack>
-    ),
-    [
-      color,
-      disabled,
-      error,
-      handleDecrement,
-      handleIncrement,
-      showAdornment,
-      size,
-    ],
-  );
+    );
+  }, [
+    color,
+    disabled,
+    error,
+    handleDecrement,
+    handleIncrement,
+    showAdornment,
+    size,
+  ]);
 
   return (
     <NumberInput
       slotProps={{
         input: {
           endAdornment: (
-            <InputAdornment position="end">{renderAdornment()}</InputAdornment>
+            <InputAdornment position="end" sx={{ minWidth: 20 }}>
+              {renderAdornment()}
+            </InputAdornment>
           ),
         },
       }}
