@@ -4,6 +4,7 @@ import React from 'react';
 
 import { NumStr } from '@/types';
 import {
+  AppMultiSelectField,
   AppNumberField,
   AppSelectField,
   AppTextField,
@@ -15,6 +16,7 @@ const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
 const Inputs = () => {
   const [number, setNumber] = React.useState<NumStr>('');
   const [value, setValue] = React.useState<string>('');
+  const [values, setValues] = React.useState<string[]>([]);
 
   return (
     <>
@@ -76,6 +78,48 @@ const Inputs = () => {
           isClearable={false}
         />
         <AppSelectField options={options} label="Age" error helperText="sdfg" />
+      </div>
+      <Title title="Multi Select field" sx={{ mt: 4 }} />
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+        />
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+          color="success"
+        />
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+          error
+          helperText="ot bad at all"
+        />
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+        />
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+        />
+        <AppMultiSelectField
+          label="high"
+          options={options}
+          values={values}
+          onChange={(value) => setValues(value)}
+        />
       </div>
     </>
   );

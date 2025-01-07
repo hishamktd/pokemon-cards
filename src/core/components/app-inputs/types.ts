@@ -1,6 +1,7 @@
 import {
   FormControlProps,
   InputLabelProps,
+  OutlinedInputProps,
   SelectProps,
   TextFieldProps,
 } from '@mui/material';
@@ -29,4 +30,17 @@ export type AppSelectProps = FormControlProps & {
   selectProps?: SelectProps;
   helperText?: string | null;
   isClearable?: boolean;
+};
+
+type MultiSelectFormControl = Omit<FormControlProps, 'onChange'>;
+
+export type AppMultiSelectProps = MultiSelectFormControl & {
+  values?: string[];
+  onChange?: (value: string[]) => void;
+  inputProps?: OutlinedInputProps;
+  options?: string[];
+  label?: string;
+  helperText?: string | null;
+  isClearable?: boolean;
+  inputLabelProps?: InputLabelProps;
 };
