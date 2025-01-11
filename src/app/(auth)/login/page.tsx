@@ -1,6 +1,6 @@
 import { Container, Typography, Box } from '@mui/material';
 
-import LoginForm from '@/components/LoginForm';
+import LoginForm from '@/views/auth/LoginForm';
 
 export default function Login() {
   return (

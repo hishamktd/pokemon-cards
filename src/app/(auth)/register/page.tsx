@@ -1,6 +1,6 @@
 import { Container, Typography, Box } from '@mui/material';
 
-import RegisterForm from '@/components/RegisterForm';
+import RegisterForm from '@/views/auth/RegisterForm';
 
 export default function Register() {
   return (
