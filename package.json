@@ -21,7 +21,7 @@
     "@mui/material": "^6.3.0",
     "@mui/material-nextjs": "^6.3.0",
     "@mui/x-data-grid": "^7.23.6",
-    "@prisma/client": "^6.2.1",
+    "@prisma/client": "^6.1.0",
     "bcryptjs": "^2.4.3",
     "jose": "^5.9.6",
     "next": "15.1.3",
