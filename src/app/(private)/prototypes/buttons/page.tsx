@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { KeyActionEnum } from '@/enum/key-actions';
-import { Button } from '@core/components/app-button';
+import { AppButton } from '@core/components/app-button';
 
 
 const Buttons = () => {
@@ -11,180 +11,180 @@ const Buttons = () => {
 
   return (
     <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-      <Button variant="contained" disabled>
+      <AppButton variant="contained" disabled>
         contained disabled
-      </Button>
-      <Button variant="outlined" disabled>
+      </AppButton>
+      <AppButton variant="outlined" disabled>
         outlined disabled
-      </Button>
-      <Button variant="text" disabled>
+      </AppButton>
+      <AppButton variant="text" disabled>
         text disabled
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="contained"
         onClick={() => setLoading((prev) => !prev)}
         loading={loading}
         keyFor={KeyActionEnum.CREATE}
       >
         contained loading
-      </Button>
-      <Button variant="outlined">outlined</Button>
-      <Button variant="text">text</Button>
-      <Button variant="contained" color="secondary">
+      </AppButton>
+      <AppButton variant="outlined">outlined</AppButton>
+      <AppButton variant="text">text</AppButton>
+      <AppButton variant="contained" color="secondary">
         contained secondary
-      </Button>
-      <Button variant="outlined" color="secondary">
+      </AppButton>
+      <AppButton variant="outlined" color="secondary">
         outlined secondary
-      </Button>
-      <Button variant="text" color="secondary">
+      </AppButton>
+      <AppButton variant="text" color="secondary">
         text secondary
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="contained"
         color="error"
         onClick={() => setLoading((prev) => !prev)}
         loading
       >
         contained error loading
-      </Button>
-      <Button variant="outlined" color="error">
+      </AppButton>
+      <AppButton variant="outlined" color="error">
         outlined error
-      </Button>
-      <Button variant="text" color="error">
+      </AppButton>
+      <AppButton variant="text" color="error">
         text error
-      </Button>
-      <Button variant="contained" color="info">
+      </AppButton>
+      <AppButton variant="contained" color="info">
         contained info
-      </Button>
-      <Button variant="outlined" color="info">
+      </AppButton>
+      <AppButton variant="outlined" color="info">
         outlined info
-      </Button>
-      <Button variant="text" color="info">
+      </AppButton>
+      <AppButton variant="text" color="info">
         text info
-      </Button>
-      <Button variant="contained" color="success">
+      </AppButton>
+      <AppButton variant="contained" color="success">
         contained success
-      </Button>
-      <Button variant="outlined" color="success">
+      </AppButton>
+      <AppButton variant="outlined" color="success">
         outlined success
-      </Button>
-      <Button variant="text" color="success">
+      </AppButton>
+      <AppButton variant="text" color="success">
         text success
-      </Button>
-      <Button variant="contained" color="warning">
+      </AppButton>
+      <AppButton variant="contained" color="warning">
         contained warning
-      </Button>
-      <Button variant="outlined" color="warning">
+      </AppButton>
+      <AppButton variant="outlined" color="warning">
         outlined warning
-      </Button>
-      <Button variant="text" color="warning">
+      </AppButton>
+      <AppButton variant="text" color="warning">
         text warning
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="contained"
         color="inherit"
         onClick={() => setLoading(false)}
       >
         contained inherit
-      </Button>
-      <Button variant="outlined" color="inherit">
+      </AppButton>
+      <AppButton variant="outlined" color="inherit">
         outlined inherit
-      </Button>
-      <Button variant="text" color="inherit">
+      </AppButton>
+      <AppButton variant="text" color="inherit">
         text inherit
-      </Button>
+      </AppButton>
       {/* // ** This is a loading button */}
-      <Button
+      <AppButton
         variant="contained"
         disabled
         onClick={() => setLoading((prev) => !prev)}
         loading={loading}
       >
         contained loading disabled
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="outlined"
         onClick={() => setLoading(false)}
         loading={loading}
         disabled
       >
         outlined loading disabled
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="text"
         disabled
         onClick={() => setLoading((prev) => !prev)}
         loading
       >
         text loading disabled
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         variant="contained"
         onClick={() => setLoading((prev) => !prev)}
         loading
       >
         contained loading
-      </Button>
-      <Button variant="outlined" loading>
+      </AppButton>
+      <AppButton variant="outlined" loading>
         outlined loading
-      </Button>
-      <Button variant="text" loading>
+      </AppButton>
+      <AppButton variant="text" loading>
         text loading
-      </Button>
-      <Button variant="contained" color="secondary" loading>
+      </AppButton>
+      <AppButton variant="contained" color="secondary" loading>
         contained secondary loading
-      </Button>
-      <Button variant="outlined" color="secondary" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="secondary" loading>
         outlined secondary loading
-      </Button>
-      <Button variant="text" color="secondary" loading>
+      </AppButton>
+      <AppButton variant="text" color="secondary" loading>
         text secondary loading
-      </Button>
-      <Button variant="contained" color="error" loading>
+      </AppButton>
+      <AppButton variant="contained" color="error" loading>
         contained error loading
-      </Button>
-      <Button variant="outlined" color="error" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="error" loading>
         outlined error loading
-      </Button>
-      <Button variant="text" color="error" loading>
+      </AppButton>
+      <AppButton variant="text" color="error" loading>
         text error loading
-      </Button>
-      <Button variant="contained" color="info" loading>
+      </AppButton>
+      <AppButton variant="contained" color="info" loading>
         contained info loading
-      </Button>
-      <Button variant="outlined" color="info" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="info" loading>
         Log out
-      </Button>
-      <Button variant="text" color="info" loading>
+      </AppButton>
+      <AppButton variant="text" color="info" loading>
         Log out
-      </Button>
-      <Button variant="contained" color="success" loading>
+      </AppButton>
+      <AppButton variant="contained" color="success" loading>
         Log out
-      </Button>
-      <Button variant="outlined" color="success" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="success" loading>
         Log out
-      </Button>
-      <Button variant="text" color="success" loading>
+      </AppButton>
+      <AppButton variant="text" color="success" loading>
         Log out
-      </Button>
-      <Button variant="contained" color="warning" loading>
+      </AppButton>
+      <AppButton variant="contained" color="warning" loading>
         Log out
-      </Button>
-      <Button variant="outlined" color="warning" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="warning" loading>
         Log out
-      </Button>
-      <Button variant="text" color="warning" loading>
+      </AppButton>
+      <AppButton variant="text" color="warning" loading>
         Log out
-      </Button>
-      <Button variant="contained" color="inherit" size="large" loading>
+      </AppButton>
+      <AppButton variant="contained" color="inherit" size="large" loading>
         Log out
-      </Button>
-      <Button variant="outlined" color="inherit" loading>
+      </AppButton>
+      <AppButton variant="outlined" color="inherit" loading>
         Log out
-      </Button>
-      <Button variant="text" color="inherit" size="large" loading>
+      </AppButton>
+      <AppButton variant="text" color="inherit" size="large" loading>
         Log out
-      </Button>
+      </AppButton>
     </div>
   );
 };

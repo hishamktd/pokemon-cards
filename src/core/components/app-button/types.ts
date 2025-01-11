@@ -8,13 +8,13 @@ export type AppButtonProps = ButtonProps & {
   minWidth?: number;
 };
 
-export type GroupButtonItem = AppButtonProps & {
+export type AppGroupButtonItem = AppButtonProps & {
   isHidden?: boolean;
   label?: string;
 };
 
-export type ButtonGroupProps = {
-  containedButtonProps?: GroupButtonItem;
-  outlinedButtonProps?: GroupButtonItem;
-  [key: string]: GroupButtonItem | undefined;
+export type AppButtonGroupProps = {
+  containedButtonProps?: AppGroupButtonItem;
+  outlinedButtonProps?: AppGroupButtonItem;
+  [key: string]: AppGroupButtonItem | undefined;
 };

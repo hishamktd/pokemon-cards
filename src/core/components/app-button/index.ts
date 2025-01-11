@@ -1,7 +1,7 @@
-export { default as Button } from './Button';
-export { default as ButtonGroup } from './ButtonGroup';
+export { default as AppButton } from './Button';
+export { default as AppButtonGroup } from './ButtonGroup';
 export type {
   AppButtonProps,
-  ButtonGroupProps,
-  GroupButtonItem,
+  AppButtonGroupProps,
+  AppGroupButtonItem,
 } from './types';

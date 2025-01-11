@@ -1,14 +1,14 @@
 import React, { FC, memo, useMemo } from 'react';
 
-import { ButtonGroupProps, GroupButtonItem, Button } from '.';
+import { AppButtonGroupProps, AppGroupButtonItem, AppButton } from '.';
 import { ButtonGroupContainer } from './styled-components';
 
-const ButtonGroup: FC<ButtonGroupProps> = ({
+const ButtonGroup: FC<AppButtonGroupProps> = ({
   containedButtonProps,
   outlinedButtonProps,
   ...rest
 }) => {
-  const buttons = useMemo<{ [key: string]: GroupButtonItem }>(
+  const buttons = useMemo<{ [key: string]: AppGroupButtonItem }>(
     () => ({
       containedButtonProps: {
         isHidden: false,
@@ -37,7 +37,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
 
         return (
           <React.Fragment key={label}>
-            <Button {...rest}>{label}</Button>
+            <AppButton {...rest}>{label}</AppButton>
           </React.Fragment>
         );
       })}

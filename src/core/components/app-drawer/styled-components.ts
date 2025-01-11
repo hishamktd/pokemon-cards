@@ -1,0 +1,52 @@
+'use client';
+
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+type ColorBoxProps = BoxProps & {
+  bgcolor?: string;
+};
+
+export const DrawerHeader = styled('div')(({ theme }) => ({
+  position: 'sticky',
+  top: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: theme.spacing(3.5),
+
+  '& .header': {
+    fontSize: 16,
+    fontWeight: theme.typography.fontWeightBold,
+  },
+
+  '& .close': {
+    '& svg': {
+      fontSize: 14,
+    },
+  },
+}));
+
+export const DrawerFooter = styled(Box)<BoxProps>(({ theme }) => ({
+  position: 'sticky',
+  bottom: 12,
+  display: 'flex',
+  gap: 8,
+  padding: theme.spacing(3, 5, 0, 5),
+  zIndex: 300,
+  backgroundColor: theme.palette.common.white,
+}));
+
+export const Content = styled(Box)<BoxProps>(({ theme }) => ({
+  overflow: 'auto',
+  flexGrow: 1,
+  padding: theme.spacing(3, 5),
+}));
+
+export const ColorBox = styled(Box)<ColorBoxProps>(({ theme, bgcolor }) => ({
+  width: '16px',
+  height: '16px',
+  backgroundColor: bgcolor || theme.palette.grey[300],
+  borderRadius: '4px',
+  marginRight: theme.spacing(1),
+}));

@@ -12,6 +12,7 @@ const navigation = {
       { path: '/prototypes/button-groups', label: 'Button Groups' },
       { path: '/prototypes/inputs', label: 'Inputs' },
       { path: '/prototypes/tables', label: 'Tables' },
+      { path: '/prototypes/drawer', label: 'Drawer' },
     ],
   },
 };

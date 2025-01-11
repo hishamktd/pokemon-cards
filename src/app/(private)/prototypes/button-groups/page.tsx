@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ButtonGroup } from '@core/components/app-button';
+import { AppButtonGroup } from '@core/components/app-button';
 
 const ButtonGroups = () => {
   return (
     <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-      <ButtonGroup
+      <AppButtonGroup
         outlinedButtonProps={{ isHidden: false }}
         cancelButton={{
           label: 'Undo',
@@ -14,7 +14,7 @@ const ButtonGroups = () => {
           color: 'error',
         }}
       />
-      <ButtonGroup
+      <AppButtonGroup
         cancelButton={{
           label: 'Undo',
           variant: 'outlined',
