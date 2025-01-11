@@ -2,9 +2,8 @@
 
 import bcrypt from 'bcryptjs';
 
+import { createSession, logout } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-
-import { createSession, logout } from '../../lib/auth';
 
 export async function login(email: string, password: string) {
   try {
