@@ -16,15 +16,16 @@ export async function login(email: string, password: string) {
 
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
-      return { success: false, error: 'invalid_credentials' };
+      return { status: 404, success: false, error: 'invalid_credentials' };
     }
 
     await createSession(user.id);
 
-    return { success: true };
+    return { success: true, status: 200 };
   } catch (error) {
     console.error('Login error:', error);
     return {
+      status: 500,
       success: false,
       error: 'An error occurred during login' + JSON.stringify(error),
     };
