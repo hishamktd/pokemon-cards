@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "pnpm prisma:migrate && pnpm prisma:generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint:fix": "next lint --fix",
     "lint:strict": "next lint './**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --check --ignore-path .prettierignore .",
-    "prisma:migrate": "pnpm prisma migrate deploy",
+    "prisma:migrate": "pnpm prisma migrate dev",
     "prisma:generate": "pnpm prisma generate"
   },
   "dependencies": {
