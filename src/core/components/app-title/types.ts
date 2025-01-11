@@ -1,6 +1,6 @@
 import { BoxProps, TypographyProps as MuiTypographyProps } from '@mui/material';
 
-import { ButtonGroupProps } from '../app-button';
+import { AppButtonGroupProps } from '../app-button';
 import { IconProps } from '../icon';
 
 type TypographyProps = Omit<MuiTypographyProps, 'variant'>;
@@ -15,6 +15,6 @@ export type TitleProps = {
 } & TypographyProps;
 
 export type ActionTitleProps = TitleProps & {
-  buttonGroupProps?: ButtonGroupProps;
+  buttonGroupProps?: AppButtonGroupProps;
   containerProps?: BoxProps;
 };
