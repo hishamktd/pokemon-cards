@@ -24,7 +24,10 @@ export async function login(email: string, password: string) {
     return { success: true };
   } catch (error) {
     console.error('Login error:', error);
-    return { success: false, error: 'An error occurred during login' };
+    return {
+      success: false,
+      error: 'An error occurred during login' + JSON.stringify(error),
+    };
   }
 }
 
