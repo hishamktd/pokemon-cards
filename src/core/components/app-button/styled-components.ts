@@ -21,4 +21,5 @@ export const ButtonGroupContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(0.5),
   flexDirection: 'row-reverse',
+  width: '100%',
 }));

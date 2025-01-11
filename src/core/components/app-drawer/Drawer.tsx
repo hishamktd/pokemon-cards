@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import React, { memo } from 'react';
 
 import { ICONS } from '@/constants/icons';
-import { AppButton } from '@/core/components/app-button';
+import { AppButtonGroup } from '@/core/components/app-button';
 import IconButton from '@/core/components/icon-button';
 
 import { AppDrawerProps } from '.';
@@ -30,6 +30,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
     label: 'Cancel',
     onClick: onClose,
     fullWidth: true,
+    isHidden: false,
     ...outlineButtonProps,
   };
 
@@ -66,7 +67,6 @@ const Drawer: React.FC<AppDrawerProps> = ({
           icon={CLOSE}
           toolTip="Close"
           color="primary"
-          size="large"
         />
       </DrawerHeader>
       <Divider />
@@ -75,12 +75,10 @@ const Drawer: React.FC<AppDrawerProps> = ({
       </Content>
       {showFooter && (
         <DrawerFooter {...footerContainerProps}>
-          <AppButton variant="outlined" {...outlineProps}>
-            {outlineProps.label}
-          </AppButton>
-          <AppButton type="submit" {...filledProps}>
-            {filledProps.label}
-          </AppButton>
+          <AppButtonGroup
+            containedButtonProps={filledProps}
+            outlinedButtonProps={outlineProps}
+          />
         </DrawerFooter>
       )}
     </MuiDrawer>

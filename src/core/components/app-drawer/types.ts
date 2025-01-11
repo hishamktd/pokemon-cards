@@ -2,7 +2,7 @@ import { BoxProps } from '@mui/material/Box';
 import { PaperProps } from '@mui/material/Paper';
 import { ElementType, JSX } from 'react';
 
-import { AppButtonProps } from '../app-button';
+import { AppGroupButtonItem } from '../app-button';
 
 export type AppDrawerProps = {
   open: boolean;
@@ -11,8 +11,8 @@ export type AppDrawerProps = {
   component?: ElementType;
   showFooter?: boolean;
   loading?: boolean;
-  outlineButtonProps?: AppButtonProps & { label?: string };
-  filledButtonProps?: AppButtonProps & { label?: string };
+  outlineButtonProps?: AppGroupButtonItem;
+  filledButtonProps?: AppGroupButtonItem;
   footerContainerProps?: BoxProps;
   paperProps?: PaperProps;
   contentProps?: BoxProps;
