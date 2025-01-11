@@ -1,0 +1,26 @@
+import { styled } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+
+import { hexToRGBA } from '@/utils/hexToRGBA';
+
+export const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  color: theme.palette.common.black,
+
+  '& .MuiDataGrid-columnHeader, .MuiDataGrid-filler': {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    fontSize: 16,
+  },
+  '& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus': {
+    outline: 'none',
+  },
+  '& .MuiDataGrid-columnHeaderTitle': {
+    fontWeight: 'bold',
+  },
+  '& .MuiDataGrid-columnHeader:hover': {
+    backgroundColor: hexToRGBA(theme.palette.primary.main, 0.9),
+  },
+  '& .MuiDataGrid-columnSeparator': {
+    color: theme.palette.primary.contrastText,
+  },
+}));
