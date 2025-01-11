@@ -64,6 +64,8 @@ const Drawer: React.FC<AppDrawerProps> = ({
           onClick={onClose}
           icon={CLOSE}
           toolTip="Close"
+          color="primary"
+          size="large"
         />
       </DrawerHeader>
       <Divider />

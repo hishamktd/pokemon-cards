@@ -13,14 +13,16 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: theme.spacing(3.5),
+  padding: theme.spacing(1.5, 3),
+  backgroundColor: theme.palette.common.white,
 
-  '& .header': {
+  ['& .header']: {
     fontSize: 16,
     fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.primary.main,
   },
 
-  '& .close': {
+  ['& .close']: {
     '& svg': {
       fontSize: 14,
     },
