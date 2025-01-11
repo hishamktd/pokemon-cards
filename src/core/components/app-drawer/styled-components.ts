@@ -31,10 +31,10 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
 
 export const DrawerFooter = styled(Box)<BoxProps>(({ theme }) => ({
   position: 'sticky',
-  bottom: 12,
+  bottom: 0,
   display: 'flex',
   gap: 8,
-  padding: theme.spacing(3, 5, 0, 5),
+  padding: theme.spacing(1),
   zIndex: 300,
   backgroundColor: theme.palette.common.white,
 }));
@@ -43,6 +43,7 @@ export const Content = styled(Box)<BoxProps>(({ theme }) => ({
   overflow: 'auto',
   flexGrow: 1,
   padding: theme.spacing(3, 5),
+  backgroundColor: theme.palette.common.white,
 }));
 
 export const ColorBox = styled(Box)<ColorBoxProps>(({ theme, bgcolor }) => ({

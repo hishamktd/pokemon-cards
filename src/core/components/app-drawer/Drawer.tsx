@@ -52,6 +52,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
         sx: {
           width: 450,
           borderRadius: 0,
+          bgcolor: (t) => t.palette.common.white,
           ...paperSx,
         },
         ...paperRest,
