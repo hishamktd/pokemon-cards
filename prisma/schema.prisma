@@ -159,8 +159,9 @@ model Pokemon {
 }
 
 model Packs {
-    id        Int    @id @default(autoincrement())
-    name      String
-    thumbnail String
-    cards     Card[]
+    id         Int    @id @default(autoincrement())
+    name       String
+    thumbnail  String
+    totalCards Int
+    cards      Card[]
 }
