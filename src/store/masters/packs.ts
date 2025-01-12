@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { getPacks } from '@/actions/master/packs/entities';
 import { BaseParams } from '@/types';
-import { Packs } from '@/types/master/packs';
+import { Packs } from '@/types/masters/packs';
 import { PAGE_SIZE } from '@/utils/pagination';
 
 export type PacksStore = {

@@ -4,7 +4,7 @@ import { GridColDef } from '@mui/x-data-grid';
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
 import Page from '@/components/page';
-import usePacksStore from '@/store/master/packs';
+import usePacksStore from '@/store/masters/packs';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
