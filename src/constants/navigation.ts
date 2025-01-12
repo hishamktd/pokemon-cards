@@ -15,7 +15,12 @@ const navigation = {
       { path: '/prototypes/drawer', label: 'Drawer' },
     ],
   },
-  master: { root: '/master', path: '/master', label: 'Master' },
+  master: {
+    root: '/master',
+    path: '/master/packs',
+    label: 'Master',
+    children: [{ path: '/master/packs', label: 'Packs' }],
+  },
 };
 
 export default navigation;
