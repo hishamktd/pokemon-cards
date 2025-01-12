@@ -15,6 +15,7 @@ const navigation = {
       { path: '/prototypes/drawer', label: 'Drawer' },
     ],
   },
+  master: { root: '/master', path: '/master', label: 'Master' },
 };
 
 export default navigation;

@@ -12,4 +12,5 @@ export const ICONS = {
   COMPONENTS: 'mynaui:components',
   UP_FILL_ROUNDED: 'eva:arrow-up-fill',
   DOWN_FILL_ROUNDED: 'eva:arrow-down-fill',
+  MASTER: 'oui:app-devtools',
 };
