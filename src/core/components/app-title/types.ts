@@ -17,4 +17,7 @@ export type TitleProps = {
 export type ActionTitleProps = TitleProps & {
   buttonGroupProps?: AppButtonGroupProps;
   containerProps?: BoxProps;
+  renderButtonStart?: () => React.ReactNode;
 };
+
+export type PaginationTitleProps = ActionTitleProps & {};
