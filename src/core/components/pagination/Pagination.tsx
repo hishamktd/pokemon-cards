@@ -26,8 +26,6 @@ const Pagination: FC<AppPaginationProps> = ({
       color="primary"
       variant="outlined"
       count={count}
-      showFirstButton
-      showLastButton
       siblingCount={1}
       onChange={handleChange}
       {...props}

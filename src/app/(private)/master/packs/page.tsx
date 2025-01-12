@@ -46,7 +46,7 @@ const Packs = () => {
         title="Packs"
         variant="small"
         buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}
-        paginationProps={{ totalCount, onPageChange: setPage }}
+        paginationProps={{ totalCount, onPageChange: setPage, page }}
       />
       <AppDataGrid rows={entities} columns={columns} />
     </Page>
