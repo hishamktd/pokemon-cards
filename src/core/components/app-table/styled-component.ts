@@ -5,6 +5,7 @@ import { hexToRGBA } from '@/utils/hexToRGBA';
 
 export const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   color: theme.palette.common.black,
+  border: `1px solid ${theme.palette.primary.main}`,
 
   ['& .MuiDataGrid-columnHeader, .MuiDataGrid-filler']: {
     backgroundColor: theme.palette.primary.main,
