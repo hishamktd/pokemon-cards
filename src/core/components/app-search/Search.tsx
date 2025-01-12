@@ -1,11 +1,11 @@
 'use client';
 
-import OutlinedInput from '@mui/material/OutlinedInput';
 import React, { memo, useCallback } from 'react';
 
 import useDebounce from '@core/hooks/use-debounce';
 
 import { AppSearchIcon, AppSearchProps } from '.';
+import { AppTextField } from '../app-inputs';
 
 const Search: React.FC<AppSearchProps> = ({ query = '', onChange }) => {
   const debouncedChange = useDebounce((newValue: string) => {
@@ -29,15 +29,19 @@ const Search: React.FC<AppSearchProps> = ({ query = '', onChange }) => {
   }, [onChange]);
 
   return (
-    <OutlinedInput
+    <AppTextField
       fullWidth
       size="small"
       placeholder="Search"
       value={query}
       onChange={handleChange}
-      endAdornment={
-        <AppSearchIcon onClear={handleClear} hasValue={query !== ''} />
-      }
+      slotProps={{
+        input: {
+          endAdornment: (
+            <AppSearchIcon onClear={handleClear} hasValue={query !== ''} />
+          ),
+        },
+      }}
       sx={{
         '& input::placeholder': {
           fontSize: '15px',
