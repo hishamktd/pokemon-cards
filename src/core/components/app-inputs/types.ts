@@ -6,7 +6,9 @@ import {
   TextFieldProps,
 } from '@mui/material';
 
-import { NumStr } from '@/types';
+import { Control } from 'react-hook-form';
+
+import { Any, NumStr } from '@/types';
 
 export type AppTextFieldProps = TextFieldProps;
 
@@ -43,4 +45,11 @@ export type AppMultiSelectProps = MultiSelectFormControl & {
   helperText?: string | null;
   isClearable?: boolean;
   inputLabelProps?: InputLabelProps;
+};
+
+export type FileUploaderProps = {
+  control: Control<Any>;
+  name: string;
+  cropWidth?: number;
+  cropHeight?: number;
 };
