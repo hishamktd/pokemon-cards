@@ -13,5 +13,5 @@ export const ICONS = {
   UP_FILL_ROUNDED: 'eva:arrow-up-fill',
   DOWN_FILL_ROUNDED: 'eva:arrow-down-fill',
   MASTER: 'oui:app-devtools',
-  SEARCH: 'iconamoon:search-light',
+  SEARCH: 'ic:baseline-search',
 };

@@ -1,6 +1,7 @@
 import { BoxProps, TypographyProps as MuiTypographyProps } from '@mui/material';
 
 import { AppButtonGroupProps } from '../app-button';
+import { AppSearchProps } from '../app-search';
 import { IconProps } from '../icon';
 import { AppPaginationProps } from '../pagination';
 
@@ -23,4 +24,5 @@ export type ActionTitleProps = TitleProps & {
 
 export type PaginationSearchTitleProps = ActionTitleProps & {
   paginationProps?: AppPaginationProps;
+  searchProps?: AppSearchProps;
 };

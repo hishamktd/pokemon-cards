@@ -1,20 +1,13 @@
 'use client';
 
-import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 
-import { ICONS } from '@/constants/icons';
-import Icon from '@/core/components/icon';
 import useDebounce from '@core/hooks/use-debounce';
 
-import { AppSearchProps } from '.';
-
-const { SEARCH } = ICONS;
+import { AppSearchIcon, AppSearchProps } from '.';
 
 const Search: React.FC<AppSearchProps> = ({ value = '', onChange }) => {
-  const [innerQuery, setInnerQuery] = useState<string>(value);
-
   const debouncedChange = useDebounce((newValue: string) => {
     if (onChange) {
       onChange(newValue);
@@ -24,27 +17,26 @@ const Search: React.FC<AppSearchProps> = ({ value = '', onChange }) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newQuery = e.target.value;
-      setInnerQuery(newQuery);
       debouncedChange(newQuery);
     },
     [debouncedChange],
   );
 
-  useEffect(() => {
-    setInnerQuery(value);
-  }, [value]);
+  const handleClear = useCallback(() => {
+    if (onChange) {
+      onChange('');
+    }
+  }, [onChange]);
 
   return (
     <OutlinedInput
       fullWidth
       size="small"
       placeholder="Search"
-      value={innerQuery}
+      value={value}
       onChange={handleChange}
-      startAdornment={
-        <InputAdornment position="start">
-          <Icon icon={SEARCH} />
-        </InputAdornment>
+      endAdornment={
+        <AppSearchIcon onClear={handleClear} hasValue={value !== ''} />
       }
       sx={{
         '& input::placeholder': {
