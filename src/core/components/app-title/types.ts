@@ -21,6 +21,6 @@ export type ActionTitleProps = TitleProps & {
   renderButtonStart?: () => React.ReactNode;
 };
 
-export type PaginationTitleProps = ActionTitleProps & {
+export type PaginationSearchTitleProps = ActionTitleProps & {
   paginationProps?: AppPaginationProps;
 };

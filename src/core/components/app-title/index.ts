@@ -1,9 +1,9 @@
 export { default as Title } from './Title';
 export { default as ActionTitle } from './ActionTitle';
-export { default as PaginationTitle } from './PaginationTitle';
+export { default as PaginationSearchTitle } from './PaginationSearchTitle';
 
 export type {
   TitleProps,
-  PaginationTitleProps,
+  PaginationSearchTitleProps,
   ActionTitleProps,
 } from './types';

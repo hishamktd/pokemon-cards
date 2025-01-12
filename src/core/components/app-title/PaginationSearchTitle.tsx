@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react';
 
-import { ActionTitle, PaginationTitleProps } from '.';
+import { ActionTitle, PaginationSearchTitleProps } from '.';
 import { AppPagination } from '../pagination';
 
-const PaginationTitle: FC<PaginationTitleProps> = ({
+const PaginationSearchTitle: FC<PaginationSearchTitleProps> = ({
   paginationProps,
   ...rest
 }) => {
@@ -15,4 +15,4 @@ const PaginationTitle: FC<PaginationTitleProps> = ({
   );
 };
 
-export default memo(PaginationTitle);
+export default memo(PaginationSearchTitle);
