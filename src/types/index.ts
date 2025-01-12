@@ -14,4 +14,11 @@ export type BaseOption = { id?: string | number; name?: string } | null;
 export type BaseParams = {
   page: number;
   size?: number;
+  query?: string;
+};
+
+export type ServerBaseParams = {
+  page: number;
+  size: number;
+  query: string;
 };

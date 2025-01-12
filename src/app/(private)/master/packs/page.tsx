@@ -40,8 +40,8 @@ const Packs = () => {
   }, [setIsOpen]);
 
   const handleFetchEntities = useCallback(async () => {
-    fetchEntities({ page });
-  }, [fetchEntities, page]);
+    fetchEntities({ page, query });
+  }, [fetchEntities, page, query]);
 
   useEffect(() => {
     handleFetchEntities();

@@ -19,10 +19,10 @@ const usePacksStore = create<PacksStore>((set) => ({
   error: null,
   totalCount: 0,
 
-  fetchEntities: async ({ page, size = PAGE_SIZE }) => {
+  fetchEntities: async ({ page, size = PAGE_SIZE, query = '' }) => {
     set({ loading: true, error: null });
     try {
-      const { data, totalCount } = await getPacks(page, size);
+      const { data, totalCount } = await getPacks({ page, size, query });
 
       set({ entities: data, loading: false, totalCount });
     } catch (error) {
