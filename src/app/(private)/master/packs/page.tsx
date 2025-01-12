@@ -13,6 +13,7 @@ const Packs = () => {
   const { entities, fetchEntities, totalCount } = usePacksStore();
 
   const [page, setPage] = useQuery('page', 1);
+  const [query, setQuery] = useQuery('query', '');
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -47,6 +48,7 @@ const Packs = () => {
         variant="small"
         buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}
         paginationProps={{ totalCount, onPageChange: setPage, page }}
+        searchProps={{ value: query, onChange: setQuery }}
       />
       <AppDataGrid rows={entities} columns={columns} />
     </Page>

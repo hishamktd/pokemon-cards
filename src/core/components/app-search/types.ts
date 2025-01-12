@@ -1,5 +1,5 @@
 export type SearchProps = {
-  value?: string;
+  query?: string;
   onChange?: (newQuery: string) => void;
 };
 

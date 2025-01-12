@@ -7,7 +7,7 @@ import useDebounce from '@core/hooks/use-debounce';
 
 import { AppSearchIcon, AppSearchProps } from '.';
 
-const Search: React.FC<AppSearchProps> = ({ value = '', onChange }) => {
+const Search: React.FC<AppSearchProps> = ({ query = '', onChange }) => {
   const debouncedChange = useDebounce((newValue: string) => {
     if (onChange) {
       onChange(newValue);
@@ -33,10 +33,10 @@ const Search: React.FC<AppSearchProps> = ({ value = '', onChange }) => {
       fullWidth
       size="small"
       placeholder="Search"
-      value={value}
+      value={query}
       onChange={handleChange}
       endAdornment={
-        <AppSearchIcon onClear={handleClear} hasValue={value !== ''} />
+        <AppSearchIcon onClear={handleClear} hasValue={query !== ''} />
       }
       sx={{
         '& input::placeholder': {
