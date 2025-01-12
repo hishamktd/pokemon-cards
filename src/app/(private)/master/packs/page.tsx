@@ -6,7 +6,7 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import Page from '@/components/page';
 import usePacksStore from '@/store/master/packs';
 import { AppDataGrid } from '@core/components/app-table';
-import { PaginationTitle } from '@core/components/app-title';
+import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
@@ -42,7 +42,7 @@ const Packs = () => {
 
   return (
     <Page>
-      <PaginationTitle
+      <PaginationSearchTitle
         title="Packs"
         variant="small"
         buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}

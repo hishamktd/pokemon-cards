@@ -3,7 +3,7 @@ import React from 'react';
 import { ICONS } from '@/constants/icons';
 import {
   ActionTitle,
-  PaginationTitle,
+  PaginationSearchTitle,
   Title,
 } from '@core/components/app-title';
 
@@ -30,7 +30,7 @@ const Titles = () => {
         title="Dashboard"
         buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
       />
-      <PaginationTitle
+      <PaginationSearchTitle
         icon={ATTACK}
         title="Dashboard"
         buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
