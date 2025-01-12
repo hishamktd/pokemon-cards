@@ -34,6 +34,7 @@ const Titles = () => {
         icon={ATTACK}
         title="Dashboard"
         buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
+        paginationProps={{ totalCount: 100 }}
       />
     </div>
   );
