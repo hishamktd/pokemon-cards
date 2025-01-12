@@ -1,9 +1,9 @@
 import MuiPagination from '@mui/material/Pagination';
 import React, { FC, memo } from 'react';
 
-import { PaginationProps } from '.';
+import { AppPaginationProps } from '.';
 
-const Pagination: FC<PaginationProps> = (props) => {
+const Pagination: FC<AppPaginationProps> = (props) => {
   return <MuiPagination color="primary" {...props} />;
 };
 

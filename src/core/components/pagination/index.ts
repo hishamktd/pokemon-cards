@@ -1,3 +1,3 @@
-export { default as Pagination } from './Pagination';
+export { default as AppPagination } from './Pagination';
 
-export type { PaginationProps } from './types';
+export type { PaginationProps as AppPaginationProps } from './types';
