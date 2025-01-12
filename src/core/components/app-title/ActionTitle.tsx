@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Grid2 } from '@mui/material';
 import React, { FC, memo } from 'react';
 
 import { Title } from '.';
@@ -15,10 +15,12 @@ const ActionTitle: FC<ActionTitleProps> = ({
   return (
     <ActionTitleContainer {...containerProps}>
       <Title {...props} />
-      <Box>
-        {renderButtonStart && <>{renderButtonStart()}&nbsp;</>}
-        <AppButtonGroup {...buttonGroupProps} />
-      </Box>
+      <Grid2 container alignItems="center" spacing={3}>
+        {renderButtonStart && renderButtonStart()}
+        <Box>
+          <AppButtonGroup {...buttonGroupProps} />
+        </Box>
+      </Grid2>
     </ActionTitleContainer>
   );
 };
