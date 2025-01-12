@@ -1,26 +1,9 @@
 'use client';
 
+import { GridColDef } from '@mui/x-data-grid';
 import React from 'react';
 
 import { AppDataGrid } from '@core/components/app-table';
-
-type GridColDef = {
-  type?:
-    | 'string' // Default text type
-    | 'number' // Numeric values
-    | 'date' // Date values
-    | 'dateTime' // Date with time
-    | 'boolean' // True/false values
-    | 'singleSelect' // Dropdown with predefined options
-    | 'actions'; // For action buttons/menus
-  field: string;
-  headerName?: string;
-  width?: number;
-  editable?: boolean;
-  sortable?: boolean;
-  filterable?: boolean;
-  // ... other properties
-};
 
 const Tables = () => {
   const rows = [
@@ -66,7 +49,6 @@ const Tables = () => {
     },
   ];
 
-  // Column definitions
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {

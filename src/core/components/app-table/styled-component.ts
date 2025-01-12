@@ -6,21 +6,29 @@ import { hexToRGBA } from '@/utils/hexToRGBA';
 export const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   color: theme.palette.common.black,
 
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-filler': {
+  ['& .MuiDataGrid-columnHeader, .MuiDataGrid-filler']: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
     fontSize: 16,
   },
-  '& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus': {
+
+  ['& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus']: {
     outline: 'none',
   },
-  '& .MuiDataGrid-columnHeaderTitle': {
+
+  ['& .MuiDataGrid-columnHeaderTitle']: {
     fontWeight: 'bold',
   },
-  '& .MuiDataGrid-columnHeader:hover': {
+
+  ['& .MuiDataGrid-columnHeader:hover']: {
     backgroundColor: hexToRGBA(theme.palette.primary.main, 0.9),
   },
-  '& .MuiDataGrid-columnSeparator': {
+
+  ['& .MuiDataGrid-columnSeparator']: {
     color: theme.palette.primary.contrastText,
+  },
+
+  ['& .MuiTablePagination-toolbar']: {
+    visibility: 'hidden',
   },
 }));
