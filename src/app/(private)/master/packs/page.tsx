@@ -6,10 +6,13 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import Page from '@/components/page';
 import usePacksStore from '@/store/master/packs';
 import { AppDataGrid } from '@core/components/app-table';
-import { ActionTitle } from '@core/components/app-title';
+import { PaginationTitle } from '@core/components/app-title';
+import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
-  const { entities, fetchEntities } = usePacksStore();
+  const { entities, fetchEntities, totalCount } = usePacksStore();
+
+  const [page, setPage] = useQuery('page', 1);
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -30,8 +33,8 @@ const Packs = () => {
   );
 
   const handleFetchEntities = useCallback(async () => {
-    fetchEntities();
-  }, [fetchEntities]);
+    fetchEntities({ page });
+  }, [fetchEntities, page]);
 
   useEffect(() => {
     handleFetchEntities();
@@ -39,21 +42,13 @@ const Packs = () => {
 
   return (
     <Page>
-      <ActionTitle
+      <PaginationTitle
         title="Packs"
         variant="small"
         buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}
+        paginationProps={{ totalCount, onPageChange: setPage }}
       />
-      <AppDataGrid
-        rows={entities}
-        columns={columns}
-        pageSizeOptions={[10]}
-        initialState={{
-          pagination: {
-            paginationModel: { pageSize: 10 },
-          },
-        }}
-      />
+      <AppDataGrid rows={entities} columns={columns} />
     </Page>
   );
 };
