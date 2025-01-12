@@ -1,6 +1,7 @@
 import React, { FC, memo } from 'react';
 
 import { ActionTitle, PaginationSearchTitleProps } from '.';
+import { AppSearch } from '../app-search';
 import { AppPagination } from '../pagination';
 
 const PaginationSearchTitle: FC<PaginationSearchTitleProps> = ({
@@ -10,7 +11,12 @@ const PaginationSearchTitle: FC<PaginationSearchTitleProps> = ({
   return (
     <ActionTitle
       {...rest}
-      renderButtonStart={() => <AppPagination {...paginationProps} />}
+      renderButtonStart={() => (
+        <>
+          <AppSearch />
+          <AppPagination {...paginationProps} />
+        </>
+      )}
     />
   );
 };

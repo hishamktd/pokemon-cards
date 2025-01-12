@@ -1,3 +1,5 @@
+'use client';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import React, { memo, useCallback, useEffect, useState } from 'react';
