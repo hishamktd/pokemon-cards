@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-function useQuery<T>(key: string, defaultValue: T): [T, (value: T) => void] {
+function useQuery<T>(
+  key: string,
+  defaultValue: T,
+): [T, (value: T | ((prev: T) => T)) => void] {
   const parseValue = (value: string | null): T => {
     if (value === null || value === '') {
       return defaultValue;
@@ -24,19 +27,24 @@ function useQuery<T>(key: string, defaultValue: T): [T, (value: T) => void] {
     return parseValue(urlSearchParams.get(key));
   };
 
-  const [param, setParam] = useState<T>(getSearchParam);
+  const [param, setParamState] = useState<T>(getSearchParam);
 
-  useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
+  const setParam = (value: T | ((prev: T) => T)) => {
+    setParamState((prev: T) => {
+      const newValue =
+        typeof value === 'function' ? (value as (prev: T) => T)(prev) : value;
+      const urlSearchParams = new URLSearchParams(window.location.search);
 
-    if (param !== defaultValue) {
-      urlSearchParams.set(key, String(param));
-    } else {
-      urlSearchParams.delete(key);
-    }
+      if (newValue !== defaultValue) {
+        urlSearchParams.set(key, String(newValue));
+      } else {
+        urlSearchParams.delete(key);
+      }
 
-    window.history.replaceState(null, '', '?' + urlSearchParams.toString());
-  }, [param, key, defaultValue]);
+      window.history.replaceState(null, '', '?' + urlSearchParams.toString());
+      return newValue;
+    });
+  };
 
   return [param, setParam];
 }

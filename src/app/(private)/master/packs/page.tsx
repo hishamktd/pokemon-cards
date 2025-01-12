@@ -5,6 +5,7 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
 import Page from '@/components/page';
 import usePacksStore from '@/store/masters/packs';
+import PacksDrawer from '@/views/masters/packs/PacksDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
@@ -14,6 +15,7 @@ const Packs = () => {
 
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
+  const [isOpen, setIsOpen] = useQuery('drawer', false);
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -33,6 +35,10 @@ const Packs = () => {
     [],
   );
 
+  const toggleDrawer = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, [setIsOpen]);
+
   const handleFetchEntities = useCallback(async () => {
     fetchEntities({ page });
   }, [fetchEntities, page]);
@@ -46,11 +52,14 @@ const Packs = () => {
       <PaginationSearchTitle
         title="Packs"
         variant="small"
-        buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}
+        buttonGroupProps={{
+          containedButtonProps: { label: 'Create', onClick: toggleDrawer },
+        }}
         paginationProps={{ totalCount, onPageChange: setPage, page }}
         searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid rows={entities} columns={columns} />
+      <PacksDrawer open={isOpen} onClose={toggleDrawer} />
     </Page>
   );
 };
