@@ -48,7 +48,7 @@ const Packs = () => {
         variant="small"
         buttonGroupProps={{ containedButtonProps: { label: 'Create' } }}
         paginationProps={{ totalCount, onPageChange: setPage, page }}
-        searchProps={{ value: query, onChange: setQuery }}
+        searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid rows={entities} columns={columns} />
     </Page>
