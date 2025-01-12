@@ -12,7 +12,7 @@ const Search: React.FC<AppSearchProps> = ({ query = '', onChange }) => {
     if (onChange) {
       onChange(newValue);
     }
-  }, 500);
+  }, 30);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
