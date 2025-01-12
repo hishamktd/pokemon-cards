@@ -1,13 +1,16 @@
-import { Pagination } from '@mui/material';
 import React, { FC, memo } from 'react';
 
 import { ActionTitle, PaginationTitleProps } from '.';
+import { AppPagination } from '../pagination';
 
-const PaginationTitle: FC<PaginationTitleProps> = ({ ...rest }) => {
+const PaginationTitle: FC<PaginationTitleProps> = ({
+  paginationProps,
+  ...rest
+}) => {
   return (
     <ActionTitle
       {...rest}
-      renderButtonStart={() => <Pagination count={10} />}
+      renderButtonStart={() => <AppPagination {...paginationProps} />}
     />
   );
 };

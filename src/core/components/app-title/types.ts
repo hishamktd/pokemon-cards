@@ -2,6 +2,7 @@ import { BoxProps, TypographyProps as MuiTypographyProps } from '@mui/material';
 
 import { AppButtonGroupProps } from '../app-button';
 import { IconProps } from '../icon';
+import { AppPaginationProps } from '../pagination';
 
 type TypographyProps = Omit<MuiTypographyProps, 'variant'>;
 
@@ -20,4 +21,6 @@ export type ActionTitleProps = TitleProps & {
   renderButtonStart?: () => React.ReactNode;
 };
 
-export type PaginationTitleProps = ActionTitleProps & {};
+export type PaginationTitleProps = ActionTitleProps & {
+  paginationProps?: AppPaginationProps;
+};
