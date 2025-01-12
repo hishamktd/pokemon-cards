@@ -1,7 +1,7 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
 import Page from '@/components/page';
 import usePacksStore from '@/store/master/packs';
@@ -9,17 +9,33 @@ import { AppDataGrid } from '@core/components/app-table';
 import { ActionTitle } from '@core/components/app-title';
 
 const Packs = () => {
-  const { entities } = usePacksStore();
+  const { entities, fetchEntities } = usePacksStore();
 
   const columns = useMemo<GridColDef[]>(
     () => [
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
       { field: 'totalCards', headerName: 'Total Cards' },
-      { field: 'actions', headerName: 'Actions', align: 'right' },
+      {
+        field: 'actions',
+        headerName: 'Actions',
+        align: 'right',
+        sortable: false,
+        headerAlign: 'center',
+        flex: 0,
+        minWidth: 200,
+      },
     ],
     [],
   );
+
+  const handleFetchEntities = useCallback(async () => {
+    fetchEntities();
+  }, [fetchEntities]);
+
+  useEffect(() => {
+    handleFetchEntities();
+  }, [handleFetchEntities]);
 
   return (
     <Page>
