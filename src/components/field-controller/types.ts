@@ -8,5 +8,8 @@ type BaseProps<T extends Record<string, unknown>> = {
   disabled?: boolean;
 };
 
-export type RenderTextFieldProps<T extends Record<string, unknown>> =
+export type TextFieldControllerProps<T extends Record<string, unknown>> =
+  BaseProps<T> & {};
+
+export type NumberFieldControllerProps<T extends Record<string, unknown>> =
   BaseProps<T> & {};

@@ -1,3 +1,6 @@
 export { default as TextFieldController } from './TextFieldController';
 
-export type { RenderTextFieldProps } from './types';
+export type {
+  TextFieldControllerProps,
+  NumberFieldControllerProps,
+} from './types';

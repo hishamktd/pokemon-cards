@@ -2,29 +2,31 @@ import React, { memo } from 'react';
 
 import { Controller } from 'react-hook-form';
 
-import { AppTextField } from '@core/components/app-inputs';
+import { NumStr } from '@/types';
+import { AppNumberField } from '@core/components/app-inputs';
 
-import { TextFieldControllerProps } from '.';
+import { NumberFieldControllerProps } from '.';
 
-const TextFieldController = <T extends Record<string, unknown>>(
-  props: TextFieldControllerProps<T>,
+const NumberFieldController = <T extends Record<string, unknown>>(
+  props: NumberFieldControllerProps<T>,
 ) => {
   const { control, name, ...rest } = props;
 
   return (
-    <Controller<T>
+    <Controller
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <AppTextField
+        <AppNumberField
           error={!!error}
           helperText={error?.message}
           {...rest}
           {...field}
+          value={field.value as NumStr}
         />
       )}
     />
   );
 };
 
-export default memo(TextFieldController);
+export default memo(NumberFieldController);
