@@ -1,56 +1,64 @@
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC, memo } from 'react';
 
+import { ICONS } from '@/constants/icons';
 import { DeleteItem } from '@/types';
 import ButtonGroup from '@core/components/app-button/ButtonGroup';
+import Icon from '@core/components/icon';
+
+import { StyledModal } from './styled-component';
 
 type Props = {
   onClose: () => void;
   itemToDelete: DeleteItem;
 };
 
+const { EXCLAMATION_ANIMATED } = ICONS;
+
 const DeleteModal: FC<Props> = ({ onClose, itemToDelete }) => {
   return (
-    <Modal
+    <StyledModal
       open={Boolean(itemToDelete)}
       onClose={onClose}
       aria-labelledby="delete-modal-title"
       aria-describedby="delete-modal-description"
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 400,
-          bgcolor: 'background.paper',
-          boxShadow: 24,
-          borderRadius: 2,
-          p: 4,
-        }}
-      >
-        <Typography id="delete-modal-title" variant="h6" component="h2">
-          Confirm Deletion
-        </Typography>
-        <Typography id="delete-modal-description" sx={{ mt: 2 }}>
+      <Box className="delete-modal">
+        <Box className="header">
+          <Icon icon={EXCLAMATION_ANIMATED} className="warning-icon" />
+          <Typography
+            id="delete-modal-title"
+            className="title"
+            variant="h5"
+            component="h2"
+          >
+            Confirm Deletion
+          </Typography>
+        </Box>
+        <Typography
+          id="delete-modal-description"
+          className="description"
+          sx={{ mt: 2 }}
+        >
           Are you sure you want to delete this item{' ' + itemToDelete?.name}?
           This action cannot be undone.
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            gap: 2,
-            mt: 3,
-          }}
-        >
+        <Box className="button-group">
           <ButtonGroup
-            outlinedButtonProps={{ isHidden: false, onClick: onClose }}
+            containedButtonProps={{
+              isHidden: false,
+              label: 'Delete',
+              fullWidth: true,
+            }}
+            outlinedButtonProps={{
+              isHidden: false,
+              onClick: onClose,
+              fullWidth: true,
+            }}
           />
         </Box>
       </Box>
-    </Modal>
+    </StyledModal>
   );
 };
 
