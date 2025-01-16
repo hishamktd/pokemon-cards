@@ -11,11 +11,18 @@ import { StyledModal } from './styled-component';
 type Props = {
   onClose: () => void;
   itemToDelete: DeleteItem;
+  onDelete: (id: number) => void;
+  loading?: boolean;
 };
 
 const { EXCLAMATION_ANIMATED } = ICONS;
 
-const DeleteModal: FC<Props> = ({ onClose, itemToDelete }) => {
+const DeleteModal: FC<Props> = ({
+  onClose,
+  itemToDelete,
+  onDelete,
+  loading,
+}) => {
   return (
     <StyledModal
       open={Boolean(itemToDelete)}
@@ -49,11 +56,14 @@ const DeleteModal: FC<Props> = ({ onClose, itemToDelete }) => {
               isHidden: false,
               label: 'Delete',
               fullWidth: true,
+              loading,
+              onClick: () => itemToDelete?.id && onDelete(itemToDelete?.id),
             }}
             outlinedButtonProps={{
               isHidden: false,
               onClick: onClose,
               fullWidth: true,
+              loading,
             }}
           />
         </Box>

@@ -28,6 +28,10 @@ const Packs = () => {
     [setItemToDelete],
   );
 
+  const handleConfirmDelete = useCallback((id: number) => {
+    console.log('id', id);
+  }, []);
+
   const closeModal = useCallback(() => {
     setItemToDelete(null);
   }, [setItemToDelete]);
@@ -87,7 +91,11 @@ const Packs = () => {
       />
       <AppDataGrid rows={entities} columns={columns} />
       <PacksDrawer open={isOpen} onClose={toggleDrawer} />
-      <DeleteModal itemToDelete={itemToDelete} onClose={closeModal} />
+      <DeleteModal
+        itemToDelete={itemToDelete}
+        onClose={closeModal}
+        onDelete={handleConfirmDelete}
+      />
     </Page>
   );
 };

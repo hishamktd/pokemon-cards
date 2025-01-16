@@ -8,10 +8,10 @@ export const StyledModal = styled(Modal)(({ theme }) => ({
     transform: 'translate(-50%, -50%)',
     width: 430,
     backgroundColor: theme.palette.common.white,
-    boxShadow: theme.shadows[24],
     borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(2),
+    padding: theme.spacing(2, 4),
     textAlign: 'center',
+    boxShadow: `0px 0px 15px -4px ${theme.palette.common.black}`,
 
     ['& .warning-icon']: {
       color: `${theme.palette.primary.main} !important`,
