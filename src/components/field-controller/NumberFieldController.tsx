@@ -1,8 +1,9 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { Controller } from 'react-hook-form';
 
 import { NumStr } from '@/types';
+import gMemo from '@/utils/memo';
 import { AppNumberField } from '@core/components/app-inputs';
 
 import { NumberFieldControllerProps } from '.';
@@ -29,4 +30,4 @@ const NumberFieldController = <T extends Record<string, unknown>>(
   );
 };
 
-export default memo(NumberFieldController);
+export default gMemo(NumberFieldController);

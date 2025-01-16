@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { Controller } from 'react-hook-form';
 
+import gMemo from '@/utils/memo';
 import { AppTextField } from '@core/components/app-inputs';
 
 import { TextFieldControllerProps } from '.';
@@ -27,4 +28,4 @@ const TextFieldController = <T extends Record<string, unknown>>(
   );
 };
 
-export default memo(TextFieldController);
+export default gMemo(TextFieldController);
