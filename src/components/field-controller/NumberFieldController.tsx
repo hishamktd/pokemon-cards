@@ -24,6 +24,8 @@ const NumberFieldController = <T extends Record<string, unknown>>(
           {...rest}
           {...field}
           value={field.value as NumStr}
+          onIncrement={() => field.onChange(Number(field.value) + 1)}
+          onDecrement={() => field.onChange(Number(field.value) - 1)}
         />
       )}
     />
