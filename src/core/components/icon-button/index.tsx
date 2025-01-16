@@ -1,5 +1,5 @@
 import {
-  IconButtonProps,
+  IconButtonProps as MuiIconButtonProps,
   IconButton as MuiIconButton,
   Tooltip,
 } from '@mui/material';
@@ -7,13 +7,13 @@ import { memo } from 'react';
 
 import Icon, { IconProps } from '../icon';
 
-type Props = IconButtonProps & {
+export type IconButtonProps = MuiIconButtonProps & {
   icon: string;
   iconProps?: Omit<IconProps, 'icon'>;
   toolTip?: string;
 };
 
-const IconButton: React.FC<Props> = ({ icon, iconProps, toolTip, ...rest }) => {
+const IconButton: React.FC<IconButtonProps> = ({ icon, iconProps, toolTip, ...rest }) => {
   if (toolTip) {
     return (
       <MuiIconButton {...rest}>
