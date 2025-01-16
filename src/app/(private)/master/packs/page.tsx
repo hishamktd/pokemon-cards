@@ -3,6 +3,7 @@
 import { GridColDef } from '@mui/x-data-grid';
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
+import ActionButton from '@/components/action-button';
 import Page from '@/components/page';
 import usePacksStore from '@/store/masters/packs';
 import PacksDrawer from '@/views/masters/packs/PacksDrawer';
@@ -30,6 +31,12 @@ const Packs = () => {
         headerAlign: 'center',
         flex: 0,
         minWidth: 200,
+        renderCell: ({ row }) => (
+          <>
+            <ActionButton for="edit" id={row?.id} />
+            <ActionButton for="delete" id={row?.id} />
+          </>
+        ),
       },
     ],
     [],
