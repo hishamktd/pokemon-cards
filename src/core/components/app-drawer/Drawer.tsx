@@ -37,6 +37,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
   const filledProps = {
     label: 'Save',
     fullWidth: true,
+    type: 'submit' as const,
     ...filledButtonProps,
   };
 

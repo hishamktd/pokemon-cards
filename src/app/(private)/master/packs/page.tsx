@@ -11,7 +11,7 @@ import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
-  const { entities, fetchEntities, totalCount } = usePacksStore();
+  const { entities, fetchPacks, totalCount, updateSuccess } = usePacksStore();
 
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
@@ -40,12 +40,18 @@ const Packs = () => {
   }, [setIsOpen]);
 
   const handleFetchEntities = useCallback(async () => {
-    fetchEntities({ page, query });
-  }, [fetchEntities, page, query]);
+    fetchPacks({ page, query });
+  }, [fetchPacks, page, query]);
 
   useEffect(() => {
     handleFetchEntities();
   }, [handleFetchEntities]);
+
+  useEffect(() => {
+    if (updateSuccess) {
+      handleFetchEntities();
+    }
+  }, [updateSuccess, handleFetchEntities]);
 
   return (
     <Page>

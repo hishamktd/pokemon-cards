@@ -11,7 +11,7 @@ const createPacks = async (data: PacksForm) => {
       status: 400,
       success: false,
       error: parsedDate.error.message,
-      message: 'Bad request',
+      zodError: parsedDate.error,
     };
   }
 
@@ -34,7 +34,6 @@ const createPacks = async (data: PacksForm) => {
       status: 500,
       success: false,
       error: (error as Error).message,
-      message: 'Internal server error',
     };
   }
 };

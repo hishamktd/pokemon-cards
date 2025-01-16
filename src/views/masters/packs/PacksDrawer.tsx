@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -8,6 +8,7 @@ import {
   TextFieldController,
 } from '@/components/field-controller';
 import { packsDefaultValues } from '@/constants/masters/packs';
+import usePacksStore from '@/store/masters/packs';
 import { PacksForm } from '@/types/masters/packs';
 import { AppDrawer } from '@core/components/app-drawer';
 
@@ -23,10 +24,36 @@ const getDrawerTitle = (id?: number) => {
 };
 
 const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
-  const { control } = useForm<PacksForm>({ defaultValues: packsDefaultValues });
+  const { createPacks, updating } = usePacksStore();
+  const { control, handleSubmit, reset } = useForm<PacksForm>({
+    defaultValues: packsDefaultValues,
+  });
+
+  const onSubmit = useCallback(
+    (data: PacksForm) => {
+      createPacks(data);
+      onClose();
+    },
+    [createPacks, onClose],
+  );
+
+  const handleReset = useCallback(() => {
+    reset(packsDefaultValues);
+  }, [reset]);
+
+  useEffect(() => {
+    handleReset();
+  }, [id, handleReset]);
 
   return (
-    <AppDrawer open={open} title={getDrawerTitle(id)} onClose={onClose}>
+    <AppDrawer
+      open={open}
+      title={getDrawerTitle(id)}
+      onSave={handleSubmit(onSubmit)}
+      onClose={onClose}
+      filledButtonProps={{ loading: updating }}
+      outlineButtonProps={{ loading: updating }}
+    >
       <Stack gap={2}>
         <TextFieldController<PacksForm>
           name="name"
