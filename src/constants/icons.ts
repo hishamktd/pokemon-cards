@@ -15,6 +15,6 @@ export const ICONS = {
   DOWN_FILL_ROUNDED: 'eva:arrow-down-fill',
   MASTER: 'oui:app-devtools',
   SEARCH: 'ic:baseline-search',
-  EDIT_ANIMATED: 'line-md:edit',
+  UPDATE_ANIMATED: 'line-md:edit',
   DELETE_ANIMATED: 'line-md:beer-alt-loop',
 };

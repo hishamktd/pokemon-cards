@@ -28,7 +28,7 @@ const Packs = () => {
         headerName: 'Actions',
         renderCell: ({ row }) => (
           <>
-            <ActionButton for="edit" id={row?.id} />
+            <ActionButton for="update" id={row?.id} />
             <ActionButton for="delete" id={row?.id} />
           </>
         ),

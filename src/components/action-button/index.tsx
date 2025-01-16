@@ -5,10 +5,10 @@ import IconButton from '@core/components/icon-button';
 
 import { ActionButtonProps, ActionItems } from './types';
 
-const { EDIT_ANIMATED, DELETE_ANIMATED } = ICONS;
+const { UPDATE_ANIMATED, DELETE_ANIMATED } = ICONS;
 
 const actions: ActionItems = {
-  edit: { icon: EDIT_ANIMATED, toolTip: 'Edit', color: 'primary' },
+  update: { icon: UPDATE_ANIMATED, toolTip: 'Update', color: 'primary' },
   delete: { icon: DELETE_ANIMATED, toolTip: 'Delete', color: 'error' },
 };
 
