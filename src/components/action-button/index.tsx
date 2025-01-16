@@ -1,14 +1,18 @@
 import React, { FC, memo } from 'react';
 
-import IconButton from '@core/components/icon-button';
+import IconButton, { IconButtonProps } from '@core/components/icon-button';
+import { ActionButtonProps, ActionItems } from './types';
+import { ICONS } from '@/constants/icons';
 
-type Props = {
-  for: 'edit' | 'delete';
-};
 
-const actions: 
+const {}=ICONS
 
-const ActionButton: FC<Props> = ({for}) => {
+
+const actions: ActionItems = {
+    create:{}
+}
+
+const ActionButton: FC<ActionButtonProps> = ({for}) => {
   return <IconButton />;
 };
 

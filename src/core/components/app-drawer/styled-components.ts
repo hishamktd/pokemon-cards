@@ -23,8 +23,8 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   },
 
   ['& .close']: {
-    '& svg': {
-      fontSize: 14,
+    ['& svg']: {
+      fontSize: 22,
     },
   },
 }));

@@ -10,7 +10,7 @@ import IconButton from '@/core/components/icon-button';
 import { AppDrawerProps } from '.';
 import { Content, DrawerFooter, DrawerHeader } from './styled-components';
 
-const { CLOSE } = ICONS;
+const { CLOSE_ROUNDED_ANIMATED } = ICONS;
 
 const Drawer: React.FC<AppDrawerProps> = ({
   open,
@@ -65,7 +65,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
         <IconButton
           className="close"
           onClick={onClose}
-          icon={CLOSE}
+          icon={CLOSE_ROUNDED_ANIMATED}
           toolTip="Close"
           color="primary"
         />
