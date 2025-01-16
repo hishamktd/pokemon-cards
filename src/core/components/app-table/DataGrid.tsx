@@ -12,17 +12,36 @@ const DataGrid: FC<DataGridProps> = ({
 }) => {
   const updatedColumns = useMemo(
     () =>
-      columns?.map((c) => ({
-        flex: 1,
-        minWidth: 100,
-        ...c,
-      })),
+      columns?.map((c) => {
+        if (c.field === 'actions') {
+          return {
+            flex: 0,
+            sortable: false,
+            disableColumnMenu: true,
+            headerAlign: 'center' as const,
+            align: 'center' as const,
+            ...c,
+          };
+        }
+        return {
+          flex: 1,
+          minWidth: 100,
+          ...c,
+        };
+      }),
     [columns],
   );
 
   return (
     <Box {...wrapperProps}>
-      <StyledDataGrid columns={updatedColumns} {...props} sx={sx} />
+      <StyledDataGrid
+        disableColumnSelector
+        disableRowSelectionOnClick
+        disableMultipleRowSelection
+        columns={updatedColumns}
+        {...props}
+        sx={sx}
+      />
     </Box>
   );
 };

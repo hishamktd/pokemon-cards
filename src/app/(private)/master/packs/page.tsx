@@ -26,11 +26,6 @@ const Packs = () => {
       {
         field: 'actions',
         headerName: 'Actions',
-        align: 'right',
-        sortable: false,
-        headerAlign: 'center',
-        flex: 0,
-        minWidth: 200,
         renderCell: ({ row }) => (
           <>
             <ActionButton for="edit" id={row?.id} />
