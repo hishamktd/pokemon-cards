@@ -3,7 +3,7 @@
 import { prisma } from '@/lib/db';
 import { ServerBaseParams } from '@/types';
 
-export async function getPacks(params: ServerBaseParams) {
+const getPacks = async (params: ServerBaseParams) => {
   const { page, size, query } = params;
 
   try {
@@ -48,4 +48,6 @@ export async function getPacks(params: ServerBaseParams) {
     console.error('Error getting packs:', error);
     return { data: [], totalCount: 0, error: (error as Error).message };
   }
-}
+};
+
+export default getPacks;
