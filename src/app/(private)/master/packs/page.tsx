@@ -1,11 +1,13 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import ActionButton from '@/components/action-button';
+import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import usePacksStore from '@/store/masters/packs';
+import { DeleteItem } from '@/types';
 import PacksDrawer from '@/views/masters/packs/PacksDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
@@ -17,6 +19,18 @@ const Packs = () => {
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
+  const [itemToDelete, setItemToDelete] = useState<DeleteItem>(null);
+
+  const handleDelete = useCallback(
+    (id: number, name?: string) => {
+      setItemToDelete({ id, name });
+    },
+    [setItemToDelete],
+  );
+
+  const closeModal = useCallback(() => {
+    setItemToDelete(null);
+  }, [setItemToDelete]);
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -29,12 +43,17 @@ const Packs = () => {
         renderCell: ({ row }) => (
           <>
             <ActionButton for="update" id={row?.id} />
-            <ActionButton for="delete" id={row?.id} />
+            <ActionButton
+              for="delete"
+              id={row?.id}
+              name={row?.name}
+              onClick={handleDelete}
+            />
           </>
         ),
       },
     ],
-    [],
+    [handleDelete],
   );
 
   const toggleDrawer = useCallback(() => {
@@ -68,6 +87,7 @@ const Packs = () => {
       />
       <AppDataGrid rows={entities} columns={columns} />
       <PacksDrawer open={isOpen} onClose={toggleDrawer} />
+      <DeleteModal itemToDelete={itemToDelete} onClose={closeModal} />
     </Page>
   );
 };

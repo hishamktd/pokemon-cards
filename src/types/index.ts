@@ -22,3 +22,8 @@ export type ServerBaseParams = {
   size: number;
   query: string;
 };
+
+export type DeleteItem = {
+  id: number;
+  name?: string;
+} | null;

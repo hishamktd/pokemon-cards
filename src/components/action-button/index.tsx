@@ -16,16 +16,17 @@ const ActionButton: FC<ActionButtonProps> = ({
   for: actionType,
   onClick,
   id,
+  name = '',
 }) => {
   const handleOnClick = useCallback(() => {
     if (onClick) {
       if (typeof id === 'number') {
-        onClick(id);
+        onClick(id, name);
       } else if (typeof id === 'string') {
-        onClick(Number(id));
+        onClick(Number(id),name);
       }
     }
-  }, [onClick, id]);
+  }, [onClick, id,name]);
 
   return <IconButton {...actions[actionType]} onClick={handleOnClick} />;
 };
