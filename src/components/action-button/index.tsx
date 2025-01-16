@@ -1,19 +1,19 @@
 import React, { FC, memo } from 'react';
 
-import IconButton, { IconButtonProps } from '@core/components/icon-button';
-import { ActionButtonProps, ActionItems } from './types';
 import { ICONS } from '@/constants/icons';
+import IconButton from '@core/components/icon-button';
 
+import { ActionButtonProps, ActionItems } from './types';
 
-const {}=ICONS
-
+const { EDIT_ANIMATED, DELETE_ANIMATED } = ICONS;
 
 const actions: ActionItems = {
-    create:{}
-}
+  edit: { icon: EDIT_ANIMATED, toolTip: 'Edit' },
+  delete: { icon: DELETE_ANIMATED, toolTip: 'Delete' },
+};
 
-const ActionButton: FC<ActionButtonProps> = ({for}) => {
-  return <IconButton />;
+const ActionButton: FC<ActionButtonProps> = ({ for: actionType }) => {
+  return <IconButton {...actions[actionType]} />;
 };
 
 export default memo(ActionButton);
