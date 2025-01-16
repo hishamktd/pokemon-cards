@@ -8,8 +8,8 @@ import { ActionButtonProps, ActionItems } from './types';
 const { EDIT_ANIMATED, DELETE_ANIMATED } = ICONS;
 
 const actions: ActionItems = {
-  edit: { icon: EDIT_ANIMATED, toolTip: 'Edit' },
-  delete: { icon: DELETE_ANIMATED, toolTip: 'Delete' },
+  edit: { icon: EDIT_ANIMATED, toolTip: 'Edit', color: 'primary' },
+  delete: { icon: DELETE_ANIMATED, toolTip: 'Delete', color: 'error' },
 };
 
 const ActionButton: FC<ActionButtonProps> = ({ for: actionType }) => {
