@@ -14,8 +14,14 @@ import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
-  const { entities, fetchPacks, totalCount, updateSuccess, updating } =
-    usePacksStore();
+  const {
+    entities,
+    fetchPacks,
+    deletePack,
+    totalCount,
+    updateSuccess,
+    updating,
+  } = usePacksStore();
 
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
@@ -32,13 +38,17 @@ const Packs = () => {
     [setItemToDelete],
   );
 
-  const handleConfirmDelete = useCallback((id: number) => {
-    console.log('id', id);
-  }, []);
-
   const closeModal = useCallback(() => {
     setItemToDelete(null);
   }, [setItemToDelete]);
+
+  const handleConfirmDelete = useCallback(
+    async (id: number) => {
+      await deletePack(id);
+      closeModal();
+    },
+    [deletePack, closeModal],
+  );
 
   const columns = useMemo<GridColDef[]>(
     () => [
