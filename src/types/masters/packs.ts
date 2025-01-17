@@ -10,3 +10,7 @@ export type Packs = {
 export type PacksForm = Omit<Packs, 'id' | 'thumbnailUrl'> & {
   thumbnail: File | null;
 };
+
+export type PacksUpdateForm = Omit<Packs, 'thumbnailUrl'> & {
+  thumbnail: File | null;
+};

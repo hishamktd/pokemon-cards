@@ -2,9 +2,9 @@
 
 import { prisma } from '@/lib/db';
 import { createPacksSchema } from '@/schema/masters/packs';
-import { PacksForm } from '@/types/masters/packs';
+import { PacksUpdateForm } from '@/types/masters/packs';
 
-const updatePack = async (id: number, data: PacksForm) => {
+const updatePack = async (data: PacksUpdateForm) => {
   const parsedData = createPacksSchema.safeParse(data);
 
   if (!parsedData.success) {
@@ -18,7 +18,7 @@ const updatePack = async (id: number, data: PacksForm) => {
 
   try {
     await prisma.packs.update({
-      where: { id },
+      where: { id: data?.id },
       data: parsedData.data,
     });
     return { success: true, status: 200 };

@@ -2,13 +2,9 @@
 
 import { prisma } from '@/lib/db';
 
-const deletePack = async (id: string) => {
+const deletePack = async (id: number) => {
   try {
-    return await prisma.packs.delete({
-      where: {
-        id: Number(id),
-      },
-    });
+    return await prisma.packs.delete({ where: { id } });
   } catch (error) {
     console.error('Error deleting pack:', error);
     return {
