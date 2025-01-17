@@ -14,7 +14,8 @@ import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
-  const { entities, fetchPacks, totalCount, updateSuccess } = usePacksStore();
+  const { entities, fetchPacks, totalCount, updateSuccess, updating } =
+    usePacksStore();
 
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
@@ -98,6 +99,7 @@ const Packs = () => {
         itemToDelete={itemToDelete}
         onClose={closeModal}
         onDelete={handleConfirmDelete}
+        loading={updating}
       />
     </Page>
   );

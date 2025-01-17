@@ -1,3 +1,5 @@
+import { StateCreator } from 'zustand';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Any = any;
 
@@ -27,3 +29,5 @@ export type DeleteItem = {
   id: number;
   name?: string;
 } | null;
+
+export type SetFunc<T> = Parameters<StateCreator<T>>[0];
