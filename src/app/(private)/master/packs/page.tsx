@@ -1,7 +1,7 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
 import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
@@ -19,7 +19,10 @@ const Packs = () => {
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
-  const [itemToDelete, setItemToDelete] = useState<DeleteItem>(null);
+  const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
+    'itemToDelete',
+    null,
+  );
 
   const handleDelete = useCallback(
     (id: number, name?: string) => {

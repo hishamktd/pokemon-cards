@@ -18,6 +18,9 @@ function useQuery<T>(
       if (typeof defaultValue === 'boolean') {
         return (value === 'true') as T;
       }
+      if (typeof defaultValue === 'object') {
+        return JSON.parse(value) as T;
+      }
       return value as T;
     } catch {
       return defaultValue;
@@ -38,7 +41,11 @@ function useQuery<T>(
       const urlSearchParams = new URLSearchParams(window.location.search);
 
       if (newValue !== defaultValue) {
-        urlSearchParams.set(key, String(newValue));
+        if (typeof newValue === 'object') {
+          urlSearchParams.set(key, JSON.stringify(newValue));
+        } else {
+          urlSearchParams.set(key, String(newValue));
+        }
       } else {
         urlSearchParams.delete(key);
       }
