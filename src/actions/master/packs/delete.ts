@@ -1,0 +1,22 @@
+'use server';
+
+import { prisma } from '@/lib/db';
+
+const deletePack = async (id: string) => {
+  try {
+    return await prisma.packs.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+  } catch (error) {
+    console.error('Error deleting pack:', error);
+    return {
+      status: 500,
+      success: false,
+      error: (error as Error).message,
+    };
+  }
+};
+
+export default deletePack;
