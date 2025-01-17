@@ -16,16 +16,17 @@ import useQuery from '@core/hooks/use-query';
 const Packs = () => {
   const {
     entities,
-    fetchPacks,
-    deletePack,
     totalCount,
     updateSuccess,
     updating,
+    fetchPacks,
+    deletePack,
   } = usePacksStore();
 
   const [page, setPage] = useQuery('page', 1);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
+  const [editId, setEditId] = useQuery('id', 0);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
     'itemToDelete',
     null,
@@ -50,6 +51,18 @@ const Packs = () => {
     [deletePack, closeModal],
   );
 
+  const toggleDrawer = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, [setIsOpen]);
+
+  const handleOnEdit = useCallback(
+    (id: number) => {
+      setEditId(id);
+      toggleDrawer();
+    },
+    [setEditId, toggleDrawer],
+  );
+
   const columns = useMemo<GridColDef[]>(
     () => [
       { field: 'id', headerName: 'ID' },
@@ -60,7 +73,7 @@ const Packs = () => {
         headerName: 'Actions',
         renderCell: ({ row }) => (
           <>
-            <ActionButton for="update" id={row?.id} />
+            <ActionButton for="update" id={row?.id} onClick={handleOnEdit} />
             <ActionButton
               for="delete"
               id={row?.id}
@@ -71,12 +84,8 @@ const Packs = () => {
         ),
       },
     ],
-    [handleDelete],
+    [handleDelete, handleOnEdit],
   );
-
-  const toggleDrawer = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, [setIsOpen]);
 
   const handleFetchEntities = useCallback(async () => {
     fetchPacks({ page, query });
@@ -104,7 +113,7 @@ const Packs = () => {
         searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid rows={entities} columns={columns} />
-      <PacksDrawer open={isOpen} onClose={toggleDrawer} />
+      <PacksDrawer open={isOpen} onClose={toggleDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
         onClose={closeModal}

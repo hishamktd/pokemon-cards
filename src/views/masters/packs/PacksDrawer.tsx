@@ -24,7 +24,8 @@ const getDrawerTitle = (id?: number) => {
 };
 
 const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
-  const { createPacks, updating } = usePacksStore();
+  const { updating, entity, createPacks, fetchPack, cleanEntity } =
+    usePacksStore();
   const { control, handleSubmit, reset } = useForm<PacksForm>({
     defaultValues: packsDefaultValues,
   });
@@ -33,17 +34,28 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
     (data: PacksForm) => {
       createPacks(data);
       onClose();
+      cleanEntity();
     },
-    [createPacks, onClose],
+    [cleanEntity, createPacks, onClose],
   );
 
   const handleReset = useCallback(() => {
-    reset(packsDefaultValues);
-  }, [reset]);
+    if (entity) {
+      reset(entity);
+    } else {
+      reset(packsDefaultValues);
+    }
+  }, [entity, reset]);
 
   useEffect(() => {
     handleReset();
   }, [id, handleReset]);
+
+  useEffect(() => {
+    if (id) {
+      fetchPack(id);
+    }
+  }, [fetchPack, id]);
 
   return (
     <AppDrawer

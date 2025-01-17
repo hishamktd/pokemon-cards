@@ -25,6 +25,7 @@ export type PacksStore = {
   createPacks: (data: PacksForm) => Promise<void>;
   updatePack: (data: PacksUpdateForm) => Promise<void>;
   deletePack: (id: number) => Promise<void>;
+  cleanEntity: () => void;
 };
 
 const usePacksStore = create<PacksStore>((set) => ({
@@ -46,6 +47,8 @@ const usePacksStore = create<PacksStore>((set) => ({
   updatePack: async (data) => updatePackAction(set, data),
 
   deletePack: async (id) => deletePackAction(set, id),
+
+  cleanEntity: () => set({ entity: null }),
 }));
 
 export default usePacksStore;
