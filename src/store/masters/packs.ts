@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { ZodError } from 'zod';
 import { create } from 'zustand';
 
@@ -38,6 +39,7 @@ const usePacksStore = create<PacksStore>((set) => ({
       console.error('Error fetching entities:', error);
 
       set({ error: (error as Error).message, loading: false });
+      toast.error('Failed to fetch packs. Please try again.');
     }
   },
 
@@ -52,12 +54,19 @@ const usePacksStore = create<PacksStore>((set) => ({
           updateSuccess: false,
           formError: response?.zodError,
         });
+        toast.error(
+          'Failed to create packs. Please check the form for errors.',
+        );
       } else {
         set({ updating: false, updateSuccess: true });
+        toast.success('Pack created successfully!');
       }
     } catch (error) {
       set({ updating: false, updateSuccess: false });
       console.error('Error creating packs:', error);
+      toast.error(
+        'An error occurred while creating the pack. Please try again.',
+      );
     }
   },
 }));

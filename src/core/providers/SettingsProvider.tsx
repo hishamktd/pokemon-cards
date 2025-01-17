@@ -5,6 +5,8 @@ import { createContext, useEffect, useState } from 'react';
 import { Settings, settings as settingsConfig } from '@/config/settings';
 import { LOCAL_STORAGE_KEYS } from '@/constants/store-keys';
 
+import ToasterProvider from './components/ToasterProvider';
+
 type ContextProps = {
   children: React.ReactNode;
 };
@@ -56,6 +58,7 @@ export const SettingsProvider: React.FC<ContextProps> = ({ children }) => {
 
   return (
     <SettingsContext.Provider value={{ settings, updateSettings }}>
+      <ToasterProvider />
       {children}
     </SettingsContext.Provider>
   );

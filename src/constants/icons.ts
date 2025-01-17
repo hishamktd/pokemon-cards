@@ -18,4 +18,5 @@ export const ICONS = {
   UPDATE_ANIMATED: 'line-md:edit',
   DELETE_ANIMATED: 'line-md:beer-alt-loop',
   EXCLAMATION_ANIMATED: 'line-md:alert-circle',
+  SUCCESS_ANIMATED: 'line-md:circle-twotone-to-confirm-circle-transition',
 };
