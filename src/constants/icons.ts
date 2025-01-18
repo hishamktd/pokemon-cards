@@ -19,4 +19,5 @@ export const ICONS = {
   DELETE_ANIMATED: 'line-md:beer-alt-loop',
   EXCLAMATION_ANIMATED: 'line-md:alert-circle',
   SUCCESS_ANIMATED: 'line-md:circle-twotone-to-confirm-circle-transition',
+  PACK: 'stash:pack-light',
 };

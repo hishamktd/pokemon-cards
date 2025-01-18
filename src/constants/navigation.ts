@@ -1,3 +1,7 @@
+import { ICONS } from './icons';
+
+const { PACK } = ICONS;
+
 const navigation = {
   dashboard: { root: '/dashboard', path: '/dashboard', label: 'Dashboard' },
   stages: { root: '/stages', path: '/stages', label: 'Stages' },
@@ -19,7 +23,7 @@ const navigation = {
     root: '/master',
     path: '/master/packs',
     label: 'Master',
-    children: [{ path: '/master/packs', label: 'Packs' }],
+    children: [{ path: '/master/packs', label: 'Packs', icon: PACK }],
   },
 };
 
