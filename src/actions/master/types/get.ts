@@ -42,7 +42,8 @@ const getTypes = async (params: ServerBaseParams) => {
     ]);
 
     return {
-      data: { types, count },
+      data: types,
+      totalCount: count,
       status: 200,
       success: true,
     };
