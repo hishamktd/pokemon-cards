@@ -17,4 +17,6 @@ export type NumberFieldControllerProps<T extends Record<string, unknown>> =
 export type FileUploadControllerProps<T extends Record<string, unknown>> =
   BaseProps<T> & {
     imageUrl?: string | null;
+    cropWidth?: number;
+    cropHeight?: number;
   };

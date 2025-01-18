@@ -89,6 +89,7 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
           name="thumbnail"
           control={control}
           imageUrl={entity?.thumbnailUrl}
+          cropWidth={400}
         />
       </Stack>
     </AppDrawer>
