@@ -33,23 +33,25 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
   const onSubmit = useCallback(
     (data: PacksForm) => {
       createPacks(data);
-      onClose();
       cleanEntity();
+      onClose();
     },
     [cleanEntity, createPacks, onClose],
   );
 
   const handleReset = useCallback(() => {
-    if (entity) {
+    if (entity && id) {
       reset(entity);
     } else {
       reset(packsDefaultValues);
     }
-  }, [entity, reset]);
+  }, [entity, id, reset]);
 
   useEffect(() => {
-    handleReset();
-  }, [id, handleReset]);
+    if (open) {
+      handleReset();
+    }
+  }, [handleReset, open]);
 
   useEffect(() => {
     if (id) {

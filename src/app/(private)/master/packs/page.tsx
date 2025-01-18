@@ -63,6 +63,11 @@ const Packs = () => {
     [setEditId, toggleDrawer],
   );
 
+  const handleCloseDrawer = useCallback(() => {
+    setEditId(0);
+    toggleDrawer();
+  }, [setEditId, toggleDrawer]);
+
   const columns = useMemo<GridColDef[]>(
     () => [
       { field: 'id', headerName: 'ID' },
@@ -113,7 +118,7 @@ const Packs = () => {
         searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid rows={entities} columns={columns} />
-      <PacksDrawer open={isOpen} onClose={toggleDrawer} id={editId} />
+      <PacksDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
         onClose={closeModal}
