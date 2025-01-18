@@ -25,7 +25,7 @@ const getDrawerTitle = (id?: number) => {
 };
 
 const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
-  const { updating, entity, createPacks, fetchPack, cleanEntity } =
+  const { updating, entity, createPacks, fetchPack, updatePack, cleanEntity } =
     usePacksStore();
   const { control, handleSubmit, reset } = useForm<PacksForm>({
     defaultValues: packsDefaultValues,
@@ -33,11 +33,16 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
 
   const onSubmit = useCallback(
     (data: PacksForm) => {
-      createPacks(data);
+      if (id) {
+        updatePack({ ...data, id });
+      } else {
+        createPacks(data);
+      }
+
       cleanEntity();
       onClose();
     },
-    [cleanEntity, createPacks, onClose],
+    [cleanEntity, createPacks, id, onClose, updatePack],
   );
 
   const handleReset = useCallback(() => {
@@ -60,6 +65,8 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
     }
   }, [fetchPack, id]);
 
+  console.log('entity', entity);
+
   return (
     <AppDrawer
       open={open}
@@ -80,7 +87,11 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
           control={control}
           label="Total Cards"
         />
-        <FileUploadController<PacksForm> name="thumbnail" control={control} />
+        <FileUploadController<PacksForm>
+          name="thumbnail"
+          control={control}
+          imageUrl={entity?.thumbnailUrl}
+        />
       </Stack>
     </AppDrawer>
   );

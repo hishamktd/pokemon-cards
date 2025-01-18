@@ -52,4 +52,5 @@ export type FileUploaderProps = {
   name: string;
   cropWidth?: number;
   cropHeight?: number;
+  imageUrl?: string | null;
 };

@@ -13,10 +13,11 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    domains: ['vishmvrcizpuo7zs.public.blob.vercel-storage.com'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_IMAGE_HOSTNAME || 'localhost',
+        hostname: process.env.BLOB_BASE_URL || 'localhost',
         port: '',
       },
     ],

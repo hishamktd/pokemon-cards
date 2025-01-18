@@ -38,7 +38,8 @@ function useQuery<T>(
     setParamState((prev: T) => {
       const newValue =
         typeof value === 'function' ? (value as (prev: T) => T)(prev) : value;
-      const urlSearchParams = new URLSearchParams(window.location.search);
+      const url = typeof window === 'undefined' ? '' : window.location.href;
+      const urlSearchParams = new URLSearchParams(new URL(url).search);
 
       if (newValue !== defaultValue) {
         if (typeof newValue === 'object') {

@@ -1,5 +1,5 @@
 import { Slider, Button } from '@mui/material';
-import React, { useState, useCallback, FC, memo } from 'react';
+import React, { useState, useCallback, FC, memo, useEffect } from 'react';
 
 import Image from 'next/image';
 import { useDropzone } from 'react-dropzone';
@@ -22,6 +22,7 @@ const FileUploader: FC<FileUploaderProps> = ({
   name,
   cropWidth = 200,
   cropHeight = 200,
+  imageUrl = null,
 }) => {
   const {
     field: { value, onChange },
@@ -32,10 +33,20 @@ const FileUploader: FC<FileUploaderProps> = ({
     defaultValue: null,
   });
 
-  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>(
+    imageUrl,
+  );
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+
+  useEffect(() => {
+    if (imageUrl) {
+      setImageSrc(imageUrl);
+      onChange(imageUrl);
+      console.log('imageUrl', imageUrl);
+    }
+  }, [imageUrl, onChange]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
@@ -57,16 +68,23 @@ const FileUploader: FC<FileUploaderProps> = ({
     if (!imageSrc || !croppedAreaPixels) return;
 
     try {
-      const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-      onChange(croppedImage);
-      setImageSrc(null);
+      const url = await getCroppedImg(imageSrc, croppedAreaPixels);
+      const file = new File(
+        [await fetch(url).then((r) => r.blob())],
+        `${name || 'image'}.jpg`,
+        { type: 'image/jpeg' },
+      );
+
+      onChange(file);
+      setImageSrc(url);
     } catch (error) {
       console.error('Cropping failed:', error);
     }
-  }, [imageSrc, croppedAreaPixels, onChange]);
+  }, [imageSrc, croppedAreaPixels, onChange, name]);
 
   const handleClearImage = useCallback(() => {
     onChange(null);
+    setImageSrc(null);
   }, [onChange]);
 
   const renderDropzone = useCallback(
@@ -113,7 +131,7 @@ const FileUploader: FC<FileUploaderProps> = ({
     () => (
       <ImagePreviewContainer>
         <Image
-          src={value}
+          src={typeof value === 'string' ? value : URL.createObjectURL(value)}
           alt="Cropped"
           width={cropWidth}
           height={cropHeight}

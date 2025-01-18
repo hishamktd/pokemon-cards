@@ -1,11 +1,14 @@
 'use server';
 
 import { prisma } from '@/lib/db';
-import { createPacksSchema } from '@/schema/masters/packs';
+import uploadFile from '@/lib/file-upload';
+import { updatePacksSchema } from '@/schema/masters/packs';
 import { PacksUpdateForm } from '@/types/masters/packs';
 
 const updatePack = async (data: PacksUpdateForm) => {
-  const parsedData = createPacksSchema.safeParse(data);
+  const parsedData = updatePacksSchema.safeParse(data);
+
+  console.log('1 parsedData', JSON.stringify(parsedData));
 
   if (!parsedData.success) {
     return {
@@ -16,10 +19,22 @@ const updatePack = async (data: PacksUpdateForm) => {
     };
   }
 
+  console.log('2 parsedData', parsedData);
+
+  const {
+    data: { id, name, thumbnail, totalCards, thumbnailUrl },
+  } = parsedData;
+
+  const imageUrl = await uploadFile(thumbnail, {
+    path: 'packs',
+    imageUrl: thumbnailUrl,
+    name: name,
+  });
+
   try {
     await prisma.packs.update({
-      where: { id: data?.id },
-      data: parsedData.data,
+      where: { id },
+      data: { name, thumbnail: imageUrl, totalCards },
     });
     return { success: true, status: 200 };
   } catch (error) {

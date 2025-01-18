@@ -3,8 +3,25 @@
 import { prisma } from '@/lib/db';
 const getPack = async (id: number) => {
   try {
-    const pack = await prisma.packs.findUnique({ where: { id } });
-    return { data: pack, status: 200, success: true };
+    const packData = await prisma.packs.findUnique({
+      where: { id },
+    });
+
+    if (!packData) {
+      return {
+        status: 404,
+        success: false,
+        error: 'Pack not found',
+      };
+    }
+
+    const { thumbnail, ...pack } = packData;
+
+    return {
+      data: { ...pack, thumbnailUrl: thumbnail },
+      status: 200,
+      success: true,
+    };
   } catch (error) {
     console.error('Error getting pack:', error);
     return {

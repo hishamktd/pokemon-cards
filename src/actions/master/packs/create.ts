@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/db';
+import uploadFile from '@/lib/file-upload';
 import { createPacksSchema } from '@/schema/masters/packs';
 import { PacksForm } from '@/types/masters/packs';
 
@@ -15,11 +16,17 @@ const createPacks = async (data: PacksForm) => {
     };
   }
 
+  const imageUrl = await uploadFile(parsedDate.data.thumbnail, {
+    path: 'packs',
+    name: parsedDate.data.name,
+  });
+
   try {
     await prisma.packs.create({
       data: {
         name: parsedDate.data.name,
         totalCards: parsedDate.data.totalCards,
+        thumbnail: imageUrl,
       },
     });
 
