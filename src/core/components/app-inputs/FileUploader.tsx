@@ -9,7 +9,13 @@ import { useController } from 'react-hook-form';
 import { Any } from '@/types';
 import getCroppedImg from '@/utils/get-cropped-img';
 
+import {
+  CropperContainer,
+  DropZoneInputContainer,
+  ImagePreviewContainer,
+} from './styled-component';
 import { FileUploaderProps } from './types';
+import { AppButton } from '../app-button';
 
 const FileUploader: FC<FileUploaderProps> = ({
   control,
@@ -65,17 +71,10 @@ const FileUploader: FC<FileUploaderProps> = ({
 
   const renderDropzone = useCallback(
     () => (
-      <div
-        {...getRootProps()}
-        style={{
-          border: '2px dashed #ccc',
-          padding: '20px',
-          cursor: 'pointer',
-        }}
-      >
+      <DropZoneInputContainer {...getRootProps()}>
         <input {...getInputProps()} />
         <p>Drag & drop an image here, or click to select one</p>
-      </div>
+      </DropZoneInputContainer>
     ),
     [getRootProps, getInputProps],
   );
@@ -83,7 +82,7 @@ const FileUploader: FC<FileUploaderProps> = ({
   const renderCropper = useCallback(
     () => (
       <>
-        <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+        <CropperContainer>
           <Cropper
             image={imageSrc as string}
             crop={crop}
@@ -93,7 +92,7 @@ const FileUploader: FC<FileUploaderProps> = ({
             onZoomChange={setZoom}
             onCropComplete={onCropComplete}
           />
-        </div>
+        </CropperContainer>
         <Slider
           value={zoom}
           min={1}
@@ -112,55 +111,22 @@ const FileUploader: FC<FileUploaderProps> = ({
 
   const renderSavedImage = useCallback(
     () => (
-      <div
-        style={{
-          marginTop: '20px',
-          position: 'relative',
-          display: 'inline-block',
-        }}
-      >
+      <ImagePreviewContainer>
         <Image
           src={value}
           alt="Cropped"
           width={cropWidth}
           height={cropHeight}
-          style={{
-            objectFit: 'cover',
-            filter: 'blur(0)',
-            transition: 'filter 0.3s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.filter = 'blur(5px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.filter = 'blur(0)';
-          }}
+          className="cropped-image"
         />
-        <Button
-          variant="contained"
+        <AppButton
           color="secondary"
           onClick={handleClearImage}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            display: 'none',
-            pointerEvents: 'none',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.display = 'block';
-            e.currentTarget.style.pointerEvents = 'all';
-            e.currentTarget.style.zIndex = '100';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.display = 'none';
-            e.currentTarget.style.pointerEvents = 'none';
-          }}
+          className="clear-button"
         >
           Clear
-        </Button>
-      </div>
+        </AppButton>
+      </ImagePreviewContainer>
     ),
     [value, cropWidth, cropHeight, handleClearImage],
   );

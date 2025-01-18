@@ -1,4 +1,4 @@
-import { styled, TextField } from '@mui/material';
+import { Box, styled, TextField } from '@mui/material';
 
 export const CustomTextField = styled(TextField)(
   ({ theme, error, disabled }) => ({
@@ -60,4 +60,46 @@ export const NumberInput = styled(CustomTextField)({
       WebkitAppearance: 'none',
       margin: 0,
     },
+});
+
+export const DropZoneInputContainer = styled(Box)({
+  border: '2px dashed #ccc',
+  padding: '20px',
+  cursor: 'pointer',
+});
+
+export const CropperContainer = styled(Box)({
+  position: 'relative',
+  width: '100%',
+  height: '300px',
+});
+
+export const ImagePreviewContainer = styled(Box)({
+  marginTop: '20px',
+  position: 'relative',
+  display: 'inline-block',
+
+  ['& .cropped-image']: {
+    objectFit: 'cover',
+    filter: 'blur(0)',
+    transition: 'filter 0.3s',
+
+    ['&:hover']: {
+      filter: 'blur(2px)',
+    },
+  },
+
+  ['& .clear-button']: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'none',
+    pointerEvents: 'none',
+  },
+
+  ['&:hover .clear-button']: {
+    display: 'block',
+    pointerEvents: 'auto',
+  },
 });
