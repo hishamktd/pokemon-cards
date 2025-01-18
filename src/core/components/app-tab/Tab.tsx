@@ -1,15 +1,18 @@
 'use client';
 
+import { Grid2 } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import * as React from 'react';
+import { useCallback } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { HorizontalWrapper } from './styled-components';
 import { AppTabProps } from './types';
+import Icon from '../icon';
 
 export default function AppTab({
   tabs,
@@ -23,6 +26,15 @@ export default function AppTab({
   const pathname = usePathname();
 
   const { className = '', ...rest } = wrapperProps;
+
+  const renderTitle = useCallback((title: string, icon?: string) => {
+    return (
+      <Grid2 container alignItems="center" gap={1} color="primary.main">
+        {icon && <Icon icon={icon} />}
+        {title}
+      </Grid2>
+    );
+  }, []);
 
   return (
     <HorizontalWrapper
@@ -41,7 +53,7 @@ export default function AppTab({
         {tabs?.map((tab, index) => (
           <Tab
             key={index}
-            label={tab?.label}
+            label={renderTitle(tab?.label, tab?.icon)}
             disabled={disabled || tab?.disabled}
             href={tab?.path}
             component={Link}

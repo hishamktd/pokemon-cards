@@ -12,6 +12,7 @@ type TabData = {
   label: string;
   path: string;
   disabled?: boolean;
+  icon?: string;
 };
 
 export type AppTabProps = {
