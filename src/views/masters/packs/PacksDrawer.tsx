@@ -4,6 +4,7 @@ import React, { FC, memo, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
+  FileUploadController,
   NumberFieldController,
   TextFieldController,
 } from '@/components/field-controller';
@@ -79,6 +80,7 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
           control={control}
           label="Total Cards"
         />
+        <FileUploadController<PacksForm> name="thumbnail" control={control} />
       </Stack>
     </AppDrawer>
   );

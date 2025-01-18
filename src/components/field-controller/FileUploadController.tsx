@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { Controller } from 'react-hook-form';
 
+import gMemo from '@/utils/memo';
 import { AppFileUploader } from '@core/components/app-inputs';
 
 import { FileUploadControllerProps } from './types';
@@ -20,4 +21,4 @@ const FileUploadController = <T extends Record<string, unknown>>(
   );
 };
 
-export default memo(FileUploadController);
+export default gMemo(FileUploadController);
