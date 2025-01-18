@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 try {
   prisma.$connect();
-  console.log('Prisma Client connected successfully');
+  console.info('Prisma Client connected successfully');
 } catch (error) {
   console.error('Failed to connect Prisma Client:', error);
   throw error;

@@ -6,8 +6,6 @@ import { createSession, logout } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 
 export async function login(email: string, password: string) {
-  console.log('PRISMA', prisma);
-
   try {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {

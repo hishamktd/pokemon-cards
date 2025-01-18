@@ -55,7 +55,6 @@ const MultiSelectField: FC<AppMultiSelectProps> = ({
       const {
         target: { value },
       } = e;
-      console.log(value);
 
       if (onChange) {
         if (typeof value === 'string') {

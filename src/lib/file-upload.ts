@@ -9,10 +9,6 @@ type FileOptions = {
 const uploadFile = async (file: File | null, options?: FileOptions) => {
   const { imageUrl = null, path = '', name = '' } = options || {};
 
-  console.log('imageUrl', imageUrl);
-
-  console.log('file 2345yuhgfd', file);
-
   if (!file) {
     if (imageUrl) {
       return imageUrl;
@@ -25,8 +21,6 @@ const uploadFile = async (file: File | null, options?: FileOptions) => {
     addRandomSuffix: true,
     contentType: file.type,
   });
-
-  console.log('blob', blob);
 
   return blob.url;
 };

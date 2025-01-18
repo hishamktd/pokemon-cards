@@ -8,8 +8,6 @@ import { PacksUpdateForm } from '@/types/masters/packs';
 const updatePack = async (data: PacksUpdateForm) => {
   const parsedData = updatePacksSchema.safeParse(data);
 
-  console.log('1 parsedData', JSON.stringify(parsedData));
-
   if (!parsedData.success) {
     return {
       status: 400,
@@ -18,8 +16,6 @@ const updatePack = async (data: PacksUpdateForm) => {
       zodError: parsedData.error,
     };
   }
-
-  console.log('2 parsedData', parsedData);
 
   const {
     data: { id, name, thumbnail, totalCards, thumbnailUrl },

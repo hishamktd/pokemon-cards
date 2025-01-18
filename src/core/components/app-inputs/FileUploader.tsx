@@ -30,7 +30,7 @@ const FileUploader: FC<FileUploaderProps> = ({
   } = useController({
     name,
     control,
-    defaultValue: null,
+    defaultValue: imageUrl ?? null,
   });
 
   const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>(
@@ -42,11 +42,12 @@ const FileUploader: FC<FileUploaderProps> = ({
 
   useEffect(() => {
     if (imageUrl) {
-      setImageSrc(imageUrl);
       onChange(imageUrl);
-      console.log('imageUrl', imageUrl);
+      setImageSrc(imageUrl);
     }
-  }, [imageUrl, onChange]);
+    //FIC:ME
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageUrl]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
@@ -130,13 +131,15 @@ const FileUploader: FC<FileUploaderProps> = ({
   const renderSavedImage = useCallback(
     () => (
       <ImagePreviewContainer>
-        <Image
-          src={typeof value === 'string' ? value : URL.createObjectURL(value)}
-          alt="Cropped"
-          width={cropWidth}
-          height={cropHeight}
-          className="cropped-image"
-        />
+        {value && (
+          <Image
+            src={typeof value === 'string' ? value : URL.createObjectURL(value)}
+            alt="Cropped"
+            width={cropWidth}
+            height={cropHeight}
+            className="cropped-image"
+          />
+        )}
         <AppButton
           color="secondary"
           onClick={handleClearImage}

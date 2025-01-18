@@ -65,8 +65,6 @@ const PacksDrawer: FC<Props> = ({ open, id, onClose }) => {
     }
   }, [fetchPack, id]);
 
-  console.log('entity', entity);
-
   return (
     <AppDrawer
       open={open}
