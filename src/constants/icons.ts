@@ -20,4 +20,5 @@ export const ICONS = {
   EXCLAMATION_ANIMATED: 'line-md:alert-circle',
   SUCCESS_ANIMATED: 'line-md:circle-twotone-to-confirm-circle-transition',
   PACK: 'stash:pack-light',
+  TYPES: 'weui:tag-outlined',
 };
