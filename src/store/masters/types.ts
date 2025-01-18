@@ -1,5 +1,13 @@
 import { ZodError } from 'zod';
+import { create } from 'zustand';
 
+import {
+  createTypeAction,
+  deleteTypeAction,
+  fetchTypeAction,
+  fetchTypesAction,
+  updateTypeAction,
+} from '@/service/masters/types';
 import { BaseParams } from '@/types';
 import { Types, TypesForm } from '@/types/masters/types';
 
@@ -19,3 +27,28 @@ export type TypesStore = {
   deleteType: (id: number) => Promise<void>;
   cleanEntity: () => void;
 };
+
+const usePacksStore = create<TypesStore>((set) => ({
+  entities: [],
+  entity: null,
+  loading: false,
+  error: null,
+  totalCount: 0,
+  updating: false,
+  updateSuccess: false,
+  formError: null,
+
+  fetchTypes: async (params) => fetchTypesAction(set, params),
+
+  fetchType: async (id) => fetchTypeAction(set, id),
+
+  createTypes: async (data) => createTypeAction(set, data),
+
+  updateType: async (data) => updateTypeAction(set, data),
+
+  deleteType: async (id) => deleteTypeAction(set, id),
+
+  cleanEntity: () => set({ entity: null }),
+}));
+
+export default usePacksStore;
