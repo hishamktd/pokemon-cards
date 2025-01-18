@@ -13,3 +13,6 @@ export type TextFieldControllerProps<T extends Record<string, unknown>> =
 
 export type NumberFieldControllerProps<T extends Record<string, unknown>> =
   BaseProps<T> & {};
+
+export type FileUploadControllerProps<T extends Record<string, unknown>> =
+  BaseProps<T> & {};
