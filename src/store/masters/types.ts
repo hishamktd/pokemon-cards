@@ -28,7 +28,7 @@ export type TypesStore = {
   cleanEntity: () => void;
 };
 
-const usePacksStore = create<TypesStore>((set) => ({
+const useTypesStore = create<TypesStore>((set) => ({
   entities: [],
   entity: null,
   loading: false,
@@ -51,4 +51,4 @@ const usePacksStore = create<TypesStore>((set) => ({
   cleanEntity: () => set({ entity: null }),
 }));
 
-export default usePacksStore;
+export default useTypesStore;
