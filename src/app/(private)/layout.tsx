@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
 import navItems from '@/config/nav-items';
-import { getSession } from '@/lib/auth';
+import { validateSession } from '@/service/auth';
 import PageWrapper from '@core/layout/page-wrapper';
 import Sidebar from '@core/layout/side-bar';
 import PrivateProvider from '@core/providers/PrivateProvider';
@@ -11,7 +11,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
+  const session = await validateSession();
 
   if (!session) {
     redirect('/');

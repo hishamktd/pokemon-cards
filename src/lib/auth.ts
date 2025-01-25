@@ -30,29 +30,6 @@ export async function createSession(userId: number) {
   });
 }
 
-export async function getSession() {
-  const token = (await cookies()).get('session_token')?.value;
-
-  if (!token) return null;
-
-  try {
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: true },
-    });
-
-    if (!session || new Date() > session.expiresAt) {
-      await prisma.session.delete({ where: { token } });
-      (await cookies()).delete('session_token');
-      return null;
-    }
-
-    return session;
-  } catch {
-    return null;
-  }
-}
-
 export async function logout() {
   const token = (await cookies()).get('session_token')?.value;
 
