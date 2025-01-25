@@ -12,7 +12,7 @@ export async function createSession(userId: number) {
     .setExpirationTime('24h')
     .sign(key);
 
-  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
   await prisma.session.create({
     data: {
