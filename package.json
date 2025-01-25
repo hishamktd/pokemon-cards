@@ -24,6 +24,7 @@
     "@mui/x-data-grid": "^7.23.6",
     "@prisma/client": "^6.2.1",
     "@vercel/blob": "^0.27.1",
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "jose": "^5.9.6",
     "next": "15.1.3",
