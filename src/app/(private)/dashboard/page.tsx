@@ -1,11 +1,9 @@
 'use client';
 
-import { useLogoutMutation } from '@/api/auth/auth.api';
+import { logout } from '@/service/auth';
 import AppButton from '@core/components/app-button/Button';
 
 export default function DashboardPage() {
-  const [logout] = useLogoutMutation();
-
   const onClick = () => {
     logout();
   };
