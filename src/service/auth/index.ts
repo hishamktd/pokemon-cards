@@ -1,4 +1,5 @@
 import { authApi } from '@/lib/interceptor/auth';
+
 export const validateSession = async () => {
   try {
     console.log('Validating session...');
