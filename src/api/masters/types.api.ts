@@ -44,3 +44,11 @@ export const typesApi = createApi({
     }),
   }),
 });
+
+export const {
+  useGetTypesQuery,
+  useCreateTypeMutation,
+  useUpdateTypeMutation,
+  useDeleteTypeMutation,
+  useGetTypesByIdQuery,
+} = typesApi;
