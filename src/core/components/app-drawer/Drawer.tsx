@@ -3,7 +3,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import React, { memo } from 'react';
 
-import { ICONS } from '@/constants/icons';
+import { ICONS } from '@/constants/common/icons';
 import { AppButtonGroup } from '@/core/components/app-button';
 import IconButton from '@/core/components/icon-button';
 
