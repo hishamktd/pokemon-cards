@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { useLoginMutation } from '@/api/auth/auth.api';
 import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
-import { setClientCookie } from '@/lib/client-cookies';
+import { clientCookies as cookies } from '@/lib/cookies';
 
 const { TOKEN } = LOCAL_STORAGE_KEYS;
 
@@ -25,7 +25,7 @@ export default function LoginForm() {
       .unwrap()
       .then((response) => {
         if (response.token) {
-          setClientCookie(TOKEN, response.token);
+          cookies.set(TOKEN, response.token);
           router.push('/dashboard');
         }
       })

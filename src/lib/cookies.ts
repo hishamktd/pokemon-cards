@@ -1,20 +1,54 @@
-import { cookies } from 'next/headers';
+import Cookies from 'js-cookie';
+import { cookies as nextCookies } from 'next/headers';
 
-export const setCookie = async (name: string, value: string) => {
-  const cookieStore = await cookies();
-  cookieStore.set(name, value, {
-    secure: true,
-    sameSite: 'strict',
-    httpOnly: true,
-  });
+// Client-side cookie operations
+export const clientCookies = {
+  set: (name: string, value: string) => {
+    Cookies.set(name, value, {
+      secure: true,
+      sameSite: 'strict',
+    });
+  },
+
+  get: (name: string) => {
+    return Cookies.get(name);
+  },
+
+  remove: (name: string) => {
+    Cookies.remove(name);
+  },
 };
 
-export const getCookie = async (name: string) => {
-  const cookieStore = await cookies();
-  return cookieStore.get(name)?.value;
+// Server-side cookie operations
+export const serverCookies = {
+  set: async (name: string, value: string) => {
+    const cookieStore = await nextCookies();
+    cookieStore.set({
+      name,
+      value,
+      secure: true,
+      sameSite: 'strict',
+      httpOnly: true,
+    });
+  },
+
+  get: async (name: string) => {
+    const cookieStore = await nextCookies();
+    return cookieStore.get(name)?.value;
+  },
+
+  remove: async (name: string) => {
+    const cookieStore = await nextCookies();
+    cookieStore.set({
+      name,
+      value: '',
+      expires: new Date(0),
+    });
+  },
 };
 
-export const removeCookie = async (name: string) => {
-  const cookieStore = await cookies();
-  cookieStore.delete(name);
-};
+// Use this to determine if we're on server or client
+export const isServer = typeof window === 'undefined';
+
+// Generic cookie operations that work in both environments
+export const cookies = isServer ? serverCookies : clientCookies;
