@@ -6,7 +6,6 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
-import usePacksStore from '@/store/masters/packs';
 import { DeleteItem } from '@/types';
 import { INITIAL_PAGE } from '@/utils/pagination';
 import PacksDrawer from '@/views/masters/packs/PacksDrawer';
@@ -15,15 +14,6 @@ import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Packs = () => {
-  const {
-    entities,
-    totalCount,
-    updateSuccess,
-    updating,
-    fetchPacks,
-    deletePack,
-  } = usePacksStore();
-
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
