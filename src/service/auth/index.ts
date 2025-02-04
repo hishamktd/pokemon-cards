@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
+import { serverCookies } from '@/lib/server-cookies';
+
+const { TOKEN } = LOCAL_STORAGE_KEYS;
+
 interface ValidateResponse {
   success: boolean;
 }
@@ -16,4 +21,9 @@ export const validateSession = async (token: string): Promise<boolean> => {
     },
   );
   return data.success;
+};
+
+export const logout = async (): Promise<void> => {
+  await serverCookies.remove(TOKEN);
+  await axios.post(`${baseUrl}/auth/logout`);
 };
