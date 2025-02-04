@@ -1,9 +1,9 @@
 import { GridColDef } from '@mui/x-data-grid';
 import React, { memo, useCallback, useMemo } from 'react';
 
+import { useGetTypesQuery } from '@/api/masters/types.api';
 import ActionButton from '@/components/action-button';
 import Page from '@/components/page';
-import useTypesStore from '@/store/masters/types';
 import { DeleteItem } from '@/types';
 import { INITIAL_PAGE } from '@/utils/pagination';
 import { AppDataGrid } from '@core/components/app-table';
@@ -11,8 +11,6 @@ import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
 const Types = () => {
-  const { totalCount, entities } = useTypesStore();
-
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
@@ -21,6 +19,12 @@ const Types = () => {
     'itemToDelete',
     null,
   );
+  const { data: types, isLoading } = useGetTypesQuery({
+    page,
+    query,
+  });
+
+  console.log({ types, isLoading, isOpen, editId, itemToDelete });
 
   const toggleDrawer = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -73,10 +77,14 @@ const Types = () => {
         buttonGroupProps={{
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },
         }}
-        paginationProps={{ totalCount, onPageChange: setPage, page }}
+        paginationProps={{
+          totalCount: types?.totalCount,
+          onPageChange: setPage,
+          page,
+        }}
         searchProps={{ query, onChange: setQuery }}
       />
-      <AppDataGrid rows={entities} columns={columns} />
+      <AppDataGrid rows={types?.entities} columns={columns} />
     </Page>
   );
 };
