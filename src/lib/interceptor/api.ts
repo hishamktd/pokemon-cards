@@ -5,7 +5,7 @@ import axios, {
 } from 'axios';
 
 import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
-import { clientCookies as cookies } from '@/lib/cookies';
+import clientCookies from '@/lib/cookies';
 import { Any } from '@/types';
 
 const { TOKEN } = LOCAL_STORAGE_KEYS;
@@ -17,7 +17,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = cookies.get(TOKEN);
+    const token = clientCookies.get(TOKEN);
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
@@ -31,13 +31,13 @@ api.interceptors.response.use(
   (response: AxiosResponse) => {
     const token = response.headers['authorization']?.split(' ')[1];
     if (token) {
-      cookies.set(TOKEN, token);
+      clientCookies.set(TOKEN, token);
     }
     return response;
   },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      cookies.remove(TOKEN);
+      clientCookies.remove(TOKEN);
       window.location.href = '/login';
     }
     return Promise.reject(error);
