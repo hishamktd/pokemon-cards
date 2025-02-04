@@ -1,16 +1,16 @@
 import { NumStr } from '..';
 
-export type Packs = {
+export type Expansion = {
   id: number;
   name: string;
   totalCards: NumStr;
   thumbnailUrl?: string | null;
 };
 
-export type PacksForm = Omit<Packs, 'id' | 'thumbnailUrl'> & {
+export type ExpansionForm = Omit<Expansion, 'id' | 'thumbnailUrl'> & {
   thumbnail: File | null;
 };
 
-export type PacksUpdateForm = Omit<Packs, 'thumbnailUrl'> & {
+export type ExpansionUpdateForm = Omit<Expansion, 'thumbnailUrl'> & {
   thumbnail: File | null;
 };

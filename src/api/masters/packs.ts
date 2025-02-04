@@ -9,7 +9,7 @@ import {
   updatePackAction,
 } from '@/service/masters/packs';
 import { BaseParams } from '@/types';
-import { Packs, PacksForm, PacksUpdateForm } from '@/types/masters/packs';
+import { Packs, PacksForm, PacksUpdateForm } from '@/types/masters/expansion';
 
 export type PacksStore = {
   entities: Packs[];

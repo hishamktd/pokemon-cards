@@ -11,7 +11,7 @@ import {
 import { packsDefaultValues } from '@/constants/masters/packs';
 import { createPacksSchema } from '@/schema/masters/packs';
 import usePacksStore from '@/store/masters/packs';
-import { PacksForm } from '@/types/masters/packs';
+import { PacksForm } from '@/types/masters/expansion';
 import resolver from '@/utils/resolver';
 import { AppDrawer } from '@core/components/app-drawer';
 

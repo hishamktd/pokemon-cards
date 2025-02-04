@@ -1,4 +1,4 @@
-import { PacksForm } from '@/types/masters/packs';
+import { PacksForm } from '@/types/masters/expansion';
 
 export const packsDefaultValues: PacksForm = {
   name: '',
