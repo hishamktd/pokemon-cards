@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const createPacksSchema = z.object({
+const createExpansionSchema = z.object({
   name: z.string().nonempty('Name is required'),
   totalCards: z
     .number()
@@ -9,7 +9,7 @@ const createPacksSchema = z.object({
   thumbnail: z.nullable(z.any()),
 });
 
-const updatePacksSchema = z.object({
+const updateExpansionSchema = z.object({
   name: z.string().nonempty('Name is required'),
   totalCards: z
     .number()
@@ -20,4 +20,4 @@ const updatePacksSchema = z.object({
   thumbnailUrl: z.string().nullable(),
 });
 
-export { createPacksSchema, updatePacksSchema };
+export { createExpansionSchema, updateExpansionSchema };

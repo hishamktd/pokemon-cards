@@ -12,12 +12,12 @@ import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { DeleteItem } from '@/types';
 import { INITIAL_PAGE } from '@/utils/pagination';
-import PacksDrawer from '@/views/masters/packs/PacksDrawer';
+import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
-const Packs = () => {
+const Expansion = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
@@ -97,7 +97,7 @@ const Packs = () => {
   return (
     <Page>
       <PaginationSearchTitle
-        title="Packs"
+        title="Expansion"
         variant="small"
         buttonGroupProps={{
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },
@@ -114,7 +114,7 @@ const Packs = () => {
         columns={columns}
         loading={isLoading}
       />
-      <PacksDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
+      <ExpansionDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
         onClose={closeModal}
@@ -125,4 +125,4 @@ const Packs = () => {
   );
 };
 
-export default memo(Packs);
+export default memo(Expansion);
