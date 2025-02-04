@@ -1,3 +1,5 @@
+'use client';
+
 import { GridColDef } from '@mui/x-data-grid';
 import React, { memo, useCallback, useMemo } from 'react';
 
