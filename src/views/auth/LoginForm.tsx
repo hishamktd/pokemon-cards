@@ -1,32 +1,28 @@
 'use client';
 
-import { TextField, Button, Box, Alert } from '@mui/material';
-import { useState } from 'react';
+import { TextField, Button, Box } from '@mui/material';
+import { useState, FormEvent } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { login } from '@/actions/auth/auth';
+import { useLoginMutation } from '@/api/auth/auth.api';
 
 export default function LoginForm() {
+  const router = useRouter();
+  const [login] = useLoginMutation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
 
-    try {
-      const result = await login(email, password);
-      if (result.success) {
+    login({ email, password })
+      .unwrap()
+      .then(() => {
         router.push('/dashboard');
-      } else {
-        setError(result.error || 'Invalid email or password');
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.' + error);
-    }
+      })
+      .catch(console.error);
   };
 
   return (
@@ -55,11 +51,6 @@ export default function LoginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {error && (
-        <Alert severity="error" sx={{ mt: 2 }}>
-          {error}
-        </Alert>
-      )}
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
         Sign In
       </Button>

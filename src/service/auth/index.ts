@@ -1,25 +1,10 @@
-import { LoginParams } from '@/types/auth';
+import { api } from '@/lib/interceptor/api';
 
-import ApiService from '..';
-
-class AuthService extends ApiService {
-  readonly baseUrl = '/auth';
-
-  constructor() {
-    super();
-  }
-
-  login(params: LoginParams) {
-    return this.authApi.post(`${this.baseUrl}/login`, params);
-  }
-
-  register(params: LoginParams) {
-    return this.authApi.post(`${this.baseUrl}/register`, params);
-  }
-
-  validateToken() {
-    return this.authApi.get(`${this.baseUrl}/validate`);
-  }
+interface ValidateResponse {
+  success: boolean;
 }
 
-export default AuthService;
+export const validateSession = async (): Promise<boolean> => {
+  const { data } = await api.get<ValidateResponse>('/auth/validate');
+  return data.success;
+};

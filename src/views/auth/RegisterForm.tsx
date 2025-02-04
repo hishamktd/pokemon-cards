@@ -1,32 +1,31 @@
 'use client';
 
 import { TextField, Button, Box, Alert } from '@mui/material';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { register } from '@/actions/auth/auth';
+import { useRegisterMutation } from '@/api/auth/auth.api';
 
 export default function RegisterForm() {
+  const router = useRouter();
+
+  const [register] = useRegisterMutation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
 
-    try {
-      const result = await register(email, password);
-      if (result.success) {
+    register({ email, password })
+      .unwrap()
+      .then(() => {
         router.push('/dashboard');
-      } else {
-        setError(result.error || 'Registration failed');
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.' + error);
-    }
+      })
+      .catch(console.error);
   };
 
   return (
