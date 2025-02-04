@@ -6,6 +6,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useLoginMutation } from '@/api/auth/auth.api';
+import { setClientCookie } from '@/lib/client-cookies';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -19,8 +20,11 @@ export default function LoginForm() {
 
     login({ email, password })
       .unwrap()
-      .then(() => {
-        router.push('/dashboard');
+      .then((response) => {
+        if (response.token) {
+          setClientCookie('session_token', response.token);
+          router.push('/dashboard');
+        }
       })
       .catch(console.error);
   };

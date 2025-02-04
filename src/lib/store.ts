@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
+import middleWares from '@/api/root/middlewares';
+import rootReducer from '@/api/root/reducers';
 import notificationMiddleware from '@/lib/middleware/notification-middleware';
-import middleWares from '@/store/root/middlewares';
-import rootReducer from '@/store/root/reducers';
 
 export const store = configureStore({
   reducer: rootReducer,

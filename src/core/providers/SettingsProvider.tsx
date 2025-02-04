@@ -3,7 +3,7 @@
 import { createContext, useEffect, useState } from 'react';
 
 import { Settings, settings as settingsConfig } from '@/config/settings';
-import { LOCAL_STORAGE_KEYS } from '@/constants/store-keys';
+import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 
 import ToasterProvider from './components/ToasterProvider';
 

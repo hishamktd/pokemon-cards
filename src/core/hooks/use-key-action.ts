@@ -2,7 +2,7 @@
 
 import { MouseEventHandler, useCallback, useEffect } from 'react';
 
-import { keyActions } from '@/constants/key-actions';
+import { keyActions } from '@/constants/common/key-actions';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { Any } from '@/types';
 

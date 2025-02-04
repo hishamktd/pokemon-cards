@@ -1,11 +1,13 @@
 'use client';
 
-import { logoutAction } from '@/actions/auth/auth';
+import { useLogoutMutation } from '@/api/auth/auth.api';
 import AppButton from '@core/components/app-button/Button';
 
 export default function DashboardPage() {
-  const onClick = async () => {
-    await logoutAction();
+  const [logout] = useLogoutMutation();
+
+  const onClick = () => {
+    logout();
   };
 
   return (
