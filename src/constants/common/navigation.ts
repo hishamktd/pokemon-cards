@@ -20,12 +20,12 @@ const navigation = {
     ],
   },
   master: {
-    root: '/master',
-    path: '/master/packs',
+    root: '/masters',
+    path: '/masters/expansion',
     label: 'Master',
     children: [
-      { path: '/master/packs', label: 'Packs', icon: PACK },
-      { path: '/master/types', label: 'Types', icon: TYPES },
+      { path: '/masters/expansion', label: 'Expansions', icon: PACK },
+      { path: '/masters/types', label: 'Types', icon: TYPES },
     ],
   },
 };
