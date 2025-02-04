@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback } from 'react';
 
-import { ICONS } from '@/constants/icons';
+import { ICONS } from '@/constants/common/icons';
 import IconButton from '@core/components/icon-button';
 
 import { ActionButtonProps, ActionItems } from './types';
@@ -23,10 +23,10 @@ const ActionButton: FC<ActionButtonProps> = ({
       if (typeof id === 'number') {
         onClick(id, name);
       } else if (typeof id === 'string') {
-        onClick(Number(id),name);
+        onClick(Number(id), name);
       }
     }
-  }, [onClick, id,name]);
+  }, [onClick, id, name]);
 
   return <IconButton {...actions[actionType]} onClick={handleOnClick} />;
 };
