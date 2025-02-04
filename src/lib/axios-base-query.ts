@@ -1,4 +1,4 @@
-import { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { api } from './interceptor/api';
