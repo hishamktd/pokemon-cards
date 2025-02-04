@@ -4,7 +4,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-import { LOCAL_STORAGE_KEYS } from '@/constants/store-keys';
+import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 import { Any } from '@/types';
 
 const { TOKEN } = LOCAL_STORAGE_KEYS;
@@ -22,7 +22,8 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error: Any) => Promise.reject(error),
+  (error: Any) =>
+    Promise.reject(error instanceof Error ? error : new Error(String(error))),
 );
 
 api.interceptors.response.use(

@@ -1,15 +1,25 @@
-import { authApi } from '@/lib/interceptor/auth';
+import { LoginParams } from '@/types/auth';
 
-export const validateSession = async () => {
-  try {
-    console.log('Validating session...');
+import ApiService from '..';
 
-    const { data } = await authApi.get('/api/auth/validate');
-    console.log('Session validated:', data);
+class AuthService extends ApiService {
+  readonly baseUrl = '/auth';
 
-    return data;
-  } catch (error) {
-    console.error('Error validating session:', error);
-    throw error;
+  constructor() {
+    super();
   }
-};
+
+  login(params: LoginParams) {
+    return this.authApi.post(`${this.baseUrl}/login`, params);
+  }
+
+  register(params: LoginParams) {
+    return this.authApi.post(`${this.baseUrl}/register`, params);
+  }
+
+  validateToken() {
+    return this.authApi.get(`${this.baseUrl}/validate`);
+  }
+}
+
+export default AuthService;

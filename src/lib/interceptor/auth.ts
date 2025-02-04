@@ -19,12 +19,13 @@ authApi.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const cookieStore = await cookies();
     const token = cookieStore.get('session_token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+    if (token?.value) {
+      config.headers['Authorization'] = `Bearer ${token.value}`;
     }
     return config;
   },
-  (error: Any) => Promise.reject(error),
+  (error: Any) =>
+    Promise.reject(error instanceof Error ? error : new Error(String(error))),
 );
 
 authApi.interceptors.response.use(
