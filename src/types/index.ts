@@ -31,3 +31,8 @@ export type DeleteItem = {
 } | null;
 
 export type SetFunc<T> = Parameters<StateCreator<T>>[0];
+
+export type PaginationResponse<T> = {
+  entities: T[];
+  totalCount: number;
+};

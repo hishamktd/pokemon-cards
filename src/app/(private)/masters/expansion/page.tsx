@@ -1,8 +1,12 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 
+import {
+  useDeleteExpansionMutation,
+  useGetExpansionsQuery,
+} from '@/api/masters/expansion.api';
 import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
@@ -23,6 +27,13 @@ const Packs = () => {
     null,
   );
 
+  const { data: expansions, isLoading } = useGetExpansionsQuery({
+    page,
+    query,
+  });
+  const [deleteExpansion, { isLoading: isDeleting }] =
+    useDeleteExpansionMutation();
+
   const handleDelete = useCallback(
     (id: number, name?: string) => {
       setItemToDelete({ id, name });
@@ -36,10 +47,10 @@ const Packs = () => {
 
   const handleConfirmDelete = useCallback(
     async (id: number) => {
-      await deletePack(id);
+      await deleteExpansion(id);
       closeModal();
     },
-    [deletePack, closeModal],
+    [deleteExpansion, closeModal],
   );
 
   const toggleDrawer = useCallback(() => {
@@ -83,20 +94,6 @@ const Packs = () => {
     [handleDelete, handleOnEdit],
   );
 
-  const handleFetchEntities = useCallback(async () => {
-    fetchPacks({ page, query });
-  }, [fetchPacks, page, query]);
-
-  useEffect(() => {
-    handleFetchEntities();
-  }, [handleFetchEntities]);
-
-  useEffect(() => {
-    if (updateSuccess) {
-      handleFetchEntities();
-    }
-  }, [updateSuccess, handleFetchEntities]);
-
   return (
     <Page>
       <PaginationSearchTitle
@@ -105,16 +102,24 @@ const Packs = () => {
         buttonGroupProps={{
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },
         }}
-        paginationProps={{ totalCount, onPageChange: setPage, page }}
+        paginationProps={{
+          totalCount: expansions?.totalCount,
+          onPageChange: setPage,
+          page,
+        }}
         searchProps={{ query, onChange: setQuery }}
       />
-      <AppDataGrid rows={entities} columns={columns} />
+      <AppDataGrid
+        rows={expansions?.entities}
+        columns={columns}
+        loading={isLoading}
+      />
       <PacksDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
         onClose={closeModal}
         onDelete={handleConfirmDelete}
-        loading={updating}
+        loading={isDeleting}
       />
     </Page>
   );
