@@ -25,5 +25,4 @@ export const validateSession = async (token: string): Promise<boolean> => {
 
 export const logout = async (): Promise<void> => {
   await serverCookies.remove(TOKEN);
-  await axios.post(`${baseUrl}/auth/logout`);
 };
