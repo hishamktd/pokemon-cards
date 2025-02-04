@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { memo, useCallback } from 'react';
 
-import { ICONS } from '@/constants/icons';
+import { ICONS } from '@/constants/common/icons';
 import { Any } from '@/types';
 
 import { AppSelectProps } from '.';
@@ -60,7 +60,7 @@ const SelectField = (props: AppSelectProps) => {
       <Select
         labelId="select-label"
         id="select"
-        value={value || ''}
+        value={value ?? ''}
         onChange={(e) => onChange && onChange((e.target.value as Any) || '')}
         label={label}
         color={color}
