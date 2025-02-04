@@ -6,7 +6,10 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useRegisterMutation } from '@/api/auth/auth.api';
+import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 import { setClientCookie } from '@/lib/client-cookies';
+
+const { TOKEN } = LOCAL_STORAGE_KEYS;
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -25,7 +28,7 @@ export default function RegisterForm() {
       .unwrap()
       .then((response) => {
         if (response.token) {
-          setClientCookie('session_token', response.token);
+          setClientCookie(TOKEN, response.token);
           router.push('/dashboard');
         }
       })

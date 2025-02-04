@@ -5,8 +5,11 @@ import axios, {
 } from 'axios';
 import { headers } from 'next/headers';
 
+import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 import { setCookie, removeCookie } from '@/lib/cookies';
 import { Any } from '@/types';
+
+const { TOKEN } = LOCAL_STORAGE_KEYS;
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -16,9 +19,7 @@ export const api = axios.create({
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const headersList = await headers();
-    const token = headersList
-      .get('cookie')
-      ?.match(/session_token=([^;]+)/)?.[1];
+    const token = headersList.get('cookie')?.match(`${TOKEN}=([^;]+)`)?.[1];
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
@@ -33,13 +34,13 @@ api.interceptors.response.use(
   (response: AxiosResponse) => {
     const token = response.headers['authorization']?.split(' ')[1];
     if (token) {
-      setCookie('session_token', token);
+      setCookie(TOKEN, token);
     }
     return response;
   },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      removeCookie('session_token');
+      removeCookie(TOKEN);
       window.location.href = '/login';
     }
     return Promise.reject(error);
