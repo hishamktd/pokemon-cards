@@ -5,13 +5,12 @@ import React, { memo } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import { ICONS } from '@/constants/icons';
+import { ICONS } from '@/constants/common/icons';
 import Icon from '@core/components/icon';
 import IconButton from '@core/components/icon-button';
 import { useSettings } from '@core/hooks/use-settings';
 import AppLogo from '@core/layout/app-logo';
 import { NavLink, SideBar } from '@core/layout/components/styled-components';
-
 
 import { SidebarProps } from './types';
 

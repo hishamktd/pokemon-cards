@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 import { Toaster } from 'react-hot-toast';
 
-import { ICONS } from '@/constants/icons';
+import { ICONS } from '@/constants/common/icons';
 import Icon from '@core/components/icon';
 
 const { SUCCESS_ANIMATED, CLOSE_ROUNDED_ANIMATED } = ICONS;

@@ -3,7 +3,6 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { headers } from 'next/headers';
 
 import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 import { clientCookies as cookies } from '@/lib/cookies';
@@ -17,10 +16,8 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use(
-  async (config: InternalAxiosRequestConfig) => {
-    const headersList = await headers();
-    const token = headersList.get('cookie')?.match(`${TOKEN}=([^;]+)`)?.[1];
-
+  (config: InternalAxiosRequestConfig) => {
+    const token = cookies.get(TOKEN);
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
