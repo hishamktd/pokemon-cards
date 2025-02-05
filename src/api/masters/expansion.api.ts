@@ -10,34 +10,34 @@ export const expansionApi = createApi({
   endpoints: (builder) => ({
     getExpansions: builder.query<PaginationResponse<Expansion>, BaseParams>({
       query: (params: BaseParams) => ({
-        url: '/expansions',
+        url: '/masters/expansions',
         method: 'GET',
         params,
       }),
     }),
     getExpansion: builder.query<Expansion, number>({
       query: (id: number) => ({
-        url: `/expansions/${id}`,
+        url: `/masters/expansions/${id}`,
         method: 'GET',
       }),
     }),
     createExpansion: builder.mutation<Expansion, ExpansionForm>({
       query: (data: ExpansionForm) => ({
-        url: '/expansions',
+        url: '/masters/expansions',
         method: 'POST',
         data,
       }),
     }),
     updateExpansion: builder.mutation<Expansion, Expansion>({
       query: (data: Expansion) => ({
-        url: `/expansions/${data.id}`,
+        url: `/masters/expansions/${data.id}`,
         method: 'PUT',
         data,
       }),
     }),
     deleteExpansion: builder.mutation<void, number>({
       query: (id: number) => ({
-        url: `/expansions/${id}`,
+        url: `/masters/expansions/${id}`,
         method: 'DELETE',
       }),
     }),
