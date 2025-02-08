@@ -49,7 +49,7 @@ const eslintConfig = [
           'newlines-between': 'always',
           distinctGroup: true,
           named: false,
-          warnOnUnassignedImports: false,
+          warnOnUnassignedImports: true,
         },
       ],
       quotes: [
