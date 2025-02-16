@@ -32,7 +32,15 @@ export type DeleteItem = {
 
 export type SetFunc<T> = Parameters<StateCreator<T>>[0];
 
+type Meta = {
+  page: number;
+  itemCount: number;
+  pageCount: number | null;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+};
+
 export type PaginationResponse<T> = {
   entities: T[];
-  totalCount: number;
+  meta: Meta;
 };

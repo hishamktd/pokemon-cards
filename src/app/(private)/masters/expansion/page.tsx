@@ -27,11 +27,12 @@ const Expansion = () => {
     null,
   );
 
-  const { data: expansions, isLoading } = useGetExpansionsQuery({
-    page,
-    query,
-    size: PAGE_SIZE,
-  });
+  const { data: { entities: expansions, meta } = {}, isLoading } =
+    useGetExpansionsQuery({
+      page,
+      query,
+      size: PAGE_SIZE,
+    });
   const [deleteExpansion, { isLoading: isDeleting }] =
     useDeleteExpansionMutation();
 
@@ -104,14 +105,14 @@ const Expansion = () => {
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },
         }}
         paginationProps={{
-          totalCount: expansions?.totalCount,
+          totalCount: meta?.itemCount,
           onPageChange: setPage,
           page,
         }}
         searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid
-        rows={expansions?.entities}
+        rows={expansions}
         columns={columns}
         loading={isLoading}
       />
