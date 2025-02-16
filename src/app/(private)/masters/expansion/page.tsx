@@ -21,7 +21,7 @@ const Expansion = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
-  const [editId, setEditId] = useQuery('id', 0);
+  const [editId, setEditId] = useQuery<number | undefined>('id', undefined);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
     'itemToDelete',
     null,

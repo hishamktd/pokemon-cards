@@ -15,9 +15,9 @@ export const expansionApi = createApi({
         params,
       }),
     }),
-    getExpansion: builder.query<Expansion, number>({
-      query: (id: number) => ({
-        url: `/masters/expansions/${id}`,
+    getExpansion: builder.query<Expansion, number | undefined>({
+      query: (id) => ({
+        url: `/masters/expansions/${id ?? 'default'}`,
         method: 'GET',
       }),
     }),

@@ -35,7 +35,7 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
     useCreateExpansionMutation();
   const [updateExpansion, { isLoading: isUpdating }] =
     useUpdateExpansionMutation();
-  const { data: expansion, isLoading } = useGetExpansionQuery(id ?? 0);
+  const { data: expansion, isLoading } = useGetExpansionQuery(id);
 
   const { control, handleSubmit, reset } = useForm<ExpansionForm>({
     defaultValues: expansionDefaultValues,
