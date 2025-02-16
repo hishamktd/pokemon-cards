@@ -26,8 +26,8 @@ type Props = {
 };
 
 const getDrawerTitle = (id?: number) => {
-  if (id) return 'Edit Pack';
-  return 'Add Pack';
+  if (id) return 'Edit Expansion';
+  return 'Add Expansion';
 };
 
 const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
@@ -91,9 +91,9 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
           label="Total Cards"
         />
         <FileUploadController<ExpansionForm>
-          name="thumbnail"
+          name="image"
           control={control}
-          imageUrl={expansion?.thumbnailUrl}
+          imageUrl={expansion?.imageUrl}
           cropWidth={400}
         />
       </Stack>

@@ -99,7 +99,7 @@ const Expansion = () => {
   return (
     <Page>
       <PaginationSearchTitle
-        title="Expansion"
+        title="Expansions"
         variant="small"
         buttonGroupProps={{
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },

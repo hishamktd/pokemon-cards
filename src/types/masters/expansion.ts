@@ -4,13 +4,13 @@ export type Expansion = {
   id: number;
   name: string;
   totalCards: NumStr;
-  thumbnailUrl?: string | null;
+  imageUrl?: string | null;
 };
 
-export type ExpansionForm = Omit<Expansion, 'id' | 'thumbnailUrl'> & {
-  thumbnail: File | null;
+export type ExpansionForm = Omit<Expansion, 'id' | 'imageUrl'> & {
+  image: File | null;
 };
 
-export type ExpansionUpdateForm = Omit<Expansion, 'thumbnailUrl'> & {
-  thumbnail: File | null;
+export type ExpansionUpdateForm = Omit<Expansion, 'imageUrl'> & {
+  image: File | null;
 };
