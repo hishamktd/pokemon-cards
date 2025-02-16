@@ -21,8 +21,6 @@ const Pagination: FC<AppPaginationProps> = ({
     [onChange, onPageChange],
   );
 
-  console.log('count', count);
-
   const isHidden = useMemo(() => count <= 1, [count]);
 
   return (
