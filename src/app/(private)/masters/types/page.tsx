@@ -21,7 +21,7 @@ const Types = () => {
     'itemToDelete',
     null,
   );
-  const { data: types, isLoading } = useGetTypesQuery({
+  const { data: { entities: types, meta } = {}, isLoading } = useGetTypesQuery({
     page,
     query,
   });
@@ -80,13 +80,13 @@ const Types = () => {
           containedButtonProps: { label: 'Create', onClick: toggleDrawer },
         }}
         paginationProps={{
-          totalCount: types?.totalCount,
+          totalCount: meta?.itemCount,
           onPageChange: setPage,
           page,
         }}
         searchProps={{ query, onChange: setQuery }}
       />
-      <AppDataGrid rows={types?.entities} columns={columns} />
+      <AppDataGrid rows={types} columns={columns} />
     </Page>
   );
 };
