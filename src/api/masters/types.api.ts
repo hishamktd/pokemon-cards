@@ -10,35 +10,35 @@ export const typesApi = createApi({
   endpoints: (builder) => ({
     getTypes: builder.query<PaginationResponse<Types>, BaseParams>({
       query: (params: BaseParams) => ({
-        url: '/types',
+        url: '/masters/types',
         method: 'GET',
         params,
       }),
     }),
     createType: builder.mutation<Types, Types>({
       query: (data: Types) => ({
-        url: '/types',
+        url: '/masters/types',
         method: 'POST',
         data,
       }),
     }),
     updateType: builder.mutation<Types, Types>({
       query: (data: Types) => ({
-        url: `/types/${data.id}`,
+        url: `/masters/types/${data.id}`,
         method: 'PUT',
         data,
       }),
     }),
     deleteType: builder.mutation<Types, Types>({
       query: (data: Types) => ({
-        url: `/types/${data.id}`,
+        url: `/masters/types/${data.id}`,
         method: 'DELETE',
         data,
       }),
     }),
     getTypesById: builder.query<Types, number>({
       query: (id: number) => ({
-        url: `/types/${id}`,
+        url: `/masters/types/${id}`,
         method: 'GET',
       }),
     }),
