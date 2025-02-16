@@ -21,6 +21,10 @@ const Pagination: FC<AppPaginationProps> = ({
     [onChange, onPageChange],
   );
 
+  console.log('count', count);
+
+  const isHidden = useMemo(() => count <= 1, [count]);
+
   return (
     <MuiPagination
       color="primary"
@@ -28,6 +32,7 @@ const Pagination: FC<AppPaginationProps> = ({
       count={count}
       siblingCount={1}
       onChange={handleChange}
+      hidden={isHidden}
       {...props}
     />
   );
