@@ -11,7 +11,7 @@ import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { DeleteItem } from '@/types';
-import { INITIAL_PAGE } from '@/utils/pagination';
+import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
@@ -30,6 +30,7 @@ const Expansion = () => {
   const { data: expansions, isLoading } = useGetExpansionsQuery({
     page,
     query,
+    size: PAGE_SIZE,
   });
   const [deleteExpansion, { isLoading: isDeleting }] =
     useDeleteExpansionMutation();
