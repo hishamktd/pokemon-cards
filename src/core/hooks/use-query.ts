@@ -28,6 +28,10 @@ function useQuery<T>(
   };
 
   const getSearchParam = (): T => {
+    if (typeof window === 'undefined') {
+      return defaultValue;
+    }
+
     const urlSearchParams = new URLSearchParams(window.location.search);
     return parseValue(urlSearchParams.get(key));
   };
