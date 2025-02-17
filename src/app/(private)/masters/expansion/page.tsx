@@ -10,7 +10,7 @@ import {
 import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
-import { DeleteItem } from '@/types';
+import { DeleteItem, TId } from '@/types';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
 import { AppDataGrid } from '@core/components/app-table';
@@ -21,7 +21,7 @@ const Expansion = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
-  const [editId, setEditId] = useQuery<number | undefined>('id', undefined);
+  const [editId, setEditId] = useQuery<TId>('id', null);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
     'itemToDelete',
     null,
@@ -68,7 +68,7 @@ const Expansion = () => {
   );
 
   const handleCloseDrawer = useCallback(() => {
-    setEditId(0);
+    setEditId(null);
     toggleDrawer();
   }, [setEditId, toggleDrawer]);
 

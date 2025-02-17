@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
-import { BaseParams, PaginationResponse } from '@/types';
+import { BaseParams, PaginationResponse, TId } from '@/types';
 import { Expansion, ExpansionForm } from '@/types/masters/expansion';
 
 export const expansionApi = createApi({
@@ -15,7 +15,7 @@ export const expansionApi = createApi({
         params,
       }),
     }),
-    getExpansion: builder.query<Expansion, number | undefined>({
+    getExpansion: builder.query<Expansion, TId>({
       query: (id) => ({
         url: `/masters/expansions/${id ?? 'default'}`,
         method: 'GET',

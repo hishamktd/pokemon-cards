@@ -15,17 +15,18 @@ import {
 } from '@/components/field-controller';
 import { expansionDefaultValues } from '@/constants/masters/expansion';
 import { createExpansionSchema } from '@/schema/masters/expansion';
+import { TId } from '@/types';
 import { ExpansionForm } from '@/types/masters/expansion';
 import resolver from '@/utils/resolver';
 import { AppDrawer } from '@core/components/app-drawer';
 
 type Props = {
   open: boolean;
-  id?: number;
+  id: TId;
   onClose: () => void;
 };
 
-const getDrawerTitle = (id?: number) => {
+const getDrawerTitle = (id: TId) => {
   if (id) return 'Edit Expansion';
   return 'Add Expansion';
 };

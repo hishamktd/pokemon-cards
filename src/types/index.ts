@@ -44,3 +44,5 @@ export type PaginationResponse<T> = {
   data: T[];
   meta: Meta;
 };
+
+export type TId = number | null;
