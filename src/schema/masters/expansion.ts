@@ -6,7 +6,7 @@ const createExpansionSchema = z.object({
     .number()
     .int()
     .positive('Total cards must be a positive integer'),
-  thumbnail: z.nullable(z.any()),
+  image: z.nullable(z.any()),
 });
 
 const updateExpansionSchema = z.object({
@@ -15,9 +15,9 @@ const updateExpansionSchema = z.object({
     .number()
     .int()
     .positive('Total cards must be a positive integer'),
-  thumbnail: z.nullable(z.any()),
+  image: z.nullable(z.any()),
   id: z.number(),
-  thumbnailUrl: z.string().nullable(),
+  imageUrl: z.string().nullable(),
 });
 
 export { createExpansionSchema, updateExpansionSchema };
