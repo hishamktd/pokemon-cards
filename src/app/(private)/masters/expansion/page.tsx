@@ -11,6 +11,7 @@ import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { DeleteItem, TId } from '@/types';
+import { getOrDefault } from '@/utils/common';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
 import { AppDataGrid } from '@core/components/app-table';
@@ -84,6 +85,11 @@ const Expansion = () => {
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
       { field: 'totalCards', headerName: 'Total Cards' },
+      {
+        field: 'points',
+        headerName: 'Points',
+        renderCell: ({ row }) => getOrDefault(row?.points),
+      },
       {
         field: 'actions',
         headerName: 'Actions',

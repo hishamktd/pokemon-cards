@@ -149,11 +149,11 @@ const FileUploader: FC<FileUploaderProps> = ({
         </AppButton>
       </ImagePreviewContainer>
     ),
-    [value, cropWidth, cropHeight, handleClearImage],
+    [value, handleClearImage, cropWidth, cropHeight],
   );
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', width: '100%', maxWidth: '100%' }}>
       {!value && (imageSrc ? renderCropper() : renderDropzone())}
       {value && renderSavedImage()}
       {error && <p style={{ color: 'red' }}>{error.message}</p>}

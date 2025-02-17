@@ -14,7 +14,7 @@ import {
   TextFieldController,
 } from '@/components/field-controller';
 import { expansionDefaultValues } from '@/constants/masters/expansion';
-import { createExpansionSchema } from '@/schema/masters/expansion';
+import { expansionSchema } from '@/schema/masters/expansion';
 import { TId } from '@/types';
 import { ExpansionForm } from '@/types/masters/expansion';
 import resolver from '@/utils/resolver';
@@ -37,7 +37,11 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
     useCreateExpansionMutation();
   const [updateExpansion, { isLoading: isUpdating }] =
     useUpdateExpansionMutation();
-  const { data: expansion, isLoading } = useGetExpansionQuery(id);
+  const {
+    data: expansion,
+    refetch: refetchExpansion,
+    isFetching: isFetchingExpansion,
+  } = useGetExpansionQuery(id);
 
   const { upload, fileUploading } = useFileUpload({
     path: 'expansions',
@@ -45,7 +49,7 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
 
   const { control, handleSubmit, reset } = useForm<ExpansionForm>({
     defaultValues: expansionDefaultValues,
-    resolver: resolver(createExpansionSchema),
+    resolver: resolver(expansionSchema),
   });
 
   const buttonLoading = useMemo(() => {
@@ -87,8 +91,9 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
   useEffect(() => {
     if (open) {
       handleReset();
+      refetchExpansion();
     }
-  }, [handleReset, open]);
+  }, [handleReset, open, refetchExpansion]);
 
   return (
     <AppDrawer
@@ -98,7 +103,7 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
       onClose={onClose}
       filledButtonProps={{ loading: buttonLoading }}
       outlineButtonProps={{ loading: buttonLoading }}
-      loading={isLoading}
+      loading={isFetchingExpansion}
     >
       <Stack gap={2}>
         <TextFieldController<ExpansionForm>
@@ -110,6 +115,11 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
           name="totalCards"
           control={control}
           label="Total Cards"
+        />
+        <TextFieldController<ExpansionForm>
+          name="points"
+          control={control}
+          label="Points"
         />
         <FileUploadController<ExpansionForm>
           name="image"

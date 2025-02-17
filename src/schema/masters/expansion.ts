@@ -1,23 +1,15 @@
 import { z } from 'zod';
 
-const createExpansionSchema = z.object({
+const expansionSchema = z.object({
   name: z.string().nonempty('Name is required'),
   totalCards: z
     .number()
     .int()
     .positive('Total cards must be a positive integer'),
   image: z.nullable(z.any()),
-});
-
-const updateExpansionSchema = z.object({
-  name: z.string().nonempty('Name is required'),
-  totalCards: z
-    .number()
-    .int()
-    .positive('Total cards must be a positive integer'),
-  image: z.nullable(z.any()),
+  points: z.nullable(z.string()),
   id: z.number(),
   imageUrl: z.string().nullable(),
 });
 
-export { createExpansionSchema, updateExpansionSchema };
+export { expansionSchema };

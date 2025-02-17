@@ -78,11 +78,16 @@ export const ImagePreviewContainer = styled(Box)({
   marginTop: '20px',
   position: 'relative',
   display: 'inline-block',
+  width: '100%',
+  maxWidth: '100%',
+  overflow: 'hidden',
 
   ['& .cropped-image']: {
     objectFit: 'cover',
     filter: 'blur(0)',
     transition: 'filter 0.3s',
+    width: '100%',
+    height: '100%',
 
     ['&:hover']: {
       filter: 'blur(2px)',

@@ -1,10 +1,11 @@
-import { NumStr } from '..';
+import { Nullable, NumStr } from '..';
 
 export type Expansion = {
   id: number;
   name: string;
   totalCards: NumStr;
   imageUrl?: string | null;
+  points: Nullable<string>;
 };
 
 export type ExpansionCreate = Omit<Expansion, 'id'>;

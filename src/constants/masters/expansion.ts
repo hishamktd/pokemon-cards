@@ -4,4 +4,5 @@ export const expansionDefaultValues: ExpansionForm = {
   name: '',
   totalCards: '',
   image: null,
+  points: '',
 };
