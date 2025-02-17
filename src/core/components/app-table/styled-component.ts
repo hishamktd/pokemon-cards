@@ -29,7 +29,7 @@ export const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
   },
 
-  ['& .MuiTablePagination-toolbar & .MuiTablePagination-root']: {
+  ['& .MuiTablePagination-root']: {
     visibility: 'hidden',
   },
 }));
