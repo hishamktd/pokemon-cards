@@ -37,7 +37,7 @@ const Expansion = () => {
       {
         pollingInterval: 5000,
         refetchOnFocus: true,
-        skip: isOpen || !Boolean(itemToDelete),
+        skip: isOpen && !Boolean(itemToDelete),
       },
     );
   const [deleteExpansion, { isLoading: isDeleting }] =
