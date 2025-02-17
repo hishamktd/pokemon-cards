@@ -1,6 +1,6 @@
 'use client';
 
-import { logout } from '@/actions/logout';
+import { logout } from '@/lib/logout';
 import AppButton from '@core/components/app-button/Button';
 
 export default function DashboardPage() {
