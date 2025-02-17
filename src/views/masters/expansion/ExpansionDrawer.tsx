@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import React, { FC, memo, useCallback, useEffect } from 'react';
+import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -19,6 +19,7 @@ import { TId } from '@/types';
 import { ExpansionForm } from '@/types/masters/expansion';
 import resolver from '@/utils/resolver';
 import { AppDrawer } from '@core/components/app-drawer';
+import useFileUpload from '@core/hooks/use-file-upload';
 
 type Props = {
   open: boolean;
@@ -38,22 +39,41 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
     useUpdateExpansionMutation();
   const { data: expansion, isLoading } = useGetExpansionQuery(id);
 
+  const { upload, fileUploading } = useFileUpload({
+    path: 'expansions',
+  });
+
   const { control, handleSubmit, reset } = useForm<ExpansionForm>({
     defaultValues: expansionDefaultValues,
     resolver: resolver(createExpansionSchema),
   });
 
+  const buttonLoading = useMemo(() => {
+    return isCreating || isUpdating || fileUploading;
+  }, [isCreating, isUpdating, fileUploading]);
+
   const onSubmit = useCallback(
     async (data: ExpansionForm) => {
+      const image = await upload(data.image, expansion?.imageUrl, data.name);
+
+      const finalData = { ...data, imageUrl: image };
+
       if (id) {
-        await updateExpansion({ ...data, id });
+        await updateExpansion({ ...finalData, id });
       } else {
-        await createExpansion(data);
+        await createExpansion(finalData);
       }
 
       onClose();
     },
-    [createExpansion, id, onClose, updateExpansion],
+    [
+      createExpansion,
+      expansion?.imageUrl,
+      id,
+      onClose,
+      updateExpansion,
+      upload,
+    ],
   );
 
   const handleReset = useCallback(() => {
@@ -76,8 +96,8 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
       title={getDrawerTitle(id)}
       onSave={handleSubmit(onSubmit)}
       onClose={onClose}
-      filledButtonProps={{ loading: isCreating || isUpdating }}
-      outlineButtonProps={{ loading: isCreating || isUpdating }}
+      filledButtonProps={{ loading: buttonLoading }}
+      outlineButtonProps={{ loading: buttonLoading }}
       loading={isLoading}
     >
       <Stack gap={2}>
