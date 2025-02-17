@@ -6,7 +6,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import { useGetTypesQuery } from '@/api/masters/types.api';
 import ActionButton from '@/components/action-button';
 import Page from '@/components/page';
-import { DeleteItem } from '@/types';
+import { DeleteItem, TId } from '@/types';
 import { INITIAL_PAGE } from '@/utils/pagination';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
@@ -16,12 +16,12 @@ const Types = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
-  const [editId, setEditId] = useQuery<number | undefined>('id', undefined);
+  const [editId, setEditId] = useQuery<TId>('id', null);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
     'itemToDelete',
     null,
   );
-  const { data: { entities: types, meta } = {}, isLoading } = useGetTypesQuery({
+  const { data: { data: types, meta } = {}, isLoading } = useGetTypesQuery({
     page,
     query,
   });
