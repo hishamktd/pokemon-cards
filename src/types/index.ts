@@ -41,6 +41,6 @@ type Meta = {
 };
 
 export type PaginationResponse<T> = {
-  entities: T[];
+  data: T[];
   meta: Meta;
 };

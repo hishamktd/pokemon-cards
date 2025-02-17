@@ -27,7 +27,7 @@ const Expansion = () => {
     null,
   );
 
-  const { data: { entities: expansions, meta } = {}, isLoading } =
+  const { data: { data: expansions, meta } = {}, isLoading } =
     useGetExpansionsQuery({
       page,
       query,
