@@ -34,7 +34,11 @@ const Expansion = () => {
         query,
         size: PAGE_SIZE,
       },
-      { pollingInterval: 5000, refetchOnFocus: true, skip: isOpen },
+      {
+        pollingInterval: 5000,
+        refetchOnFocus: true,
+        skip: isOpen || !Boolean(itemToDelete),
+      },
     );
   const [deleteExpansion, { isLoading: isDeleting }] =
     useDeleteExpansionMutation();
