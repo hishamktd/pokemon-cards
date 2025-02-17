@@ -28,11 +28,14 @@ const Expansion = () => {
   );
 
   const { data: { data: expansions, meta } = {}, isLoading } =
-    useGetExpansionsQuery({
-      page,
-      query,
-      size: PAGE_SIZE,
-    });
+    useGetExpansionsQuery(
+      {
+        page,
+        query,
+        size: PAGE_SIZE,
+      },
+      { pollingInterval: 5000, refetchOnFocus: true, skip: !isOpen },
+    );
   const [deleteExpansion, { isLoading: isDeleting }] =
     useDeleteExpansionMutation();
 
@@ -111,11 +114,7 @@ const Expansion = () => {
         }}
         searchProps={{ query, onChange: setQuery }}
       />
-      <AppDataGrid
-        rows={expansions}
-        columns={columns}
-        loading={isLoading}
-      />
+      <AppDataGrid rows={expansions} columns={columns} loading={isLoading} />
       <ExpansionDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
