@@ -43,11 +43,11 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
   });
 
   const onSubmit = useCallback(
-    (data: ExpansionForm) => {
+    async (data: ExpansionForm) => {
       if (id) {
-        updateExpansion({ ...data, id });
+        await updateExpansion({ ...data, id });
       } else {
-        createExpansion(data);
+        await createExpansion(data);
       }
 
       onClose();
