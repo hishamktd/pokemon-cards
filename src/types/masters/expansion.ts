@@ -9,7 +9,7 @@ export type Expansion = {
 
 export type ExpansionCreate = Omit<Expansion, 'id'>;
 
-export type ExpansionForm = Expansion & {
+export type ExpansionForm = Omit<Expansion, 'id'> & {
   image: File | null;
 };
 
