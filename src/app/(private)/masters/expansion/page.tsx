@@ -1,7 +1,7 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
 import {
   useDeleteExpansionMutation,
@@ -28,19 +28,23 @@ const Expansion = () => {
     null,
   );
 
-  const { data: { data: expansions, meta } = {}, isLoading } =
-    useGetExpansionsQuery(
-      {
-        page,
-        query,
-        size: PAGE_SIZE,
-      },
-      {
-        pollingInterval: 5000,
-        refetchOnFocus: true,
-        skip: isOpen && !Boolean(itemToDelete),
-      },
-    );
+  const {
+    data: { data: expansions, meta } = {},
+    isLoading,
+    refetch,
+    isFetching: isRefetching,
+  } = useGetExpansionsQuery(
+    {
+      page,
+      query,
+      size: PAGE_SIZE,
+    },
+    {
+      pollingInterval: 5000,
+      refetchOnFocus: true,
+      skip: isOpen && !Boolean(itemToDelete),
+    },
+  );
   const [deleteExpansion, { isLoading: isDeleting }] =
     useDeleteExpansionMutation();
 
@@ -79,6 +83,10 @@ const Expansion = () => {
     setEditId(null);
     toggleDrawer();
   }, [setEditId, toggleDrawer]);
+
+  useEffect(() => {
+    refetch();
+  }, [refetch, page, query]);
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -124,7 +132,11 @@ const Expansion = () => {
         }}
         searchProps={{ query, onChange: setQuery }}
       />
-      <AppDataGrid rows={expansions} columns={columns} loading={isLoading} />
+      <AppDataGrid
+        rows={expansions}
+        columns={columns}
+        loading={isLoading || isRefetching}
+      />
       <ExpansionDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal
         itemToDelete={itemToDelete}
