@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
 import { BaseParams, PaginationResponse, TId } from '@/types';
-import { Expansion, ExpansionForm } from '@/types/masters/expansion';
+import { Expansion, ExpansionCreate } from '@/types/masters/expansion';
 
 export const expansionApi = createApi({
   reducerPath: 'expansionApi',
@@ -21,15 +21,15 @@ export const expansionApi = createApi({
         method: 'GET',
       }),
     }),
-    createExpansion: builder.mutation<Expansion, ExpansionForm>({
-      query: (data: ExpansionForm) => ({
+    createExpansion: builder.mutation<Expansion, ExpansionCreate>({
+      query: (data) => ({
         url: '/masters/expansions',
         method: 'POST',
         data,
       }),
     }),
     updateExpansion: builder.mutation<Expansion, Expansion>({
-      query: (data: Expansion) => ({
+      query: (data) => ({
         url: `/masters/expansions/${data.id}`,
         method: 'PUT',
         data,

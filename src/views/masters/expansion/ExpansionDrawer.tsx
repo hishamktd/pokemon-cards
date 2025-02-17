@@ -53,10 +53,10 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
   }, [isCreating, isUpdating, fileUploading]);
 
   const onSubmit = useCallback(
-    async (data: ExpansionForm) => {
-      const image = await upload(data.image, expansion?.imageUrl, data.name);
+    async ({ image, ...data }: ExpansionForm) => {
+      const imageUrl = await upload(image, expansion?.imageUrl, data.name);
 
-      const finalData = { ...data, imageUrl: image };
+      const finalData = { ...data, imageUrl };
 
       if (id) {
         await updateExpansion({ ...finalData, id });
