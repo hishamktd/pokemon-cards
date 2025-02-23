@@ -17,6 +17,7 @@ import { expansionDefaultValues } from '@/constants/masters/expansion';
 import { expansionSchema } from '@/schema/masters/expansion';
 import { TId } from '@/types';
 import { ExpansionForm } from '@/types/masters/expansion';
+import { isValidUrl } from '@/utils/common';
 import resolver from '@/utils/resolver';
 import { AppDrawer } from '@core/components/app-drawer';
 import useFileUpload from '@core/hooks/use-file-upload';
@@ -88,7 +89,10 @@ const ExpansionDrawer: FC<Props> = ({
 
   const handleReset = useCallback(() => {
     if (expansion && id) {
-      reset(expansion);
+      const imageUrl = isValidUrl(expansion.imageUrl)
+        ? expansion.imageUrl
+        : null;
+      reset({ ...expansion, imageUrl });
     } else {
       reset(expansionDefaultValues);
     }

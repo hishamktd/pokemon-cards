@@ -7,6 +7,7 @@ import Cropper, { Area } from 'react-easy-crop';
 import { useController } from 'react-hook-form';
 
 import { Any } from '@/types';
+import { isValidUrl } from '@/utils/common';
 import getCroppedImg from '@/utils/get-cropped-img';
 
 import {
@@ -16,14 +17,6 @@ import {
 } from './styled-component';
 import { FileUploaderProps } from './types';
 import { AppButton } from '../app-button';
-
-const isValidUrl = (url: string) => {
-  try {
-    return Boolean(new URL(url));
-  } catch {
-    return false;
-  }
-};
 
 const FileUploader: FC<FileUploaderProps> = ({
   control,
