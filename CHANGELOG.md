@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/hishamktd/pokemon-cards/compare/v0.0.5...v0.0.6) (2025-02-23)
+
+
+### Features
+
+* Add URL validation for image uploads in FileUploader component ([43ec9ea](https://github.com/hishamktd/pokemon-cards/commit/43ec9eadb02b1518793755267108e22a32a2d68b))
+* Implement URL validation for image uploads in FileUploader and ExpansionDrawer components ([6445ed5](https://github.com/hishamktd/pokemon-cards/commit/6445ed5f34d38a10d7ae63d8d65366b95238725e))
+
 ### [0.0.5](https://github.com/hishamktd/pokemon-cards/compare/v0.0.4...v0.0.5) (2025-02-23)
 
 ### [0.0.4](https://github.com/hishamktd/pokemon-cards/compare/v0.0.3...v0.0.4) (2025-02-23)
