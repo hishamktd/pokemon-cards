@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 
 import { StyledTitle } from './styled-components';
 import { TitleProps } from './types';
-import Icon from '../../../lib/icon';
+import Icon from '../../../lib/icons';
 
 const fontSizeMap = {
   small: 24,

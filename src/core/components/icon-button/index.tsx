@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { memo } from 'react';
 
-import Icon, { IconProps } from '../../../lib/icon';
+import Icon, { IconProps } from '../../../lib/icons';
 
 export type IconButtonProps = MuiIconButtonProps & {
   icon: string;

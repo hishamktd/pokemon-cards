@@ -4,12 +4,12 @@ import { Box, Button } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 
 import { keyActions } from '@/constants/common/key-actions';
-import { ICONS } from '@/lib/icon/icons-const';
+import { ICONS } from '@/lib/icons/icons-const';
 import useKeyActions from '@core/hooks/use-key-action';
 
 import { LoadingButton } from './styled-components';
 import { AppButtonProps } from './types';
-import Icon from '../../../lib/icon';
+import Icon from '../../../lib/icons';
 
 const { LOADING } = ICONS;
 

@@ -1,5 +1,5 @@
 import navigation from '@/constants/common/navigation';
-import { ICONS } from '@/lib/icon/icons-const';
+import { ICONS } from '@/lib/icons/icons-const';
 import { NavItem } from '@core/layout/side-bar/types';
 
 const { DASHBOARD, STAGE, ATTACK, COMPONENTS, MASTER } = ICONS;

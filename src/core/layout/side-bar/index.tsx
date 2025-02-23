@@ -5,8 +5,8 @@ import React, { memo } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import Icon from '@/lib/icon';
-import { ICONS } from '@/lib/icon/icons-const';
+import Icon from '@/lib/icons';
+import { ICONS } from '@/lib/icons/icons-const';
 import IconButton from '@core/components/icon-button';
 import { useSettings } from '@core/hooks/use-settings';
 import AppLogo from '@core/layout/app-logo';

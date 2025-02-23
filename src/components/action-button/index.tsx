@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback } from 'react';
 
-import { ICONS } from '@/lib/icon/icons-const';
+import { ICONS } from '@/lib/icons/icons-const';
 import IconButton from '@core/components/icon-button';
 
 import { ActionButtonProps, ActionItems } from './types';

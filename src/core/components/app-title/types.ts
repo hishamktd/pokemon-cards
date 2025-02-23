@@ -1,6 +1,6 @@
 import { BoxProps, TypographyProps as MuiTypographyProps } from '@mui/material';
 
-import { IconProps } from '@/lib/icon';
+import { IconProps } from '@/lib/icons';
 
 import { AppButtonGroupProps } from '../app-button';
 import { AppSearchProps } from '../app-search';

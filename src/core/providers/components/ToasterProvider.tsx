@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 
 import { Toaster } from 'react-hot-toast';
 
-import Icon from '@/lib/icon';
-import { ICONS } from '@/lib/icon/icons-const';
+import Icon from '@/lib/icons';
+import { ICONS } from '@/lib/icons/icons-const';
 
 const { SUCCESS_ANIMATED, CLOSE_ROUNDED_ANIMATED } = ICONS;
 

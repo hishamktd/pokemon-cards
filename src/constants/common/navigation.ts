@@ -1,4 +1,4 @@
-import { ICONS } from '../../lib/icon/icons-const';
+import { ICONS } from '../../lib/icons/icons-const';
 
 const { PACK, TYPES } = ICONS;
 

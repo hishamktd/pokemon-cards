@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC, memo } from 'react';
 
-import Icon from '@/lib/icon';
-import { ICONS } from '@/lib/icon/icons-const';
+import Icon from '@/lib/icons';
+import { ICONS } from '@/lib/icons/icons-const';
 import { DeleteItem } from '@/types';
 import ButtonGroup from '@core/components/app-button/ButtonGroup';
 

@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { memo, useCallback } from 'react';
 
-import { ICONS } from '@/lib/icon/icons-const';
+import { ICONS } from '@/lib/icons/icons-const';
 import { Any } from '@/types';
 
 import { AppSelectProps } from '.';

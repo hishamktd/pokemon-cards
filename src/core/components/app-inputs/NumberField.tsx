@@ -3,7 +3,7 @@
 import { InputAdornment, Stack } from '@mui/material';
 import { FC, memo, useCallback, useState } from 'react';
 
-import { ICONS } from '@/lib/icon/icons-const';
+import { ICONS } from '@/lib/icons/icons-const';
 import { Any } from '@/types';
 
 import { AppNumberFieldProps } from '.';
