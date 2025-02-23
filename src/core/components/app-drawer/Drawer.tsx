@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -9,8 +10,9 @@ import IconButton from '@/core/components/icon-button';
 
 import { AppDrawerProps } from '.';
 import { Content, DrawerFooter, DrawerHeader } from './styled-components';
+import Icon from '../icon';
 
-const { CLOSE_ROUNDED_ANIMATED } = ICONS;
+const { CLOSE_ROUNDED_ANIMATED, SQUARE_SHUFFLE } = ICONS;
 
 const Drawer: React.FC<AppDrawerProps> = ({
   open,
@@ -72,7 +74,24 @@ const Drawer: React.FC<AppDrawerProps> = ({
       </DrawerHeader>
       <Divider />
       <Content {...contentProps}>
-        {loading ? <>Loading...</> : <>{children}</>}
+        {loading ? (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
+            <Icon
+              color="primary"
+              sx={{ fontSize: 100 }}
+              icon={SQUARE_SHUFFLE}
+            />
+          </Box>
+        ) : (
+          <>{children}</>
+        )}
       </Content>
       {showFooter && (
         <DrawerFooter {...footerContainerProps}>
