@@ -2,7 +2,7 @@
 
 import React, { memo } from 'react';
 
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 import IconButton from '@core/components/icon-button';
 import { useSettings } from '@core/hooks/use-settings';
 

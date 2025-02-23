@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React, { memo } from 'react';
 
 import { TitleProps } from './types';
-import Icon from '../icon';
+import Icon from '../../../lib/icon';
 import { StyledTitle } from './styled-components';
 
 const fontSizeMap = {

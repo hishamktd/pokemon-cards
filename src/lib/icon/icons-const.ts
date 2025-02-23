@@ -22,4 +22,4 @@ export const ICONS = {
   PACK: 'stash:pack-light',
   TYPES: 'weui:tag-outlined',
   SQUARE_SHUFFLE: 'svg-spinners:blocks-shuffle-3',
-};
+} as const;

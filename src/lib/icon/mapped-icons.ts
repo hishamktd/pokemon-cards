@@ -1,0 +1,56 @@
+// prettier-ignore
+
+import {
+  EvaArrowUpFill,
+  IcOutlineDashboard,
+  IcBaselineSearch,
+  EvaArrowDownFill,
+  IcOutlineSecurity,
+  LineMdAlertCircle,
+  LineMdBeerAltLoop,
+  LineMdCircleTwotoneToConfirmCircleTransition,
+  LineMdCloseCircle,
+  LineMdEdit,
+  LineMdMenu,
+  LineMdMenuToCloseTransition,
+  LineMdPauseToPlayFilledTransition,
+  LineMdSunnyLoop,
+  LineMdSunnyOutlineToMoonAltLoopTransition,
+  MdiClose,
+  MynauiComponents,
+  OuiAppDevtools,
+  PajamasStageAll,
+  StashPackLight,
+  SvgSpinners3DotsMove,
+  SvgSpinnersBlocksShuffle3,
+  WeuiTagOutlined,
+} from './SvgIcons';
+import { MappedIcons } from './types';
+
+const mappedIcons: MappedIcons = {
+  ['line-md:menu']: LineMdMenu,
+  ['mdi:close']: MdiClose,
+  ['line-md:menu-to-close-transition']: LineMdMenuToCloseTransition,
+  ['line-md:close-circle']: LineMdCloseCircle,
+  ['line-md:pause-to-play-filled-transition']: LineMdPauseToPlayFilledTransition,
+  ['line-md:sunny-loop']: LineMdSunnyLoop,
+  ['line-md:sunny-outline-to-moon-alt-loop-transition']: LineMdSunnyOutlineToMoonAltLoopTransition,
+  ['ic:outline-dashboard']: IcOutlineDashboard,
+  ['pajamas:stage-all']: PajamasStageAll,
+  ['ic:outline-security']: IcOutlineSecurity,
+  ['svg-spinners:3-dots-move']: SvgSpinners3DotsMove,
+  ['mynaui:components']: MynauiComponents,
+  ['eva:arrow-up-fill']: EvaArrowUpFill,
+  ['eva:arrow-down-fill']: EvaArrowDownFill,
+  ['oui:app-devtools']: OuiAppDevtools,
+  ['ic:baseline-search']: IcBaselineSearch,
+  ['line-md:edit']: LineMdEdit,
+  ['line-md:beer-alt-loop']: LineMdBeerAltLoop,
+  ['line-md:alert-circle']: LineMdAlertCircle,
+  ['line-md:circle-twotone-to-confirm-circle-transition']: LineMdCircleTwotoneToConfirmCircleTransition,
+  ['stash:pack-light']: StashPackLight,
+  ['weui:tag-outlined']: WeuiTagOutlined,
+  ['svg-spinners:blocks-shuffle-3']: SvgSpinnersBlocksShuffle3,
+};
+
+export default mappedIcons;

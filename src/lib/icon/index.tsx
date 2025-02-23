@@ -1,7 +1,7 @@
 import { SvgIcon, SvgIconProps } from '@mui/material';
 import React, { memo } from 'react';
 
-import { Icon as Iconify } from '@iconify/react';
+import mappedIcons from './mapped-icons';
 
 export type IconProps = SvgIconProps & {
   icon: string;
@@ -16,8 +16,7 @@ const Icon: React.FC<IconProps> = ({ icon, color, hidden, ...props }) => {
 
   return (
     <SvgIcon
-      component={Iconify}
-      icon={icon}
+      component={mappedIcons[icon as keyof typeof mappedIcons]}
       color={color}
       style={{ color: 'inherit' }}
       {...props}

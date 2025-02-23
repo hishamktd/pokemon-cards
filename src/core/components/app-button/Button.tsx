@@ -3,12 +3,12 @@
 import { Box, Button } from '@mui/material';
 import React, { FC, memo, useMemo } from 'react';
 
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 import { keyActions } from '@/constants/common/key-actions';
 import useKeyActions from '@core/hooks/use-key-action';
 
 import { AppButtonProps } from './types';
-import Icon from '../icon';
+import Icon from '../../../lib/icon';
 import { LoadingButton } from './styled-components';
 
 const { LOADING } = ICONS;

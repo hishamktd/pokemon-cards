@@ -1,3 +1,7 @@
 node_modules
 prisma
 .next
+
+# ignore specific files
+src\lib\icon\mapped-icons.ts
+src\lib\icon\SvgIcons.tsx

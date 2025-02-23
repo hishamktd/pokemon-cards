@@ -4,13 +4,13 @@ import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import React, { memo } from 'react';
 
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 import { AppButtonGroup } from '@/core/components/app-button';
 import IconButton from '@/core/components/icon-button';
 
 import { AppDrawerProps } from '.';
 import { Content, DrawerFooter, DrawerHeader } from './styled-components';
-import Icon from '../icon';
+import Icon from '../../../lib/icon';
 
 const { CLOSE_ROUNDED_ANIMATED, SQUARE_SHUFFLE } = ICONS;
 

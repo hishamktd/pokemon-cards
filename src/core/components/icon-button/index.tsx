@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { memo } from 'react';
 
-import Icon, { IconProps } from '../icon';
+import Icon, { IconProps } from '../../../lib/icon';
 
 export type IconButtonProps = MuiIconButtonProps & {
   icon: string;
@@ -13,7 +13,12 @@ export type IconButtonProps = MuiIconButtonProps & {
   toolTip?: string;
 };
 
-const IconButton: React.FC<IconButtonProps> = ({ icon, iconProps, toolTip, ...rest }) => {
+const IconButton: React.FC<IconButtonProps> = ({
+  icon,
+  iconProps,
+  toolTip,
+  ...rest
+}) => {
   if (toolTip) {
     return (
       <MuiIconButton {...rest}>

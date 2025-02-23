@@ -1,10 +1,10 @@
 import { InputAdornment } from '@mui/material';
 import React from 'react';
 
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 
 import { AppSearchIconProps } from '.';
-import Icon from '../icon';
+import Icon from '../../../lib/icon';
 import { IconWrapper } from './styled-components';
 import IconButton from '../icon-button';
 

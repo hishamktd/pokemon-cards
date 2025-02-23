@@ -1,4 +1,4 @@
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 import navigation from '@/constants/common/navigation';
 import { NavItem } from '@core/layout/side-bar/types';
 

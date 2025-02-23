@@ -2,7 +2,7 @@ import { BoxProps, TypographyProps as MuiTypographyProps } from '@mui/material';
 
 import { AppButtonGroupProps } from '../app-button';
 import { AppSearchProps } from '../app-search';
-import { IconProps } from '../icon';
+import { IconProps } from '../../../lib/icon';
 import { AppPaginationProps } from '../pagination';
 
 type TypographyProps = Omit<MuiTypographyProps, 'variant'>;

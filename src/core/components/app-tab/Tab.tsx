@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 
 import { HorizontalWrapper } from './styled-components';
 import { AppTabProps } from './types';
-import Icon from '../icon';
+import Icon from '../../../lib/icon';
 
 export default function AppTab({
   tabs,

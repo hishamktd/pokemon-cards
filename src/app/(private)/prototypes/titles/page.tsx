@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ICONS } from '@/constants/common/icons';
+import { ICONS } from '@/lib/icon/icons-const';
 import {
   ActionTitle,
   PaginationSearchTitle,
