@@ -11,9 +11,16 @@ import {
   Theme,
   useTheme,
 } from '@mui/material';
-import React, { FC, memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
+
+import { ICONS } from '@/lib/icons/icons-const';
+import { Any, BaseOption } from '@/types';
+import gMemo from '@/utils/memo';
 
 import { AppMultiSelectProps } from '.';
+import IconButton from '../icon-button';
+
+const { CLOSE } = ICONS;
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -27,15 +34,29 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight: personName.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-  };
-}
+const getStyles = <T extends BaseOption>(
+  option: T,
+  selectedValues: readonly T[],
+  theme: Theme,
+  getOptionsValue: (opt: T) => string,
+) => ({
+  fontWeight: selectedValues.some(
+    (v) => getOptionsValue(v) === getOptionsValue(option),
+  )
+    ? theme.typography.fontWeightMedium
+    : theme.typography.fontWeightRegular,
+});
 
-const MultiSelectField: FC<AppMultiSelectProps> = ({
+const deleteIcon = (
+  <IconButton
+    icon={CLOSE}
+    color="inherit"
+    size="small"
+    iconProps={{ fontSize: 'small' }}
+  />
+);
+
+const MultiSelectField = <T extends BaseOption>({
   values = [],
   onChange,
   inputProps,
@@ -46,38 +67,66 @@ const MultiSelectField: FC<AppMultiSelectProps> = ({
   inputLabelProps,
   helperText,
   color = 'primary',
+  getOptionsLabel = (opt) => opt?.name ?? '',
+  getOptionsValue = (opt) => String(opt?.id) ?? '',
+  isClearable = true,
+  error,
+  selectProps = {},
   ...rest
-}) => {
+}: AppMultiSelectProps<T>) => {
   const theme = useTheme();
 
   const handleChange = useCallback(
-    (e: SelectChangeEvent<typeof values>) => {
-      const {
-        target: { value },
-      } = e;
-
-      if (onChange) {
-        if (typeof value === 'string') {
-          onChange(value.split(','));
-        } else {
-          onChange(value);
-        }
-      }
-    },
+    (e: SelectChangeEvent<T[]>) => onChange?.(e.target.value as T[]),
     [onChange],
   );
 
-  const renderSelectedValues = useCallback(
-    (selected: string[]) => {
-      return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-          {selected.map((value) => (
-            <Chip key={value} label={value} color={color} />
-          ))}
-        </Box>
+  const handleClear = useCallback(() => onChange?.([]), [onChange]);
+
+  const handleOnDelete = useCallback(
+    (value: T) => {
+      const filteredValue = values.filter(
+        (v) => getOptionsValue(v) !== getOptionsValue(value),
       );
+      onChange?.(filteredValue ?? []);
     },
-    [color],
+    [getOptionsValue, onChange, values],
+  );
+
+  const renderSelectedValues = useCallback(
+    (selected: T[]) => (
+      <Box
+        sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
+        onMouseDown={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+        }}
+      >
+        {selected.map((value) => (
+          <Chip
+            key={getOptionsValue(value)}
+            label={getOptionsLabel(value)}
+            color={color}
+            deleteIcon={deleteIcon}
+            onDelete={() => handleOnDelete(value)}
+          />
+        ))}
+      </Box>
+    ),
+    [color, getOptionsLabel, getOptionsValue, handleOnDelete],
+  );
+
+  const renderIconComponent = useCallback(
+    () =>
+      isClearable && (
+        <IconButton
+          icon={CLOSE}
+          disabled={!values.length}
+          onClick={handleClear}
+          color={error ? 'error' : color}
+        />
+      ),
+    [color, error, isClearable, values.length, handleClear],
   );
 
   return (
@@ -85,6 +134,7 @@ const MultiSelectField: FC<AppMultiSelectProps> = ({
       sx={{ m: 1, width: 300, ...sx }}
       size={size}
       color={color}
+      error={error}
       {...rest}
     >
       <InputLabel
@@ -95,11 +145,12 @@ const MultiSelectField: FC<AppMultiSelectProps> = ({
       >
         {label}
       </InputLabel>
-      <Select
+      <Select<T[]>
         labelId="multiple-chip-label"
         id="multiple-chip"
         multiple
-        value={values}
+        value={values as Any}
+        defaultValue={[] as Any}
         onChange={handleChange}
         input={
           <OutlinedInput
@@ -110,22 +161,24 @@ const MultiSelectField: FC<AppMultiSelectProps> = ({
             {...inputProps}
           />
         }
-        renderValue={(selected) => renderSelectedValues(selected)}
+        renderValue={renderSelectedValues}
         MenuProps={MenuProps}
+        IconComponent={renderIconComponent}
+        {...selectProps}
       >
         {options.map((option) => (
           <MenuItem
-            key={option}
-            value={option}
-            style={getStyles(option, values, theme)}
+            key={getOptionsValue(option)}
+            value={option as Any}
+            style={getStyles(option, values, theme, getOptionsValue)}
           >
-            {option}
+            {getOptionsLabel(option)}
           </MenuItem>
         ))}
       </Select>
-      <FormHelperText>{helperText}</FormHelperText>
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 };
 
-export default memo(MultiSelectField);
+export default gMemo(MultiSelectField);

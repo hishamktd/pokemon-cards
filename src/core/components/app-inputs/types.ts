@@ -44,16 +44,20 @@ export type AppSelectProps<T extends BaseOption> = SingleSelectFormControl & {
 
 type MultiSelectFormControl = Omit<FormControlProps, 'onChange'>;
 
-export type AppMultiSelectProps = MultiSelectFormControl & {
-  values?: string[];
-  onChange?: (value: string[]) => void;
-  inputProps?: OutlinedInputProps;
-  options?: string[];
-  label?: string;
-  helperText?: string | null;
-  isClearable?: boolean;
-  inputLabelProps?: InputLabelProps;
-};
+export type AppMultiSelectProps<T extends BaseOption> =
+  MultiSelectFormControl & {
+    values?: T[];
+    onChange?: (value: T[]) => void;
+    inputProps?: OutlinedInputProps;
+    options?: T[];
+    label?: string;
+    helperText?: string | null;
+    isClearable?: boolean;
+    inputLabelProps?: InputLabelProps;
+    getOptionsLabel?: (option: T) => string;
+    getOptionsValue?: (option: T) => string;
+    selectProps?: SelectProps;
+  };
 
 export type FileUploaderProps = {
   control: Control<Any>;

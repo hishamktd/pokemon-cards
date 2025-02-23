@@ -11,8 +11,6 @@ import {
 } from '@core/components/app-inputs';
 import { Title } from '@core/components/app-title';
 
-const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
-
 const baseOptions = [
   { id: 1, name: 'Option 1', label: '4rth 1' },
   { id: 2, name: 'Option 2', label: '4rth 2' },
@@ -23,7 +21,7 @@ const baseOptions = [
 const Inputs = () => {
   const [number, setNumber] = React.useState<NumStr>('');
   const [value, setValue] = React.useState<(typeof baseOptions)[0] | ''>('');
-  const [values, setValues] = React.useState<string[]>([]);
+  const [values, setValues] = React.useState<typeof baseOptions>([]);
 
   return (
     <>
@@ -96,20 +94,20 @@ const Inputs = () => {
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
         />
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
           color="success"
         />
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
           error
@@ -117,21 +115,22 @@ const Inputs = () => {
         />
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
         />
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
         />
         <AppMultiSelectField
           label="high"
-          options={options}
+          options={baseOptions}
           values={values}
           onChange={(value) => setValues(value)}
+          getOptionsLabel={(option) => option?.label ?? ''}
         />
       </div>
     </>
