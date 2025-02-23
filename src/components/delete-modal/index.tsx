@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC, memo } from 'react';
 
+import Icon from '@/lib/icon';
 import { ICONS } from '@/lib/icon/icons-const';
 import { DeleteItem } from '@/types';
 import ButtonGroup from '@core/components/app-button/ButtonGroup';
-import Icon from '@/lib/icon';
 
 import { StyledModal } from './styled-component';
 

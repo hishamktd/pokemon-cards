@@ -4,8 +4,8 @@ import React from 'react';
 import { ICONS } from '@/lib/icon/icons-const';
 
 import { AppSearchIconProps } from '.';
-import Icon from '../../../lib/icon';
 import { IconWrapper } from './styled-components';
+import Icon from '../../../lib/icon';
 import IconButton from '../icon-button';
 
 const { CLOSE, SEARCH } = ICONS;
