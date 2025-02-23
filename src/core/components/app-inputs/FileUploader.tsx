@@ -17,6 +17,14 @@ import {
 import { FileUploaderProps } from './types';
 import { AppButton } from '../app-button';
 
+const isValidUrl = (url: string) => {
+  try {
+    return Boolean(new URL(url));
+  } catch {
+    return false;
+  }
+};
+
 const FileUploader: FC<FileUploaderProps> = ({
   control,
   name,
@@ -42,10 +50,23 @@ const FileUploader: FC<FileUploaderProps> = ({
 
   useEffect(() => {
     if (imageUrl) {
-      onChange(imageUrl);
-      setImageSrc(imageUrl);
+      if (typeof imageUrl === 'string') {
+        try {
+          new URL(imageUrl);
+          onChange(imageUrl);
+          setImageSrc(imageUrl);
+        } catch {
+          onChange(null);
+          setImageSrc(null);
+        }
+      } else {
+        onChange(imageUrl);
+        setImageSrc(imageUrl);
+      }
+    } else {
+      onChange(null);
+      setImageSrc(null);
     }
-    //FIC:ME
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUrl]);
 
@@ -128,18 +149,33 @@ const FileUploader: FC<FileUploaderProps> = ({
     [imageSrc, crop, zoom, cropWidth, cropHeight, onCropComplete, handleCrop],
   );
 
-  const renderSavedImage = useCallback(
-    () => (
+  const renderSavedImage = useCallback(() => {
+    const imageUrl =
+      isValidUrl(value) || typeof value === 'string'
+        ? value
+        : URL.createObjectURL(value);
+
+    return (
       <ImagePreviewContainer>
-        {value && (
-          <Image
-            src={typeof value === 'string' ? value : URL.createObjectURL(value)}
-            alt="Cropped"
-            width={cropWidth}
-            height={cropHeight}
-            className="cropped-image"
-          />
-        )}
+        {value &&
+          (typeof value === 'string' && isValidUrl(value) ? (
+            <Image
+              src={value}
+              alt="Cropped"
+              width={cropWidth}
+              height={cropHeight}
+              className="cropped-image"
+            />
+          ) : (
+            <Image
+              src={imageUrl}
+              alt="Cropped"
+              width={cropWidth}
+              height={cropHeight}
+              className="cropped-image"
+              style={{ objectFit: 'cover', borderRadius: '8px' }}
+            />
+          ))}
         <AppButton
           color="secondary"
           onClick={handleClearImage}
@@ -148,9 +184,8 @@ const FileUploader: FC<FileUploaderProps> = ({
           Clear
         </AppButton>
       </ImagePreviewContainer>
-    ),
-    [value, handleClearImage, cropWidth, cropHeight],
-  );
+    );
+  }, [value, handleClearImage, cropWidth, cropHeight]);
 
   return (
     <div style={{ textAlign: 'center', width: '100%', maxWidth: '100%' }}>
