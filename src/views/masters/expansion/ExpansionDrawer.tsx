@@ -25,6 +25,7 @@ type Props = {
   open: boolean;
   id: TId;
   onClose: () => void;
+  refetchExpansions?: () => void;
 };
 
 const getDrawerTitle = (id: TId) => {
@@ -32,10 +33,15 @@ const getDrawerTitle = (id: TId) => {
   return 'Add Expansion';
 };
 
-const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
-  const [createExpansion, { isLoading: isCreating }] =
+const ExpansionDrawer: FC<Props> = ({
+  open,
+  id,
+  onClose,
+  refetchExpansions,
+}) => {
+  const [createExpansion, { isLoading: isCreating, isSuccess: isCreated }] =
     useCreateExpansionMutation();
-  const [updateExpansion, { isLoading: isUpdating }] =
+  const [updateExpansion, { isLoading: isUpdating, isSuccess: isUpdated }] =
     useUpdateExpansionMutation();
   const {
     data: expansion,
@@ -91,9 +97,20 @@ const ExpansionDrawer: FC<Props> = ({ open, id, onClose }) => {
   useEffect(() => {
     if (open) {
       handleReset();
+    }
+  }, [handleReset, open]);
+
+  useEffect(() => {
+    if (open) {
       refetchExpansion();
     }
-  }, [handleReset, open, refetchExpansion]);
+  }, [open, refetchExpansion]);
+
+  useEffect(() => {
+    if (refetchExpansions && (isCreated || isUpdated)) {
+      refetchExpansions();
+    }
+  }, [isCreated, isUpdated, refetchExpansions]);
 
   return (
     <AppDrawer

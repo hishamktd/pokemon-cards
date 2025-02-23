@@ -44,13 +44,16 @@ const Expansion = () => {
       order,
     },
     {
-      pollingInterval: 5000,
+      pollingInterval: 10000,
       refetchOnFocus: true,
-      skip: isOpen && !Boolean(itemToDelete),
     },
   );
-  const [deleteExpansion, { isLoading: isDeleting }] =
+  const [deleteExpansion, { isLoading: isDeleting, isSuccess: isDeleted }] =
     useDeleteExpansionMutation();
+
+  const refetchExpansions = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   const handleDelete = useCallback(
     (id: number, name?: string) => {
@@ -61,7 +64,8 @@ const Expansion = () => {
 
   const closeModal = useCallback(() => {
     setItemToDelete(null);
-  }, [setItemToDelete]);
+    refetchExpansions();
+  }, [setItemToDelete, refetchExpansions]);
 
   const handleConfirmDelete = useCallback(
     async (id: number) => {
@@ -73,7 +77,8 @@ const Expansion = () => {
 
   const toggleDrawer = useCallback(() => {
     setIsOpen((prev) => !prev);
-  }, [setIsOpen]);
+    refetchExpansions();
+  }, [setIsOpen, refetchExpansions]);
 
   const handleOnEdit = useCallback(
     (id: number) => {
@@ -89,8 +94,10 @@ const Expansion = () => {
   }, [setEditId, toggleDrawer]);
 
   useEffect(() => {
-    refetch();
-  }, [refetch, page, query]);
+    if (isDeleted) {
+      refetchExpansions();
+    }
+  }, [isDeleted, refetchExpansions]);
 
   const columns = useMemo<GridColDef[]>(
     () => [
@@ -145,7 +152,12 @@ const Expansion = () => {
           setOrder(sort);
         }}
       />
-      <ExpansionDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
+      <ExpansionDrawer
+        open={isOpen}
+        onClose={handleCloseDrawer}
+        id={editId}
+        refetchExpansions={refetchExpansions}
+      />
       <DeleteModal
         itemToDelete={itemToDelete}
         onClose={closeModal}

@@ -8,8 +8,6 @@ const expansionSchema = z.object({
     .positive('Total cards must be a positive integer'),
   image: z.nullable(z.any()),
   points: z.nullable(z.string()),
-  id: z.number(),
-  imageUrl: z.string().nullable(),
 });
 
 export { expansionSchema };
