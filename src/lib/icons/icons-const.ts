@@ -13,7 +13,7 @@ export const ICONS = {
   COMPONENTS: 'mynaui:components',
   UP_FILL_ROUNDED: 'eva:arrow-up-fill',
   DOWN_FILL_ROUNDED: 'eva:arrow-down-fill',
-  MASTER: 'oui:app-devtools',
+  MASTER: 'mage:settings',
   SEARCH: 'ic:baseline-search',
   UPDATE_ANIMATED: 'line-md:edit',
   DELETE_ANIMATED: 'line-md:beer-alt-loop',
