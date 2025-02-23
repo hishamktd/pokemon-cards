@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/hishamktd/pokemon-cards/compare/v0.0.6...v0.0.7) (2025-02-23)
+
+
+### Features
+
+* Update fill color of SVG rectangles in SvgSpinnersBlocksShuffle3 component ([b92a270](https://github.com/hishamktd/pokemon-cards/commit/b92a270953bf411e6a3880e9aa1f9b0edb812029))
+* Update icon sizes and replace OuiAppDevtools with MageSettings in icon mappings ([6c1b034](https://github.com/hishamktd/pokemon-cards/commit/6c1b03418ee2ffbcfcf32d9405749adc17ec49db))
+
 ### [0.0.6](https://github.com/hishamktd/pokemon-cards/compare/v0.0.5...v0.0.6) (2025-02-23)
 
 
