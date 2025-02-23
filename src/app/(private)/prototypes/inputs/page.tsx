@@ -13,9 +13,16 @@ import { Title } from '@core/components/app-title';
 
 const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
 
+const baseOptions = [
+  { id: 1, name: 'Option 1', label: '4rth 1' },
+  { id: 2, name: 'Option 2', label: '4rth 2' },
+  { id: 3, name: 'Option 3', label: '4rth 3' },
+  { id: 4, name: 'Option 4', label: '4rth 4' },
+];
+
 const Inputs = () => {
   const [number, setNumber] = React.useState<NumStr>('');
-  const [value, setValue] = React.useState<string>('');
+  const [value, setValue] = React.useState<(typeof baseOptions)[0] | ''>('');
   const [values, setValues] = React.useState<string[]>([]);
 
   return (
@@ -56,28 +63,34 @@ const Inputs = () => {
       <Title title="Select field" sx={{ mt: 4 }} />
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <AppSelectField
-          options={options}
+          options={baseOptions}
           label="Age"
           value={value}
-          onChange={(value) => setValue(value.toString())}
+          onChange={(value) => setValue(value)}
         />
-        <AppSelectField options={options} label="Age" color="secondary" />
+        <AppSelectField options={baseOptions} label="Age" color="secondary" />
         <AppSelectField
-          options={options}
+          options={baseOptions}
           label="Age"
           color="warning"
           value={value}
-          onChange={(value) => setValue(value.toString())}
+          onChange={(value) => setValue(value)}
+          getOptionsLabel={(option) => option?.label ?? ''}
         />
         <AppSelectField
-          options={options}
+          options={baseOptions}
           label="Age"
           color="info"
           value={value}
-          onChange={(value) => setValue(value.toString())}
+          onChange={(value) => setValue(value)}
           isClearable={false}
         />
-        <AppSelectField options={options} label="Age" error helperText="sdfg" />
+        <AppSelectField
+          options={baseOptions}
+          label="Age"
+          error
+          helperText="sdfg"
+        />
       </div>
       <Title title="Multi Select field" sx={{ mt: 4 }} />
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>

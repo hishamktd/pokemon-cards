@@ -8,7 +8,7 @@ import {
 
 import { Control } from 'react-hook-form';
 
-import { Any, NumStr } from '@/types';
+import { Any, BaseOption, NumStr } from '@/types';
 
 export type AppTextFieldProps = TextFieldProps;
 
@@ -22,16 +22,24 @@ export type AppNumberFieldProps = Omit<
   onDecrement?: () => void;
 };
 
-export type AppSelectProps = FormControlProps & {
-  options: string[];
+type SingleSelectFormControl = Omit<
+  FormControlProps,
+  'onChange' | 'defaultValue'
+>;
+
+export type AppSelectProps<T extends BaseOption> = SingleSelectFormControl & {
+  options: T[];
   label?: string;
-  value?: string | null;
-  onChange?: SelectProps['onChange'];
+  value?: T | '';
+  onChange?: (value: T | '') => void;
   placeHolder?: string;
   inputLabelProps?: InputLabelProps;
   selectProps?: SelectProps;
   helperText?: string | null;
   isClearable?: boolean;
+  getOptionsLabel?: (option: T) => string;
+  getOptionsValue?: (option: T) => string;
+  defaultValue?: T | '';
 };
 
 type MultiSelectFormControl = Omit<FormControlProps, 'onChange'>;

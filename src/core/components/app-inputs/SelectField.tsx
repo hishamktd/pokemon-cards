@@ -5,31 +5,34 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { ICONS } from '@/lib/icons/icons-const';
-import { Any } from '@/types';
+import { Any, BaseOption } from '@/types';
+import gMemo from '@/utils/memo';
 
 import { AppSelectProps } from '.';
 import IconButton from '../icon-button';
 
 const { CLOSE } = ICONS;
 
-const SelectField = (props: AppSelectProps) => {
+const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
   const {
     variant = 'outlined',
     options,
     value,
     onChange,
     label = '',
-    placeHolder = 'Select',
     color = 'primary',
     inputLabelProps,
     selectProps = {},
+    defaultValue,
     size = 'small',
     helperText,
     error,
     isClearable = true,
+    getOptionsLabel,
+    getOptionsValue,
     ...rest
   } = props;
 
@@ -39,7 +42,7 @@ const SelectField = (props: AppSelectProps) => {
       <IconButton
         icon={CLOSE}
         disabled={!value}
-        onClick={() => onChange && onChange('' as Any)}
+        onClick={() => onChange && onChange('')}
         color={error ? 'error' : color}
       />
     );
@@ -57,11 +60,12 @@ const SelectField = (props: AppSelectProps) => {
       <InputLabel id="select-label" size="small" {...inputLabelProps}>
         {label}
       </InputLabel>
-      <Select
+      <Select<T>
         labelId="select-label"
         id="select"
-        value={value ?? ''}
-        onChange={(e) => onChange && onChange((e.target.value as Any) || '')}
+        defaultValue={defaultValue as Any}
+        value={value ?? ('' as Any)}
+        onChange={(e) => onChange && onChange(e.target.value as T)}
         label={label}
         color={color}
         SelectDisplayProps={{ color }}
@@ -72,14 +76,13 @@ const SelectField = (props: AppSelectProps) => {
         IconComponent={renderIconComponent}
         {...selectProps}
       >
-        {isClearable && (
-          <MenuItem value="" color={color}>
-            <em>{placeHolder}</em>
-          </MenuItem>
-        )}
         {options.map((option) => (
-          <MenuItem key={option} value={option} color={color}>
-            {option}
+          <MenuItem
+            key={getOptionsValue?.(option) ?? option?.id ?? ''}
+            value={getOptionsLabel?.(option) ?? option?.name ?? ''}
+            color={color}
+          >
+            {getOptionsLabel?.(option) ?? option?.name}
           </MenuItem>
         ))}
       </Select>
@@ -88,4 +91,4 @@ const SelectField = (props: AppSelectProps) => {
   );
 };
 
-export default memo(SelectField);
+export default gMemo(SelectField);
