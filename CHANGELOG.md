@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/hishamktd/pokemon-cards/compare/v0.0.7...v0.0.8) (2025-02-23)
+
+
+### Features
+
+* Enhance AppSelectField to support base options and improve type safety ([8f3429f](https://github.com/hishamktd/pokemon-cards/commit/8f3429f4881aba84d8f8da0fd36ca8a4fb5719db))
+* Refactor AppMultiSelectField to use base options and improve type safety ([4cf00f5](https://github.com/hishamktd/pokemon-cards/commit/4cf00f5c95870cb4fc035d9facde34c043ce826f))
+
 ### [0.0.7](https://github.com/hishamktd/pokemon-cards/compare/v0.0.6...v0.0.7) (2025-02-23)
 
 
