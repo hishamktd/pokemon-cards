@@ -21,6 +21,8 @@ import useQuery from '@core/hooks/use-query';
 const Expansion = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
+  const [sortBy, setSortBy] = useQuery('sort_by', '');
+  const [order, setOrder] = useQuery('order', '');
   const [isOpen, setIsOpen] = useQuery('drawer', false);
   const [editId, setEditId] = useQuery<TId>('id', null);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
@@ -38,6 +40,8 @@ const Expansion = () => {
       page,
       query,
       size: PAGE_SIZE,
+      sortBy,
+      order,
     },
     {
       pollingInterval: 5000,
@@ -136,6 +140,10 @@ const Expansion = () => {
         rows={expansions}
         columns={columns}
         loading={isLoading || isRefetching}
+        onSortChange={(field, sort) => {
+          setSortBy(field);
+          setOrder(sort);
+        }}
       />
       <ExpansionDrawer open={isOpen} onClose={handleCloseDrawer} id={editId} />
       <DeleteModal

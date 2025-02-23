@@ -17,6 +17,8 @@ export type BaseParams = {
   page: number;
   size?: number;
   query?: string;
+  sortBy?: string;
+  order?: string;
 };
 
 export type ServerBaseParams = {
