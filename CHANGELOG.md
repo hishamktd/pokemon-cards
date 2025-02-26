@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/hishamktd/pokemon-cards/compare/v0.0.11...v0.0.12) (2025-02-26)
+
+
+### Features
+
+* Refactor sidebar navigation structure and update routes ([25f8694](https://github.com/hishamktd/pokemon-cards/commit/25f8694128836d915f6cb52d2039e9aa995075cf))
+
 ### [0.0.11](https://github.com/hishamktd/pokemon-cards/compare/v0.0.10...v0.0.11) (2025-02-26)
 
 
