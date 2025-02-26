@@ -10,6 +10,7 @@ import {
 import ActionButton from '@/components/action-button';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
+import { KeyActionEnum } from '@/enum/key-actions';
 import { DeleteItem, TId } from '@/types';
 import { getOrDefault } from '@/utils/common';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
@@ -134,7 +135,11 @@ const Expansion = () => {
         title="Expansions"
         variant="small"
         buttonGroupProps={{
-          containedButtonProps: { label: 'Create', onClick: toggleDrawer },
+          containedButtonProps: {
+            label: 'Create',
+            onClick: toggleDrawer,
+            keyFor: KeyActionEnum.CREATE,
+          },
         }}
         paginationProps={{
           totalCount: meta?.itemCount,
