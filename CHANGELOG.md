@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/hishamktd/pokemon-cards/compare/v0.0.8...v0.0.9) (2025-02-26)
+
+
+### Features
+
+* Add key action enums to button properties in Expansion components ([95ef0f0](https://github.com/hishamktd/pokemon-cards/commit/95ef0f03c1f80f5bac625f8eb1814611946c28bc))
+
 ### [0.0.8](https://github.com/hishamktd/pokemon-cards/compare/v0.0.7...v0.0.8) (2025-02-23)
 
 
