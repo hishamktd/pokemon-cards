@@ -1,14 +1,10 @@
-import navigation from '@/constants/common/navigation';
+import prototypesNavItems from '@/config/prototype-nav-items';
 import AppTab from '@core/components/app-tab/Tab';
-
-const { prototypes } = navigation;
-
-const tabs = prototypes.children;
 
 export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <AppTab tabs={tabs}>{children}</AppTab>;
+  return <AppTab tabs={prototypesNavItems}>{children}</AppTab>;
 }

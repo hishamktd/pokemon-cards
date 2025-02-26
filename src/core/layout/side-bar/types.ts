@@ -2,7 +2,7 @@ export type NavItem = {
   path: string;
   label: string;
   icon?: string;
-  root: string;
+  children?: NavItem[];
 };
 
 export type SidebarProps = {

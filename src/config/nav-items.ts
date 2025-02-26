@@ -1,16 +1,36 @@
-import navigation from '@/constants/common/navigation';
+import routes from '@/constants/common/routes';
 import { ICONS } from '@/lib/icons/icons-const';
 import { NavItem } from '@core/layout/side-bar/types';
 
-const { DASHBOARD, STAGE, ATTACK, COMPONENTS, MASTER } = ICONS;
-const { dashboard, attacks, prototypes, stages, master } = navigation;
+import masterNavItems from './master-nav-items';
+import prototypesNavItems from './prototype-nav-items';
+
+const { DASHBOARD_ICON, STAGES_ICON, ATTACKS_ICON, COMPONENTS, MASTER } = ICONS;
+
+const { DASHBOARD, STAGES, ATTACKS, PROTOTYPES_BUTTONS, PACKS, POKEMON } =
+  routes;
 
 const navItems: NavItem[] = [
-  { ...dashboard, icon: DASHBOARD },
-  { ...stages, icon: STAGE },
-  { ...attacks, icon: ATTACK },
-  { ...prototypes, icon: COMPONENTS },
-  { ...master, icon: MASTER },
+  {
+    path: DASHBOARD,
+    label: 'Dashboard',
+    icon: DASHBOARD_ICON,
+  },
+  { path: STAGES, label: 'Stages', icon: STAGES_ICON },
+  { path: ATTACKS, label: 'Attacks', icon: ATTACKS_ICON },
+  {
+    path: PROTOTYPES_BUTTONS,
+    label: 'Prototypes',
+    icon: COMPONENTS,
+    children: prototypesNavItems,
+  },
+  { path: POKEMON, label: 'Pokemon', icon: MASTER },
+  {
+    path: PACKS,
+    label: 'Master',
+    icon: MASTER,
+    children: masterNavItems,
+  },
 ];
 
 export default navItems;

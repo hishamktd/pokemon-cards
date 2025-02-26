@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { AppButton } from '@core/components/app-button';
 
-
 const Buttons = () => {
   const [loading, setLoading] = useState(false);
 
