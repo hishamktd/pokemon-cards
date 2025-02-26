@@ -21,4 +21,5 @@ export const ICONS = {
   SUCCESS_ANIMATED: 'line-md:circle-twotone-to-confirm-circle-transition',
   PACK: 'stash:pack-light',
   SQUARE_SHUFFLE: 'svg-spinners:blocks-shuffle-3',
+  POKEMON_ICON: 'hugeicons:pokemon',
 } as const;

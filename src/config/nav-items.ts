@@ -5,7 +5,14 @@ import { NavItem } from '@core/layout/side-bar/types';
 import masterNavItems from './master-nav-items';
 import prototypesNavItems from './prototype-nav-items';
 
-const { DASHBOARD_ICON, STAGES_ICON, ATTACKS_ICON, COMPONENTS, MASTER } = ICONS;
+const {
+  DASHBOARD_ICON,
+  STAGES_ICON,
+  ATTACKS_ICON,
+  COMPONENTS,
+  MASTER,
+  POKEMON_ICON,
+} = ICONS;
 
 const { DASHBOARD, STAGES, ATTACKS, PROTOTYPES_BUTTONS, PACKS, POKEMON } =
   routes;
@@ -24,7 +31,7 @@ const navItems: NavItem[] = [
     icon: COMPONENTS,
     children: prototypesNavItems,
   },
-  { path: POKEMON, label: 'Pokemon', icon: MASTER },
+  { path: POKEMON, label: 'Pokemon', icon: POKEMON_ICON },
   {
     path: PACKS,
     label: 'Master',
