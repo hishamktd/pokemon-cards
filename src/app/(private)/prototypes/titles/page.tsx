@@ -9,7 +9,7 @@ import {
   Title,
 } from '@core/components/app-title';
 
-const { ATTACK } = ICONS;
+const { ATTACKS_ICON } = ICONS;
 
 const Titles = () => {
   return (
@@ -21,19 +21,19 @@ const Titles = () => {
         flexWrap: 'wrap',
       }}
     >
-      <Title title="Dashboard" variant="large" icon={ATTACK} />
+      <Title title="Dashboard" variant="large" icon={ATTACKS_ICON} />
       <Title title="Dashboard" variant="medium" />
       <Title title="Dashboard" variant="small" />
       <Title title="Dashboard" weight="bold" />
       <Title title="Dashboard" weight="medium" />
       <Title title="Dashboard" weight="light" />
       <ActionTitle
-        icon={ATTACK}
+        icon={ATTACKS_ICON}
         title="Dashboard"
         buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
       />
       <PaginationSearchTitle
-        icon={ATTACK}
+        icon={ATTACKS_ICON}
         title="Dashboard"
         buttonGroupProps={{ outlinedButtonProps: { isHidden: false } }}
         paginationProps={{ totalCount: 100 }}
