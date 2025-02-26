@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/hishamktd/pokemon-cards/compare/v0.0.9...v0.0.10) (2025-02-26)
+
+
+### Features
+
+* Remove types API and related components from the project ([389d39c](https://github.com/hishamktd/pokemon-cards/commit/389d39c06049180a8eb954ca85231bc9eda26fba))
+
 ### [0.0.9](https://github.com/hishamktd/pokemon-cards/compare/v0.0.8...v0.0.9) (2025-02-26)
 
 
