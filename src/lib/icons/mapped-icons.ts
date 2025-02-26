@@ -23,7 +23,6 @@ import {
   StashPackLight,
   SvgSpinners3DotsMove,
   SvgSpinnersBlocksShuffle3,
-  WeuiTagOutlined,
 } from './SvgIcons';
 import { MappedIcons } from './types';
 
@@ -49,7 +48,6 @@ const mappedIcons: MappedIcons = {
   ['line-md:alert-circle']: LineMdAlertCircle,
   ['line-md:circle-twotone-to-confirm-circle-transition']: LineMdCircleTwotoneToConfirmCircleTransition,
   ['stash:pack-light']: StashPackLight,
-  ['weui:tag-outlined']: WeuiTagOutlined,
   ['svg-spinners:blocks-shuffle-3']: SvgSpinnersBlocksShuffle3,
 };
 

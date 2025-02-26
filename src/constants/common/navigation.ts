@@ -1,6 +1,6 @@
 import { ICONS } from '../../lib/icons/icons-const';
 
-const { PACK, TYPES } = ICONS;
+const { PACK } = ICONS;
 
 const navigation = {
   dashboard: { root: '/dashboard', path: '/dashboard', label: 'Dashboard' },
@@ -23,10 +23,7 @@ const navigation = {
     root: '/masters',
     path: '/masters/expansion',
     label: 'Master',
-    children: [
-      { path: '/masters/expansion', label: 'Expansions', icon: PACK },
-      { path: '/masters/types', label: 'Types', icon: TYPES },
-    ],
+    children: [{ path: '/masters/expansion', label: 'Expansions', icon: PACK }],
   },
 };
 
