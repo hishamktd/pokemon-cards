@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/hishamktd/pokemon-cards/compare/v0.0.14...v0.0.15) (2025-02-28)
+
+
+### Features
+
+* Add Pokemon page and integrate Hugeicons for navigation ([3137811](https://github.com/hishamktd/pokemon-cards/commit/31378112d0a93ad85217f01134ea9c5a201d3f8c))
+
+
+### Bug Fixes
+
+* Remove unnecessary isFetching state from loading props in Expansion components ([809ec7b](https://github.com/hishamktd/pokemon-cards/commit/809ec7bd6511fab609870f3e0bc7fa480ab2ff76))
+
 ### [0.0.14](https://github.com/hishamktd/pokemon-cards/compare/v0.0.13...v0.0.14) (2025-02-26)
 
 
