@@ -35,7 +35,6 @@ const Expansion = () => {
     data: { data: expansions, meta } = {},
     isLoading,
     refetch,
-    isFetching: isRefetching,
   } = useGetExpansionsQuery(
     {
       page,
@@ -151,7 +150,7 @@ const Expansion = () => {
       <AppDataGrid
         rows={expansions}
         columns={columns}
-        loading={isLoading || isRefetching}
+        loading={isLoading}
         onSortChange={(field, sort) => {
           setSortBy(field);
           setOrder(sort);

@@ -14,7 +14,6 @@ import {
   TextFieldController,
 } from '@/components/field-controller';
 import { expansionDefaultValues } from '@/constants/masters/expansion';
-import { KeyActionEnum } from '@/enum/key-actions';
 import { expansionSchema } from '@/schema/masters/expansion';
 import { TId } from '@/types';
 import { ExpansionForm } from '@/types/masters/expansion';
@@ -123,7 +122,7 @@ const ExpansionDrawer: FC<Props> = ({
       title={getDrawerTitle(id)}
       onSave={handleSubmit(onSubmit)}
       onClose={onClose}
-      filledButtonProps={{ loading: buttonLoading, keyFor: KeyActionEnum.SAVE }}
+      filledButtonProps={{ loading: buttonLoading }}
       outlineButtonProps={{ loading: buttonLoading }}
       loading={isFetchingExpansion}
     >
