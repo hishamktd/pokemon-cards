@@ -9,8 +9,9 @@ export type Pokemon = {
   typeId: number;
 };
 
-export type PokemonForm = Omit<Pokemon, 'typeId' | 'id' | 'imageUrl'> & {
+export type PokemonForm = Omit<Pokemon, 'typeId' | 'id' | 'type'> & {
   image: Nullable<File>;
+  type: Nullable<Types>;
 };
 
 export type PokemonCreateRequest = Omit<Pokemon, 'id'>;
