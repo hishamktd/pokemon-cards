@@ -13,6 +13,7 @@ import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { DeleteItem, TId } from '@/types';
+import { type Expansion } from '@/types/masters/expansion';
 import { getOrDefault } from '@/utils/common';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
@@ -100,7 +101,7 @@ const Expansion = () => {
     }
   }, [isDeleted, refetchExpansions]);
 
-  const columns = useMemo<GridColDef[]>(
+  const columns = useMemo<GridColDef<Expansion>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
@@ -113,7 +114,9 @@ const Expansion = () => {
       {
         field: 'imageUrl',
         headerName: 'Image',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} width={60} />,
+        renderCell: ({ row }) => (
+          <ImageChip imageUrl={row?.imageUrl} width={60} />
+        ),
         sortable: false,
         disableColumnMenu: true,
         flex: 0,
