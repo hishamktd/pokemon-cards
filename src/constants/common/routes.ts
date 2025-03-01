@@ -18,6 +18,7 @@ const routes = {
 
   // ** MASTER ** //
   PACKS: '/masters',
+  TYPES: '/masters/types',
 
   // ** POKEMON ** //
   POKEMON: '/pokemon',

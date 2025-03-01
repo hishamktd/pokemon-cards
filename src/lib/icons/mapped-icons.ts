@@ -24,6 +24,7 @@ import {
   SvgSpinners3DotsMove,
   SvgSpinnersBlocksShuffle3,
   HugeiconsPokemon,
+  MdiPokeball,
 } from './SvgIcons';
 import { MappedIcons } from './types';
 
@@ -31,12 +32,14 @@ const mappedIcons: MappedIcons = {
   ['mdi:close']: MdiClose,
   ['line-md:menu']: LineMdMenu,
   ['line-md:edit']: LineMdEdit,
+  ['mdi:pokeball']: MdiPokeball,
   ['mage:settings']: MageSettings,
   ['stash:pack-light']: StashPackLight,
   ['eva:arrow-up-fill']: EvaArrowUpFill,
   ['pajamas:stage-all']: PajamasStageAll,
   ['line-md:sunny-loop']: LineMdSunnyLoop,
   ['mynaui:components']: MynauiComponents,
+  ['hugeicons:pokemon']: HugeiconsPokemon,
   ['ic:baseline-search']: IcBaselineSearch,
   ['eva:arrow-down-fill']: EvaArrowDownFill,
   ['ic:outline-security']: IcOutlineSecurity,
@@ -45,7 +48,6 @@ const mappedIcons: MappedIcons = {
   ['ic:outline-dashboard']: IcOutlineDashboard,
   ['line-md:beer-alt-loop']: LineMdBeerAltLoop,
   ['svg-spinners:3-dots-move']: SvgSpinners3DotsMove,
-  ['hugeicons:pokemon']: HugeiconsPokemon,
   ['svg-spinners:blocks-shuffle-3']: SvgSpinnersBlocksShuffle3,
   ['line-md:menu-to-close-transition']: LineMdMenuToCloseTransition,
   ['line-md:pause-to-play-filled-transition']: LineMdPauseToPlayFilledTransition,
