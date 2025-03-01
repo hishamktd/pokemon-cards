@@ -51,6 +51,7 @@ export const typesApi = createApi({
 });
 
 export const {
+  useGetAllTypesQuery,
   useGetTypesQuery,
   useGetTypeQuery,
   useCreateTypeMutation,

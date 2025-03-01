@@ -55,6 +55,7 @@ export const expansionApi = createApi({
 });
 
 export const {
+  useGetAllExpansionsQuery,
   useGetExpansionsQuery,
   useGetExpansionQuery,
   useCreateExpansionMutation,
