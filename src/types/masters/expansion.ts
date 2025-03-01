@@ -4,16 +4,16 @@ export type Expansion = {
   id: number;
   name: string;
   totalCards: NumStr;
-  imageUrl?: string | null;
+  imageUrl?: Nullable<string>;
   points: Nullable<string>;
 };
 
 export type ExpansionCreate = Omit<Expansion, 'id'>;
 
 export type ExpansionForm = Omit<Expansion, 'id'> & {
-  image: File | null;
+  image: Nullable<File>;
 };
 
 export type ExpansionUpdateForm = Omit<Expansion, 'imageUrl'> & {
-  image: File | null;
+  image: Nullable<File>;
 };
