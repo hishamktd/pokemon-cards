@@ -1,10 +1,5 @@
 import { Nullable, NumStr } from '..';
 
-export type ExpansionAll = {
-  id: number;
-  name: string;
-};
-
 export type Expansion = {
   id: number;
   name: string;
