@@ -48,3 +48,8 @@ export type PaginationResponse<T> = {
 };
 
 export type TId = number | null;
+
+export type GetAllType = {
+  id: number;
+  name: string;
+};

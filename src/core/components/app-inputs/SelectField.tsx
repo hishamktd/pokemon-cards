@@ -31,8 +31,7 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
     helperText,
     error,
     isClearable = true,
-    getOptionsLabel,
-    getOptionsValue,
+    getOptionsLabel = (opt) => opt?.name ?? '',
     ...rest
   } = props;
 
@@ -51,7 +50,7 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
   return (
     <FormControl
       variant={variant}
-      sx={{ m: 1, minWidth: 300 }}
+      sx={{ minWidth: 300 }}
       size={size}
       color={color}
       error={error}
@@ -64,8 +63,8 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
         labelId="select-label"
         id="select"
         defaultValue={defaultValue as Any}
-        value={value ?? ('' as Any)}
-        onChange={(e) => onChange && onChange(e.target.value as T)}
+        value={value ? (JSON.stringify(value) as Any) : ''}
+        onChange={(e) => onChange?.(JSON.parse(e.target.value as string) as T)}
         label={label}
         color={color}
         SelectDisplayProps={{ color }}
@@ -74,15 +73,19 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
           color,
         }}
         IconComponent={renderIconComponent}
+        renderValue={(selected) =>
+          getOptionsLabel(JSON.parse(selected as string) as T)
+        }
+        fullWidth
         {...selectProps}
       >
         {options.map((option) => (
           <MenuItem
-            key={getOptionsValue?.(option) ?? option?.id ?? ''}
-            value={getOptionsLabel?.(option) ?? option?.name ?? ''}
+            key={JSON.stringify(option)}
+            value={JSON.stringify(option)}
             color={color}
           >
-            {getOptionsLabel?.(option) ?? option?.name}
+            {getOptionsLabel(option)}
           </MenuItem>
         ))}
       </Select>

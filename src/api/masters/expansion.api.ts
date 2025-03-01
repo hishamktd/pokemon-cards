@@ -1,13 +1,19 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
-import { BaseParams, PaginationResponse, TId } from '@/types';
+import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
 import { Expansion, ExpansionCreate } from '@/types/masters/expansion';
 
 export const expansionApi = createApi({
   reducerPath: 'expansionApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
+    getAllExpansions: builder.query<GetAllType[], void>({
+      query: () => ({
+        url: '/masters/expansions/all',
+        method: 'GET',
+      }),
+    }),
     getExpansions: builder.query<PaginationResponse<Expansion>, BaseParams>({
       query: (params: BaseParams) => ({
         url: '/masters/expansions',
@@ -45,6 +51,7 @@ export const expansionApi = createApi({
 });
 
 export const {
+  useGetAllExpansionsQuery,
   useGetExpansionsQuery,
   useGetExpansionQuery,
   useCreateExpansionMutation,

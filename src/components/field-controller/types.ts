@@ -1,6 +1,7 @@
 import { Control, Path } from 'react-hook-form';
 
-import { AppTextFieldProps } from '@core/components/app-inputs';
+import { BaseOption } from '@/types';
+import { AppSelectProps, AppTextFieldProps } from '@core/components/app-inputs';
 
 type BaseProps<T extends Record<string, unknown>> = {
   name: Path<T>;
@@ -22,3 +23,8 @@ export type FileUploadControllerProps<T extends Record<string, unknown>> =
     cropWidth?: number;
     cropHeight?: number;
   };
+
+export type SelectControllerProps<
+  T extends Record<string, unknown>,
+  S extends BaseOption,
+> = BaseProps<T> & AppSelectProps<S>;

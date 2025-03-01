@@ -13,6 +13,7 @@ import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { DeleteItem, TId } from '@/types';
+import { type Expansion } from '@/types/masters/expansion';
 import { getOrDefault } from '@/utils/common';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
@@ -20,7 +21,7 @@ import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
-const Expansion = () => {
+const Expansions = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [sortBy, setSortBy] = useQuery('sort_by', '');
@@ -100,7 +101,7 @@ const Expansion = () => {
     }
   }, [isDeleted, refetchExpansions]);
 
-  const columns = useMemo<GridColDef[]>(
+  const columns = useMemo<GridColDef<Expansion>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
@@ -113,7 +114,9 @@ const Expansion = () => {
       {
         field: 'imageUrl',
         headerName: 'Image',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} width={60} />,
+        renderCell: ({ row }) => (
+          <ImageChip imageUrl={row?.imageUrl} width={60} />
+        ),
         sortable: false,
         disableColumnMenu: true,
         flex: 0,
@@ -181,4 +184,4 @@ const Expansion = () => {
   );
 };
 
-export default memo(Expansion);
+export default memo(Expansions);

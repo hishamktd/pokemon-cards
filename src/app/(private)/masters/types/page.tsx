@@ -13,6 +13,7 @@ import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { DeleteItem, TId } from '@/types';
+import { type Types } from '@/types/masters/types';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
 import TypesDrawer from '@/views/masters/types/TypesDrawer';
 import { AppDataGrid } from '@core/components/app-table';
@@ -100,7 +101,7 @@ const Types = () => {
     }
   }, [isDeleted, refetchTypes]);
 
-  const columns = useMemo<GridColDef[]>(
+  const columns = useMemo<GridColDef<Types>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },

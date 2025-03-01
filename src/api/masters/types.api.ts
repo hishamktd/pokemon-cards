@@ -1,13 +1,19 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
-import { BaseParams, PaginationResponse, TId } from '@/types';
+import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
 import { Types, TypesCreateRequest } from '@/types/masters/types';
 
 export const typesApi = createApi({
   reducerPath: 'typesApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
+    getAllTypes: builder.query<GetAllType[], void>({
+      query: () => ({
+        url: '/masters/types/all',
+        method: 'GET',
+      }),
+    }),
     getTypes: builder.query<PaginationResponse<Types>, BaseParams>({
       query: (params) => ({
         url: '/masters/types',
@@ -45,6 +51,7 @@ export const typesApi = createApi({
 });
 
 export const {
+  useGetAllTypesQuery,
   useGetTypesQuery,
   useGetTypeQuery,
   useCreateTypeMutation,

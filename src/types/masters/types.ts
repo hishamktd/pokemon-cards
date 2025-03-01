@@ -1,3 +1,5 @@
+import { Nullable } from '..';
+
 export type Types = {
   id: number;
   name: string;
@@ -6,7 +8,7 @@ export type Types = {
 };
 
 export type TypesForm = Omit<Types, 'id'> & {
-  icon: File | null;
+  icon: Nullable<File>;
 };
 
 export type TypesCreateRequest = Omit<Types, 'id'>;

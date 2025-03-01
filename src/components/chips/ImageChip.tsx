@@ -3,10 +3,11 @@ import React, { FC, memo, useState } from 'react';
 
 import Image from 'next/image';
 
+import { Nullable } from '@/types';
 import { isValidUrl } from '@/utils/common';
 
 type Props = {
-  imageUrl?: string;
+  imageUrl?: Nullable<string>;
   width?: number;
   height?: number;
 };

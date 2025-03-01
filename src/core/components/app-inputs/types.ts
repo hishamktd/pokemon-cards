@@ -38,7 +38,6 @@ export type AppSelectProps<T extends BaseOption> = SingleSelectFormControl & {
   helperText?: string | null;
   isClearable?: boolean;
   getOptionsLabel?: (option: T) => string;
-  getOptionsValue?: (option: T) => string;
   defaultValue?: T | '';
 };
 
