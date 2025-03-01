@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://github.com/hishamktd/pokemon-cards/compare/v0.0.18...v0.0.19) (2025-03-01)
+
+
+### Features
+
+* Add ImageChip to Expansion component for displaying images in the table ([be076f4](https://github.com/hishamktd/pokemon-cards/commit/be076f4dfccf90cb6cc2e54c6fe265bd30605352))
+
 ### [0.0.18](https://github.com/hishamktd/pokemon-cards/compare/v0.0.17...v0.0.18) (2025-03-01)
 
 
