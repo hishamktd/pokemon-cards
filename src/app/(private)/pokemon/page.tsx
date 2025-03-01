@@ -8,7 +8,7 @@ import {
   useGetPokemonsQuery,
 } from '@/api/pokemon/pokemon.api';
 import ActionButton from '@/components/action-button';
-import { ColorChip, ImageChip } from '@/components/chips';
+import { IconTextChip, ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
@@ -106,29 +106,21 @@ const Pokemons = () => {
       { field: 'name', headerName: 'Name' },
       {
         field: 'type.name',
-        headerName: 'Type name',
-        renderCell: ({ row }) => row?.type?.name,
+        headerName: 'Type',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.type?.name}
+            icon={row?.type?.iconUrl}
+            color={row?.type?.color}
+          />
+        ),
+        flex: 0,
+        minWidth: 170,
       },
       {
         field: 'imageUrl',
         headerName: 'Image',
         renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
-        sortable: false,
-        disableColumnMenu: true,
-        flex: 0,
-      },
-      {
-        field: 'type.iconUrl',
-        headerName: 'Type Icon',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.type?.iconUrl} />,
-        sortable: false,
-        disableColumnMenu: true,
-        flex: 0,
-      },
-      {
-        field: 'type.color',
-        headerName: 'Type Color',
-        renderCell: ({ row }) => <ColorChip color={row?.type?.color} />,
         sortable: false,
         disableColumnMenu: true,
         flex: 0,
