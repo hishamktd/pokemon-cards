@@ -2,7 +2,11 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
 import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
-import { Pokemon, PokemonCreateRequest } from '@/types/pokemon';
+import {
+  Pokemon,
+  PokemonCreateRequest,
+  PokemonUpdateRequest,
+} from '@/types/pokemon';
 
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
@@ -34,7 +38,7 @@ export const pokemonApi = createApi({
         data,
       }),
     }),
-    updatePokemon: builder.mutation<Pokemon, Pokemon>({
+    updatePokemon: builder.mutation<Pokemon, PokemonUpdateRequest>({
       query: (data) => ({
         url: `/pokemon/${data.id}`,
         method: 'PUT',

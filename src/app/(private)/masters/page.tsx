@@ -21,7 +21,7 @@ import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
-const Expansion = () => {
+const Expansions = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [sortBy, setSortBy] = useQuery('sort_by', '');
@@ -184,4 +184,4 @@ const Expansion = () => {
   );
 };
 
-export default memo(Expansion);
+export default memo(Expansions);

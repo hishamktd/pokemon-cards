@@ -14,4 +14,6 @@ export type PokemonForm = Omit<Pokemon, 'typeId' | 'id' | 'type'> & {
   type: Nullable<Types>;
 };
 
-export type PokemonCreateRequest = Omit<Pokemon, 'id'>;
+export type PokemonCreateRequest = Omit<Pokemon, 'id' | 'type'>;
+
+export type PokemonUpdateRequest = Omit<Pokemon, 'type'>;

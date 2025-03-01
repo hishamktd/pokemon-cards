@@ -31,8 +31,8 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
     helperText,
     error,
     isClearable = true,
-    getOptionsLabel,
-    getOptionsValue,
+    getOptionsLabel = (opt) => opt?.name ?? '',
+    getOptionsValue = (opt) => String(opt?.id) ?? '',
     ...rest
   } = props;
 
@@ -78,11 +78,11 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
       >
         {options.map((option) => (
           <MenuItem
-            key={getOptionsValue?.(option) ?? option?.id ?? ''}
-            value={getOptionsLabel?.(option) ?? option?.name ?? ''}
+            key={getOptionsValue(option)}
+            value={getOptionsLabel(option)}
             color={color}
           >
-            {getOptionsLabel?.(option) ?? option?.name}
+            {getOptionsLabel(option)}
           </MenuItem>
         ))}
       </Select>
