@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/hishamktd/pokemon-cards/compare/v0.0.16...v0.0.17) (2025-03-01)
+
+
+### Features
+
+* Add Types page and corresponding icon integration in the masters module ([47765a4](https://github.com/hishamktd/pokemon-cards/commit/47765a479da76e6d86a57f2d03e2da3f69679360))
+* Add TypesDrawer component for managing type creation and editing ([924d2e5](https://github.com/hishamktd/pokemon-cards/commit/924d2e543209c4c484debc4d22afbe8757812075))
+* Enhance Types page with ColorChip component and improve file upload validation ([8121edf](https://github.com/hishamktd/pokemon-cards/commit/8121edf066569156854007d807fb32dbcd5db0fb))
+* Implement API and schema for managing types in the masters module ([2e4cbb2](https://github.com/hishamktd/pokemon-cards/commit/2e4cbb210743535bc1cd7074edf469d209211f64))
+* Integrate Types API and implement Types management page with CRUD functionality ([bcf5560](https://github.com/hishamktd/pokemon-cards/commit/bcf5560167622a4f2513edbabdb9ff0ef5bbff34))
+
 ### [0.0.16](https://github.com/hishamktd/pokemon-cards/compare/v0.0.15...v0.0.16) (2025-03-01)
 
 ### [0.0.15](https://github.com/hishamktd/pokemon-cards/compare/v0.0.14...v0.0.15) (2025-02-28)
