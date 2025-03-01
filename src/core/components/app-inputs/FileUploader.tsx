@@ -84,11 +84,15 @@ const FileUploader: FC<FileUploaderProps> = ({
 
     try {
       const url = await getCroppedImg(imageSrc, croppedAreaPixels);
-      const file = new File(
-        [await fetch(url).then((r) => r.blob())],
-        `${name || 'image'}.jpg`,
-        { type: 'image/jpeg' },
-      );
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      const mimeType = blob.type || 'image/png';
+      const extension = mimeType.split('/')[1] || 'png';
+
+      const file = new File([blob], `${name || 'image'}.${extension}`, {
+        type: mimeType,
+      });
 
       onChange(file);
       setImageSrc(url);

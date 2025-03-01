@@ -11,22 +11,32 @@ export default function getCroppedImg(
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     const image = new Image();
+    image.crossOrigin = 'anonymous';
+
+    const setImageSrc = (src: string) => {
+      image.src = src;
+    };
+
     if (typeof imageSrc === 'string') {
-      image.src = imageSrc;
+      setImageSrc(imageSrc);
     } else {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        image.src = reader.result as string;
-      };
+      reader.onloadend = () => setImageSrc(reader.result as string);
       reader.readAsDataURL(new Blob([imageSrc]));
     }
+
     image.onload = () => {
       const canvas = document.createElement('canvas');
       canvas.width = croppedAreaPixels.width;
       canvas.height = croppedAreaPixels.height;
       const ctx = canvas.getContext('2d');
 
-      ctx?.drawImage(
+      if (!ctx) {
+        reject(new Error('Canvas context is not available.'));
+        return;
+      }
+
+      ctx.drawImage(
         image,
         croppedAreaPixels.x,
         croppedAreaPixels.y,
@@ -38,15 +48,22 @@ export default function getCroppedImg(
         croppedAreaPixels.height,
       );
 
+      const formatMatch = imageSrc
+        .toString()
+        .match(/data:image\/(png|jpeg|jpg);/);
+      const format = formatMatch ? formatMatch[1] : 'png';
+      const mimeType = format === 'jpg' ? 'image/jpeg' : `image/${format}`;
+
       canvas.toBlob((blob) => {
         if (!blob) {
-          console.error('Canvas is empty');
+          reject(new Error('Canvas is empty.'));
           return;
         }
         const fileUrl = URL.createObjectURL(blob);
         resolve(fileUrl);
-      }, 'image/jpeg');
+      }, mimeType);
     };
+
     image.onerror = reject;
   });
 }
