@@ -5,7 +5,7 @@ export type Types = {
   color: string;
 };
 
-export type TypesForm = Omit<Types, 'id' | 'iconUrl'> & {
+export type TypesForm = Omit<Types, 'id'> & {
   icon: File | null;
 };
 

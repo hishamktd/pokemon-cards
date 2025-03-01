@@ -1,5 +1,7 @@
 import { Control, Path } from 'react-hook-form';
 
+import { AppTextFieldProps } from '@core/components/app-inputs';
+
 type BaseProps<T extends Record<string, unknown>> = {
   name: Path<T>;
   control: Control<T>;
@@ -9,7 +11,7 @@ type BaseProps<T extends Record<string, unknown>> = {
 };
 
 export type TextFieldControllerProps<T extends Record<string, unknown>> =
-  BaseProps<T> & {};
+  BaseProps<T> & AppTextFieldProps;
 
 export type NumberFieldControllerProps<T extends Record<string, unknown>> =
   BaseProps<T> & {};

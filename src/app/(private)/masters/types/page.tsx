@@ -13,6 +13,7 @@ import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
 import { DeleteItem, TId } from '@/types';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
+import TypesDrawer from '@/views/masters/types/TypesDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
@@ -149,6 +150,12 @@ const Types = () => {
           setSortBy(field);
           setOrder(sort);
         }}
+      />
+      <TypesDrawer
+        open={isOpen}
+        id={editId}
+        onClose={handleCloseDrawer}
+        refetchTypes={refetchTypes}
       />
       <DeleteModal
         itemToDelete={itemToDelete}
