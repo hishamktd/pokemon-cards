@@ -17,7 +17,7 @@ const ColorChip: FC<Props> = ({ color }) => {
   return (
     <Box sx={getBoxStyle}>
       <Tooltip title={color}>
-        <Paper sx={{ width: 24, height: 24, backgroundColor: color }}></Paper>
+        <Paper sx={{ width: 30, height: 30, backgroundColor: color }}></Paper>
       </Tooltip>
     </Box>
   );

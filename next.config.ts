@@ -13,7 +13,10 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    domains: ['vishmvrcizpuo7zs.public.blob.vercel-storage.com'],
+    domains: [
+      'vishmvrcizpuo7zs.public.blob.vercel-storage.com',
+      'www.google.com',
+    ],
     remotePatterns: [
       {
         protocol: 'https',

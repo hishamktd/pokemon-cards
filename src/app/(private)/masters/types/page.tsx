@@ -8,7 +8,7 @@ import {
   useGetTypesQuery,
 } from '@/api/masters/types.api';
 import ActionButton from '@/components/action-button';
-import ColorChip from '@/components/chips/ColorChip';
+import { ColorChip, ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
@@ -108,6 +108,17 @@ const Types = () => {
         field: 'color',
         headerName: 'Color',
         renderCell: ({ row }) => <ColorChip color={row?.color} />,
+        sortable: false,
+        disableColumnMenu: true,
+        flex: 0,
+      },
+      {
+        field: 'iconUrl',
+        headerName: 'Icon',
+        renderCell: ({ row }) => <ImageChip imageUrl={row?.iconUrl} />,
+        sortable: false,
+        disableColumnMenu: true,
+        flex: 0,
       },
       {
         field: 'actions',
