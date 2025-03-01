@@ -50,7 +50,7 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
   return (
     <FormControl
       variant={variant}
-      sx={{ m: 1, minWidth: 300 }}
+      sx={{ minWidth: 300 }}
       size={size}
       color={color}
       error={error}
@@ -76,6 +76,7 @@ const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
         renderValue={(selected) =>
           getOptionsLabel(JSON.parse(selected as string) as T)
         }
+        fullWidth
         {...selectProps}
       >
         {options.map((option) => (
