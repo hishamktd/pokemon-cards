@@ -8,6 +8,7 @@ import {
   useGetExpansionsQuery,
 } from '@/api/masters/expansion.api';
 import ActionButton from '@/components/action-button';
+import { ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
@@ -108,6 +109,14 @@ const Expansion = () => {
         field: 'points',
         headerName: 'Points',
         renderCell: ({ row }) => getOrDefault(row?.points),
+      },
+      {
+        field: 'imageUrl',
+        headerName: 'Image',
+        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} width={60} />,
+        sortable: false,
+        disableColumnMenu: true,
+        flex: 0,
       },
       {
         field: 'actions',
