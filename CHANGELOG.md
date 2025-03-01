@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/hishamktd/pokemon-cards/compare/v0.0.17...v0.0.18) (2025-03-01)
+
+
+### Features
+
+* Add ImageChip component and update ColorChip styling; enhance Types page with new icon column ([7324bf0](https://github.com/hishamktd/pokemon-cards/commit/7324bf058214f14790468acbeb64966fddfa0570))
+* Wrap ColorChip component in Box for improved layout and styling ([d7d6ec8](https://github.com/hishamktd/pokemon-cards/commit/d7d6ec8d5f4802a0d481495341d53132829ada65))
+
 ### [0.0.17](https://github.com/hishamktd/pokemon-cards/compare/v0.0.16...v0.0.17) (2025-03-01)
 
 
