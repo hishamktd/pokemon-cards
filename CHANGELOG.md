@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/hishamktd/pokemon-cards/compare/v0.0.19...v0.0.20) (2025-03-01)
+
+
+### Features
+
+* Add endpoints to fetch all expansions and types with corresponding types ([97c0d3f](https://github.com/hishamktd/pokemon-cards/commit/97c0d3fcd7b91f336bc5dabc78caeddc5c6e5545))
+* Add Pokemon API with CRUD operations and update type definitions for nullable fields ([5689267](https://github.com/hishamktd/pokemon-cards/commit/568926769ff3127dd4c66d02c6dd0923464ac936))
+* Add Pokemon schema with validation for name and type, and support for nullable image ([051e51b](https://github.com/hishamktd/pokemon-cards/commit/051e51b0be1e3e16f9621a6de894694de668a712))
+* Add SelectController component and update Pokemon API types for create and update requests ([13b236c](https://github.com/hishamktd/pokemon-cards/commit/13b236cb8cc391b7416ae9425e74d9a7e71b8b06))
+* Add useGetAllExpansionsQuery hook to expansion API ([73b7473](https://github.com/hishamktd/pokemon-cards/commit/73b747366453725f609d0d081285c5d0da4fe8da))
+* Enhance FileUploader and getCroppedImg for dynamic image format handling ([5fcd071](https://github.com/hishamktd/pokemon-cards/commit/5fcd0714df54c2a02f436abad8da37e9b697d62e))
+* Improve key action handling with modifier key support ([9b22327](https://github.com/hishamktd/pokemon-cards/commit/9b223275d171396f11420b570123443292f759ce))
+* Introduce IconTextChip component and update Pokemon table to use it for type display ([f9d80ff](https://github.com/hishamktd/pokemon-cards/commit/f9d80ff23dc5efe23aaed7c33b62607dad233130))
+* Refactor API type definitions for expansions and types to use unified GetAllType structure ([c0b9703](https://github.com/hishamktd/pokemon-cards/commit/c0b97030b39c15df062f4efa05363c2eeae87d7b))
+* Update PokemonForm type to include nullable type and add default values for Pokemon ([c7db4f5](https://github.com/hishamktd/pokemon-cards/commit/c7db4f58181d35705d0b7960fe635fd05c389421))
+* Update SelectField to handle JSON serialization for options and refactor related types ([afd0ae3](https://github.com/hishamktd/pokemon-cards/commit/afd0ae353672779145c36d8c45002a6e7a204fc0))
+* Update type definitions for Expansion and Types components and enhance ImageChip for nullable imageUrl ([fbfd592](https://github.com/hishamktd/pokemon-cards/commit/fbfd592f2348cbc481595441af025d550c977a3f))
+
 ### [0.0.19](https://github.com/hishamktd/pokemon-cards/compare/v0.0.18...v0.0.19) (2025-03-01)
 
 
