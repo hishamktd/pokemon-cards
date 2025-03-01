@@ -17,15 +17,25 @@ function useKeyActions(
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
+      const { ctrlKey, altKey, shiftKey, key: eventKey } = event;
       if (!keyAction || disabled) {
         return;
       }
 
-      const key = event.key.toLowerCase();
+      const key = eventKey.toLowerCase();
+      const { key: actionKey, modifier } = keyAction;
 
-      if (keyAction && keyAction.key.toLowerCase() === key) {
-        event.preventDefault();
-        action?.(event as Any);
+      if (actionKey.toLowerCase() === key) {
+        const isModifierMatch =
+          (modifier === 'Ctrl' && ctrlKey) ||
+          (modifier === 'Alt' && altKey) ||
+          (modifier === 'Shift' && shiftKey) ||
+          (!modifier && !ctrlKey && !altKey && !shiftKey);
+
+        if (isModifierMatch) {
+          event.preventDefault();
+          action?.(event as Any);
+        }
       }
     },
     [keyAction, disabled, action],
