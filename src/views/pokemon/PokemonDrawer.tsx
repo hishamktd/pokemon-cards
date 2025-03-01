@@ -51,10 +51,13 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     path: 'pokemon',
   });
 
-  const { control, handleSubmit, reset, setError } = useForm<PokemonForm>({
-    defaultValues: pokemonDefaultValues,
-    resolver: resolver(pokemonSchema),
-  });
+  const { control, handleSubmit, reset, setError, watch } =
+    useForm<PokemonForm>({
+      defaultValues: pokemonDefaultValues,
+      resolver: resolver(pokemonSchema),
+    });
+
+  console.log('pokemon', watch());
 
   const buttonLoading = useMemo(() => {
     return isCreating || isUpdating || fileUploading;

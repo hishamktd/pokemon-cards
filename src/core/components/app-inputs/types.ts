@@ -55,7 +55,6 @@ export type AppMultiSelectProps<T extends BaseOption> =
     isClearable?: boolean;
     inputLabelProps?: InputLabelProps;
     getOptionsLabel?: (option: T) => string;
-    getOptionsValue?: (option: T) => string;
     selectProps?: SelectProps;
   };
 
