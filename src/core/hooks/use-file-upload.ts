@@ -11,7 +11,7 @@ const useFileUpload = ({ path = 'default' }: Props) => {
 
   const upload = useCallback(
     async (file: File | null, imageUrl?: string | null, name?: string) => {
-      if (!file) return imageUrl ?? '';
+      if (!file || typeof file === 'string') return imageUrl ?? '';
 
       const formData = new FormData();
       formData.append('file', file);

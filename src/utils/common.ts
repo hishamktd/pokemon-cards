@@ -6,17 +6,11 @@ const getOrDefault = <T extends string | number | null | undefined>(
 };
 
 const isValidUrl = (url?: string | null) => {
-  if (!url) {
-    console.log('url is null');
+  if (!url) return false;
 
-    return false;
-  }
   try {
-    console.log('url is not null');
-
     return Boolean(new URL(url));
   } catch {
-    console.log('url is not valid');
     return false;
   }
 };

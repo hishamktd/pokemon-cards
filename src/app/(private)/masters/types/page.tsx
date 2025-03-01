@@ -8,6 +8,7 @@ import {
   useGetTypesQuery,
 } from '@/api/masters/types.api';
 import ActionButton from '@/components/action-button';
+import ColorChip from '@/components/chips/ColorChip';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
@@ -103,7 +104,11 @@ const Types = () => {
     () => [
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
-      { field: 'color', headerName: 'Color' },
+      {
+        field: 'color',
+        headerName: 'Color',
+        renderCell: ({ row }) => <ColorChip color={row?.color} />,
+      },
       {
         field: 'actions',
         headerName: 'Actions',
