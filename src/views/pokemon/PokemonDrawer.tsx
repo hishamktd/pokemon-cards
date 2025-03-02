@@ -19,6 +19,7 @@ import { pokemonDefaultValues } from '@/constants/pokemon';
 import { Stage, stageOptions } from '@/enum/pokemon';
 import { ICONS } from '@/lib/icons/icons-const';
 import { pokemonSchema } from '@/schema/pokemon';
+import styles from '@/styles/common';
 import { TId } from '@/types';
 import { PokemonForm } from '@/types/pokemon';
 import { isValidUrl } from '@/utils/common';
@@ -159,35 +160,15 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
       loading={isFetching}
       paperProps={{ sx: { width: 800 } }}
       buttonGroupProps={{
-        restButton: {
+        resetButton: {
           iconButtonProps: {
             icon: ICONS.RESET_ICON,
-            shape: 'default',
-          },
-        },
-        restButto: {
-          iconButtonProps: {
-            icon: ICONS.RESET_ICON,
-            variant: 'contained',
-            shape: 'square',
-          },
-        },
-        restButon: {
-          iconButtonProps: {
-            icon: ICONS.RESET_ICON,
+            color: 'error',
             variant: 'outlined',
             shape: 'square',
+            sx: styles.resetIconStyle,
+            onClick: handleReset,
           },
-        },
-        resButon: {
-          iconButtonProps: {
-            icon: ICONS.RESET_ICON,
-            variant: 'default',
-            shape: 'square',
-          },
-        },
-        resetButton: {
-          iconButtonProps: { icon: ICONS.RESET_ICON, color: 'error' },
         },
       }}
     >
