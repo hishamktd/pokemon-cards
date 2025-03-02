@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com/hishamktd/pokemon-cards/compare/v0.0.21...v0.0.22) (2025-03-02)
+
+
+### Features
+
+* Add icon button support to ButtonGroup and integrate reset icon in PokemonDrawer ([ce1df36](https://github.com/hishamktd/pokemon-cards/commit/ce1df36cb08cfbcd99d48a969a90a267dccc5edd))
+* Add lodash dependency and utility functions for enum handling; refactor PokemonDrawer to use Grid2 layout ([7db22fb](https://github.com/hishamktd/pokemon-cards/commit/7db22fba6b2753b3bd1650105cbf94653c341ddd))
+* Add reset icon animation and style to PokemonDrawer component ([cdc5ebf](https://github.com/hishamktd/pokemon-cards/commit/cdc5ebfd108e99836e137a80fa5b1ef782a5fc12))
+* Enhance Pokémon form with stage and evolvedFrom fields; update validation and UI components ([16fa41c](https://github.com/hishamktd/pokemon-cards/commit/16fa41ca61bba951b2a900c39a705f89f96dd3b3))
+* Introduce ModdedIconButton with customizable shape and variant; refactor ButtonGroup to utilize IconButton ([3f92cd8](https://github.com/hishamktd/pokemon-cards/commit/3f92cd813cde8773fad3106e8cfd1f3204e1e150))
+
 ### [0.0.21](https://github.com/hishamktd/pokemon-cards/compare/v0.0.20...v0.0.21) (2025-03-01)
 
 ### [0.0.20](https://github.com/hishamktd/pokemon-cards/compare/v0.0.19...v0.0.20) (2025-03-01)
