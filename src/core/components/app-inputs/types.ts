@@ -70,15 +70,16 @@ export type FileUploaderProps = {
   imageUrl?: string | null;
 };
 
-export type RadioType = {
+export type RadioOptions = {
   id: string;
   name: ReactNode;
 };
 
 export type AppRadioProps = RadioGroupProps & {
   value?: string;
+  label?: ReactNode;
   row?: boolean;
-  radioList?: RadioType[];
+  options?: RadioOptions[];
   formLabelProps?: Omit<FormControlLabelProps, 'value' | 'label' | 'control'>;
   radioProps?: RadioProps;
   onChange?: (

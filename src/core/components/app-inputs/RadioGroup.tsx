@@ -1,3 +1,4 @@
+import { FormControl, FormLabel } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -8,29 +9,35 @@ import { AppRadioProps } from './types';
 const AppRadio = ({
   row = true,
   radioProps,
-  radioList,
+  options,
   formLabelProps,
+  label,
+  defaultValue,
   ...rest
 }: AppRadioProps) => {
   const { slotProps = {} } = formLabelProps || {};
   const { typography } = slotProps;
 
   return (
-    <RadioGroup row={row} aria-label="controlled" name="controlled" {...rest}>
-      {radioList?.map((radio) => (
-        <FormControlLabel
-          key={radio?.id}
-          value={radio?.id}
-          label={radio?.name}
-          control={<Radio {...radioProps} />}
-          slotProps={{
-            typography: { fontSize: 14, ...typography },
-            ...slotProps,
-          }}
-          {...formLabelProps}
-        />
-      ))}
-    </RadioGroup>
+    <FormControl>
+      <FormLabel id="buttons-group-label">{label}</FormLabel>
+      <RadioGroup row={row} aria-label="controlled" name="controlled" {...rest}>
+        {options?.map((radio) => (
+          <FormControlLabel
+            key={radio?.id}
+            value={radio?.id}
+            label={radio?.name}
+            defaultValue={defaultValue}
+            control={<Radio {...radioProps} />}
+            slotProps={{
+              typography: { fontSize: 14, ...typography },
+              ...slotProps,
+            }}
+            {...formLabelProps}
+          />
+        ))}
+      </RadioGroup>
+    </FormControl>
   );
 };
 

@@ -13,10 +13,11 @@ import {
 import {
   FileUploadController,
   TextFieldController,
+  SelectController,
+  RadioController,
 } from '@/components/field-controller';
-import SelectController from '@/components/field-controller/SelectController';
 import { pokemonDefaultValues } from '@/constants/pokemon';
-import { Stage, stageOptions } from '@/enum/pokemon';
+import { genderOptions, Stage, stageOptions } from '@/enum/pokemon';
 import { ICONS } from '@/lib/icons/icons-const';
 import { pokemonSchema } from '@/schema/pokemon';
 import styles from '@/styles/common';
@@ -196,6 +197,12 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
             control={control}
             label="Type"
             options={types}
+          />
+          <RadioController
+            name="gender"
+            control={control}
+            label="Gender"
+            options={genderOptions}            
           />
           <SelectController
             name="stage"

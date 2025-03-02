@@ -2,7 +2,7 @@ import { startCase, toLower, find } from 'lodash';
 
 import { Any, BaseOption } from '@/types';
 
-const toSelect = <T extends BaseOption>(
+const toSelect = <T extends Any = BaseOption>(
   val: string[] | Record<string, string>,
   idKey: string = 'id',
   nameKey: string = 'name',

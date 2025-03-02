@@ -1,4 +1,4 @@
-import { Stage } from '@/enum/pokemon';
+import { Gender, Stage } from '@/enum/pokemon';
 
 import { BaseOption, Nullable } from '..';
 import { Types } from '../masters/types';
@@ -12,6 +12,7 @@ export type Pokemon = {
   stage: Stage;
   evolvedFromId: Nullable<number>;
   evolvedFrom: Nullable<Pokemon>;
+  gender: Gender;
 };
 
 export type PokemonForm = Omit<

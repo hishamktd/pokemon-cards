@@ -1,4 +1,4 @@
-import { Stage, stageOptions } from '@/enum/pokemon';
+import { Gender, Stage, stageOptions } from '@/enum/pokemon';
 import { PokemonForm } from '@/types/pokemon';
 import { fromSelect } from '@/utils/enum-utils';
 
@@ -9,4 +9,5 @@ export const pokemonDefaultValues: PokemonForm = {
   imageUrl: null,
   stage: fromSelect(Stage.BASIC, stageOptions),
   evolvedFrom: null,
+  gender: Gender.UNKNOWN,
 };

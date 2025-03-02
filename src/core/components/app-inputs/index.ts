@@ -12,5 +12,5 @@ export type {
   AppMultiSelectProps,
   FileUploaderProps,
   AppRadioProps,
-  RadioType,
+  RadioOptions,
 } from './types';
