@@ -1,12 +1,8 @@
 import React, { FC, memo, useMemo } from 'react';
 
-import { Any } from '@/types';
-
 import { AppButtonGroupProps, AppGroupButtonItem, AppButton } from '.';
-import {
-  ButtonGroupContainer,
-  ButtonGroupIconButton,
-} from './styled-components';
+import { ButtonGroupContainer } from './styled-components';
+import IconButton from '../icon-button';
 
 const ButtonGroup: FC<AppButtonGroupProps> = ({
   containedButtonProps,
@@ -40,9 +36,7 @@ const ButtonGroup: FC<AppButtonGroupProps> = ({
 
         if (iconButtonProps) {
           const { color, ...others } = iconButtonProps;
-          return (
-            <ButtonGroupIconButton key={i} color={color as Any} {...others} />
-          );
+          return <IconButton key={i} color={color} {...others} />;
         }
 
         return (

@@ -1,38 +1,32 @@
-import {
-  IconButtonProps as MuiIconButtonProps,
-  IconButton as MuiIconButton,
-  Tooltip,
-} from '@mui/material';
+import { Tooltip } from '@mui/material';
 import { memo } from 'react';
 
-import Icon, { IconProps } from '../../../lib/icons';
+import Icon from '@/lib/icons';
 
-export type IconButtonProps = MuiIconButtonProps & {
-  icon: string;
-  iconProps?: Omit<IconProps, 'icon'>;
-  toolTip?: string;
-};
+import { ModdedIconButton } from './styled-component';
+import { IconButtonProps } from './type';
 
 const IconButton: React.FC<IconButtonProps> = ({
   icon,
   iconProps,
   toolTip,
+  color = 'primary',
   ...rest
 }) => {
   if (toolTip) {
     return (
-      <MuiIconButton {...rest}>
+      <ModdedIconButton color={color} {...rest}>
         <Tooltip title={toolTip}>
           <Icon icon={icon} {...iconProps} />
         </Tooltip>
-      </MuiIconButton>
+      </ModdedIconButton>
     );
   }
 
   return (
-    <MuiIconButton {...rest}>
+    <ModdedIconButton color={color} {...rest}>
       <Icon icon={icon} {...iconProps} />
-    </MuiIconButton>
+    </ModdedIconButton>
   );
 };
 

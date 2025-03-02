@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import { KeyActionEnum } from '@/enum/key-actions';
 
-import { IconButtonProps } from '../icon-button';
+import { IconButtonProps } from '../icon-button/type';
 
 export type AppButtonProps = ButtonProps & {
   loading?: boolean;

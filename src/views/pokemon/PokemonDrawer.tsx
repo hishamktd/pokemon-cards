@@ -162,6 +162,28 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
         restButton: {
           iconButtonProps: {
             icon: ICONS.RESET_ICON,
+            shape: 'default',
+          },
+        },
+        restButto: {
+          iconButtonProps: {
+            icon: ICONS.RESET_ICON,
+            variant: 'contained',
+            shape: 'square',
+          },
+        },
+        restButon: {
+          iconButtonProps: {
+            icon: ICONS.RESET_ICON,
+            variant: 'outlined',
+            shape: 'square',
+          },
+        },
+        resButon: {
+          iconButtonProps: {
+            icon: ICONS.RESET_ICON,
+            variant: 'default',
+            shape: 'square',
           },
         },
         resetButton: {
