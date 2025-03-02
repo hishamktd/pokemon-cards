@@ -1,7 +1,11 @@
 import { Control, Path } from 'react-hook-form';
 
 import { BaseOption } from '@/types';
-import { AppSelectProps, AppTextFieldProps } from '@core/components/app-inputs';
+import {
+  AppRadioProps,
+  AppSelectProps,
+  AppTextFieldProps,
+} from '@core/components/app-inputs';
 
 type BaseProps<T extends Record<string, unknown>> = {
   name: Path<T>;
@@ -28,3 +32,7 @@ export type SelectControllerProps<
   T extends Record<string, unknown>,
   S extends BaseOption,
 > = BaseProps<T> & AppSelectProps<S>;
+
+export type RadioControllerProps<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> = BaseProps<T> & AppRadioProps;

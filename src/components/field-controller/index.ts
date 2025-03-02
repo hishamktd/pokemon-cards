@@ -7,4 +7,5 @@ export type {
   NumberFieldControllerProps,
   FileUploadControllerProps,
   SelectControllerProps,
+  RadioControllerProps,
 } from './types';

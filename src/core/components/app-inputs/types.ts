@@ -1,10 +1,14 @@
 import {
+  FormControlLabelProps,
   FormControlProps,
   InputLabelProps,
   OutlinedInputProps,
+  RadioGroupProps,
+  RadioProps,
   SelectProps,
   TextFieldProps,
 } from '@mui/material';
+import { ReactNode } from 'react';
 
 import { Control } from 'react-hook-form';
 
@@ -64,4 +68,21 @@ export type FileUploaderProps = {
   cropWidth?: number;
   cropHeight?: number;
   imageUrl?: string | null;
+};
+
+export type RadioType = {
+  id: string;
+  name: ReactNode;
+};
+
+export type AppRadioProps = RadioGroupProps & {
+  value?: string;
+  row?: boolean;
+  radioList?: RadioType[];
+  formLabelProps?: Omit<FormControlLabelProps, 'value' | 'label' | 'control'>;
+  radioProps?: RadioProps;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: string,
+  ) => void;
 };
