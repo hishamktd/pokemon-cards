@@ -12,6 +12,12 @@ type Props = {
   height?: number;
 };
 
+type TooltipTitleProps = {
+  title: string;
+  height: number;
+  width: number;
+};
+
 const getBoxStyle = () => ({
   display: 'flex',
   alignItems: 'center',
@@ -19,13 +25,34 @@ const getBoxStyle = () => ({
   height: '100%',
 });
 
+const TooltipTitle = ({ title, height, width }: TooltipTitleProps) => (
+  <Box
+    sx={{
+      width: 'auto',
+      height: 'auto',
+      bgcolor: 'common.white',
+      borderRadius: 1,
+    }}
+  >
+    <Image src={title} alt="" width={width} height={height} />
+  </Box>
+);
+
 const ImageChip: FC<Props> = ({ imageUrl, width = 30, height = 30 }) => {
   const [showImage, setShowImage] = useState(true);
 
   if (!showImage || !imageUrl || !isValidUrl(imageUrl)) return <>-</>;
   return (
     <Box sx={getBoxStyle}>
-      <Tooltip title={imageUrl}>
+      <Tooltip
+        title={
+          <TooltipTitle
+            title={imageUrl}
+            height={height * 4}
+            width={width * 4}
+          />
+        }
+      >
         <Paper sx={{ width: width, height: height }}>
           <Image
             src={imageUrl}
