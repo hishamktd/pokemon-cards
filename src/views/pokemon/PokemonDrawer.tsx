@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Grid2 } from '@mui/material';
 import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
 
 import { useForm } from 'react-hook-form';
@@ -126,27 +126,32 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
       filledButtonProps={{ loading: buttonLoading }}
       outlineButtonProps={{ loading: buttonLoading }}
       loading={isFetching}
+      paperProps={{ sx: { width: 800 } }}
     >
-      <Stack gap={2}>
-        <TextFieldController<PokemonForm>
-          name="name"
-          control={control}
-          label="Name"
-        />
-        <SelectController<PokemonForm, GetAllType>
-          name="type"
-          control={control}
-          label="Type"
-          options={types}
-        />
-        <FileUploadController<PokemonForm>
-          name="image"
-          control={control}
-          imageUrl={pokemon?.imageUrl}
-          cropWidth={100}
-          cropHeight={100}
-        />
-      </Stack>
+      <Grid2 container spacing={3}>
+        <Grid2 container size={6} spacing={2} direction="column">
+          <TextFieldController<PokemonForm>
+            name="name"
+            control={control}
+            label="Name"
+          />
+          <SelectController<PokemonForm, GetAllType>
+            name="type"
+            control={control}
+            label="Type"
+            options={types}
+          />
+        </Grid2>
+        <Grid2 size={6}>
+          <FileUploadController<PokemonForm>
+            name="image"
+            control={control}
+            imageUrl={pokemon?.imageUrl}
+            cropWidth={100}
+            cropHeight={100}
+          />
+        </Grid2>
+      </Grid2>
     </AppDrawer>
   );
 };
