@@ -17,7 +17,7 @@ import {
   RadioController,
 } from '@/components/field-controller';
 import { pokemonDefaultValues } from '@/constants/pokemon';
-import { genderOptions, Stage, stageOptions } from '@/enum/pokemon';
+import { Gender, genderOptions, Stage, stageOptions } from '@/enum/pokemon';
 import { ICONS } from '@/lib/icons/icons-const';
 import { pokemonSchema } from '@/schema/pokemon';
 import styles from '@/styles/common';
@@ -139,6 +139,7 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
       const imageUrl = isValidUrl(pokemon.imageUrl) ? pokemon.imageUrl : '';
       reset({
         ...pokemon,
+        gender: pokemon.gender || Gender.UNKNOWN,
         imageUrl,
         stage: fromSelect(pokemon.stage, stageOptions),
       });
@@ -202,7 +203,7 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
             name="gender"
             control={control}
             label="Gender"
-            options={genderOptions}            
+            options={genderOptions}
           />
           <SelectController
             name="stage"

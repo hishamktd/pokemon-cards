@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { Stage } from '@/enum/pokemon';
+import { Gender, Stage } from '@/enum/pokemon';
 
 const { BASIC } = Stage;
 
@@ -18,6 +18,7 @@ const pokemonSchema = z
       id: z.nativeEnum(Stage),
       name: z.string(),
     }),
+    gender: z.nativeEnum(Gender),
     evolvedFrom: z.object({ id: z.number(), name: z.string() }).nullable(),
   })
   .refine((data) => data.stage.id === BASIC || data.evolvedFrom !== null, {
