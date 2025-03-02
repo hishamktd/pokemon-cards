@@ -51,7 +51,8 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     isFetching,
   } = useGetPokemonQuery(id);
   const { data: types = [] } = useGetAllTypesQuery();
-  const { data: evolvedFromOptions = [] } = useGetAllPokemonsQuery();
+  const { data: evolvedFromOptions = [], refetch: refetchAllPokemons } =
+    useGetAllPokemonsQuery();
 
   const { upload, fileUploading } = useFileUpload({
     path: 'pokemon',
@@ -146,8 +147,9 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
   useEffect(() => {
     if (refetchPokemons && (isCreated || isUpdated)) {
       refetchPokemons();
+      refetchAllPokemons();
     }
-  }, [isCreated, isUpdated, refetchPokemons]);
+  }, [isCreated, isUpdated, refetchAllPokemons, refetchPokemons]);
 
   return (
     <AppDrawer
