@@ -7,8 +7,8 @@ import { AppSelectField } from '@core/components/app-inputs';
 import { SelectControllerProps } from './types';
 
 const SelectController = <
-  T extends Record<string, unknown>,
-  S extends BaseOption,
+  T extends Record<string, unknown> = Record<string, unknown>,
+  S extends BaseOption = BaseOption,
 >(
   props: SelectControllerProps<T, S>,
 ) => {

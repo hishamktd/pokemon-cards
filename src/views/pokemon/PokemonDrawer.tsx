@@ -1,4 +1,4 @@
-import { Grid2 } from '@mui/material';
+import { Collapse, Grid2 } from '@mui/material';
 import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
 
 import { useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useGetAllTypesQuery } from '@/api/masters/types.api';
 import {
   useCreatePokemonMutation,
+  useGetAllPokemonsQuery,
   useGetPokemonQuery,
   useUpdatePokemonMutation,
 } from '@/api/pokemon/pokemon.api';
@@ -15,10 +16,12 @@ import {
 } from '@/components/field-controller';
 import SelectController from '@/components/field-controller/SelectController';
 import { pokemonDefaultValues } from '@/constants/pokemon';
+import { Stage, stageOptions } from '@/enum/pokemon';
 import { pokemonSchema } from '@/schema/pokemon';
-import { GetAllType, TId } from '@/types';
+import { TId } from '@/types';
 import { PokemonForm } from '@/types/pokemon';
 import { isValidUrl } from '@/utils/common';
+import { fromSelect } from '@/utils/enum-utils';
 import resolver from '@/utils/resolver';
 import { AppDrawer } from '@core/components/app-drawer';
 import useFileUpload from '@core/hooks/use-file-upload';
@@ -46,22 +49,34 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     isFetching,
   } = useGetPokemonQuery(id);
   const { data: types = [] } = useGetAllTypesQuery();
+  const { data: evolvedFromOptions = [] } = useGetAllPokemonsQuery();
 
   const { upload, fileUploading } = useFileUpload({
     path: 'pokemon',
   });
 
-  const { control, handleSubmit, reset, setError } = useForm<PokemonForm>({
-    defaultValues: pokemonDefaultValues,
-    resolver: resolver(pokemonSchema),
-  });
+  const { control, handleSubmit, reset, setError, watch, setValue } =
+    useForm<PokemonForm>({
+      defaultValues: pokemonDefaultValues,
+      resolver: resolver(pokemonSchema),
+    });
+
+  const watchedStage = watch('stage');
+
+  const isBaseStage = useMemo(() => {
+    const isBasic = watchedStage?.id === Stage.BASIC;
+    if (isBasic) {
+      setValue('evolvedFrom', null);
+    }
+    return isBasic;
+  }, [setValue, watchedStage?.id]);
 
   const buttonLoading = useMemo(() => {
     return isCreating || isUpdating || fileUploading;
   }, [isCreating, isUpdating, fileUploading]);
 
   const onSubmit = useCallback(
-    async ({ image, type, ...data }: PokemonForm) => {
+    async ({ image, type, stage, evolvedFrom, ...data }: PokemonForm) => {
       const imageUrl = await upload(image, pokemon?.imageUrl, data.name);
 
       if (!type?.id) {
@@ -69,7 +84,18 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
         return;
       }
 
-      const finalData = { ...data, imageUrl, typeId: type?.id };
+      if (stage?.id !== Stage.BASIC && !evolvedFrom?.id) {
+        setError('evolvedFrom', { message: 'Evolved From is required' });
+        return;
+      }
+
+      const finalData = {
+        ...data,
+        imageUrl,
+        typeId: type?.id,
+        stage: stage?.id as Stage,
+        evolvedFromId: evolvedFrom?.id ?? null,
+      };
 
       if (id) {
         await updatePokemon({ ...finalData, id });
@@ -93,7 +119,11 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
   const handleReset = useCallback(() => {
     if (pokemon && id) {
       const imageUrl = isValidUrl(pokemon.imageUrl) ? pokemon.imageUrl : '';
-      reset({ ...pokemon, imageUrl });
+      reset({
+        ...pokemon,
+        imageUrl,
+        stage: fromSelect(pokemon.stage, stageOptions),
+      });
     } else {
       reset(pokemonDefaultValues);
     }
@@ -130,20 +160,32 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     >
       <Grid2 container spacing={3}>
         <Grid2 container size={6} spacing={2} direction="column">
-          <TextFieldController<PokemonForm>
-            name="name"
-            control={control}
-            label="Name"
-          />
-          <SelectController<PokemonForm, GetAllType>
+          <TextFieldController name="name" control={control} label="Name" />
+          <SelectController
             name="type"
             control={control}
             label="Type"
             options={types}
           />
+          <SelectController
+            name="stage"
+            control={control}
+            label="Stage"
+            options={stageOptions}
+            isClearable={false}
+          />
+          <Collapse in={!isBaseStage}>
+            <SelectController
+              name="evolvedFrom"
+              control={control}
+              label="Evolved From"
+              options={evolvedFromOptions}
+              fullWidth
+            />
+          </Collapse>
         </Grid2>
         <Grid2 size={6}>
-          <FileUploadController<PokemonForm>
+          <FileUploadController
             name="image"
             control={control}
             imageUrl={pokemon?.imageUrl}

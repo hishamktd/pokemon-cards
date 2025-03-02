@@ -10,22 +10,19 @@ const toSelect = <T extends BaseOption>(
   const values = Array.isArray(val) ? val : Object.values(val);
 
   return values.map((item) => ({
-    [idKey]: startCase(toLower(item)),
-    [nameKey]: item,
+    [idKey]: item,
+    [nameKey]: startCase(toLower(item)),
   })) as T[];
 };
 
-const fromSelect = <
-  T extends { id?: string | number; name?: string },
-  K extends keyof T,
->(
+const fromSelect = <T extends Any, K extends keyof T>(
   value: Any,
   options: T[],
-  valueKey: K,
+  valueKey: K = 'id' as K,
 ): T | null => {
   const result = find(
     options,
-    (option) => option && option?.[valueKey as keyof T] === value,
+    (option) => option && option?.[valueKey as K] === value,
   );
   return result ?? null;
 };
