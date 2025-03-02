@@ -134,7 +134,7 @@ const Pokemons = () => {
       },
       {
         field: 'evolvedFrom.name',
-        headerName: 'Type',
+        headerName: 'Evolved From',
         renderCell: ({ row }) => (
           <IconTextChip
             text={row?.evolvedFrom?.name}
