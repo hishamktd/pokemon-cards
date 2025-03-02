@@ -3,10 +3,12 @@ import React, { FC, memo } from 'react';
 
 import Image from 'next/image';
 
+import { Nullable } from '@/types';
+
 type Props = {
-  icon?: string;
-  text?: string;
-  color?: string;
+  icon?: Nullable<string>;
+  text?: Nullable<string>;
+  color?: Nullable<string>;
 };
 
 const getBoxStyle = () => ({

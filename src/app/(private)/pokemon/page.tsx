@@ -3,6 +3,8 @@
 import { GridColDef } from '@mui/x-data-grid';
 import { memo, useCallback, useEffect, useMemo } from 'react';
 
+import { startCase, toLower } from 'lodash';
+
 import {
   useDeletePokemonMutation,
   useGetPokemonsQuery,
@@ -105,6 +107,14 @@ const Pokemons = () => {
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
       {
+        field: 'imageUrl',
+        headerName: 'Image',
+        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
+        sortable: false,
+        disableColumnMenu: true,
+        flex: 0,
+      },
+      {
         field: 'type.name',
         headerName: 'Type',
         renderCell: ({ row }) => (
@@ -118,12 +128,22 @@ const Pokemons = () => {
         minWidth: 170,
       },
       {
-        field: 'imageUrl',
-        headerName: 'Image',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
-        sortable: false,
-        disableColumnMenu: true,
+        field: 'stage',
+        headerName: 'Stage',
+        valueFormatter: (val) => startCase(toLower(val)),
+      },
+      {
+        field: 'evolvedFrom.name',
+        headerName: 'Type',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.evolvedFrom?.name}
+            icon={row?.evolvedFrom?.imageUrl}
+            color={row?.evolvedFrom?.type?.color}
+          />
+        ),
         flex: 0,
+        minWidth: 170,
       },
       {
         field: 'actions',
