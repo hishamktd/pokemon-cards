@@ -20,7 +20,7 @@ import { Stage, stageOptions } from '@/enum/pokemon';
 import { ICONS } from '@/lib/icons/icons-const';
 import { pokemonSchema } from '@/schema/pokemon';
 import styles from '@/styles/common';
-import { TId } from '@/types';
+import { NumStr, TId } from '@/types';
 import { PokemonForm } from '@/types/pokemon';
 import { isValidUrl } from '@/utils/common';
 import { fromSelect } from '@/utils/enum-utils';
@@ -35,9 +35,22 @@ type Props = {
   refetchPokemons?: () => void;
 };
 
+const { BASIC, STAGE_1, STAGE_2 } = Stage;
+
 const getDrawerTitle = (id: TId) => {
   if (id) return 'Edit Pokemon';
   return 'Add Pokemon';
+};
+
+const getPrevStage = (stage?: NumStr): Stage => {
+  switch (stage) {
+    case STAGE_1:
+      return BASIC;
+    case STAGE_2:
+      return STAGE_1;
+    default:
+      return '' as Stage;
+  }
 };
 
 const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
@@ -51,8 +64,6 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     isFetching,
   } = useGetPokemonQuery(id);
   const { data: types = [] } = useGetAllTypesQuery();
-  const { data: evolvedFromOptions = [], refetch: refetchAllPokemons } =
-    useGetAllPokemonsQuery();
 
   const { upload, fileUploading } = useFileUpload({
     path: 'pokemon',
@@ -65,6 +76,9 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     });
 
   const watchedStage = watch('stage');
+
+  const { data: evolvedFromOptions = [], refetch: refetchAllPokemons } =
+    useGetAllPokemonsQuery({ stage: getPrevStage(watchedStage?.id) });
 
   const isBaseStage = useMemo(() => {
     const isBasic = watchedStage?.id === Stage.BASIC;

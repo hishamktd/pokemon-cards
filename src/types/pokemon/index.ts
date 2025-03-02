@@ -26,3 +26,7 @@ export type PokemonForm = Omit<
 export type PokemonCreateRequest = Omit<Pokemon, 'id' | 'type' | 'evolvedFrom'>;
 
 export type PokemonUpdateRequest = Omit<Pokemon, 'type' | 'evolvedFrom'>;
+
+export type GetAllPokemonParams = {
+  stage?: Stage;
+};

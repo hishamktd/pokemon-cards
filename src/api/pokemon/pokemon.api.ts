@@ -3,6 +3,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { axiosBaseQuery } from '@/lib/axios-base-query';
 import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
 import {
+  GetAllPokemonParams,
   Pokemon,
   PokemonCreateRequest,
   PokemonUpdateRequest,
@@ -12,10 +13,11 @@ export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    getAllPokemons: builder.query<GetAllType[], void>({
-      query: () => ({
+    getAllPokemons: builder.query<GetAllType[], GetAllPokemonParams>({
+      query: (params) => ({
         url: '/pokemon/all',
         method: 'GET',
+        params,
       }),
     }),
     getPokemons: builder.query<PaginationResponse<Pokemon>, BaseParams>({
