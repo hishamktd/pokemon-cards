@@ -14,6 +14,9 @@ import { IconTextChip, ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
+import { Gender } from '@/enum/pokemon';
+import Icons from '@/lib/icons';
+import { ICONS } from '@/lib/icons/icons-const';
 import { DeleteItem, TId } from '@/types';
 import { Pokemon } from '@/types/pokemon';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
@@ -21,6 +24,20 @@ import PokemonDrawer from '@/views/pokemon/PokemonDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
+
+const { MALE_ICON, FEMALE_ICON } = ICONS;
+const { FEMALE, MALE } = Gender;
+
+const getGenderIcon = (gender: Gender) => {
+  switch (gender) {
+    case MALE:
+      return <Icons icon={MALE_ICON} />;
+    case FEMALE:
+      return <Icons icon={FEMALE_ICON} />;
+    default:
+      return null;
+  }
+};
 
 const Pokemons = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
@@ -105,7 +122,17 @@ const Pokemons = () => {
   const columns = useMemo<GridColDef<Pokemon>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
-      { field: 'name', headerName: 'Name' },
+      {
+        field: 'name',
+        headerName: 'Name',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.name}
+            icon={getGenderIcon(row?.gender)}
+            color={'black'}
+          />
+        ),
+      },
       {
         field: 'imageUrl',
         headerName: 'Image',

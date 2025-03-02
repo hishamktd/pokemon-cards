@@ -26,6 +26,8 @@ import {
   HugeiconsPokemon,
   MdiPokeball,
   RiResetLeftFill,
+  IcOutlineMale,
+  IcOutlineFemale,
 } from './SvgIcons';
 import { MappedIcons } from './types';
 
@@ -35,9 +37,11 @@ const mappedIcons: MappedIcons = {
   ['line-md:edit']: LineMdEdit,
   ['mdi:pokeball']: MdiPokeball,
   ['mage:settings']: MageSettings,
+  ['ic:outline-male']: IcOutlineMale,
   ['stash:pack-light']: StashPackLight,
   ['eva:arrow-up-fill']: EvaArrowUpFill,
   ['pajamas:stage-all']: PajamasStageAll,
+  ['ic:outline-female']: IcOutlineFemale,
   ['line-md:sunny-loop']: LineMdSunnyLoop,
   ['mynaui:components']: MynauiComponents,
   ['hugeicons:pokemon']: HugeiconsPokemon,

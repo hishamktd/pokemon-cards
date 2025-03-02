@@ -1,12 +1,12 @@
 import { Box, Chip, Theme } from '@mui/material';
-import React, { FC, memo } from 'react';
+import React, { FC, memo, ReactElement, useCallback } from 'react';
 
 import Image from 'next/image';
 
 import { Nullable } from '@/types';
 
 type Props = {
-  icon?: Nullable<string>;
+  icon?: Nullable<string> | ReactElement;
   text?: Nullable<string>;
   color?: Nullable<string>;
 };
@@ -25,12 +25,22 @@ const getChipStyle = (t: Theme, color: string) => ({
 });
 
 const IconTextChip: FC<Props> = ({ text, icon, color }) => {
-  if (!icon || !text || !color) return <>-</>;
+  const renderIcon = useCallback(() => {
+    if (!icon) return <>-</>;
+
+    if (typeof icon !== 'string') return icon;
+
+    return <Image src={icon} alt="" width={20} height={20} />;
+  }, [icon]);
+
+  if (text && !icon) return <>{text}</>;
+
+  if (!text || !color) return <>-</>;
 
   return (
     <Box sx={getBoxStyle}>
       <Chip
-        icon={<Image src={icon} alt="" width={20} height={20} />}
+        icon={renderIcon()}
         label={text}
         sx={(t) => getChipStyle(t, color)}
       />

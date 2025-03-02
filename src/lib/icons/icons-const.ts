@@ -23,5 +23,7 @@ export const ICONS = {
   SQUARE_SHUFFLE: 'svg-spinners:blocks-shuffle-3',
   POKEMON_ICON: 'hugeicons:pokemon',
   POKEBALL_ICON: 'mdi:pokeball',
-  RESET_ICON: 'ri:reset-left-fill'
+  RESET_ICON: 'ri:reset-left-fill',
+  MALE_ICON: 'ic:outline-male',
+  FEMALE_ICON: 'ic:outline-female'
 } as const;
