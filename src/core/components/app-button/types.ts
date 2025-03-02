@@ -1,6 +1,9 @@
 import { ButtonProps } from '@mui/material';
+import { ReactNode } from 'react';
 
 import { KeyActionEnum } from '@/enum/key-actions';
+
+import { IconButtonProps } from '../icon-button/type';
 
 export type AppButtonProps = ButtonProps & {
   loading?: boolean;
@@ -10,7 +13,8 @@ export type AppButtonProps = ButtonProps & {
 
 export type AppGroupButtonItem = AppButtonProps & {
   isHidden?: boolean;
-  label?: string;
+  label?: ReactNode;
+  iconButtonProps?: IconButtonProps;
 };
 
 export type AppButtonGroupProps = {

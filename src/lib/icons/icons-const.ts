@@ -23,4 +23,5 @@ export const ICONS = {
   SQUARE_SHUFFLE: 'svg-spinners:blocks-shuffle-3',
   POKEMON_ICON: 'hugeicons:pokemon',
   POKEBALL_ICON: 'mdi:pokeball',
+  RESET_ICON: 'ri:reset-left-fill'
 } as const;

@@ -7,7 +7,9 @@ import { AppFileUploader } from '@core/components/app-inputs';
 
 import { FileUploadControllerProps } from './types';
 
-const FileUploadController = <T extends Record<string, unknown>>(
+const FileUploadController = <
+  T extends Record<string, unknown> = Record<string, unknown>,
+>(
   props: FileUploadControllerProps<T>,
 ) => {
   const { control, name } = props;

@@ -7,7 +7,7 @@ import { AppTextField } from '@core/components/app-inputs';
 
 import { TextFieldControllerProps } from '.';
 
-const TextFieldController = <T extends Record<string, unknown>>(
+const TextFieldController = <T extends Record<string, unknown> = Record<string, unknown>>(
   props: TextFieldControllerProps<T>,
 ) => {
   const { control, name, ...rest } = props;

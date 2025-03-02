@@ -8,7 +8,7 @@ import { AppNumberField } from '@core/components/app-inputs';
 
 import { NumberFieldControllerProps } from '.';
 
-const NumberFieldController = <T extends Record<string, unknown>>(
+const NumberFieldController = <T extends Record<string, unknown> = Record<string, unknown>  >(
   props: NumberFieldControllerProps<T>,
 ) => {
   const { control, name, ...rest } = props;
