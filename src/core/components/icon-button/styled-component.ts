@@ -1,3 +1,5 @@
+'use client';
+
 import { IconButton, styled } from '@mui/material';
 
 import { getColorPaletteColor } from '@/utils/icon-button';
