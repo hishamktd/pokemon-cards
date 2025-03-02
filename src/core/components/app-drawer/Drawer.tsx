@@ -27,6 +27,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
   outlineButtonProps = {},
   filledButtonProps = {},
   contentProps = {},
+  buttonGroupProps = {},
 }) => {
   const outlineProps = {
     label: 'Cancel',
@@ -98,6 +99,7 @@ const Drawer: React.FC<AppDrawerProps> = ({
           <AppButtonGroup
             containedButtonProps={filledProps}
             outlinedButtonProps={outlineProps}
+            {...buttonGroupProps}
           />
         </DrawerFooter>
       )}

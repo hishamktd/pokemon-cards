@@ -2,7 +2,7 @@ import { BoxProps } from '@mui/material/Box';
 import { PaperProps } from '@mui/material/Paper';
 import { ElementType, JSX } from 'react';
 
-import { AppGroupButtonItem } from '../app-button';
+import { AppButtonGroupProps, AppGroupButtonItem } from '../app-button';
 
 export type AppDrawerProps = {
   open: boolean;
@@ -18,4 +18,5 @@ export type AppDrawerProps = {
   contentProps?: BoxProps;
   onClose: () => void;
   onSave?: (e: React.FormEvent<HTMLDivElement>) => void;
+  buttonGroupProps?: AppButtonGroupProps;
 };

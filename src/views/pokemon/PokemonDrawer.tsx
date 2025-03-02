@@ -17,6 +17,7 @@ import {
 import SelectController from '@/components/field-controller/SelectController';
 import { pokemonDefaultValues } from '@/constants/pokemon';
 import { Stage, stageOptions } from '@/enum/pokemon';
+import { ICONS } from '@/lib/icons/icons-const';
 import { pokemonSchema } from '@/schema/pokemon';
 import { TId } from '@/types';
 import { PokemonForm } from '@/types/pokemon';
@@ -157,6 +158,16 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
       outlineButtonProps={{ loading: buttonLoading }}
       loading={isFetching}
       paperProps={{ sx: { width: 800 } }}
+      buttonGroupProps={{
+        restButton: {
+          iconButtonProps: {
+            icon: ICONS.RESET_ICON,
+          },
+        },
+        resetButton: {
+          iconButtonProps: { icon: ICONS.RESET_ICON, color: 'error' },
+        },
+      }}
     >
       <Grid2 container spacing={3}>
         <Grid2 container size={6} spacing={2} direction="column">

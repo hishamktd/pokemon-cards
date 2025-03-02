@@ -25,6 +25,7 @@ import {
   SvgSpinnersBlocksShuffle3,
   HugeiconsPokemon,
   MdiPokeball,
+  RiResetLeftFill,
 } from './SvgIcons';
 import { MappedIcons } from './types';
 
@@ -40,6 +41,7 @@ const mappedIcons: MappedIcons = {
   ['line-md:sunny-loop']: LineMdSunnyLoop,
   ['mynaui:components']: MynauiComponents,
   ['hugeicons:pokemon']: HugeiconsPokemon,
+  ['ri:reset-left-fill']: RiResetLeftFill,
   ['ic:baseline-search']: IcBaselineSearch,
   ['eva:arrow-down-fill']: EvaArrowDownFill,
   ['ic:outline-security']: IcOutlineSecurity,

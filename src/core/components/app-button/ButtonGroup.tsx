@@ -1,7 +1,12 @@
 import React, { FC, memo, useMemo } from 'react';
 
+import { Any } from '@/types';
+
 import { AppButtonGroupProps, AppGroupButtonItem, AppButton } from '.';
-import { ButtonGroupContainer } from './styled-components';
+import {
+  ButtonGroupContainer,
+  ButtonGroupIconButton,
+} from './styled-components';
 
 const ButtonGroup: FC<AppButtonGroupProps> = ({
   containedButtonProps,
@@ -29,13 +34,22 @@ const ButtonGroup: FC<AppButtonGroupProps> = ({
 
   return (
     <ButtonGroupContainer>
-      {Object.values(buttons).map((item) => {
-        const { isHidden, label, ...rest } = item;
+      {Object.values(buttons).map((item, i) => {
+        const { isHidden, label, type, iconButtonProps, ...rest } = item;
         if (isHidden) return null;
 
+        if (iconButtonProps) {
+          const { color, ...others } = iconButtonProps;
+          return (
+            <ButtonGroupIconButton key={i} color={color as Any} {...others} />
+          );
+        }
+
         return (
-          <React.Fragment key={label}>
-            <AppButton {...rest}>{label}</AppButton>
+          <React.Fragment key={i}>
+            <AppButton type={type} {...rest}>
+              {label}
+            </AppButton>
           </React.Fragment>
         );
       })}
