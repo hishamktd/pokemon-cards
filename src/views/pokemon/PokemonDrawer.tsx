@@ -163,9 +163,14 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
   useEffect(() => {
     if (refetchPokemons && (isCreated || isUpdated)) {
       refetchPokemons();
+    }
+  }, [isCreated, isUpdated, refetchPokemons]);
+
+  useEffect(() => {
+    if (watchedStage?.id !== Stage.BASIC) {
       refetchAllPokemons();
     }
-  }, [isCreated, isUpdated, refetchAllPokemons, refetchPokemons]);
+  }, [refetchAllPokemons, watchedStage?.id]);
 
   return (
     <AppDrawer
