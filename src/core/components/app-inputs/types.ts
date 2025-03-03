@@ -6,6 +6,7 @@ import {
   RadioGroupProps,
   RadioProps,
   SelectProps,
+  SwitchProps,
   TextFieldProps,
 } from '@mui/material';
 import { ReactNode } from 'react';
@@ -86,4 +87,8 @@ export type AppRadioProps = RadioGroupProps & {
     event: React.ChangeEvent<HTMLInputElement>,
     value: string,
   ) => void;
+};
+
+export type AppSwitchProps = Omit<FormControlLabelProps, 'control'> & {
+  switchProps?: SwitchProps;
 };

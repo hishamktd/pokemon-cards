@@ -4,6 +4,7 @@ import { BaseOption } from '@/types';
 import {
   AppRadioProps,
   AppSelectProps,
+  AppSwitchProps,
   AppTextFieldProps,
 } from '@core/components/app-inputs';
 
@@ -36,3 +37,7 @@ export type SelectControllerProps<
 export type RadioControllerProps<
   T extends Record<string, unknown> = Record<string, unknown>,
 > = BaseProps<T> & AppRadioProps;
+
+export type SwitchControllerProps<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> = BaseProps<T> & AppSwitchProps;

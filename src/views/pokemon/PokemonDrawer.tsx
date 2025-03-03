@@ -15,6 +15,7 @@ import {
   TextFieldController,
   SelectController,
   RadioController,
+  SwitchController,
 } from '@/components/field-controller';
 import { pokemonDefaultValues } from '@/constants/pokemon';
 import { Gender, genderOptions, Stage, stageOptions } from '@/enum/pokemon';
@@ -226,6 +227,12 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
               fullWidth
             />
           </Collapse>
+          <SwitchController
+            control={control}
+            name="isFossil"
+            label="Fossil"
+            labelPlacement="start"
+          />
         </Grid2>
         <Grid2 size={6}>
           <FileUploadController

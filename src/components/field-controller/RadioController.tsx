@@ -7,7 +7,7 @@ import { AppRadio } from '@core/components/app-inputs';
 
 import { RadioControllerProps } from '.';
 
-const TextFieldController = <
+const RadioController = <
   T extends Record<string, unknown> = Record<string, unknown>,
 >(
   props: RadioControllerProps<T>,
@@ -25,4 +25,4 @@ const TextFieldController = <
   );
 };
 
-export default gMemo(TextFieldController);
+export default gMemo(RadioController);

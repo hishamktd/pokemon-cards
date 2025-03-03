@@ -4,6 +4,7 @@ export { default as AppSelectField } from './SelectField';
 export { default as AppMultiSelectField } from './MultiSelectField';
 export { default as AppFileUploader } from './FileUploader';
 export { default as AppRadio } from './RadioGroup';
+export { default as AppSwitch } from './Switch';
 
 export type {
   AppTextFieldProps,
@@ -13,4 +14,5 @@ export type {
   FileUploaderProps,
   AppRadioProps,
   RadioOptions,
+  AppSwitchProps,
 } from './types';

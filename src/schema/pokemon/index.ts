@@ -20,6 +20,7 @@ const pokemonSchema = z
     }),
     gender: z.nativeEnum(Gender),
     evolvedFrom: z.object({ id: z.number(), name: z.string() }).nullable(),
+    isFossil: z.boolean(),
   })
   .refine((data) => data.stage.id === BASIC || data.evolvedFrom !== null, {
     message: 'EvolvedFrom is required for non-Basic Pokémon',

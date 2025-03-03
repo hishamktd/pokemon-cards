@@ -13,6 +13,7 @@ export type Pokemon = {
   evolvedFromId: Nullable<number>;
   evolvedFrom: Nullable<Pokemon>;
   gender: Gender;
+  isFossil: boolean;
 };
 
 export type PokemonForm = Omit<

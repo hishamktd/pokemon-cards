@@ -10,4 +10,5 @@ export const pokemonDefaultValues: PokemonForm = {
   stage: fromSelect(Stage.BASIC, stageOptions),
   evolvedFrom: null,
   gender: Gender.UNKNOWN,
+  isFossil: false,
 };
