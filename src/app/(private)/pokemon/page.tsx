@@ -153,6 +153,8 @@ const Pokemons = () => {
         ),
         flex: 0,
         minWidth: 170,
+        sortable: false,
+        disableColumnMenu: true,
       },
       {
         field: 'stage',
@@ -171,6 +173,8 @@ const Pokemons = () => {
         ),
         flex: 0,
         minWidth: 170,
+        sortable: false,
+        disableColumnMenu: true,
       },
       {
         field: 'actions',
