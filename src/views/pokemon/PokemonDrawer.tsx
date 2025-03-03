@@ -186,7 +186,7 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
         resetButton: {
           iconButtonProps: {
             icon: ICONS.RESET_ICON,
-            color: 'error',
+            color: 'primary',
             variant: 'outlined',
             shape: 'square',
             sx: styles.resetIconStyle,
