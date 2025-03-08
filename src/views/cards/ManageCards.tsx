@@ -14,6 +14,7 @@ import Page from '@/components/page';
 import { cardsDefaultValues } from '@/constants/cards';
 import { CardsSchema } from '@/schema/cards';
 import { TId } from '@/types';
+import { CardsForm } from '@/types/cards';
 import resolver from '@/utils/resolver';
 import { AppFormRow } from '@core/components/app-form-helper';
 import { ActionTitle } from '@core/components/app-title';
@@ -30,7 +31,7 @@ const getPageTitle = (id: TId) => {
 const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
 
-  const { control } = useForm({
+  const { control } = useForm<CardsForm>({
     defaultValues: cardsDefaultValues,
     resolver: resolver(CardsSchema),
   });

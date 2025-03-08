@@ -9,13 +9,14 @@ export type Card = {
   id: number;
   name: string;
   imageUrl: string;
-  type: Nullable<Types>;
-  pokemon: Nullable<Pokemon>;
   expansion: Expansion;
   description?: string;
+  cardType: CardType;
+
+  type: Nullable<Types>;
+  pokemon: Nullable<Pokemon>;
   isEx: boolean;
   isFossil: boolean;
-  cardType: CardType;
 };
 
 export type CardsForm = Omit<
