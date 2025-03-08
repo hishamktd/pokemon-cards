@@ -1,3 +1,4 @@
+import { CardType } from '@/enum/cards';
 import { Types } from '@/types/masters/types';
 import { Pokemon } from '@/types/pokemon';
 
@@ -7,10 +8,12 @@ export type Card = {
   id: number;
   name: string;
   imageUrl: string;
-  type: Types;
-  pokemon: Pokemon;
+  type: Nullable<Types>;
+  pokemon: Nullable<Pokemon>;
   description?: string;
   isEx: boolean;
+  isFossil: boolean;
+  cardType: CardType;
 };
 
 export type CardForm = Omit<Card, 'id' | 'imageUrl' | 'pokemon' | 'type'> & {
@@ -20,8 +23,8 @@ export type CardForm = Omit<Card, 'id' | 'imageUrl' | 'pokemon' | 'type'> & {
 };
 
 export type CardCreateReq = Omit<Card, 'id' | 'pokemon' | 'type'> & {
-  pokemonId: number;
-  typeId: number;
+  pokemonId: Nullable<number>;
+  typeId: Nullable<number>;
 };
 
 export type CardUpdateReq = CardCreateReq & {

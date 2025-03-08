@@ -1,5 +1,29 @@
 import { z } from 'zod';
 
-export const CardsSchema = z.object({
+import { CardType } from '@/enum/cards';
+
+const { POKEMON } = CardType;
+
+const BaseCardSchema = z.object({
   name: z.string().nonempty('Name is required'),
+  cardType: z.nativeEnum(CardType),
+  image: z.nullable(z.any()),
+  description: z.string().optional(),
 });
+
+const PokemonCardSchema = BaseCardSchema.extend({
+  cardType: z.literal(POKEMON),
+  pokemon: z.object({
+    id: z.number(),
+    name: z.string(),
+  }),
+  type: z.object({
+    id: z.number(),
+    name: z.string(),
+  }),
+  isEx: z.boolean(),
+});
+
+export const CardsSchema = z.discriminatedUnion('cardType', [
+  PokemonCardSchema,
+]);
