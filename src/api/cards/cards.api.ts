@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
 import { BaseParams, GetAllType, PaginationResponse } from '@/types';
-import { Cards, CardsCreateReq, CardsUpdateReq } from '@/types/cards';
+import { Card, CardsCreateReq, CardsUpdateReq } from '@/types/cards';
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
@@ -14,26 +14,26 @@ export const cardsApi = createApi({
         method: 'GET',
       }),
     }),
-    getCards: builder.query<PaginationResponse<Cards>, BaseParams>({
+    getCards: builder.query<PaginationResponse<Card>, BaseParams>({
       query: () => ({
         url: '/cards',
         method: 'GET',
       }),
     }),
-    getCard: builder.query<Cards, number>({
+    getCard: builder.query<Card, number>({
       query: (id) => ({
         url: `/cards/${id}`,
         method: 'GET',
       }),
     }),
-    createCard: builder.mutation<Cards, CardsCreateReq>({
+    createCard: builder.mutation<Card, CardsCreateReq>({
       query: (data) => ({
         url: '/cards',
         method: 'POST',
         data,
       }),
     }),
-    updateCard: builder.mutation<Cards, CardsUpdateReq>({
+    updateCard: builder.mutation<Card, CardsUpdateReq>({
       query: (data) => ({
         url: `/cards/${data.id}`,
         method: 'PUT',

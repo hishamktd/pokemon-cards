@@ -1,5 +1,5 @@
 class Routes {
-  public readonly A_ROOT = '/-';
+  private readonly A_ROOT = '/-';
 
   // ** DASHBOARD ** //
   public readonly DASHBOARD = `${this.A_ROOT}/dashboard`;
@@ -29,6 +29,7 @@ class Routes {
 
   // ** CARDS ** //
   public readonly CARDS = `${this.A_ROOT}/cards`;
+  public readonly CARDS_CREATE = `${this.CARDS}/create`;
 }
 
 const routes = new Routes();
