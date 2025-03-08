@@ -5,7 +5,7 @@ export type FormField = {
   component: JSX.Element;
   size?: Grid2Props['size'];
   hidden?: boolean;
-  collapseDir: CollapseProps['orientation'];
+  collapseDir?: CollapseProps['orientation'];
 };
 
 export type AppFormRowProps = {
@@ -14,5 +14,5 @@ export type AppFormRowProps = {
   alignItems?: Grid2Props['alignItems'];
   justifyContent?: Grid2Props['justifyContent'];
   hidden?: boolean;
-  collapseDir: CollapseProps['orientation'];
+  collapseDir?: CollapseProps['orientation'];
 };

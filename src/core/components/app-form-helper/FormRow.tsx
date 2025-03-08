@@ -6,7 +6,7 @@ import { AppFormRowProps } from '.';
 
 function FormHelperRow({
   fields,
-  spacing = 6,
+  spacing = 2,
   alignItems,
   justifyContent,
   hidden = false,

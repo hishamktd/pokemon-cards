@@ -15,6 +15,7 @@ import { cardsDefaultValues } from '@/constants/cards';
 import { CardsSchema } from '@/schema/cards';
 import { TId } from '@/types';
 import resolver from '@/utils/resolver';
+import { AppFormRow } from '@core/components/app-form-helper';
 import { ActionTitle } from '@core/components/app-title';
 
 type Props = {
@@ -53,12 +54,20 @@ const ManageCards: FC<Props> = ({ id }) => {
         <Grid2 container spacing={1} flexDirection="column" size={'grow'}>
           <Grid2>
             <Card sx={{ p: 2, width: '100%' }}>
-              <TextFieldController
-                name="name"
-                control={control}
-                isRequired
-                label="Name (auto fill)"
-                slotProps={{ input: { readOnly: true } }}
+              <AppFormRow
+                fields={[
+                  {
+                    component: (
+                      <TextFieldController
+                        name="name"
+                        control={control}
+                        isRequired
+                        label="Name (auto fill)"
+                        slotProps={{ input: { readOnly: true } }}
+                      />
+                    ),
+                  },
+                ]}
               />
             </Card>
           </Grid2>
