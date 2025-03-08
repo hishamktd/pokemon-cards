@@ -1,12 +1,16 @@
-import { Stack } from '@mui/material';
+import { Stack, StackProps } from '@mui/material';
 import React from 'react';
 
-type Props = {
+type Props = StackProps & {
   children: React.ReactNode;
 };
 
-const Page: React.FC<Props> = ({ children }) => {
-  return <Stack gap={2}>{children}</Stack>;
+const Page: React.FC<Props> = ({ children, ...props }) => {
+  return (
+    <Stack gap={2} {...props}>
+      {children}
+    </Stack>
+  );
 };
 
 export default Page;

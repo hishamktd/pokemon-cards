@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, Grid2 } from '@mui/material';
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -9,12 +9,16 @@ import { useGetCardQuery } from '@/api/cards/cards.api';
 import { useGetAllExpansionsQuery } from '@/api/masters/expansion.api';
 import {
   FileUploadController,
+  RadioController,
   SelectController,
   TextFieldController,
 } from '@/components/field-controller';
 import Page from '@/components/page';
-import { cardsDefaultValues } from '@/constants/cards';
+import { cardsDefaultValues, pokemonCardTypeDValues } from '@/constants/cards';
+import { CardType, cardTypeOptions } from '@/enum/cards';
+import { ICONS } from '@/lib/icons/icons-const';
 import { CardsSchema } from '@/schema/cards';
+import styles from '@/styles/common';
 import { TId } from '@/types';
 import { CardsForm } from '@/types/cards';
 import resolver from '@/utils/resolver';
@@ -30,18 +34,63 @@ const getPageTitle = (id: TId) => {
   return 'Add Card';
 };
 
+const { POKEMON } = CardType;
+
 const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
   const { data: expansions } = useGetAllExpansionsQuery();
 
-  const { control } = useForm<CardsForm>({
+  const { control, reset, watch } = useForm<CardsForm>({
     defaultValues: cardsDefaultValues,
     resolver: resolver(CardsSchema),
   });
 
+  const cardType = watch('cardType');
+
+  const handleReset = useCallback(() => {
+    if (id) {
+      reset(card);
+    } else {
+      reset(cardsDefaultValues);
+    }
+  }, [card, id, reset]);
+
+  const resetBasedOnCardType = useCallback(() => {
+    if (cardType !== POKEMON) {
+      reset((prev) => ({
+        ...prev,
+        ...pokemonCardTypeDValues,
+      }));
+    }
+  }, [cardType, reset]);
+
+  useEffect(() => {
+    handleReset();
+  }, [handleReset]);
+
+  useEffect(() => {
+    resetBasedOnCardType();
+  }, [resetBasedOnCardType]);
+
   return (
-    <Page>
-      <ActionTitle title={getPageTitle(id)} />
+    <Page component="form">
+      <ActionTitle
+        title={getPageTitle(id)}
+        buttonGroupProps={{
+          outlinedButtonProps: { isHidden: false },
+          containedButtonProps: {},
+          resetButton: {
+            iconButtonProps: {
+              icon: ICONS.RESET_ICON,
+              color: 'primary',
+              variant: 'outlined',
+              shape: 'square',
+              sx: styles.resetIconStyle,
+              onClick: handleReset,
+            },
+          },
+        }}
+      />
       <Grid2 container spacing={1}>
         <Grid2>
           <Card sx={{ p: 2 }}>
@@ -94,6 +143,17 @@ const ManageCards: FC<Props> = ({ id }) => {
                         control={control}
                         label="Description"
                         rows={3}
+                      />
+                    ),
+                  },
+                  {
+                    size: 12,
+                    component: (
+                      <RadioController
+                        name="cardType"
+                        control={control}
+                        label="Card Type"
+                        options={cardTypeOptions}
                       />
                     ),
                   },
