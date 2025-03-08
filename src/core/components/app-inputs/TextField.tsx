@@ -6,9 +6,18 @@ import { CustomTextField } from './styled-component';
 const AppTextField: FC<AppTextFieldProps> = ({
   size = 'small',
   fullWidth = true,
+  rows,
   ...rest
 }) => {
-  const commonProps = { size, fullWidth, ...rest };
+  const multiline = Boolean(rows && Number(rows) > 1);
+
+  const commonProps = {
+    size,
+    fullWidth,
+    rows,
+    multiline,
+    ...rest,
+  };
 
   return <CustomTextField {...commonProps} autoCapitalize="off" />;
 };

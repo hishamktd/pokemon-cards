@@ -6,6 +6,7 @@ import React, { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useGetCardQuery } from '@/api/cards/cards.api';
+import { useGetAllExpansionsQuery } from '@/api/masters/expansion.api';
 import {
   FileUploadController,
   SelectController,
@@ -31,6 +32,7 @@ const getPageTitle = (id: TId) => {
 
 const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
+  const { data: expansions } = useGetAllExpansionsQuery();
 
   const { control } = useForm<CardsForm>({
     defaultValues: cardsDefaultValues,
@@ -59,6 +61,7 @@ const ManageCards: FC<Props> = ({ id }) => {
               <AppFormRow
                 fields={[
                   {
+                    size: 6,
                     component: (
                       <TextFieldController
                         name="name"
@@ -72,13 +75,25 @@ const ManageCards: FC<Props> = ({ id }) => {
                     ),
                   },
                   {
+                    size: 6,
                     component: (
                       <SelectController
                         name="expansion"
                         control={control}
                         label="Expansion"
-                        options={[]}
+                        options={expansions}
                         isRequired
+                      />
+                    ),
+                  },
+                  {
+                    size: 12,
+                    component: (
+                      <TextFieldController
+                        name="description"
+                        control={control}
+                        label="Description"
+                        rows={3}
                       />
                     ),
                   },
