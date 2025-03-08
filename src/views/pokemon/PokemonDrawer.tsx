@@ -244,8 +244,8 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
             name="image"
             control={control}
             imageUrl={pokemon?.imageUrl}
-            cropWidth={100}
-            cropHeight={100}
+            cropWidth={350}
+            cropHeight={350}
           />
         </Grid2>
       </Grid2>

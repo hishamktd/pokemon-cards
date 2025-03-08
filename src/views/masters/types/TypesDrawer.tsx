@@ -128,8 +128,8 @@ const TypesDrawer: FC<Props> = ({ id, onClose, open, refetchTypes }) => {
           name="icon"
           control={control}
           imageUrl={type?.iconUrl}
-          cropWidth={100}
-          cropHeight={100}
+          cropWidth={350}
+          cropHeight={350}
         />
       </Stack>
     </AppDrawer>
