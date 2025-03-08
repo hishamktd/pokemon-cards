@@ -15,35 +15,35 @@ function FormHelperRow({
   const columnWidth = Math.floor(12 / fields?.length);
 
   return (
-    <Collapse hidden={!hidden} orientation={collapseDir}>
-      <Grid2
-        container
-        spacing={spacing}
-        alignItems={alignItems}
-        justifyContent={justifyContent}
-      >
+    <Grid2
+      container
+      spacing={spacing}
+      alignItems={alignItems}
+      justifyContent={justifyContent}
+    >
+      <Collapse in={!hidden} orientation={collapseDir}>
         {fields.map(
           ({ hidden = false, collapseDir = 'horizontal', ...field }, index) => {
             return (
-              <Collapse key={index} in={!hidden} orientation={collapseDir}>
-                <Grid2
-                  key={index}
-                  size={
-                    field.size
-                      ? typeof field?.size === 'object'
-                        ? { ...field.size }
-                        : field.size
-                      : columnWidth || 6
-                  }
-                >
+              <Grid2
+                key={index}
+                size={
+                  field.size
+                    ? typeof field?.size === 'object'
+                      ? { ...field.size }
+                      : field.size
+                    : columnWidth || 6
+                }
+              >
+                <Collapse key={index} in={!hidden} orientation={collapseDir}>
                   {field.component}
-                </Grid2>
-              </Collapse>
+                </Collapse>
+              </Grid2>
             );
           },
         )}
-      </Grid2>
-    </Collapse>
+      </Collapse>
+    </Grid2>
   );
 }
 
