@@ -15,7 +15,7 @@ function FormHelperRow({
   const columnWidth = Math.floor(12 / fields?.length);
 
   return (
-    <Collapse hidden={hidden} orientation={collapseDir}>
+    <Collapse hidden={!hidden} orientation={collapseDir}>
       <Grid2
         container
         spacing={spacing}
@@ -25,7 +25,7 @@ function FormHelperRow({
         {fields.map(
           ({ hidden = false, collapseDir = 'horizontal', ...field }, index) => {
             return (
-              <Collapse key={index} in={hidden} orientation={collapseDir}>
+              <Collapse key={index} in={!hidden} orientation={collapseDir}>
                 <Grid2
                   key={index}
                   size={
