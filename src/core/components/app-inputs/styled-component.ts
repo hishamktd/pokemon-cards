@@ -72,6 +72,10 @@ export const DropZoneInputContainer = styled(Box)({
   cursor: 'pointer',
   height: '100%',
   width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const CropperContainer = styled(Box)({
