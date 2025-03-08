@@ -1,97 +1,114 @@
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material';
-import { useCallback } from 'react';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import InputLabel from '@mui/material/InputLabel';
+import { useTheme } from '@mui/material/styles';
+import React, { useCallback, useMemo, useState } from 'react';
 
-import { ICONS } from '@/lib/icons/icons-const';
+import ReactSelect, { SingleValue, MultiValue, ActionMeta } from 'react-select';
+
 import { Any, BaseOption } from '@/types';
 import gMemo from '@/utils/memo';
 
-import { AppSelectProps } from '.';
-import IconButton from '../icon-button';
+import { getBaseStyles, getBaseTheme } from './theme';
+import { SelectProps } from './types';
 
-const { CLOSE } = ICONS;
-
-const SelectField = <T extends BaseOption>(props: AppSelectProps<T>) => {
+const AppSelect = <T extends BaseOption>(props: SelectProps<T>) => {
   const {
-    variant = 'outlined',
-    options,
+    label,
+    placeholder = 'Choose',
+    options = [],
     value,
-    onChange,
-    label = '',
-    color = 'primary',
-    inputLabelProps,
-    selectProps = {},
-    defaultValue,
-    size = 'small',
+    isMulti,
+    components: passedComponents = {},
+    formControlProps = {},
+    getOptionValue = (op) => String(op?.id),
+    getOptionLabel = (op) => String(op?.name),
+    isRequired,
     helperText,
-    error,
-    isClearable = true,
-    getOptionsLabel = (opt) => opt?.name ?? '',
+    error = false,
+    inputLabelProps,
+    onChange,
     ...rest
   } = props;
 
-  const renderIconComponent = useCallback(() => {
-    if (!isClearable) return;
-    return (
-      <IconButton
-        icon={CLOSE}
-        disabled={!value}
-        onClick={() => onChange && onChange('')}
-        color={error ? 'error' : color}
-      />
-    );
-  }, [color, error, isClearable, onChange, value]);
+  const theme = useTheme();
+
+  const [isFocused, setIsFocused] = useState(false);
+
+  const shouldShrink = useMemo(
+    () =>
+      isFocused ||
+      (isMulti ? Array.isArray(value) && value?.length > 0 : Boolean(value)),
+    [isFocused, value, isMulti],
+  );
+
+  const customComponents: Any = {
+    IndicatorSeparator: null,
+    ...passedComponents,
+  };
+
+  const handleChange = useCallback(
+    (newValue: MultiValue<T> | SingleValue<T>, actionMeta: ActionMeta<T>) => {
+      if (onChange) {
+        if (isMulti) {
+          (onChange as (newValue: T[], actionMeta?: ActionMeta<T>) => void)(
+            newValue as T[],
+            actionMeta,
+          );
+        } else {
+          (onChange as (newValue: T, actionMeta?: ActionMeta<T>) => void)(
+            newValue as T,
+            actionMeta,
+          );
+        }
+      }
+    },
+    [onChange, isMulti],
+  );
 
   return (
-    <FormControl
-      variant={variant}
-      sx={{ minWidth: 300 }}
-      size={size}
-      color={color}
-      error={error}
-      {...rest}
-    >
-      <InputLabel id="select-label" size="small" {...inputLabelProps}>
+    <FormControl fullWidth size="small" {...formControlProps}>
+      <InputLabel
+        shrink={shouldShrink}
+        sx={{
+          ...(shouldShrink && {
+            px: 1,
+            backgroundColor: 'transparent',
+          }),
+          '& .MuiFormLabel-asterisk': {
+            color: theme.palette.error.main,
+          },
+          ...(error && { color: theme.palette.error.main }),
+        }}
+        required={isRequired}
+        {...inputLabelProps}
+      >
         {label}
       </InputLabel>
-      <Select<T>
-        labelId="select-label"
-        id="select"
-        defaultValue={defaultValue as Any}
-        value={value ? (JSON.stringify(value) as Any) : ''}
-        onChange={(e) => onChange?.(JSON.parse(e.target.value as string) as T)}
-        label={label}
-        color={color}
-        SelectDisplayProps={{ color }}
-        size={size}
-        MenuProps={{
-          color,
-        }}
-        IconComponent={renderIconComponent}
-        renderValue={(selected) =>
-          getOptionsLabel(JSON.parse(selected as string) as T)
-        }
-        fullWidth
-        {...selectProps}
-      >
-        {options.map((option) => (
-          <MenuItem
-            key={JSON.stringify(option)}
-            value={JSON.stringify(option)}
-            color={color}
-          >
-            {getOptionsLabel(option)}
-          </MenuItem>
-        ))}
-      </Select>
-      <FormHelperText>{helperText}</FormHelperText>
+      <ReactSelect<T, boolean>
+        menuPlacement="auto"
+        options={options}
+        isMulti={isMulti}
+        value={value}
+        components={customComponents}
+        placeholder={!shouldShrink ? '' : placeholder}
+        styles={getBaseStyles<T>(theme, isMulti, error)}
+        theme={(current) => getBaseTheme(current, theme)}
+        getOptionValue={getOptionValue}
+        getOptionLabel={getOptionLabel}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onChange={handleChange}
+        
+        {...rest}
+      />
+      {helperText && (
+        <FormHelperText sx={{ color: theme.palette.error.main }}>
+          {helperText}
+        </FormHelperText>
+      )}
     </FormControl>
   );
 };
 
-export default gMemo(SelectField);
+export default gMemo(AppSelect);

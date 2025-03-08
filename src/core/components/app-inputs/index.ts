@@ -9,7 +9,7 @@ export { default as AppSwitch } from './Switch';
 export type {
   AppTextFieldProps,
   AppNumberFieldProps,
-  AppSelectProps,
+  SelectProps,
   AppMultiSelectProps,
   FileUploaderProps,
   AppRadioProps,

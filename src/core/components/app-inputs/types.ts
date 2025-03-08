@@ -5,13 +5,13 @@ import {
   OutlinedInputProps,
   RadioGroupProps,
   RadioProps,
-  SelectProps,
   SwitchProps,
   TextFieldProps,
 } from '@mui/material';
 import { ReactNode } from 'react';
 
 import { Control } from 'react-hook-form';
+import { ActionMeta, Props as ReactSelectProps } from 'react-select';
 
 import { Any, BaseOption, NumStr } from '@/types';
 
@@ -27,24 +27,52 @@ export type AppNumberFieldProps = Omit<
   onDecrement?: () => void;
 };
 
-type SingleSelectFormControl = Omit<
-  FormControlProps,
-  'onChange' | 'defaultValue'
->;
-
-export type AppSelectProps<T extends BaseOption> = SingleSelectFormControl & {
-  options: T[];
+export type CommonSelectProps = {
   label?: string;
-  value?: T | '';
-  onChange?: (value: T | '') => void;
-  placeHolder?: string;
   inputLabelProps?: InputLabelProps;
-  selectProps?: SelectProps;
-  helperText?: string | null;
-  isClearable?: boolean;
-  getOptionsLabel?: (option: T) => string;
-  defaultValue?: T | '';
+  error?: boolean;
+  helperText?: string;
+  formControlProps?: FormControlProps;
+  isRequired?: boolean;
 };
+
+export type SingleSelectProps<T extends BaseOption> = ReactSelectProps<
+  T,
+  false
+> &
+  CommonSelectProps & {
+    isMulti?: false;
+    onChange?: (newValue: T, actionMeta?: ActionMeta<T>) => void;
+  };
+
+export type MultiSelectProps<T extends BaseOption> = ReactSelectProps<T, true> &
+  CommonSelectProps & {
+    isMulti?: true;
+    onChange?: (newValue: T[], actionMeta?: ActionMeta<T>) => void;
+  };
+
+export type SelectProps<T extends BaseOption> =
+  | SingleSelectProps<T>
+  | MultiSelectProps<T>;
+
+// export type SelectProps<T> = ReactSelectProps<T> & {
+//   label?: string;
+//   value?: T | T[];
+//   isMulti?: boolean;
+//   closeMenuOnSelect?: boolean;
+//   hideSelectedOptions?: boolean;
+//   inputLabelProps?: InputLabelProps;
+//   isClearable?: boolean;
+//   isRequired?: boolean;
+//   isDisabled?: boolean;
+//   error?: boolean;
+//   helperText?: string;
+//   formControlProps?: FormControlProps;
+//   menuPosition?: 'fixed' | 'absolute';
+//   getOptionLabel?: GetOptionLabel<T>;
+//   getOptionValue?: GetOptionValue<T>;
+//   onChange?: (newValue: T | T[], actionMeta?: ActionMeta<T>) => void;
+// };
 
 type MultiSelectFormControl = Omit<FormControlProps, 'onChange'>;
 
@@ -60,7 +88,6 @@ export type AppMultiSelectProps<T extends BaseOption> =
     inputLabelProps?: InputLabelProps;
     getOptionsLabel?: (option: T) => string;
     getOptionsValue?: (option: T) => string;
-    selectProps?: SelectProps;
   };
 
 export type FileUploaderProps = {
