@@ -6,9 +6,9 @@ import { TitleProps } from './types';
 import Icon from '../../../lib/icons';
 
 const fontSizeMap = {
-  small: 24,
-  medium: 26,
-  large: 28,
+  small: 20,
+  medium: 22,
+  large: 24,
 };
 
 const fontWeightMap = {
