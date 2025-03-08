@@ -198,12 +198,18 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
     >
       <Grid2 container spacing={3}>
         <Grid2 container size={6} spacing={2} direction="column">
-          <TextFieldController name="name" control={control} label="Name" />
+          <TextFieldController
+            name="name"
+            control={control}
+            label="Name"
+            isRequired
+          />
           <SelectController
             name="type"
             control={control}
             label="Type"
             options={types}
+            isRequired
           />
           <RadioController
             name="gender"

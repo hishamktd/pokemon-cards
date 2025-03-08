@@ -30,6 +30,8 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
     onChange,
     color = 'primary',
     isDisabled = false,
+    onBlur,
+    onFocus,
     ...rest
   } = props;
 
@@ -84,6 +86,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         required={isRequired}
         color={color}
         disabled={isDisabled}
+        focused={isFocused}
         {...inputLabelProps}
       >
         {label}
@@ -100,8 +103,14 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         theme={(current) => getBaseTheme(current, theme)}
         getOptionValue={getOptionValue}
         getOptionLabel={getOptionLabel}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={(...arg) => {
+          setIsFocused(true);
+          onFocus?.(...arg);
+        }}
+        onBlur={(...arg) => {
+          setIsFocused(false);
+          onBlur?.(...arg);
+        }}
         onChange={handleChange}
         isDisabled={isDisabled}
         {...rest}

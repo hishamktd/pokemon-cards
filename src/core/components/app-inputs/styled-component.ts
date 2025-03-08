@@ -178,6 +178,10 @@ export const CustomSwitch = styled(Switch)(({ theme, color }) => {
 export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
   color: theme.palette.common.black,
 
+  ['& .MuiFormLabel-asterisk']: {
+    color: theme.palette.common.black,
+  },
+
   ['&.Mui-disabled']: {
     ['&.MuiInputLabel-shrink']: {
       backgroundColor: theme.palette.common.disabled,
@@ -193,8 +197,16 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
     backgroundColor: theme.palette.common.white,
   },
 
-  ['& .MuiFormLabel-asterisk']: {
-    color: getColorPaletteColor(color, theme).main,
+  ['&.Mui-focused']: {
+    ['&.MuiInputLabel-shrink']: {
+      padding: theme.spacing(0, 0.5),
+      backgroundColor: theme.palette.common.white,
+      color: getColorPaletteColor(color, theme).main,
+
+      ['& .MuiFormLabel-asterisk']: {
+        color: getColorPaletteColor(color, theme).main,
+      },
+    },
   },
 
   ['&.Mui-error']: {
