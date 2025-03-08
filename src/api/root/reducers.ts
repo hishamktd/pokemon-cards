@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { authApi } from '../auth/auth.api';
+import { cardsApi } from '../cards/cards.api';
 import { fileUploadApi } from '../file-upload/file-upload.api';
 import { expansionApi } from '../masters/expansion.api';
 import { typesApi } from '../masters/types.api';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   [fileUploadApi.reducerPath]: fileUploadApi.reducer,
   [typesApi.reducerPath]: typesApi.reducer,
   [pokemonApi.reducerPath]: pokemonApi.reducer,
+  [cardsApi.reducerPath]: cardsApi.reducer,
 });
 
 export default rootReducer;

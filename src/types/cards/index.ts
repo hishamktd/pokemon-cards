@@ -4,7 +4,7 @@ import { Pokemon } from '@/types/pokemon';
 
 import { Nullable } from '..';
 
-export type Card = {
+export type Cards = {
   id: number;
   name: string;
   imageUrl: string;
@@ -16,17 +16,17 @@ export type Card = {
   cardType: CardType;
 };
 
-export type CardForm = Omit<Card, 'id' | 'imageUrl' | 'pokemon' | 'type'> & {
+export type CardsForm = Omit<Cards, 'id' | 'imageUrl' | 'pokemon' | 'type'> & {
   image: Nullable<File>;
   pokemon: Nullable<Pokemon>;
   type: Nullable<Types>;
 };
 
-export type CardCreateReq = Omit<Card, 'id' | 'pokemon' | 'type'> & {
+export type CardsCreateReq = Omit<Cards, 'id' | 'pokemon' | 'type'> & {
   pokemonId: Nullable<number>;
   typeId: Nullable<number>;
 };
 
-export type CardUpdateReq = CardCreateReq & {
+export type CardsUpdateReq = CardsCreateReq & {
   id: number;
 };
