@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/hishamktd/pokemon-cards/compare/v0.0.22...v0.0.23) (2025-03-08)
+
+
+### Features
+
+* Add gender field to Pokemon schema and update PokemonDrawer to handle gender selection ([a01d184](https://github.com/hishamktd/pokemon-cards/commit/a01d18436922ec9cabee7e7913d791437b62f8f7))
+* Add gender icons to Pokemon list and update IconTextChip for dynamic icon rendering ([16656fd](https://github.com/hishamktd/pokemon-cards/commit/16656fda1a45016115be3a3c2bdff7fccc6c2d53))
+* Add gender selection to Pokemon form with RadioController and update related types ([213f752](https://github.com/hishamktd/pokemon-cards/commit/213f7524243f8a128ff3a177a09d8f5f6bb19e98))
+* Add MultiSelectController component and update types for enhanced select functionality ([c989c93](https://github.com/hishamktd/pokemon-cards/commit/c989c93fe38537d0608ccef57178863a6235d720))
+* Add RadioController component and related types for radio input handling ([1d567b6](https://github.com/hishamktd/pokemon-cards/commit/1d567b6a387bcbfaba2e5b60a4ee121462dc73ac))
+* Add refetch functionality for all pokemons in PokemonDrawer component ([af40814](https://github.com/hishamktd/pokemon-cards/commit/af40814c468d6e25445dc5da1a68a02059f07e6b))
+* Add SwitchController and AppSwitch components for enhanced form functionality ([115853e](https://github.com/hishamktd/pokemon-cards/commit/115853e507a460e05511271126a5bf212db2ec70))
+* Enhance Pokemon page with image display and evolvedFrom details; update IconTextChip props for nullability ([514f88c](https://github.com/hishamktd/pokemon-cards/commit/514f88ca0b3877b78e197feeddcb8dd1999b3fa3))
+* Enhance Tooltip in ImageChip component to display image in a styled box ([f177c76](https://github.com/hishamktd/pokemon-cards/commit/f177c766d59dd711f70634706baf38b1dfd64cf3))
+* Extend MUI theme with custom disabled color and update input components for better accessibility ([4e76404](https://github.com/hishamktd/pokemon-cards/commit/4e7640438b68763ca608d71980f56ef5028f296c))
+* Integrate react-select for enhanced select input functionality ([f515fa3](https://github.com/hishamktd/pokemon-cards/commit/f515fa3f6305c642ee587c5bf520f24fd93da7c7))
+* Refactor SelectField styles and update SingleSelectProps for improved consistency ([f0834f0](https://github.com/hishamktd/pokemon-cards/commit/f0834f0d1c5136b3aa205548d5a9915e63267e93))
+* Update getAllPokemons query to accept parameters and add GetAllPokemonParams type ([5ceeb1b](https://github.com/hishamktd/pokemon-cards/commit/5ceeb1b4ec117c433fe49fad8d3474f3ac89b8be))
+
+
+### Bug Fixes
+
+* Change reset button color from error to primary in PokemonDrawer ([cdcd9ef](https://github.com/hishamktd/pokemon-cards/commit/cdcd9eff31fe4cf9ad312f3e85fc6f30595d9b33))
+* Disable sorting and column menu for 'type' and 'stage' fields in Pokemon table ([664351e](https://github.com/hishamktd/pokemon-cards/commit/664351e476ff2e054314af5fc0e03c8c8c333472))
+* Refactor useEffect dependencies in PokemonDrawer for improved reactivity ([54c8f79](https://github.com/hishamktd/pokemon-cards/commit/54c8f790a23eebfc1299f1cf25b863e54137dcc2))
+* Update header name for evolvedFrom field in Pokemons component ([2a984b2](https://github.com/hishamktd/pokemon-cards/commit/2a984b2164fb835286c0610c6a16697a96f13d1f))
+* Update import path for IconButtonProps and add 'use client' directive in IconButton component ([86ab7e9](https://github.com/hishamktd/pokemon-cards/commit/86ab7e9d4021d2446c4b08a795dcb6ff30fb79c5))
+
 ### [0.0.22](https://github.com/hishamktd/pokemon-cards/compare/v0.0.21...v0.0.22) (2025-03-02)
 
 
