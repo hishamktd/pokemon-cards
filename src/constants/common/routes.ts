@@ -28,7 +28,7 @@ class Routes {
   public readonly POKEMON = `${this.A_ROOT}/pokemon`;
 
   // ** CARDS ** //
-  public readonly CARD = `${this.A_ROOT}/card`;
+  public readonly CARDS = `${this.A_ROOT}/cards`;
 }
 
 const routes = new Routes();

@@ -12,10 +12,18 @@ const {
   COMPONENTS,
   MASTER,
   POKEMON_ICON,
+  CARDS_ICON,
 } = ICONS;
 
-const { DASHBOARD, STAGES, ATTACKS, PROTOTYPES_ROOT, MASTER_ROOT, POKEMON } =
-  routes;
+const {
+  DASHBOARD,
+  STAGES,
+  ATTACKS,
+  PROTOTYPES_ROOT,
+  MASTER_ROOT,
+  POKEMON,
+  CARDS,
+} = routes;
 
 const navItems: NavItem[] = [
   {
@@ -31,6 +39,7 @@ const navItems: NavItem[] = [
     icon: COMPONENTS,
     children: prototypesNavItems,
   },
+  { path: CARDS, label: 'Cards', icon: CARDS_ICON },
   { path: POKEMON, label: 'Pokemon', icon: POKEMON_ICON },
   {
     path: MASTER_ROOT,
