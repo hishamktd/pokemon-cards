@@ -2,7 +2,6 @@ import {
   FormControlLabelProps,
   FormControlProps,
   InputLabelProps,
-  OutlinedInputProps,
   RadioGroupProps,
   RadioProps,
   SwitchProps,
@@ -34,61 +33,29 @@ export type CommonSelectProps = {
   helperText?: string;
   formControlProps?: FormControlProps;
   isRequired?: boolean;
+  color?: FormControlProps['color'];
 };
 
-export type SingleSelectProps<T extends BaseOption> = ReactSelectProps<
-  T,
-  false
-> &
+export type ReactSelectOmitted<T, F extends boolean = boolean> = Omit<
+  ReactSelectProps<T, F>,
+  'onChange' | 'isMulti'
+>;
+
+export type SingleSelectProps<T extends BaseOption> = ReactSelectOmitted<T> &
   CommonSelectProps & {
-    isMulti?: false;
+    isMulti: false | undefined;
     onChange?: (newValue: T, actionMeta?: ActionMeta<T>) => void;
   };
 
-export type MultiSelectProps<T extends BaseOption> = ReactSelectProps<T, true> &
+export type MultiSelectProps<T extends BaseOption> = ReactSelectOmitted<T> &
   CommonSelectProps & {
     isMulti?: true;
     onChange?: (newValue: T[], actionMeta?: ActionMeta<T>) => void;
   };
 
-export type SelectProps<T extends BaseOption> =
-  | SingleSelectProps<T>
-  | MultiSelectProps<T>;
-
-// export type SelectProps<T> = ReactSelectProps<T> & {
-//   label?: string;
-//   value?: T | T[];
-//   isMulti?: boolean;
-//   closeMenuOnSelect?: boolean;
-//   hideSelectedOptions?: boolean;
-//   inputLabelProps?: InputLabelProps;
-//   isClearable?: boolean;
-//   isRequired?: boolean;
-//   isDisabled?: boolean;
-//   error?: boolean;
-//   helperText?: string;
-//   formControlProps?: FormControlProps;
-//   menuPosition?: 'fixed' | 'absolute';
-//   getOptionLabel?: GetOptionLabel<T>;
-//   getOptionValue?: GetOptionValue<T>;
-//   onChange?: (newValue: T | T[], actionMeta?: ActionMeta<T>) => void;
-// };
-
-type MultiSelectFormControl = Omit<FormControlProps, 'onChange'>;
-
-export type AppMultiSelectProps<T extends BaseOption> =
-  MultiSelectFormControl & {
-    values?: T[];
-    onChange?: (value: T[]) => void;
-    inputProps?: OutlinedInputProps;
-    options?: T[];
-    label?: string;
-    helperText?: string | null;
-    isClearable?: boolean;
-    inputLabelProps?: InputLabelProps;
-    getOptionsLabel?: (option: T) => string;
-    getOptionsValue?: (option: T) => string;
-  };
+export type AppSelectFieldProps<T extends BaseOption> =
+  | MultiSelectProps<T>
+  | SingleSelectProps<T>;
 
 export type FileUploaderProps = {
   control: Control<Any>;

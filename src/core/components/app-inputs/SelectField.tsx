@@ -1,6 +1,5 @@
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
 import { useTheme } from '@mui/material/styles';
 import React, { useCallback, useMemo, useState } from 'react';
 
@@ -9,16 +8,17 @@ import ReactSelect, { SingleValue, MultiValue, ActionMeta } from 'react-select';
 import { Any, BaseOption } from '@/types';
 import gMemo from '@/utils/memo';
 
+import { SelectLabel } from './styled-component';
 import { getBaseStyles, getBaseTheme } from './theme';
-import { SelectProps } from './types';
+import { AppSelectFieldProps } from './types';
 
-const AppSelect = <T extends BaseOption>(props: SelectProps<T>) => {
+const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
   const {
     label,
     placeholder = 'Choose',
     options = [],
     value,
-    isMulti,
+    isMulti = false,
     components: passedComponents = {},
     formControlProps = {},
     getOptionValue = (op) => String(op?.id),
@@ -28,6 +28,8 @@ const AppSelect = <T extends BaseOption>(props: SelectProps<T>) => {
     error = false,
     inputLabelProps,
     onChange,
+    color = 'primary',
+    isDisabled = false,
     ...rest
   } = props;
 
@@ -51,10 +53,12 @@ const AppSelect = <T extends BaseOption>(props: SelectProps<T>) => {
     (newValue: MultiValue<T> | SingleValue<T>, actionMeta: ActionMeta<T>) => {
       if (onChange) {
         if (isMulti) {
-          (onChange as (newValue: T[], actionMeta?: ActionMeta<T>) => void)(
-            newValue as T[],
-            actionMeta,
-          );
+          (
+            onChange as unknown as (
+              newValue: T[],
+              actionMeta?: ActionMeta<T>,
+            ) => void
+          )(newValue as T[], actionMeta);
         } else {
           (onChange as (newValue: T, actionMeta?: ActionMeta<T>) => void)(
             newValue as T,
@@ -67,39 +71,39 @@ const AppSelect = <T extends BaseOption>(props: SelectProps<T>) => {
   );
 
   return (
-    <FormControl fullWidth size="small" {...formControlProps}>
-      <InputLabel
+    <FormControl
+      fullWidth
+      size="small"
+      color={color}
+      disabled={isDisabled}
+      {...formControlProps}
+    >
+      <SelectLabel
         shrink={shouldShrink}
-        sx={{
-          ...(shouldShrink && {
-            px: 1,
-            backgroundColor: 'transparent',
-          }),
-          '& .MuiFormLabel-asterisk': {
-            color: theme.palette.error.main,
-          },
-          ...(error && { color: theme.palette.error.main }),
-        }}
+        error={error}
         required={isRequired}
+        color={color}
+        disabled={isDisabled}
         {...inputLabelProps}
       >
         {label}
-      </InputLabel>
-      <ReactSelect<T, boolean>
+      </SelectLabel>
+
+      <ReactSelect<T, Any>
         menuPlacement="auto"
         options={options}
         isMulti={isMulti}
         value={value}
         components={customComponents}
         placeholder={!shouldShrink ? '' : placeholder}
-        styles={getBaseStyles<T>(theme, isMulti, error)}
+        styles={getBaseStyles<T>(theme, isMulti, error, color) as Any}
         theme={(current) => getBaseTheme(current, theme)}
         getOptionValue={getOptionValue}
         getOptionLabel={getOptionLabel}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleChange}
-        
+        isDisabled={isDisabled}
         {...rest}
       />
       {helperText && (

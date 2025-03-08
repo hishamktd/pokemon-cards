@@ -1,4 +1,6 @@
-import { Box, styled, TextField, Switch } from '@mui/material';
+'use client';
+
+import { Box, styled, TextField, Switch, InputLabel } from '@mui/material';
 
 import { getColorPaletteColor } from '@/utils/icon-button';
 
@@ -172,3 +174,30 @@ export const CustomSwitch = styled(Switch)(({ theme, color }) => {
     },
   };
 });
+
+export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
+  color: getColorPaletteColor(color, theme).main,
+
+  ['&.Mui-disabled']: {
+    ['&.MuiInputLabel-shrink']: {
+      backgroundColor: theme.palette.common.disabled,
+    },
+
+    ['& .MuiFormLabel-asterisk']: {
+      color: theme.palette.text.disabled,
+    },
+  },
+
+  ['&.MuiInputLabel-shrink']: {
+    padding: theme.spacing(0, 0.5),
+    backgroundColor: theme.palette.common.white,
+  },
+
+  ['& .MuiFormLabel-asterisk']: {
+    color: getColorPaletteColor(color, theme).main,
+  },
+
+  ['&.Mui-error']: {
+    color: theme.palette.error.main,
+  },
+}));

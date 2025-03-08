@@ -1,8 +1,10 @@
+import { FormControlProps } from '@mui/material';
 import { Theme as MuiTheme } from '@mui/material/styles';
 
 import { GroupBase, StylesConfig, Theme } from 'react-select';
 
 import { BaseOption } from '@/types';
+import { getColorPaletteColor } from '@/utils/icon-button';
 
 type ColorOption = BaseOption & { color?: string };
 
@@ -10,34 +12,66 @@ export const getBaseStyles = <T extends BaseOption>(
   theme: MuiTheme,
   isMulti?: boolean,
   error?: boolean,
+  color?: FormControlProps['color'],
 ): StylesConfig<T, boolean, GroupBase<T>> => {
+  const palette = getColorPaletteColor(color, theme);
+
   return {
-    option: (base) => ({ ...base, fontSize: 14 }),
+    option: (base, state) => ({
+      ...base,
+      fontSize: 14,
+      ...(state.isSelected && {
+        backgroundColor: palette.main,
+        ':active': { backgroundColor: palette.light },
+      }),
+    }),
     placeholder: (base) => ({ ...base, color: theme.palette.text.disabled }),
     menu: (base) => ({ ...base, zIndex: 9999 }),
     multiValue: (base, { data }) => {
       const colorOption = data as ColorOption;
       return {
         ...base,
-        backgroundColor: colorOption.color || theme.palette.primary.main,
+        backgroundColor: colorOption.color || palette.main,
         borderRadius: theme.shape.borderRadius,
-        color: theme.palette.common.white,
+        color: palette.contrastText,
         paddingLeft: '4px',
       };
     },
     control: (base, state) => ({
       ...base,
+      boxShadow: 'none',
+      border: `1px solid ${palette.main}`,
+      ':focus-within': {
+        border: `2px solid ${palette.main}`,
+        ':hover': {
+          border: `2px solid ${palette.main}`,
+        },
+      },
+      ':hover': {
+        border: `1px solid ${palette.main}`,
+      },
       ...(error && {
-        borderColor: theme.palette.error.main,
+        border: `1px solid ${theme.palette.error.main}`,
+        ':focus-within': {
+          border: `2px solid ${theme.palette.error.main}`,
+          ':hover': {
+            border: `2px solid ${theme.palette.error.main}`,
+          },
+        },
+        ':hover': {
+          border: `1px solid ${theme.palette.error.main}`,
+        },
       }),
+      backgroundColor: theme.palette.common.white,
       ...(state.isDisabled && {
-        backgroundColor: 'hsl(0, 0%, 98%)',
+        backgroundColor: theme.palette.common.disabled,
       }),
     }),
 
     multiValueLabel: (base) => ({
       ...base,
-      color: theme.palette.common.white,
+      backgroundColor: palette.main,
+      color: palette.contrastText,
       padding: '3px 6px',
     }),
     multiValueRemove: (base) => ({
@@ -48,6 +82,12 @@ export const getBaseStyles = <T extends BaseOption>(
       },
     }),
     menuPortal: (base) => ({ ...base, zIndex: 3 }),
+    valueContainer: (base, state) => ({
+      ...base,
+      ...(state.isMulti && {
+        padding: theme.spacing(0.75, 0.25, 0.25, 0.25),
+      }),
+    }),
   };
 };
 

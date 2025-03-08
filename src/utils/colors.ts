@@ -47,6 +47,7 @@ const colors = {
   common: {
     black: '#000000',
     white: '#FFFFFF',
+    disabled: 'hsl(0, 0%, 98%)',
   },
   divider: '#E0E0E0',
   action: {
@@ -57,6 +58,7 @@ const colors = {
     disabledBackground: 'rgba(0, 0, 0, 0.12)',
     focus: 'rgba(0, 0, 0, 0.12)',
   },
+
   grey: {
     50: '#FAFAFA',
     100: '#F5F5F5',
@@ -82,6 +84,9 @@ const colors = {
       primary: '#333333',
       secondary: '#757575',
       disabled: '#969799',
+    },
+    common: {
+      disabled: 'hsl(0, 0%, 8%)',
     },
   },
 };

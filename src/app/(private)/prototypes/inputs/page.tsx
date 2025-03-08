@@ -2,9 +2,8 @@
 
 import React from 'react';
 
-import { NumStr } from '@/types';
+import { BaseOption, NumStr } from '@/types';
 import {
-  AppMultiSelectField,
   AppNumberField,
   AppSelectField,
   AppTextField,
@@ -20,7 +19,7 @@ const baseOptions = [
 
 const Inputs = () => {
   const [number, setNumber] = React.useState<NumStr>('');
-  const [value, setValue] = React.useState<(typeof baseOptions)[0] | ''>('');
+  const [value, setValue] = React.useState<BaseOption>(null);
   const [values, setValues] = React.useState<typeof baseOptions>([]);
 
   return (
@@ -64,7 +63,11 @@ const Inputs = () => {
           options={baseOptions}
           label="Age"
           value={value}
+          isMulti={false}
           onChange={(value) => setValue(value)}
+          color="primary"
+          isDisabled
+          isRequired
         />
         <AppSelectField options={baseOptions} label="Age" color="secondary" />
         <AppSelectField
@@ -72,8 +75,9 @@ const Inputs = () => {
           label="Age"
           color="warning"
           value={value}
+          isMulti={false}
           onChange={(value) => setValue(value)}
-          getOptionsLabel={(option) => option?.label ?? ''}
+          getOptionLabel={(option) => String(option?.id)}
         />
         <AppSelectField
           options={baseOptions}
@@ -81,6 +85,7 @@ const Inputs = () => {
           color="info"
           value={value}
           onChange={(value) => setValue(value)}
+          isMulti={false}
           isClearable={false}
         />
         <AppSelectField
@@ -92,45 +97,52 @@ const Inputs = () => {
       </div>
       <Title title="Multi Select field" sx={{ mt: 4 }} />
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          isMulti
+          value={values}
           onChange={(value) => setValues(value)}
         />
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          value={values}
+          isMulti
           onChange={(value) => setValues(value)}
           color="success"
         />
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          value={values}
+          isMulti
           onChange={(value) => setValues(value)}
           error
           helperText="ot bad at all"
         />
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          value={values}
+          isMulti
           onChange={(value) => setValues(value)}
         />
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          value={values}
+          isMulti
           onChange={(value) => setValues(value)}
         />
-        <AppMultiSelectField
+        <AppSelectField
           label="high"
           options={baseOptions}
-          values={values}
+          value={values}
+          isMulti
           onChange={(value) => setValues(value)}
-          getOptionsLabel={(option) => option?.label ?? ''}
+          getOptionLabel={(option) => option?.label ?? ''}
+          isDisabled
         />
       </div>
     </>

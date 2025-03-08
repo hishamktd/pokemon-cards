@@ -50,8 +50,12 @@ const lightPalette = (theme: Theme, settings: Settings): Palette => ({
 const darkPalette = (theme: Theme, settings: Settings): Palette => ({
   ...theme.palette,
   ...lightPalette(theme, settings),
-  common: { black: common.white, white: common.black },
   ...dark,
+  common: {
+    black: common.white,
+    white: common.black,
+    disabled: dark.common.disabled,
+  },
 });
 
 const palette = (theme: Theme, settings: Settings): Palette => {
