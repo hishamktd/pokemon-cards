@@ -3,9 +3,10 @@ import { Control, Path } from 'react-hook-form';
 import { BaseOption } from '@/types';
 import {
   AppRadioProps,
-  AppSelectProps,
+  SingleSelectProps,
   AppSwitchProps,
   AppTextFieldProps,
+  MultiSelectProps,
 } from '@core/components/app-inputs';
 
 type BaseProps<T extends Record<string, unknown>> = {
@@ -32,7 +33,12 @@ export type FileUploadControllerProps<T extends Record<string, unknown>> =
 export type SelectControllerProps<
   T extends Record<string, unknown>,
   S extends BaseOption,
-> = BaseProps<T> & AppSelectProps<S>;
+> = BaseProps<T> & SingleSelectProps<S>;
+
+export type MultiSelectControllerProps<
+  T extends Record<string, unknown>,
+  S extends BaseOption,
+> = BaseProps<T> & MultiSelectProps<S>;
 
 export type RadioControllerProps<
   T extends Record<string, unknown> = Record<string, unknown>,

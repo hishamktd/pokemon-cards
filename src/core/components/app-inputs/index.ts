@@ -13,4 +13,6 @@ export type {
   AppRadioProps,
   RadioOptions,
   AppSwitchProps,
+  SingleSelectProps,
+  MultiSelectProps,
 } from './types';

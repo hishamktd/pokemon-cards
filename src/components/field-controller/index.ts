@@ -12,4 +12,5 @@ export type {
   SelectControllerProps,
   RadioControllerProps,
   SwitchControllerProps,
+  MultiSelectControllerProps,
 } from './types';

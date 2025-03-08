@@ -4,13 +4,13 @@ import { BaseOption } from '@/types';
 import gMemo from '@/utils/memo';
 import { AppSelectField } from '@core/components/app-inputs';
 
-import { SelectControllerProps } from '.';
+import { MultiSelectControllerProps } from '.';
 
-const SelectController = <
+const MultiSelectController = <
   T extends Record<string, unknown> = Record<string, unknown>,
   S extends BaseOption = BaseOption,
 >(
-  props: SelectControllerProps<T, S>,
+  props: MultiSelectControllerProps<T, S>,
 ) => {
   const { control, name, ...rest } = props;
   return (
@@ -19,16 +19,16 @@ const SelectController = <
       name={name}
       render={({ field: { value, ...field }, fieldState: { error } }) => (
         <AppSelectField<S>
-          value={value as S}
+          value={value as S[]}
           {...field}
           {...rest}
           error={!!error}
           helperText={error?.message}
-          isMulti={false}
+          isMulti={true}
         />
       )}
     />
   );
 };
 
-export default gMemo(SelectController);
+export default gMemo(MultiSelectController);
