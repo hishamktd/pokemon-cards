@@ -17,6 +17,8 @@ const AppSwitch: React.FC<AppSwitchProps> = ({
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
+        width: '100%',
+        margin: 0,
         ...sx,
       }}
       {...rest}
