@@ -1,5 +1,6 @@
 import React, { FC, memo } from 'react';
 
+import Page from '@/components/page';
 import { TId } from '@/types';
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 };
 
 const ManageCards: FC<Props> = ({ id }) => {
-  return <>{id}</>;
+  return <Page>{id}</Page>;
 };
 
 export default memo(ManageCards);
