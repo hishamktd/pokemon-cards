@@ -224,7 +224,6 @@ const PokemonDrawer: FC<Props> = ({ id, onClose, open, refetchPokemons }) => {
               control={control}
               label="Evolved From"
               options={evolvedFromOptions}
-              fullWidth
             />
           </Collapse>
           <SwitchController

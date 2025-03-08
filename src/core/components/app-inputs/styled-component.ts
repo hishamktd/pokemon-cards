@@ -176,7 +176,7 @@ export const CustomSwitch = styled(Switch)(({ theme, color }) => {
 });
 
 export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
-  color: getColorPaletteColor(color, theme).main,
+  color: theme.palette.common.black,
 
   ['&.Mui-disabled']: {
     ['&.MuiInputLabel-shrink']: {

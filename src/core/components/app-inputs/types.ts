@@ -43,7 +43,7 @@ export type ReactSelectOmitted<T, F extends boolean = boolean> = Omit<
 
 export type SingleSelectProps<T extends BaseOption> = ReactSelectOmitted<T> &
   CommonSelectProps & {
-    isMulti: false | undefined;
+    isMulti?: false;
     onChange?: (newValue: T, actionMeta?: ActionMeta<T>) => void;
   };
 

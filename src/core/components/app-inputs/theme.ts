@@ -10,7 +10,6 @@ type ColorOption = BaseOption & { color?: string };
 
 export const getBaseStyles = <T extends BaseOption>(
   theme: MuiTheme,
-  isMulti?: boolean,
   error?: boolean,
   color?: FormControlProps['color'],
 ): StylesConfig<T, boolean, GroupBase<T>> => {
@@ -40,15 +39,14 @@ export const getBaseStyles = <T extends BaseOption>(
     control: (base, state) => ({
       ...base,
       boxShadow: 'none',
-      border: `1px solid ${palette.main}`,
+      ':hover': {
+        border: `1px solid ${theme.palette.common.black}`,
+      },
       ':focus-within': {
         border: `2px solid ${palette.main}`,
         ':hover': {
           border: `2px solid ${palette.main}`,
         },
-      },
-      ':hover': {
-        border: `1px solid ${palette.main}`,
       },
       ...(error && {
         border: `1px solid ${theme.palette.error.main}`,
@@ -88,6 +86,7 @@ export const getBaseStyles = <T extends BaseOption>(
         padding: theme.spacing(0.75, 0.25, 0.25, 0.25),
       }),
     }),
+    singleValue: (base) => ({ ...base, color: theme.palette.common.black }),
   };
 };
 

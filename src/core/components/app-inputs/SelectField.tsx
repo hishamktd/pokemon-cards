@@ -96,7 +96,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         value={value}
         components={customComponents}
         placeholder={!shouldShrink ? '' : placeholder}
-        styles={getBaseStyles<T>(theme, isMulti, error, color) as Any}
+        styles={getBaseStyles<T>(theme, error, color) as Any}
         theme={(current) => getBaseTheme(current, theme)}
         getOptionValue={getOptionValue}
         getOptionLabel={getOptionLabel}
