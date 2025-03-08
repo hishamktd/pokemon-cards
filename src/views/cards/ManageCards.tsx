@@ -6,15 +6,24 @@ import React, { FC, memo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useGetCardQuery } from '@/api/cards/cards.api';
-import { FileUploadController } from '@/components/field-controller';
+import {
+  FileUploadController,
+  TextFieldController,
+} from '@/components/field-controller';
 import Page from '@/components/page';
 import { cardsDefaultValues } from '@/constants/cards';
 import { CardsSchema } from '@/schema/cards';
 import { TId } from '@/types';
 import resolver from '@/utils/resolver';
+import { ActionTitle } from '@core/components/app-title';
 
 type Props = {
   id: TId;
+};
+
+const getPageTitle = (id: TId) => {
+  if (id) return 'Edit Card';
+  return 'Add Card';
 };
 
 const ManageCards: FC<Props> = ({ id }) => {
@@ -27,20 +36,32 @@ const ManageCards: FC<Props> = ({ id }) => {
 
   return (
     <Page>
-      <Grid2 container spacing={3}>
-        <Grid2 size={4}>
+      <ActionTitle title={getPageTitle(id)} />
+      <Grid2 container spacing={1}>
+        <Grid2>
           <Card sx={{ p: 2 }}>
             <FileUploadController
               name="image"
               control={control}
               imageUrl={card?.imageUrl}
-              cropWidth={358}
-              cropHeight={500}
+              cropWidth={286}
+              cropHeight={400}
+              isRequired
             />
           </Card>
         </Grid2>
-        <Grid2 size={7} container spacing={3} flexDirection="column">
-          <Grid2></Grid2>
+        <Grid2 container spacing={1} flexDirection="column" size={'grow'}>
+          <Grid2>
+            <Card sx={{ p: 2, width: '100%' }}>
+              <TextFieldController
+                name="name"
+                control={control}
+                isRequired
+                label="Name (auto fill)"
+                slotProps={{ input: { readOnly: true } }}
+              />
+            </Card>
+          </Grid2>
           <Grid2></Grid2>
         </Grid2>
       </Grid2>
