@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useGetCardQuery } from '@/api/cards/cards.api';
 import {
   FileUploadController,
+  SelectController,
   TextFieldController,
 } from '@/components/field-controller';
 import Page from '@/components/page';
@@ -54,7 +55,7 @@ const ManageCards: FC<Props> = ({ id }) => {
         </Grid2>
         <Grid2 container spacing={1} flexDirection="column" size={'grow'}>
           <Grid2>
-            <Card sx={{ p: 2, width: '100%' }}>
+            <Card sx={{ p: 2, width: '100%', overflow: 'visible' }}>
               <AppFormRow
                 fields={[
                   {
@@ -64,7 +65,20 @@ const ManageCards: FC<Props> = ({ id }) => {
                         control={control}
                         isRequired
                         label="Name (auto fill)"
-                        slotProps={{ input: { readOnly: true } }}
+                        slotProps={{
+                          input: { readOnly: true },
+                        }}
+                      />
+                    ),
+                  },
+                  {
+                    component: (
+                      <SelectController
+                        name="expansion"
+                        control={control}
+                        label="Expansion"
+                        options={[]}
+                        isRequired
                       />
                     ),
                   },

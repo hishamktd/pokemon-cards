@@ -38,6 +38,7 @@ export const getBaseStyles = <T extends BaseOption>(
     },
     control: (base, state) => ({
       ...base,
+      width: '100%',
       boxShadow: 'none',
       ':hover': {
         border: `1px solid ${theme.palette.common.black}`,

@@ -78,6 +78,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
       size="small"
       color={color}
       disabled={isDisabled}
+      sx={{ width: '100%' }}
       {...formControlProps}
     >
       <SelectLabel

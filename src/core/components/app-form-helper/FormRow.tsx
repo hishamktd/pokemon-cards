@@ -1,4 +1,3 @@
-import { Collapse } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
 import { memo } from 'react';
 
@@ -9,8 +8,6 @@ function FormHelperRow({
   spacing = 2,
   alignItems,
   justifyContent,
-  hidden = false,
-  collapseDir = 'horizontal',
 }: AppFormRowProps) {
   const columnWidth = Math.floor(12 / fields?.length);
 
@@ -20,29 +17,24 @@ function FormHelperRow({
       spacing={spacing}
       alignItems={alignItems}
       justifyContent={justifyContent}
+      size="grow"
     >
-      <Collapse in={!hidden} orientation={collapseDir}>
-        {fields.map(
-          ({ hidden = false, collapseDir = 'horizontal', ...field }, index) => {
-            return (
-              <Grid2
-                key={index}
-                size={
-                  field.size
-                    ? typeof field?.size === 'object'
-                      ? { ...field.size }
-                      : field.size
-                    : columnWidth || 6
-                }
-              >
-                <Collapse key={index} in={!hidden} orientation={collapseDir}>
-                  {field.component}
-                </Collapse>
-              </Grid2>
-            );
-          },
-        )}
-      </Collapse>
+      {fields.map(({ ...field }, index) => {
+        return (
+          <Grid2
+            key={index}
+            size={
+              field.size
+                ? typeof field?.size === 'object'
+                  ? { ...field.size }
+                  : field.size
+                : columnWidth || 6
+            }
+          >
+            {field.component}
+          </Grid2>
+        );
+      })}
     </Grid2>
   );
 }
