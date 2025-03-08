@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { axiosBaseQuery } from '@/lib/axios-base-query';
-import { BaseParams, GetAllType, PaginationResponse } from '@/types';
+import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
 import { Card, CardsCreateReq, CardsUpdateReq } from '@/types/cards';
 
 export const cardsApi = createApi({
@@ -20,7 +20,7 @@ export const cardsApi = createApi({
         method: 'GET',
       }),
     }),
-    getCard: builder.query<Card, number>({
+    getCard: builder.query<Card, TId>({
       query: (id) => ({
         url: `/cards/${id}`,
         method: 'GET',

@@ -70,12 +70,28 @@ export const DropZoneInputContainer = styled(Box)({
   border: '2px dashed #ccc',
   padding: '20px',
   cursor: 'pointer',
+  height: '100%',
+  width: '100%',
 });
 
 export const CropperContainer = styled(Box)({
-  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
-  height: '300px',
+  height: '100%',
+  '& .cropper': {
+    position: 'relative',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+
+  '& .controls': {
+    padding: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
 });
 
 export const ImagePreviewContainer = styled(Box)({

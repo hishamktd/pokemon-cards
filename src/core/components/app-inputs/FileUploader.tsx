@@ -1,4 +1,4 @@
-import { Slider, Button } from '@mui/material';
+import { Slider, Button, Box } from '@mui/material';
 import React, { useState, useCallback, FC, memo, useEffect } from 'react';
 
 import Image from 'next/image';
@@ -118,8 +118,8 @@ const FileUploader: FC<FileUploaderProps> = ({
 
   const renderCropper = useCallback(
     () => (
-      <>
-        <CropperContainer>
+      <CropperContainer>
+        <Box className="cropper">
           <Cropper
             image={imageSrc as string}
             crop={crop}
@@ -129,19 +129,20 @@ const FileUploader: FC<FileUploaderProps> = ({
             onZoomChange={setZoom}
             onCropComplete={onCropComplete}
           />
-        </CropperContainer>
-        <Slider
-          value={zoom}
-          min={1}
-          max={3}
-          step={0.1}
-          onChange={(e, zoom) => setZoom(zoom as number)}
-          style={{ margin: '20px 0' }}
-        />
-        <Button variant="contained" color="primary" onClick={handleCrop}>
-          Crop & Save
-        </Button>
-      </>
+        </Box>
+        <Box className="controls">
+          <Slider
+            value={zoom}
+            min={1}
+            max={3}
+            step={0.1}
+            onChange={(e, zoom) => setZoom(zoom as number)}
+          />
+          <Button variant="contained" color="primary" onClick={handleCrop}>
+            Crop & Save
+          </Button>
+        </Box>
+      </CropperContainer>
     ),
     [imageSrc, crop, zoom, cropWidth, cropHeight, onCropComplete, handleCrop],
   );
@@ -185,11 +186,18 @@ const FileUploader: FC<FileUploaderProps> = ({
   }, [value, handleClearImage, cropWidth, cropHeight]);
 
   return (
-    <div style={{ textAlign: 'center', width: '100%', maxWidth: '100%' }}>
+    <Box
+      sx={{
+        textAlign: 'center',
+        width: cropWidth,
+        height: cropHeight,
+        maxWidth: '100%',
+      }}
+    >
       {!value && (imageSrc ? renderCropper() : renderDropzone())}
       {value && renderSavedImage()}
       {error && <p style={{ color: 'red' }}>{error.message}</p>}
-    </div>
+    </Box>
   );
 };
 
