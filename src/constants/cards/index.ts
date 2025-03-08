@@ -6,6 +6,7 @@ export const cardsDefaultValues: CardsForm = {
   description: '',
   cardType: CardType.POKEMON,
   image: null,
+  expansion: null,
 
   pokemon: null,
   type: null,

@@ -9,6 +9,7 @@ const BaseCardsSchema = z.object({
   cardType: z.nativeEnum(CardType),
   image: z.nullable(z.any()),
   description: z.string().optional(),
+  expansion: z.object({ id: z.number(), name: z.string() }),
 });
 
 const PokemonCardsSchema = BaseCardsSchema.extend({
@@ -22,6 +23,7 @@ const PokemonCardsSchema = BaseCardsSchema.extend({
     name: z.string(),
   }),
   isEx: z.boolean(),
+  isFossil: z.boolean(),
 });
 
 export const CardsSchema = z.discriminatedUnion('cardType', [
