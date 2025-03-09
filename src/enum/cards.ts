@@ -3,6 +3,7 @@ import { RadioOptions } from '@core/components/app-inputs';
 
 export enum CardType {
   POKEMON = 'POKEMON',
+  ITEM_FOSSIL = 'ITEM_FOSSIL',
   SUPPORTER = 'SUPPORTER',
   ITEM = 'ITEM',
   POKEMON_TOOL = 'POKEMON_TOOL',
