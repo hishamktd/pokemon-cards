@@ -21,7 +21,7 @@ export const pokemonApi = createApi({
         params,
       }),
     }),
-    getAllWithType: builder.query<GetAllPokemonWithType[], object>({
+    getAllPokemonsWithType: builder.query<GetAllPokemonWithType[], object>({
       query: () => ({
         url: '/pokemon/all/type',
         method: 'GET',
@@ -65,7 +65,7 @@ export const pokemonApi = createApi({
 
 export const {
   useGetAllPokemonsQuery,
-  useGetAllWithTypeQuery,
+  useGetAllPokemonsWithTypeQuery,
   useGetPokemonsQuery,
   useGetPokemonQuery,
   useCreatePokemonMutation,

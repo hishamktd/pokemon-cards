@@ -8,6 +8,10 @@ export const pokemonCardTypeDValues = {
   isFossil: false,
 };
 
+export const itemFossilCardTypeDValues = {
+  pokemon: null,
+};
+
 export const cardsDefaultValues: CardsForm = {
   name: '',
   description: '',
@@ -15,4 +19,5 @@ export const cardsDefaultValues: CardsForm = {
   image: null,
   expansion: null,
   ...pokemonCardTypeDValues,
+  ...itemFossilCardTypeDValues,
 };

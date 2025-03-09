@@ -14,7 +14,11 @@ import {
   TextFieldController,
 } from '@/components/field-controller';
 import Page from '@/components/page';
-import { cardsDefaultValues, pokemonCardTypeDValues } from '@/constants/cards';
+import {
+  cardsDefaultValues,
+  itemFossilCardTypeDValues,
+  pokemonCardTypeDValues,
+} from '@/constants/cards';
 import { CardType, cardTypeOptions } from '@/enum/cards';
 import { ICONS } from '@/lib/icons/icons-const';
 import { CardsSchema } from '@/schema/cards';
@@ -25,6 +29,7 @@ import resolver from '@/utils/resolver';
 import { AppFormRow } from '@core/components/app-form-helper';
 import { ActionTitle } from '@core/components/app-title';
 
+import ItemFossilFields from './ItemFossilFields';
 import PokemonFields from './PokemonFields';
 
 type Props = {
@@ -36,7 +41,7 @@ const getPageTitle = (id: TId) => {
   return 'Add Card';
 };
 
-const { POKEMON } = CardType;
+const { POKEMON, ITEM_FOSSIL } = CardType;
 
 const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
@@ -62,6 +67,12 @@ const ManageCards: FC<Props> = ({ id }) => {
       reset((prev) => ({
         ...prev,
         ...pokemonCardTypeDValues,
+      }));
+    }
+    if (cardType !== ITEM_FOSSIL) {
+      reset((prev) => ({
+        ...prev,
+        ...itemFossilCardTypeDValues,
       }));
     }
   }, [cardType, reset]);
@@ -170,9 +181,18 @@ const ManageCards: FC<Props> = ({ id }) => {
             </Card>
           </Grid2>
           <Grid2 size="grow">
-            <Card sx={{ p: 2, width: '100%', overflow: 'visible' }}>
+            <Card
+              sx={{
+                p: 2,
+                width: '100%',
+                overflow: 'visible',
+              }}
+            >
               <Collapse in={cardType === POKEMON}>
                 <PokemonFields control={control} setValue={setValue} />
+              </Collapse>
+              <Collapse in={cardType === ITEM_FOSSIL}>
+                <ItemFossilFields control={control} />
               </Collapse>
             </Card>
           </Grid2>

@@ -7,6 +7,7 @@ const AppTextField: FC<AppTextFieldProps> = ({
   size = 'small',
   fullWidth = true,
   rows,
+  isRequired = false,
   ...rest
 }) => {
   const multiline = Boolean(rows && Number(rows) > 1);
@@ -16,6 +17,7 @@ const AppTextField: FC<AppTextFieldProps> = ({
     fullWidth,
     rows,
     multiline,
+    required: isRequired,
     ...rest,
   };
 

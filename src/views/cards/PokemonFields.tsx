@@ -3,7 +3,7 @@ import React, { FC, memo, useEffect } from 'react';
 import { Control, UseFormSetValue, useWatch } from 'react-hook-form';
 
 import { useGetAllTypesQuery } from '@/api/masters/types.api';
-import { useGetAllWithTypeQuery } from '@/api/pokemon/pokemon.api';
+import { useGetAllPokemonsWithTypeQuery } from '@/api/pokemon/pokemon.api';
 import {
   SelectController,
   SwitchController,
@@ -17,7 +17,7 @@ type Props = {
 };
 
 const PokemonFields: FC<Props> = ({ control, setValue }) => {
-  const { data: pokemons } = useGetAllWithTypeQuery({});
+  const { data: pokemons } = useGetAllPokemonsWithTypeQuery({});
   const { data: types } = useGetAllTypesQuery();
 
   const pokemon = useWatch({ control, name: 'pokemon' });
