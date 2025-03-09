@@ -47,8 +47,6 @@ const ManageCards: FC<Props> = ({ id }) => {
     resolver: resolver(CardsSchema),
   });
 
-  console.log('watch', watch(['cardType', 'isEx', 'isFossil', 'description']));
-
   const cardType = watch('cardType');
 
   const handleReset = useCallback(() => {
