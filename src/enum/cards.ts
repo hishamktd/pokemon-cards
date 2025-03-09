@@ -5,7 +5,6 @@ export enum CardType {
   POKEMON = 'POKEMON',
   SUPPORTER = 'SUPPORTER',
   ITEM = 'ITEM',
-  ITEM_FOSSIL = 'ITEM_FOSSIL',
   POKEMON_TOOL = 'POKEMON_TOOL',
 }
 

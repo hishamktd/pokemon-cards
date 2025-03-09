@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Grid2 } from '@mui/material';
+import { Card, Collapse, Grid2 } from '@mui/material';
 import React, { FC, memo, useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
@@ -25,6 +25,8 @@ import resolver from '@/utils/resolver';
 import { AppFormRow } from '@core/components/app-form-helper';
 import { ActionTitle } from '@core/components/app-title';
 
+import PokemonFields from './PokemonFields';
+
 type Props = {
   id: TId;
 };
@@ -40,10 +42,12 @@ const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
   const { data: expansions } = useGetAllExpansionsQuery();
 
-  const { control, reset, watch } = useForm<CardsForm>({
+  const { control, reset, watch, setValue } = useForm<CardsForm>({
     defaultValues: cardsDefaultValues,
     resolver: resolver(CardsSchema),
   });
+
+  console.log('watch', watch(['cardType', 'isEx', 'isFossil', 'description']));
 
   const cardType = watch('cardType');
 
@@ -161,7 +165,13 @@ const ManageCards: FC<Props> = ({ id }) => {
               />
             </Card>
           </Grid2>
-          <Grid2></Grid2>
+          <Grid2>
+            <Card sx={{ p: 2, width: '100%', overflow: 'visible' }}>
+              <Collapse in={cardType === POKEMON}>
+                <PokemonFields control={control} setValue={setValue} />
+              </Collapse>
+            </Card>
+          </Grid2>
         </Grid2>
       </Grid2>
     </Page>
