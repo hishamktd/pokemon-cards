@@ -71,6 +71,14 @@ const Pokemons = () => {
   const [deletePokemon, { isLoading: isDeleting, isSuccess: isDeleted }] =
     useDeletePokemonMutation();
 
+  const handleSearch = useCallback(
+    (value: string) => {
+      setQuery(value);
+      setPage(INITIAL_PAGE);
+    },
+    [setQuery, setPage],
+  );
+
   const refetchPokemons = useCallback(() => {
     refetch();
   }, [refetch]);
@@ -212,7 +220,7 @@ const Pokemons = () => {
           onPageChange: setPage,
           page,
         }}
-        searchProps={{ query, onChange: setQuery }}
+        searchProps={{ query, onChange: handleSearch }}
       />
       <AppDataGrid
         rows={pokemons}

@@ -53,6 +53,14 @@ const Expansions = () => {
   const [deleteExpansion, { isLoading: isDeleting, isSuccess: isDeleted }] =
     useDeleteExpansionMutation();
 
+  const handleSearch = useCallback(
+    (value: string) => {
+      setQuery(value);
+      setPage(INITIAL_PAGE);
+    },
+    [setQuery, setPage],
+  );
+
   const refetchExpansions = useCallback(() => {
     refetch();
   }, [refetch]);
@@ -157,7 +165,7 @@ const Expansions = () => {
           onPageChange: setPage,
           page,
         }}
-        searchProps={{ query, onChange: setQuery }}
+        searchProps={{ query, onChange: handleSearch }}
       />
       <AppDataGrid
         rows={expansions}
