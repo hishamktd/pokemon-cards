@@ -9,7 +9,7 @@ const { POKEMON } = CardType;
 const BaseCardsSchema = z.object({
   name: v.str(),
   cardType: v.enum(CardType),
-  image: v.file(),
+  thumbnail: v.file(),
   description: v.strOpt(),
   expansion: v.obj(),
 });

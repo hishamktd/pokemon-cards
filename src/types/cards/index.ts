@@ -8,7 +8,7 @@ import { Expansion } from '../masters/expansion';
 export type Card = {
   id: number;
   name: string;
-  imageUrl: string;
+  thumbnailUrl: string;
   expansion: Expansion;
   description?: string;
   cardType: CardType;
@@ -21,9 +21,9 @@ export type Card = {
 
 export type CardsForm = Omit<
   Card,
-  'id' | 'imageUrl' | 'pokemon' | 'type' | 'expansion'
+  'id' | 'thumbnailUrl' | 'pokemon' | 'type' | 'expansion'
 > & {
-  image: Nullable<File>;
+  thumbnail: Nullable<File>;
   pokemon: Nullable<Pokemon>;
   type: Nullable<Types>;
   expansion: Nullable<Expansion>;

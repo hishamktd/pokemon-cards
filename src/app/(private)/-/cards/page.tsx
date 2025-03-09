@@ -96,9 +96,9 @@ const Cards = () => {
       { field: 'id', headerName: 'ID' },
       { field: 'name', headerName: 'Name' },
       {
-        field: 'imageUrl',
-        headerName: 'Image',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
+        field: 'thumbnailUrl',
+        headerName: 'Thumbnail',
+        renderCell: ({ row }) => <ImageChip imageUrl={row?.thumbnailUrl} />,
         sortable: false,
         disableColumnMenu: true,
         flex: 0,

@@ -114,9 +114,9 @@ const ManageCards: FC<Props> = ({ id }) => {
         <Grid2>
           <Card sx={{ p: 2 }}>
             <FileUploadController
-              name="image"
+              name="thumbnail"
               control={control}
-              imageUrl={card?.imageUrl}
+              imageUrl={card?.thumbnailUrl}
               cropWidth={286}
               cropHeight={400}
               isRequired
