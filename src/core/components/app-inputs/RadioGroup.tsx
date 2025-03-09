@@ -21,13 +21,18 @@ const AppRadio = ({
   return (
     <FormControl>
       <FormLabel id="buttons-group-label">{label}</FormLabel>
-      <RadioGroup row={row} aria-label="controlled" name="controlled" {...rest}>
+      <RadioGroup
+        row={row}
+        defaultValue={defaultValue}
+        aria-label="controlled"
+        name="controlled"
+        {...rest}
+      >
         {options?.map((radio) => (
           <FormControlLabel
             key={radio?.id}
             value={radio?.id}
             label={radio?.name}
-            defaultValue={defaultValue}
             control={<Radio {...radioProps} />}
             slotProps={{
               typography: { fontSize: 14, ...typography },
