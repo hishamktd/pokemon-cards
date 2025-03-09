@@ -93,7 +93,7 @@ const ManageCards: FC<Props> = ({ id }) => {
           },
         }}
       />
-      <Grid2 container spacing={1}>
+      <Grid2 container spacing={1} sx={{ height: '100%' }}>
         <Grid2>
           <Card sx={{ p: 2 }}>
             <FileUploadController
@@ -107,7 +107,7 @@ const ManageCards: FC<Props> = ({ id }) => {
           </Card>
         </Grid2>
         <Grid2 container spacing={1} flexDirection="column" size={'grow'}>
-          <Grid2>
+          <Grid2 size="auto">
             <Card sx={{ p: 2, width: '100%', overflow: 'visible' }}>
               <AppFormRow
                 fields={[
@@ -163,7 +163,7 @@ const ManageCards: FC<Props> = ({ id }) => {
               />
             </Card>
           </Grid2>
-          <Grid2>
+          <Grid2 size="grow">
             <Card sx={{ p: 2, width: '100%', overflow: 'visible' }}>
               <Collapse in={cardType === POKEMON}>
                 <PokemonFields control={control} setValue={setValue} />

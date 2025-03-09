@@ -11,7 +11,7 @@ const PageWrapper: React.FC<Props> = ({ children }) => {
   return (
     <Stack
       px={2}
-      py={7}
+      pt={7}
       sx={{ transition: styles.transition.modeTransition, overflow: 'auto' }}
     >
       {children}
