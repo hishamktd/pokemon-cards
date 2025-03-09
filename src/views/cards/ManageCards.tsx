@@ -42,7 +42,7 @@ const ManageCards: FC<Props> = ({ id }) => {
   const { data: card } = useGetCardQuery(id);
   const { data: expansions } = useGetAllExpansionsQuery();
 
-  const { control, reset, watch, setValue } = useForm<CardsForm>({
+  const { control, reset, watch, setValue, handleSubmit } = useForm<CardsForm>({
     defaultValues: cardsDefaultValues,
     resolver: resolver(CardsSchema),
   });
@@ -66,6 +66,10 @@ const ManageCards: FC<Props> = ({ id }) => {
     }
   }, [cardType, reset]);
 
+  const onSubmit = useCallback((data: CardsForm) => {
+    console.log('data', data);
+  }, []);
+
   useEffect(() => {
     handleReset();
   }, [handleReset]);
@@ -75,12 +79,14 @@ const ManageCards: FC<Props> = ({ id }) => {
   }, [resetBasedOnCardType]);
 
   return (
-    <Page component="form">
+    <Page component="form" onSubmit={handleSubmit(onSubmit)}>
       <ActionTitle
         title={getPageTitle(id)}
         buttonGroupProps={{
           outlinedButtonProps: { isHidden: false },
-          containedButtonProps: {},
+          containedButtonProps: {
+            type: 'submit',
+          },
           resetButton: {
             iconButtonProps: {
               icon: ICONS.RESET_ICON,

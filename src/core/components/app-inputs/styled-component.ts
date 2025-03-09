@@ -230,6 +230,16 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
   },
 
   ['&.Mui-error']: {
-    color: theme.palette.error.main,
+    ['& .MuiFormLabel-asterisk']: {
+      color: theme.palette.error.main,
+    },
+
+    ['&.MuiInputLabel-shrink']: {
+      color: theme.palette.error.main,
+
+      ['& .MuiFormLabel-asterisk']: {
+        color: theme.palette.error.main,
+      },
+    },
   },
 }));
