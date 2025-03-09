@@ -1,11 +1,16 @@
 'use client';
 
 import { Card, Collapse, Grid2 } from '@mui/material';
-import React, { FC, memo, useCallback, useEffect } from 'react';
+import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-import { useGetCardQuery } from '@/api/cards/cards.api';
+import {
+  useCreateCardMutation,
+  useGetCardQuery,
+  useUpdateCardMutation,
+} from '@/api/cards/cards.api';
 import { useGetAllExpansionsQuery } from '@/api/masters/expansion.api';
 import {
   FileUploadController,
@@ -28,6 +33,7 @@ import { CardsForm } from '@/types/cards';
 import resolver from '@/utils/resolver';
 import { AppFormRow } from '@core/components/app-form-helper';
 import { ActionTitle } from '@core/components/app-title';
+import useFileUpload from '@core/hooks/use-file-upload';
 
 import ItemFossilFields from './ItemFossilFields';
 import PokemonFields from './PokemonFields';
@@ -44,15 +50,31 @@ const getPageTitle = (id: TId) => {
 const { POKEMON, ITEM_FOSSIL } = CardType;
 
 const ManageCards: FC<Props> = ({ id }) => {
+  const { back } = useRouter();
+
   const { data: card } = useGetCardQuery(id);
   const { data: expansions } = useGetAllExpansionsQuery();
+  const [createCard, { isLoading: isCreating, isSuccess: isCreated }] =
+    useCreateCardMutation();
 
-  const { control, reset, watch, setValue, handleSubmit } = useForm<CardsForm>({
-    defaultValues: cardsDefaultValues,
-    resolver: resolver(CardsSchema),
+  const [updateCard, { isLoading: isUpdating, isSuccess: isUpdated }] =
+    useUpdateCardMutation();
+
+  const { upload, fileUploading } = useFileUpload({
+    path: 'pokemon',
   });
 
+  const { control, reset, watch, setValue, handleSubmit, setError } =
+    useForm<CardsForm>({
+      defaultValues: cardsDefaultValues,
+      resolver: resolver(CardsSchema),
+    });
+
   const cardType = watch('cardType');
+
+  const buttonLoading = useMemo(() => {
+    return isCreating || isUpdating || fileUploading;
+  }, [isCreating, isUpdating, fileUploading]);
 
   const handleReset = useCallback(() => {
     if (id) {
@@ -77,9 +99,36 @@ const ManageCards: FC<Props> = ({ id }) => {
     }
   }, [cardType, reset]);
 
-  const onSubmit = useCallback((data: CardsForm) => {
-    console.log('data', data);
-  }, []);
+  const onSubmit = useCallback(
+    async ({ thumbnail, pokemon, type, expansion, ...data }: CardsForm) => {
+      const thumbnailUrl = await upload(
+        thumbnail,
+        card?.thumbnailUrl,
+        data.name,
+      );
+
+      if (!thumbnailUrl) {
+        setError('thumbnail', { message: 'Required' });
+        return;
+      }
+
+      const finalData = {
+        ...data,
+        thumbnailUrl: thumbnailUrl,
+        pokemonId: pokemon?.id ?? null,
+        typeId: type?.id ?? null,
+        expansionId: Number(expansion?.id),
+      };
+      console.log('finalData', finalData);
+
+      if (id) {
+        await updateCard({ ...finalData, id });
+      } else {
+        await createCard(finalData);
+      }
+    },
+    [card?.thumbnailUrl, createCard, id, setError, updateCard, upload],
+  );
 
   useEffect(() => {
     handleReset();
@@ -89,13 +138,24 @@ const ManageCards: FC<Props> = ({ id }) => {
     resetBasedOnCardType();
   }, [resetBasedOnCardType]);
 
+  useEffect(() => {
+    if (isCreated || isUpdated) {
+      back();
+    }
+  }, [back, isCreated, isUpdated]);
+
   return (
     <Page component="form" onSubmit={handleSubmit(onSubmit)}>
       <ActionTitle
         title={getPageTitle(id)}
         buttonGroupProps={{
-          outlinedButtonProps: { isHidden: false },
+          outlinedButtonProps: {
+            isHidden: false,
+            loading: buttonLoading,
+            onClick: back,
+          },
           containedButtonProps: {
+            loading: buttonLoading,
             type: 'submit',
           },
           resetButton: {
