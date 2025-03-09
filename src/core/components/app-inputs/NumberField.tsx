@@ -120,6 +120,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
       color={color}
       disabled={disabled}
       error={error}
+      fullWidth
       {...rest}
       type="number"
     />
