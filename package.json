@@ -22,6 +22,7 @@
     "@mui/x-data-grid": "^7.23.6",
     "@prisma/client": "^6.2.1",
     "@reduxjs/toolkit": "^2.5.1",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.7.9",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
