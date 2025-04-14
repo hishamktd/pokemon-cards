@@ -2,7 +2,7 @@
 
 import { Box, styled, TextField, Switch, InputLabel } from '@mui/material';
 
-import { hexToRGBA } from '@/utils/hexToRGBA';
+import { hexToRGBA } from '@/utils/hex-to-rgba';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 export const CustomTextField = styled(TextField)(

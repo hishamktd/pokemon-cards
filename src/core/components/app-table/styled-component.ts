@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
-import { hexToRGBA } from '@/utils/hexToRGBA';
+import { hexToRGBA } from '@/utils/hex-to-rgba';
 
 export const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   color: theme.palette.common.black,
