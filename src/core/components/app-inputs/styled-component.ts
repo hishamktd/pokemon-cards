@@ -2,7 +2,7 @@
 
 import { Box, styled, TextField, Switch, InputLabel } from '@mui/material';
 
-import { hexToRGBA } from '@/utils/hex-to-rgba';
+import { mixWithWhite } from '@/utils/color-utils';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 export const CustomTextField = styled(TextField)(
@@ -215,13 +215,13 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
 
   ['&.MuiInputLabel-shrink']: {
     padding: theme.spacing(0, 0.5),
-    backgroundColor: hexToRGBA(theme.palette.background.paper, 0.7),
+    backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
   },
 
   ['&.Mui-focused']: {
     ['&.MuiInputLabel-shrink']: {
       padding: theme.spacing(0, 0.5),
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
       color: getColorPaletteColor(color, theme).main,
 
       ['& .MuiFormLabel-asterisk']: {

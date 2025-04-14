@@ -4,6 +4,7 @@ import { Theme as MuiTheme } from '@mui/material/styles';
 import { GroupBase, StylesConfig, Theme } from 'react-select';
 
 import { BaseOption } from '@/types';
+import { mixWithWhite } from '@/utils/color-utils';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 type ColorOption = BaseOption & { color?: string };
@@ -66,7 +67,7 @@ export const getBaseStyles = <T extends BaseOption>(
           border: `1px solid ${theme.palette.error.main}`,
         },
       }),
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
       ...(state.isDisabled && {
         backgroundColor: theme.palette.common.disabled,
       }),
