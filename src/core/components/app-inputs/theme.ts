@@ -6,7 +6,7 @@ import { Theme as MuiTheme } from '@mui/material/styles';
 import { GroupBase, StylesConfig, Theme } from 'react-select';
 
 import { BaseOption } from '@/types';
-import { mixWithWhite } from '@/utils/color-utils';
+import { hexToRGBA, mixWithWhite } from '@/utils/color-utils';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 type ColorOption = BaseOption & { color?: string };
@@ -26,14 +26,21 @@ export const getBaseStyles = <T extends BaseOption>(
         backgroundColor: palette.main,
         ':active': { backgroundColor: palette.light },
       }),
+      ':hover': {
+        backgroundColor: hexToRGBA(
+          theme.palette.common.black,
+          +theme.palette.action.hover,
+        ),
+      },
     }),
     placeholder: (base) => ({ ...base, color: theme.palette.text.disabled }),
     menu: (base) => ({
       ...base,
-      backgroundColor: theme.palette.common.white,
       color: theme.palette.common.black,
+      backgroundColor: theme.palette.common.white,
       zIndex: 9999,
     }),
+    menuList: (base) => ({ ...base }),
     multiValue: (base, { data }) => {
       const colorOption = data as ColorOption;
       return {
