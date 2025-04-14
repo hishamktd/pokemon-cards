@@ -88,14 +88,14 @@ const ManageCards: FC<Props> = ({ id }) => {
   const resetBasedOnCardType = useCallback(() => {
     if (cardType !== POKEMON) {
       reset((prev) => ({
-        ...prev,
         ...pokemonCardTypeDValues,
+        ...prev,
       }));
     }
     if (cardType !== ITEM_FOSSIL) {
       reset((prev) => ({
-        ...prev,
         ...itemFossilCardTypeDValues,
+        ...prev,
       }));
     }
   }, [cardType, reset]);
@@ -120,7 +120,6 @@ const ManageCards: FC<Props> = ({ id }) => {
         typeId: type?.id ?? null,
         expansionId: Number(expansion?.id),
       };
-      console.log('finalData', finalData);
 
       if (id) {
         await updateCard({ ...finalData, id });

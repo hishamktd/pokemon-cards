@@ -21,13 +21,16 @@ const PokemonFields: FC<Props> = ({ control, setValue }) => {
   const { data: types } = useGetAllTypesQuery();
 
   const pokemon = useWatch({ control, name: 'pokemon' });
+  const type = useWatch({ control, name: 'type' });
 
   useEffect(() => {
     if (pokemon) {
-      setValue('type', pokemon.type);
       setValue('name', pokemon.name);
+      if (!type) {
+        setValue('type', pokemon.type);
+      }
     }
-  }, [pokemon, setValue]);
+  }, [pokemon, setValue, type]);
 
   return (
     <AppFormRow
