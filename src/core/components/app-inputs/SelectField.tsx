@@ -96,6 +96,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
       </SelectLabel>
 
       <ReactSelect<T, Any>
+        id="select"
         menuPlacement="auto"
         options={options}
         isMulti={isMulti}

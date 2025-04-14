@@ -1,4 +1,4 @@
-import { Slider, Button, Box } from '@mui/material';
+import { Slider, Button, Box, Typography } from '@mui/material';
 import React, { useState, useCallback, FC, memo, useEffect } from 'react';
 
 import Image from 'next/image';
@@ -110,7 +110,9 @@ const FileUploader: FC<FileUploaderProps> = ({
     () => (
       <DropZoneInputContainer {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>Drag & drop an image here, or click to select one</p>
+        <Typography>
+          Drag & drop an image here, or click to select one
+        </Typography>
       </DropZoneInputContainer>
     ),
     [getRootProps, getInputProps],
