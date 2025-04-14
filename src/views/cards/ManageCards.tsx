@@ -53,7 +53,9 @@ const { POKEMON, ITEM_FOSSIL } = CardType;
 const ManageCards: FC<Props> = ({ id }) => {
   const { back } = useRouter();
 
-  const { data: card } = useGetCardQuery(id);
+  const { data: card, refetch: refetchGetCard } = useGetCardQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
   const { data: expansions } = useGetAllExpansionsQuery();
   const [createCard, { isLoading: isCreating, isSuccess: isCreated }] =
     useCreateCardMutation();
@@ -84,6 +86,11 @@ const ManageCards: FC<Props> = ({ id }) => {
       reset(cardsDefaultValues);
     }
   }, [card, id, reset]);
+
+  const handleRefresh = useCallback(() => {
+    handleReset();
+    refetchGetCard();
+  }, [handleReset, refetchGetCard]);
 
   const resetBasedOnCardType = useCallback(() => {
     if (cardType !== POKEMON) {
@@ -165,7 +172,7 @@ const ManageCards: FC<Props> = ({ id }) => {
               variant: 'outlined',
               shape: 'square',
               sx: styles.resetIconStyle,
-              onClick: handleReset,
+              onClick: handleRefresh,
             },
           },
         }}
