@@ -98,7 +98,9 @@ const Cards = () => {
       {
         field: 'thumbnailUrl',
         headerName: 'Thumbnail',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.thumbnailUrl} />,
+        renderCell: ({ row }) => (
+          <ImageChip imageUrl={row?.thumbnailUrl} width={24} />
+        ),
         sortable: false,
         disableColumnMenu: true,
         flex: 0,

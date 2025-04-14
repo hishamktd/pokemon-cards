@@ -25,7 +25,12 @@ export const getBaseStyles = <T extends BaseOption>(
       }),
     }),
     placeholder: (base) => ({ ...base, color: theme.palette.text.disabled }),
-    menu: (base) => ({ ...base, zIndex: 9999 }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.common.black,
+      zIndex: 9999,
+    }),
     multiValue: (base, { data }) => {
       const colorOption = data as ColorOption;
       return {
@@ -61,7 +66,7 @@ export const getBaseStyles = <T extends BaseOption>(
           border: `1px solid ${theme.palette.error.main}`,
         },
       }),
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: 'inherit',
       ...(state.isDisabled && {
         backgroundColor: theme.palette.common.disabled,
       }),
@@ -87,7 +92,10 @@ export const getBaseStyles = <T extends BaseOption>(
         padding: theme.spacing(0.75, 0.25, 0.25, 0.25),
       }),
     }),
-    singleValue: (base) => ({ ...base, color: theme.palette.common.black }),
+    singleValue: (base) => ({
+      ...base,
+      color: theme.palette.common.black,
+    }),
   };
 };
 

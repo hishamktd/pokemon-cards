@@ -214,13 +214,13 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
 
   ['&.MuiInputLabel-shrink']: {
     padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
   },
 
   ['&.Mui-focused']: {
     ['&.MuiInputLabel-shrink']: {
       padding: theme.spacing(0, 0.5),
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.background.paper,
       color: getColorPaletteColor(color, theme).main,
 
       ['& .MuiFormLabel-asterisk']: {
