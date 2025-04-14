@@ -20,7 +20,6 @@ const PokemonCardsSchema = BaseCardsSchema.extend({
   pokemon: v.obj(),
   type: v.obj(),
   isEx: v.bool(),
-  isFossil: v.bool(),
 });
 
 export const CardsSchema = z.discriminatedUnion('cardType', [

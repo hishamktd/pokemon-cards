@@ -17,7 +17,6 @@ export type Card = {
   type: Nullable<Types>;
   pokemon: Nullable<Pokemon>;
   isEx: boolean;
-  isFossil: boolean;
 };
 
 export type CardsForm = Omit<

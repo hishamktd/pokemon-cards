@@ -25,7 +25,6 @@ const PokemonFields: FC<Props> = ({ control, setValue }) => {
   useEffect(() => {
     if (pokemon) {
       setValue('type', pokemon.type);
-      setValue('isFossil', pokemon.isFossil);
       setValue('name', pokemon.name);
     }
   }, [pokemon, setValue]);
@@ -59,16 +58,6 @@ const PokemonFields: FC<Props> = ({ control, setValue }) => {
           size: 6,
           component: (
             <SwitchController name="isEx" control={control} label="Ex" />
-          ),
-        },
-        {
-          size: 6,
-          component: (
-            <SwitchController
-              name="isFossil"
-              label="Fossil"
-              control={control}
-            />
           ),
         },
       ]}

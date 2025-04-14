@@ -5,7 +5,6 @@ export const pokemonCardTypeDValues = {
   pokemon: null,
   type: null,
   isEx: false,
-  isFossil: false,
 };
 
 export const itemFossilCardTypeDValues = {
