@@ -5,6 +5,21 @@ const validation = {
   str: () => z.string().nonempty('Required'),
   strOpt: () => z.string().optional(),
 
+  // Number
+  num: () =>
+    z
+      .union([z.number(), z.string().regex(/^\d+$/)])
+      .transform((val) => (typeof val === 'string' ? parseFloat(val) : val))
+      .refine((val) => !isNaN(val), { message: 'Invalid number' }),
+  numOpt: () =>
+    z
+      .union([z.number(), z.string().regex(/^\d+$/)])
+      .optional()
+      .transform((val) => (typeof val === 'string' ? parseFloat(val) : val))
+      .refine((val) => val === undefined || !isNaN(val), {
+        message: 'Invalid number',
+      }),
+
   // Object
   obj: () =>
     z

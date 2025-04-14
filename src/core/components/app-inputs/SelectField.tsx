@@ -5,14 +5,24 @@ import FormHelperText from '@mui/material/FormHelperText';
 import { useTheme } from '@mui/material/styles';
 import React, { useCallback, useMemo, useState } from 'react';
 
-import ReactSelect, { SingleValue, MultiValue, ActionMeta } from 'react-select';
+import dynamic from 'next/dynamic';
+import { SingleValue, MultiValue, ActionMeta, Props } from 'react-select';
+const ReactSelect = dynamic(() => import('react-select'), {
+  ssr: false,
+  loading: () => <AppTextField />,
+});
 
 import { Any, BaseOption } from '@/types';
 import gMemo from '@/utils/memo';
 
+import { AppTextField } from '.';
 import { SelectLabel } from './styled-component';
 import { getBaseStyles, getBaseTheme } from './theme';
 import { AppSelectFieldProps } from './types';
+
+function BaseSelect<T extends BaseOption>(props: Props<T, boolean>) {
+  return <ReactSelect {...(props as Any)} />;
+}
 
 const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
   const {
@@ -95,7 +105,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         {label}
       </SelectLabel>
 
-      <ReactSelect<T, Any>
+      <BaseSelect<T>
         id="select"
         menuPlacement="auto"
         options={options}

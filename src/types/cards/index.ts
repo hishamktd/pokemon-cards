@@ -2,7 +2,7 @@ import { CardType } from '@/enum/cards';
 import { Types } from '@/types/masters/types';
 import { Pokemon } from '@/types/pokemon';
 
-import { Nullable } from '..';
+import { Nullable, NumStr } from '..';
 import { Expansion } from '../masters/expansion';
 
 export type Card = {
@@ -12,6 +12,7 @@ export type Card = {
   expansion: Expansion;
   description?: string;
   cardType: CardType;
+  expansionPosition: NumStr;
 
   type: Nullable<Types>;
   pokemon: Nullable<Pokemon>;

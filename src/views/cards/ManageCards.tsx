@@ -14,6 +14,7 @@ import {
 import { useGetAllExpansionsQuery } from '@/api/masters/expansion.api';
 import {
   FileUploadController,
+  NumberFieldController,
   RadioController,
   SelectController,
   TextFieldController,
@@ -189,7 +190,7 @@ const ManageCards: FC<Props> = ({ id }) => {
               <AppFormRow
                 fields={[
                   {
-                    size: 6,
+                    size: 4.5,
                     component: (
                       <TextFieldController
                         name="name"
@@ -203,7 +204,7 @@ const ManageCards: FC<Props> = ({ id }) => {
                     ),
                   },
                   {
-                    size: 6,
+                    size: 5,
                     component: (
                       <SelectController
                         name="expansion"
@@ -211,6 +212,17 @@ const ManageCards: FC<Props> = ({ id }) => {
                         label="Expansion"
                         options={expansions}
                         isRequired
+                      />
+                    ),
+                  },
+                  {
+                    size: 2.5,
+                    component: (
+                      <NumberFieldController
+                        control={control}
+                        isRequired
+                        name="expansionPosition"
+                        label="Expansion Position"
                       />
                     ),
                   },

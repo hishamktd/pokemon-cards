@@ -18,6 +18,7 @@ export const cardsDefaultValues: CardsForm = {
   cardType: CardType.POKEMON,
   thumbnail: null,
   expansion: null,
+  expansionPosition: '',
   ...pokemonCardTypeDValues,
   ...itemFossilCardTypeDValues,
 };

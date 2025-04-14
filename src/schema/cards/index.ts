@@ -12,6 +12,7 @@ const BaseCardsSchema = z.object({
   thumbnail: v.file(),
   description: v.strOpt(),
   expansion: v.obj(),
+  expansionPosition: v.num(),
 });
 
 const PokemonCardsSchema = BaseCardsSchema.extend({
