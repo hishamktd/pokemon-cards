@@ -1,5 +1,7 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
+import { Analytics } from '@vercel/analytics/next';
+
 import { ReduxProvider } from '@core/providers/ReduxProvider';
 import { SettingsProvider } from '@core/providers/SettingsProvider';
 
@@ -21,6 +23,7 @@ export default async function RootLayout({
             <SettingsProvider>{children}</SettingsProvider>
           </AppRouterCacheProvider>
         </ReduxProvider>
+        <Analytics />
       </body>
     </html>
   );
