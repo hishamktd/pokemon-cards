@@ -2,6 +2,7 @@
 
 import { Box, styled, TextField, Switch, InputLabel } from '@mui/material';
 
+import { hexToRGBA } from '@/utils/hexToRGBA';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 export const CustomTextField = styled(TextField)(
@@ -214,7 +215,7 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
 
   ['&.MuiInputLabel-shrink']: {
     padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: hexToRGBA(theme.palette.background.paper, 0.7),
   },
 
   ['&.Mui-focused']: {

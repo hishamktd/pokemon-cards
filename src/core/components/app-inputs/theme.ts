@@ -66,7 +66,7 @@ export const getBaseStyles = <T extends BaseOption>(
           border: `1px solid ${theme.palette.error.main}`,
         },
       }),
-      backgroundColor: 'inherit',
+      backgroundColor: theme.palette.background.paper,
       ...(state.isDisabled && {
         backgroundColor: theme.palette.common.disabled,
       }),
