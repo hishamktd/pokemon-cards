@@ -7,6 +7,7 @@ export type MuiComponents = Components<Omit<Theme, 'components'>>;
 export type MuiButton = MuiComponents['MuiButton'];
 export type MuiCard = MuiComponents['MuiCard'];
 export type MuiTypography = MuiComponents['MuiTypography'];
+export type MuiFormLabel = MuiComponents['MuiFormLabel'];
 
 export type ComponentsProps = {
   theme: Theme;

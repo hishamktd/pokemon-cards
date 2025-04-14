@@ -1,14 +1,12 @@
 import colors from '@/utils/colors';
 
-import { ComponentsProps, MuiTypography } from '../types';
+import { ComponentsProps, MuiFormLabel } from '../types';
 
 const {
   common: { black, white },
 } = colors;
 
-const typography = ({
-  settings: { theme },
-}: ComponentsProps): MuiTypography => ({
+const formLabel = ({ settings: { theme } }: ComponentsProps): MuiFormLabel => ({
   styleOverrides: {
     root: {
       color: theme === 'dark' ? white : black,
@@ -16,4 +14,4 @@ const typography = ({
   },
 });
 
-export default typography;
+export default formLabel;
