@@ -18,6 +18,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
   value = '',
   disabled = false,
   error = false,
+  isRequired = false,
   onMouseEnter,
   onMouseLeave,
   onIncrement,
@@ -25,6 +26,8 @@ const NumberField: FC<AppNumberFieldProps> = ({
   onChange,
   ...rest
 }) => {
+  const props = { required: isRequired, ...rest };
+
   const [showAdornment, setShowAdornment] = useState(false);
 
   const handleInputChange = useCallback(
@@ -121,7 +124,7 @@ const NumberField: FC<AppNumberFieldProps> = ({
       disabled={disabled}
       error={error}
       fullWidth
-      {...rest}
+      {...props}
       type="number"
     />
   );

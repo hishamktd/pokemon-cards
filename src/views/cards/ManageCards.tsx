@@ -220,9 +220,9 @@ const ManageCards: FC<Props> = ({ id }) => {
                     component: (
                       <NumberFieldController
                         control={control}
-                        isRequired
                         name="expansionPosition"
                         label="Expansion Position"
+                        isRequired
                       />
                     ),
                   },
