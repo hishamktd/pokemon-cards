@@ -13,8 +13,9 @@ export const AppBarWrapper = styled(Box)(({ theme }) => ({
   left: 'auto',
   backgroundColor: theme.palette.common.white,
   zIndex: 1200,
-
+  
   ['& .app-bar']: {
+    height: 65,
     backgroundColor: theme.palette.common.white,
     transition: styles.transition.modeTransition,
     zIndex: theme.zIndex.drawer + 1,

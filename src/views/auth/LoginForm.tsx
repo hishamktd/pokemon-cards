@@ -6,6 +6,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useLoginMutation } from '@/api/auth/auth.api';
+import routes from '@/constants/common/routes';
 import { LOCAL_STORAGE_KEYS } from '@/constants/common/store-keys';
 import clientCookies from '@/lib/cookies';
 
@@ -26,7 +27,7 @@ export default function LoginForm() {
       .then((response) => {
         if (response.token) {
           clientCookies.set(TOKEN, response.token);
-          router.push('/dashboard');
+          router.push(routes.DASHBOARD);
         }
       })
       .catch(console.error);

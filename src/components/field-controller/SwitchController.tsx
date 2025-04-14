@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Controller } from 'react-hook-form';
 
-import gMemo from '@/utils/memo';
 import { AppSwitch } from '@core/components/app-inputs';
 
 import { SwitchControllerProps } from '.';
@@ -23,4 +22,4 @@ const SwitchController = <
   );
 };
 
-export default gMemo(SwitchController);
+export default SwitchController;

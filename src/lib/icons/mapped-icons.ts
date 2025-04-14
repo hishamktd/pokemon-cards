@@ -28,6 +28,7 @@ import {
   RiResetLeftFill,
   IcOutlineMale,
   IcOutlineFemale,
+  TablerCards,
 } from './SvgIcons';
 import { MappedIcons } from './types';
 
@@ -36,6 +37,7 @@ const mappedIcons: MappedIcons = {
   ['line-md:menu']: LineMdMenu,
   ['line-md:edit']: LineMdEdit,
   ['mdi:pokeball']: MdiPokeball,
+  ['tabler:cards']: TablerCards,
   ['mage:settings']: MageSettings,
   ['ic:outline-male']: IcOutlineMale,
   ['stash:pack-light']: StashPackLight,

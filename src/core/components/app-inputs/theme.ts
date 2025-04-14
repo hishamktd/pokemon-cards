@@ -1,9 +1,12 @@
+'use client';
+
 import { FormControlProps } from '@mui/material';
 import { Theme as MuiTheme } from '@mui/material/styles';
 
 import { GroupBase, StylesConfig, Theme } from 'react-select';
 
 import { BaseOption } from '@/types';
+import { hexToRGBA, mixWithWhite } from '@/utils/color-utils';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 type ColorOption = BaseOption & { color?: string };
@@ -23,9 +26,21 @@ export const getBaseStyles = <T extends BaseOption>(
         backgroundColor: palette.main,
         ':active': { backgroundColor: palette.light },
       }),
+      ':hover': {
+        backgroundColor: hexToRGBA(
+          theme.palette.common.black,
+          +theme.palette.action.hover,
+        ),
+      },
     }),
     placeholder: (base) => ({ ...base, color: theme.palette.text.disabled }),
-    menu: (base) => ({ ...base, zIndex: 9999 }),
+    menu: (base) => ({
+      ...base,
+      color: theme.palette.common.black,
+      backgroundColor: theme.palette.common.white,
+      zIndex: 9999,
+    }),
+    menuList: (base) => ({ ...base }),
     multiValue: (base, { data }) => {
       const colorOption = data as ColorOption;
       return {
@@ -38,6 +53,7 @@ export const getBaseStyles = <T extends BaseOption>(
     },
     control: (base, state) => ({
       ...base,
+      width: '100%',
       boxShadow: 'none',
       ':hover': {
         border: `1px solid ${theme.palette.common.black}`,
@@ -60,7 +76,7 @@ export const getBaseStyles = <T extends BaseOption>(
           border: `1px solid ${theme.palette.error.main}`,
         },
       }),
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
       ...(state.isDisabled && {
         backgroundColor: theme.palette.common.disabled,
       }),
@@ -86,7 +102,10 @@ export const getBaseStyles = <T extends BaseOption>(
         padding: theme.spacing(0.75, 0.25, 0.25, 0.25),
       }),
     }),
-    singleValue: (base) => ({ ...base, color: theme.palette.common.black }),
+    singleValue: (base) => ({
+      ...base,
+      color: theme.palette.common.black,
+    }),
   };
 };
 

@@ -12,10 +12,18 @@ const {
   COMPONENTS,
   MASTER,
   POKEMON_ICON,
+  CARDS_ICON,
 } = ICONS;
 
-const { DASHBOARD, STAGES, ATTACKS, PROTOTYPES_BUTTONS, PACKS, POKEMON } =
-  routes;
+const {
+  DASHBOARD,
+  STAGES,
+  ATTACKS,
+  PROTOTYPES_ROOT,
+  MASTER_ROOT,
+  POKEMON,
+  CARDS,
+} = routes;
 
 const navItems: NavItem[] = [
   {
@@ -26,14 +34,15 @@ const navItems: NavItem[] = [
   { path: STAGES, label: 'Stages', icon: STAGES_ICON },
   { path: ATTACKS, label: 'Attacks', icon: ATTACKS_ICON },
   {
-    path: PROTOTYPES_BUTTONS,
+    path: PROTOTYPES_ROOT,
     label: 'Prototypes',
     icon: COMPONENTS,
     children: prototypesNavItems,
   },
+  { path: CARDS, label: 'Cards', icon: CARDS_ICON },
   { path: POKEMON, label: 'Pokemon', icon: POKEMON_ICON },
   {
-    path: PACKS,
+    path: MASTER_ROOT,
     label: 'Master',
     icon: MASTER,
     children: masterNavItems,

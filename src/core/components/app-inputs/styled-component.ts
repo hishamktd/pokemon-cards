@@ -2,6 +2,7 @@
 
 import { Box, styled, TextField, Switch, InputLabel } from '@mui/material';
 
+import { mixWithWhite } from '@/utils/color-utils';
 import { getColorPaletteColor } from '@/utils/icon-button';
 
 export const CustomTextField = styled(TextField)(
@@ -70,12 +71,32 @@ export const DropZoneInputContainer = styled(Box)({
   border: '2px dashed #ccc',
   padding: '20px',
   cursor: 'pointer',
+  height: '100%',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const CropperContainer = styled(Box)({
-  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
-  height: '300px',
+  height: '100%',
+  '& .cropper': {
+    position: 'relative',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+
+  '& .controls': {
+    padding: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
 });
 
 export const ImagePreviewContainer = styled(Box)({
@@ -178,6 +199,10 @@ export const CustomSwitch = styled(Switch)(({ theme, color }) => {
 export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
   color: theme.palette.common.black,
 
+  ['& .MuiFormLabel-asterisk']: {
+    color: theme.palette.common.black,
+  },
+
   ['&.Mui-disabled']: {
     ['&.MuiInputLabel-shrink']: {
       backgroundColor: theme.palette.common.disabled,
@@ -190,14 +215,32 @@ export const SelectLabel = styled(InputLabel)(({ theme, color }) => ({
 
   ['&.MuiInputLabel-shrink']: {
     padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
   },
 
-  ['& .MuiFormLabel-asterisk']: {
-    color: getColorPaletteColor(color, theme).main,
+  ['&.Mui-focused']: {
+    ['&.MuiInputLabel-shrink']: {
+      padding: theme.spacing(0, 0.5),
+      backgroundColor: mixWithWhite(theme.palette.background.paper, 5),
+      color: getColorPaletteColor(color, theme).main,
+
+      ['& .MuiFormLabel-asterisk']: {
+        color: getColorPaletteColor(color, theme).main,
+      },
+    },
   },
 
   ['&.Mui-error']: {
-    color: theme.palette.error.main,
+    ['& .MuiFormLabel-asterisk']: {
+      color: theme.palette.error.main,
+    },
+
+    ['&.MuiInputLabel-shrink']: {
+      color: theme.palette.error.main,
+
+      ['& .MuiFormLabel-asterisk']: {
+        color: theme.palette.error.main,
+      },
+    },
   },
 }));

@@ -25,5 +25,6 @@ export const ICONS = {
   POKEBALL_ICON: 'mdi:pokeball',
   RESET_ICON: 'ri:reset-left-fill',
   MALE_ICON: 'ic:outline-male',
-  FEMALE_ICON: 'ic:outline-female'
+  FEMALE_ICON: 'ic:outline-female',
+  CARDS_ICON: 'tabler:cards',
 } as const;

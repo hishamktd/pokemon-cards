@@ -4,7 +4,7 @@ import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 
 import styles from '@/styles/common';
-import { hexToRGBA } from '@/utils/hexToRGBA';
+import { hexToRGBA } from '@/utils/color-utils';
 
 export const HorizontalWrapper = styled(Box)(({ theme }) => ({
   '& .MuiTab-root': {

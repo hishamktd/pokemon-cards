@@ -53,6 +53,14 @@ const Types = () => {
   const [deleteType, { isLoading: isDeleting, isSuccess: isDeleted }] =
     useDeleteTypeMutation();
 
+  const handleSearch = useCallback(
+    (value: string) => {
+      setQuery(value);
+      setPage(INITIAL_PAGE);
+    },
+    [setQuery, setPage],
+  );
+
   const refetchTypes = useCallback(() => {
     refetch();
   }, [refetch]);
@@ -157,7 +165,7 @@ const Types = () => {
           onPageChange: setPage,
           page,
         }}
-        searchProps={{ query, onChange: setQuery }}
+        searchProps={{ query, onChange: handleSearch }}
       />
       <AppDataGrid
         rows={types}

@@ -1,27 +1,37 @@
-const routes = {
+class Routes {
+  private readonly A_ROOT = '/-';
+
   // ** DASHBOARD ** //
-  DASHBOARD: '/dashboard',
+  public readonly DASHBOARD = `${this.A_ROOT}/dashboard`;
 
   // ** STAGE ** //
-  STAGES: '/stages',
+  public readonly STAGES = `${this.A_ROOT}/stages`;
 
   // ** ATTACK ** //
-  ATTACKS: '/attacks',
+  public readonly ATTACKS = `${this.A_ROOT}/attacks`;
 
   // ** PROTOTYPE ** //
-  PROTOTYPES_BUTTONS: '/prototypes',
-  PROTOTYPES_TITLES: '/prototypes/titles',
-  PROTOTYPES_BUTTON_GROUPS: '/prototypes/button-groups',
-  PROTOTYPES_INPUTS: '/prototypes/inputs',
-  PROTOTYPES_TABLES: '/prototypes/tables',
-  PROTOTYPES_DRAWER: '/prototypes/drawer',
+  public readonly PROTOTYPES_ROOT = `${this.A_ROOT}/prototypes`;
+  public readonly PROTOTYPES_BUTTONS = `${this.PROTOTYPES_ROOT}`;
+  public readonly PROTOTYPES_TITLES = `${this.PROTOTYPES_ROOT}/titles`;
+  public readonly PROTOTYPES_BUTTON_GROUPS = `${this.PROTOTYPES_ROOT}/button-groups`;
+  public readonly PROTOTYPES_INPUTS = `${this.PROTOTYPES_ROOT}/inputs`;
+  public readonly PROTOTYPES_TABLES = `${this.PROTOTYPES_ROOT}/tables`;
+  public readonly PROTOTYPES_DRAWER = `${this.PROTOTYPES_ROOT}/drawer`;
 
   // ** MASTER ** //
-  PACKS: '/masters',
-  TYPES: '/masters/types',
+  public readonly MASTER_ROOT = `${this.A_ROOT}/masters`;
+  public readonly EXPANSIONS = `${this.MASTER_ROOT}`;
+  public readonly TYPES = `${this.MASTER_ROOT}/types`;
 
   // ** POKEMON ** //
-  POKEMON: '/pokemon',
-} as const;
+  public readonly POKEMON = `${this.A_ROOT}/pokemon`;
+
+  // ** CARDS ** //
+  public readonly CARDS = `${this.A_ROOT}/cards`;
+  public readonly CARDS_CREATE = `${this.CARDS}/create`;
+}
+
+const routes = new Routes();
 
 export default routes;

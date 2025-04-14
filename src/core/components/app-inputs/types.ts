@@ -14,7 +14,9 @@ import { ActionMeta, Props as ReactSelectProps } from 'react-select';
 
 import { Any, BaseOption, NumStr } from '@/types';
 
-export type AppTextFieldProps = TextFieldProps;
+export type AppTextFieldProps = TextFieldProps & {
+  isRequired?: boolean;
+};
 
 export type AppNumberFieldProps = Omit<
   AppTextFieldProps,

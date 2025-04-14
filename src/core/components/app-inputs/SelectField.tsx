@@ -1,16 +1,28 @@
+'use client';
+
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import { useTheme } from '@mui/material/styles';
 import React, { useCallback, useMemo, useState } from 'react';
 
-import ReactSelect, { SingleValue, MultiValue, ActionMeta } from 'react-select';
+import dynamic from 'next/dynamic';
+import { SingleValue, MultiValue, ActionMeta, Props } from 'react-select';
+const ReactSelect = dynamic(() => import('react-select'), {
+  ssr: false,
+  loading: () => <AppTextField />,
+});
 
 import { Any, BaseOption } from '@/types';
 import gMemo from '@/utils/memo';
 
+import { AppTextField } from '.';
 import { SelectLabel } from './styled-component';
 import { getBaseStyles, getBaseTheme } from './theme';
 import { AppSelectFieldProps } from './types';
+
+function BaseSelect<T extends BaseOption>(props: Props<T, boolean>) {
+  return <ReactSelect {...(props as Any)} />;
+}
 
 const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
   const {
@@ -30,6 +42,8 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
     onChange,
     color = 'primary',
     isDisabled = false,
+    onBlur,
+    onFocus,
     ...rest
   } = props;
 
@@ -76,6 +90,7 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
       size="small"
       color={color}
       disabled={isDisabled}
+      sx={{ width: '100%' }}
       {...formControlProps}
     >
       <SelectLabel
@@ -84,12 +99,14 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         required={isRequired}
         color={color}
         disabled={isDisabled}
+        focused={isFocused}
         {...inputLabelProps}
       >
         {label}
       </SelectLabel>
 
-      <ReactSelect<T, Any>
+      <BaseSelect<T>
+        id="select"
         menuPlacement="auto"
         options={options}
         isMulti={isMulti}
@@ -100,8 +117,14 @@ const AppSelect = <T extends BaseOption>(props: AppSelectFieldProps<T>) => {
         theme={(current) => getBaseTheme(current, theme)}
         getOptionValue={getOptionValue}
         getOptionLabel={getOptionLabel}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={(...arg) => {
+          setIsFocused(true);
+          onFocus?.(...arg);
+        }}
+        onBlur={(...arg) => {
+          setIsFocused(false);
+          onBlur?.(...arg);
+        }}
         onChange={handleChange}
         isDisabled={isDisabled}
         {...rest}

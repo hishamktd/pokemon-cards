@@ -4,6 +4,7 @@ import { axiosBaseQuery } from '@/lib/axios-base-query';
 import { BaseParams, GetAllType, PaginationResponse, TId } from '@/types';
 import {
   GetAllPokemonParams,
+  GetAllPokemonWithType,
   Pokemon,
   PokemonCreateRequest,
   PokemonUpdateRequest,
@@ -18,6 +19,12 @@ export const pokemonApi = createApi({
         url: '/pokemon/all',
         method: 'GET',
         params,
+      }),
+    }),
+    getAllPokemonsWithType: builder.query<GetAllPokemonWithType[], object>({
+      query: () => ({
+        url: '/pokemon/all/type',
+        method: 'GET',
       }),
     }),
     getPokemons: builder.query<PaginationResponse<Pokemon>, BaseParams>({
@@ -58,6 +65,7 @@ export const pokemonApi = createApi({
 
 export const {
   useGetAllPokemonsQuery,
+  useGetAllPokemonsWithTypeQuery,
   useGetPokemonsQuery,
   useGetPokemonQuery,
   useCreatePokemonMutation,

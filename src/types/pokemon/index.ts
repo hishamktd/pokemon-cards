@@ -1,6 +1,6 @@
 import { Gender, Stage } from '@/enum/pokemon';
 
-import { BaseOption, Nullable } from '..';
+import { BaseOption, GetAllType, Nullable } from '..';
 import { Types } from '../masters/types';
 
 export type Pokemon = {
@@ -31,4 +31,9 @@ export type PokemonUpdateRequest = Omit<Pokemon, 'type' | 'evolvedFrom'>;
 
 export type GetAllPokemonParams = {
   stage?: Stage;
+};
+
+export type GetAllPokemonWithType = GetAllType & {
+  type: GetAllType;
+  isFossil: boolean;
 };

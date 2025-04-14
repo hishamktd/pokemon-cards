@@ -1,5 +1,3 @@
-import { StateCreator } from 'zustand';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Any = any;
 
@@ -32,8 +30,6 @@ export type DeleteItem = {
   name?: string;
 } | null;
 
-export type SetFunc<T> = Parameters<StateCreator<T>>[0];
-
 type Meta = {
   page: number;
   itemCount: number;
@@ -47,7 +43,7 @@ export type PaginationResponse<T> = {
   meta: Meta;
 };
 
-export type TId = number | null;
+export type TId = Nullable<number>;
 
 export type GetAllType = {
   id: number;

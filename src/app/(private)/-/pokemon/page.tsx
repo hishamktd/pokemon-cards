@@ -1,27 +1,45 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
+
+import { startCase, toLower } from 'lodash';
 
 import {
-  useDeleteExpansionMutation,
-  useGetExpansionsQuery,
-} from '@/api/masters/expansion.api';
+  useDeletePokemonMutation,
+  useGetPokemonsQuery,
+} from '@/api/pokemon/pokemon.api';
 import ActionButton from '@/components/action-button';
-import { ImageChip } from '@/components/chips';
+import { IconTextChip, ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
 import { KeyActionEnum } from '@/enum/key-actions';
+import { Gender } from '@/enum/pokemon';
+import Icons from '@/lib/icons';
+import { ICONS } from '@/lib/icons/icons-const';
 import { DeleteItem, TId } from '@/types';
-import { type Expansion } from '@/types/masters/expansion';
-import { getOrDefault } from '@/utils/common';
+import { Pokemon } from '@/types/pokemon';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
-import ExpansionDrawer from '@/views/masters/expansion/ExpansionDrawer';
+import PokemonDrawer from '@/views/pokemon/PokemonDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
-const Expansions = () => {
+const { MALE_ICON, FEMALE_ICON } = ICONS;
+const { FEMALE, MALE } = Gender;
+
+const getGenderIcon = (gender: Gender) => {
+  switch (gender) {
+    case MALE:
+      return <Icons icon={MALE_ICON} />;
+    case FEMALE:
+      return <Icons icon={FEMALE_ICON} />;
+    default:
+      return null;
+  }
+};
+
+const Pokemons = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [sortBy, setSortBy] = useQuery('sort_by', '');
@@ -34,10 +52,10 @@ const Expansions = () => {
   );
 
   const {
-    data: { data: expansions, meta } = {},
+    data: { data: pokemons, meta } = {},
     isLoading,
     refetch,
-  } = useGetExpansionsQuery(
+  } = useGetPokemonsQuery(
     {
       page,
       query,
@@ -50,10 +68,18 @@ const Expansions = () => {
       refetchOnFocus: true,
     },
   );
-  const [deleteExpansion, { isLoading: isDeleting, isSuccess: isDeleted }] =
-    useDeleteExpansionMutation();
+  const [deletePokemon, { isLoading: isDeleting, isSuccess: isDeleted }] =
+    useDeletePokemonMutation();
 
-  const refetchExpansions = useCallback(() => {
+  const handleSearch = useCallback(
+    (value: string) => {
+      setQuery(value);
+      setPage(INITIAL_PAGE);
+    },
+    [setQuery, setPage],
+  );
+
+  const refetchPokemons = useCallback(() => {
     refetch();
   }, [refetch]);
 
@@ -66,21 +92,21 @@ const Expansions = () => {
 
   const closeModal = useCallback(() => {
     setItemToDelete(null);
-    refetchExpansions();
-  }, [setItemToDelete, refetchExpansions]);
+    refetchPokemons();
+  }, [setItemToDelete, refetchPokemons]);
 
   const handleConfirmDelete = useCallback(
     async (id: number) => {
-      await deleteExpansion(id);
+      await deletePokemon(id);
       closeModal();
     },
-    [deleteExpansion, closeModal],
+    [deletePokemon, closeModal],
   );
 
   const toggleDrawer = useCallback(() => {
     setIsOpen((prev) => !prev);
-    refetchExpansions();
-  }, [setIsOpen, refetchExpansions]);
+    refetchPokemons();
+  }, [setIsOpen, refetchPokemons]);
 
   const handleOnEdit = useCallback(
     (id: number) => {
@@ -97,29 +123,66 @@ const Expansions = () => {
 
   useEffect(() => {
     if (isDeleted) {
-      refetchExpansions();
+      refetchPokemons();
     }
-  }, [isDeleted, refetchExpansions]);
+  }, [isDeleted, refetchPokemons]);
 
-  const columns = useMemo<GridColDef<Expansion>[]>(
+  const columns = useMemo<GridColDef<Pokemon>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
-      { field: 'name', headerName: 'Name' },
-      { field: 'totalCards', headerName: 'Total Cards' },
       {
-        field: 'points',
-        headerName: 'Points',
-        renderCell: ({ row }) => getOrDefault(row?.points),
+        field: 'name',
+        headerName: 'Name',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.name}
+            icon={getGenderIcon(row?.gender)}
+            color={'black'}
+          />
+        ),
       },
       {
         field: 'imageUrl',
         headerName: 'Image',
-        renderCell: ({ row }) => (
-          <ImageChip imageUrl={row?.imageUrl} width={60} />
-        ),
+        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
         sortable: false,
         disableColumnMenu: true,
         flex: 0,
+      },
+      {
+        field: 'type.name',
+        headerName: 'Type',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.type?.name}
+            icon={row?.type?.iconUrl}
+            color={row?.type?.color}
+          />
+        ),
+        flex: 0,
+        minWidth: 170,
+        sortable: false,
+        disableColumnMenu: true,
+      },
+      {
+        field: 'stage',
+        headerName: 'Stage',
+        valueFormatter: (val) => startCase(toLower(val)),
+      },
+      {
+        field: 'evolvedFrom.name',
+        headerName: 'Evolved From',
+        renderCell: ({ row }) => (
+          <IconTextChip
+            text={row?.evolvedFrom?.name}
+            icon={row?.evolvedFrom?.imageUrl}
+            color={row?.evolvedFrom?.type?.color}
+          />
+        ),
+        flex: 0,
+        minWidth: 170,
+        sortable: false,
+        disableColumnMenu: true,
       },
       {
         field: 'actions',
@@ -143,7 +206,7 @@ const Expansions = () => {
   return (
     <Page>
       <PaginationSearchTitle
-        title="Expansions"
+        title="Pokemons"
         variant="small"
         buttonGroupProps={{
           containedButtonProps: {
@@ -157,10 +220,10 @@ const Expansions = () => {
           onPageChange: setPage,
           page,
         }}
-        searchProps={{ query, onChange: setQuery }}
+        searchProps={{ query, onChange: handleSearch }}
       />
       <AppDataGrid
-        rows={expansions}
+        rows={pokemons}
         columns={columns}
         loading={isLoading}
         onSortChange={(field, sort) => {
@@ -168,11 +231,11 @@ const Expansions = () => {
           setOrder(sort);
         }}
       />
-      <ExpansionDrawer
+      <PokemonDrawer
         open={isOpen}
         onClose={handleCloseDrawer}
         id={editId}
-        refetchExpansions={refetchExpansions}
+        refetchPokemons={refetchPokemons}
       />
       <DeleteModal
         itemToDelete={itemToDelete}
@@ -184,4 +247,4 @@ const Expansions = () => {
   );
 };
 
-export default memo(Expansions);
+export default memo(Pokemons);

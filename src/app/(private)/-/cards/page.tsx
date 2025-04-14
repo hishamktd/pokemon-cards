@@ -1,61 +1,41 @@
 'use client';
 
 import { GridColDef } from '@mui/x-data-grid';
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 
-import { startCase, toLower } from 'lodash';
+import { useRouter } from 'next/navigation';
 
-import {
-  useDeletePokemonMutation,
-  useGetPokemonsQuery,
-} from '@/api/pokemon/pokemon.api';
+import { useDeleteCardMutation, useGetCardsQuery } from '@/api/cards/cards.api';
 import ActionButton from '@/components/action-button';
 import { IconTextChip, ImageChip } from '@/components/chips';
 import DeleteModal from '@/components/delete-modal';
 import Page from '@/components/page';
+import routes from '@/constants/common/routes';
 import { KeyActionEnum } from '@/enum/key-actions';
-import { Gender } from '@/enum/pokemon';
-import Icons from '@/lib/icons';
-import { ICONS } from '@/lib/icons/icons-const';
-import { DeleteItem, TId } from '@/types';
-import { Pokemon } from '@/types/pokemon';
+import { DeleteItem } from '@/types';
+import { Card } from '@/types/cards';
 import { INITIAL_PAGE, PAGE_SIZE } from '@/utils/pagination';
-import PokemonDrawer from '@/views/pokemon/PokemonDrawer';
 import { AppDataGrid } from '@core/components/app-table';
 import { PaginationSearchTitle } from '@core/components/app-title';
 import useQuery from '@core/hooks/use-query';
 
-const { MALE_ICON, FEMALE_ICON } = ICONS;
-const { FEMALE, MALE } = Gender;
+const Cards = () => {
+  const { push } = useRouter();
 
-const getGenderIcon = (gender: Gender) => {
-  switch (gender) {
-    case MALE:
-      return <Icons icon={MALE_ICON} />;
-    case FEMALE:
-      return <Icons icon={FEMALE_ICON} />;
-    default:
-      return null;
-  }
-};
-
-const Pokemons = () => {
   const [page, setPage] = useQuery('page', INITIAL_PAGE);
   const [query, setQuery] = useQuery('query', '');
   const [sortBy, setSortBy] = useQuery('sort_by', '');
   const [order, setOrder] = useQuery('order', '');
-  const [isOpen, setIsOpen] = useQuery('drawer', false);
-  const [editId, setEditId] = useQuery<TId>('id', null);
   const [itemToDelete, setItemToDelete] = useQuery<DeleteItem>(
     'itemToDelete',
     null,
   );
 
   const {
-    data: { data: pokemons, meta } = {},
+    data: { data: cards, meta } = {},
     isLoading,
     refetch,
-  } = useGetPokemonsQuery(
+  } = useGetCardsQuery(
     {
       page,
       query,
@@ -69,9 +49,9 @@ const Pokemons = () => {
     },
   );
   const [deletePokemon, { isLoading: isDeleting, isSuccess: isDeleted }] =
-    useDeletePokemonMutation();
+    useDeleteCardMutation();
 
-  const refetchPokemons = useCallback(() => {
+  const refetchCards = useCallback(() => {
     refetch();
   }, [refetch]);
 
@@ -84,8 +64,8 @@ const Pokemons = () => {
 
   const closeModal = useCallback(() => {
     setItemToDelete(null);
-    refetchPokemons();
-  }, [setItemToDelete, refetchPokemons]);
+    refetchCards();
+  }, [setItemToDelete, refetchCards]);
 
   const handleConfirmDelete = useCallback(
     async (id: number) => {
@@ -95,48 +75,32 @@ const Pokemons = () => {
     [deletePokemon, closeModal],
   );
 
-  const toggleDrawer = useCallback(() => {
-    setIsOpen((prev) => !prev);
-    refetchPokemons();
-  }, [setIsOpen, refetchPokemons]);
-
-  const handleOnEdit = useCallback(
-    (id: number) => {
-      setEditId(id);
-      toggleDrawer();
-    },
-    [setEditId, toggleDrawer],
+  const handleOnCreate = useCallback(
+    () => push(`${routes.CARDS_CREATE}`),
+    [push],
   );
 
-  const handleCloseDrawer = useCallback(() => {
-    setEditId(null);
-    toggleDrawer();
-  }, [setEditId, toggleDrawer]);
+  const handleOnEdit = useCallback(
+    (id: number) => push(`${routes.CARDS}/${id}`),
+    [push],
+  );
 
   useEffect(() => {
     if (isDeleted) {
-      refetchPokemons();
+      refetchCards();
     }
-  }, [isDeleted, refetchPokemons]);
+  }, [isDeleted, refetchCards]);
 
-  const columns = useMemo<GridColDef<Pokemon>[]>(
+  const columns = useMemo<GridColDef<Card>[]>(
     () => [
       { field: 'id', headerName: 'ID' },
+      { field: 'name', headerName: 'Name' },
       {
-        field: 'name',
-        headerName: 'Name',
+        field: 'thumbnailUrl',
+        headerName: 'Thumbnail',
         renderCell: ({ row }) => (
-          <IconTextChip
-            text={row?.name}
-            icon={getGenderIcon(row?.gender)}
-            color={'black'}
-          />
+          <ImageChip imageUrl={row?.thumbnailUrl} width={24} />
         ),
-      },
-      {
-        field: 'imageUrl',
-        headerName: 'Image',
-        renderCell: ({ row }) => <ImageChip imageUrl={row?.imageUrl} />,
         sortable: false,
         disableColumnMenu: true,
         flex: 0,
@@ -157,18 +121,13 @@ const Pokemons = () => {
         disableColumnMenu: true,
       },
       {
-        field: 'stage',
-        headerName: 'Stage',
-        valueFormatter: (val) => startCase(toLower(val)),
-      },
-      {
-        field: 'evolvedFrom.name',
-        headerName: 'Evolved From',
+        field: 'pokemon.name',
+        headerName: 'Pokemon',
         renderCell: ({ row }) => (
           <IconTextChip
-            text={row?.evolvedFrom?.name}
-            icon={row?.evolvedFrom?.imageUrl}
-            color={row?.evolvedFrom?.type?.color}
+            text={row?.pokemon?.name}
+            icon={row?.pokemon?.imageUrl}
+            color={row?.type?.color}
           />
         ),
         flex: 0,
@@ -198,12 +157,12 @@ const Pokemons = () => {
   return (
     <Page>
       <PaginationSearchTitle
-        title="Pokemons"
+        title="Cards"
         variant="small"
         buttonGroupProps={{
           containedButtonProps: {
             label: 'Create',
-            onClick: toggleDrawer,
+            onClick: handleOnCreate,
             keyFor: KeyActionEnum.CREATE,
           },
         }}
@@ -215,19 +174,13 @@ const Pokemons = () => {
         searchProps={{ query, onChange: setQuery }}
       />
       <AppDataGrid
-        rows={pokemons}
+        rows={cards}
         columns={columns}
         loading={isLoading}
         onSortChange={(field, sort) => {
           setSortBy(field);
           setOrder(sort);
         }}
-      />
-      <PokemonDrawer
-        open={isOpen}
-        onClose={handleCloseDrawer}
-        id={editId}
-        refetchPokemons={refetchPokemons}
       />
       <DeleteModal
         itemToDelete={itemToDelete}
@@ -239,4 +192,4 @@ const Pokemons = () => {
   );
 };
 
-export default memo(Pokemons);
+export default memo(Cards);
